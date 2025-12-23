@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import '../utils/currency_formatter.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../providers/bcv_provider.dart';
@@ -25,7 +26,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void initState() {
     super.initState();
+
     // Focus listeners if needed, though mostly handled by onTap now
+
+    // Check clipboard after first frame
   }
 
   @override
@@ -34,6 +38,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     _vesController.dispose();
     _foreignFocus.dispose();
     _vesFocus.dispose();
+
     super.dispose();
   }
 
@@ -601,99 +606,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-  void _showAddEditRateDialog({CustomRate? rate}) {
-    final nameCtrl = TextEditingController(text: rate?.name ?? "");
-    final rateCtrl = TextEditingController(text: rate?.rate.toString() ?? "");
-
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: AppTheme.cardBackground,
-        title: Text(
-          rate == null ? "Nueva Tasa" : "Editar Tasa",
-          style: const TextStyle(color: Colors.white),
-        ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: nameCtrl,
-              maxLength: 10, // Max 10 chars
-              style: const TextStyle(color: Colors.white),
-              decoration: const InputDecoration(
-                labelText: "Nombre (Max 10)",
-                counterStyle: TextStyle(color: AppTheme.textSubtle),
-                labelStyle: TextStyle(color: AppTheme.textSubtle),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: AppTheme.textSubtle),
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: rateCtrl,
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
-              ),
-              style: const TextStyle(color: Colors.white),
-              decoration: const InputDecoration(
-                labelText: "Tasa (VES)",
-                labelStyle: TextStyle(color: AppTheme.textSubtle),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: AppTheme.textSubtle),
-                ),
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          if (rate != null)
-            TextButton(
-              onPressed: () {
-                ref.read(customRatesProvider.notifier).deleteRate(rate.id);
-                Navigator.pop(ctx);
-              },
-              child: const Text(
-                "Eliminar",
-                style: TextStyle(color: Colors.redAccent),
-              ),
-            ),
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: const Text(
-              "Cancelar",
-              style: TextStyle(color: AppTheme.textSubtle),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              final val = double.tryParse(rateCtrl.text);
-              if (nameCtrl.text.isNotEmpty && val != null) {
-                // Also validate max length just in case
-                if (nameCtrl.text.length > 10) return;
-
-                if (rate == null) {
-                  ref
-                      .read(customRatesProvider.notifier)
-                      .addRate(nameCtrl.text, val);
-                } else {
-                  ref
-                      .read(customRatesProvider.notifier)
-                      .updateRate(rate.id, nameCtrl.text, val);
-                }
-                Navigator.pop(ctx);
-              }
-            },
-            child: const Text(
-              "Guardar",
-              style: TextStyle(color: AppTheme.textAccent),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildConversionCard(
     double rate,
     ConversionState state,
@@ -740,6 +652,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       }
     }
 
+    // Determine Foreign Placeholder
+    String foreignPlaceholder;
+    if (state.currency == CurrencyType.usd) {
+      foreignPlaceholder = "Monto en Dólares";
+    } else if (state.currency == CurrencyType.eur) {
+      foreignPlaceholder = "Monto en Euros";
+    } else {
+      // Custom
+      if (customRate != null) {
+        foreignPlaceholder = "Monto en ${customRate.name}";
+      } else {
+        foreignPlaceholder = "Monto en Personalizada";
+      }
+    }
+
     // Simplification of the else block:
     /*
     } else {
@@ -771,10 +698,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         inputsHelper =
             "$symbol ${NumberFormat("#,##0.00", "es_VE").format(bcvPurchasingPower)} (BCV)";
 
-        // VES Helper
-        double equivalentVesAtBcv = val * bcvCompRate;
-        resultsHelper =
-            "${NumberFormat("#,##0.00", "es_VE").format(equivalentVesAtBcv)} Bs (BCV)";
+        // VES Helper removed as per request
+        // double equivalentVesAtBcv = val * bcvCompRate;
+        // resultsHelper = "${NumberFormat("#,##0.00", "es_VE").format(equivalentVesAtBcv)} Bs (BCV)";
       }
     }
 
@@ -798,6 +724,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               IconButton(
+                icon: const Icon(Icons.refresh, color: AppTheme.textSubtle),
+                onPressed: () {
+                  // Clear via provider which updates listeners which updates controllers
+                  ref.read(conversionProvider.notifier).updateForeign("", rate);
+                },
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+              ),
+              const SizedBox(width: 16),
+              IconButton(
                 icon: const Icon(Icons.share, color: AppTheme.textSubtle),
                 onPressed: () =>
                     _shareConversion(rate, state, rateDate, customRate),
@@ -812,7 +748,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             controller: _foreignController,
             focusNode: _foreignFocus,
             label: foreignLabel,
-            placeholder: "Monto",
+            placeholder: foreignPlaceholder,
             prefixText: foreignPrefix,
             onChanged: (value) {
               // validate with European format support
@@ -825,6 +761,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             },
             canCopy: true,
             helperText: inputsHelper,
+            maxIntegerDigits: 10,
+            maxDecimalDigits: 3,
           ),
 
           const Padding(
@@ -841,7 +779,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             controller: _vesController,
             focusNode: _vesFocus,
             label: vesLabel,
-            placeholder: "Equivalente en VES",
+            placeholder: "Monto en Bolívares",
             prefixText: vesPrefix,
             onChanged: (value) {
               final sanitized = value.replaceAll('.', '').replaceAll(',', '.');
@@ -851,6 +789,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             },
             canCopy: true,
             helperText: resultsHelper,
+            maxIntegerDigits: 12,
+            maxDecimalDigits: 4,
           ),
         ],
       ),
@@ -911,6 +851,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     bool canCopy = false,
     String? helperText,
     String? prefixText,
+    int maxIntegerDigits = 15,
+    int maxDecimalDigits = 2,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -933,11 +875,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   }
                 },
                 child: Container(
-                  padding: const EdgeInsets.all(4),
+                  padding: const EdgeInsets.all(8),
                   child: const Icon(
                     Icons.copy,
                     color: AppTheme.textSubtle,
-                    size: 16,
+                    size: 20,
                   ),
                 ),
               ),
@@ -967,6 +909,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
                 style: AppTheme.inputTextStyle.copyWith(fontSize: 22),
                 cursorColor: AppTheme.textAccent,
+                inputFormatters: [
+                  CurrencyInputFormatter(
+                    maxIntegerDigits: maxIntegerDigits,
+                    maxDecimalDigits: maxDecimalDigits,
+                  ),
+                ],
                 onChanged: onChanged,
                 decoration: InputDecoration(
                   hintText: placeholder,
@@ -1019,6 +967,121 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ),
       ],
+    );
+  }
+
+  void _showAddEditRateDialog({CustomRate? rate}) {
+    final nameCtrl = TextEditingController(text: rate?.name ?? "");
+    final rateCtrl = TextEditingController(text: rate?.rate.toString() ?? "");
+
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: AppTheme.cardBackground,
+        title: Text(
+          rate == null ? "Nueva Tasa" : "Editar Tasa",
+          style: const TextStyle(color: Colors.white),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: nameCtrl,
+              maxLength: 10, // Max 10 chars
+              style: const TextStyle(color: Colors.white),
+              decoration: const InputDecoration(
+                labelText: "Nombre (Max 10)",
+                counterStyle: TextStyle(color: AppTheme.textSubtle),
+                labelStyle: TextStyle(color: AppTheme.textSubtle),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppTheme.textSubtle),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: rateCtrl,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              style: const TextStyle(color: Colors.white),
+              decoration: const InputDecoration(
+                labelText: "Tasa (Bolívares)",
+                labelStyle: TextStyle(color: AppTheme.textSubtle),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppTheme.textSubtle),
+                ),
+              ),
+              inputFormatters: [CurrencyInputFormatter()],
+            ),
+          ],
+        ),
+        actions: [
+          if (rate != null)
+            TextButton(
+              onPressed: () {
+                ref.read(customRatesProvider.notifier).deleteRate(rate.id);
+                Navigator.pop(ctx);
+              },
+              child: const Text(
+                "Eliminar",
+                style: TextStyle(color: Colors.redAccent),
+              ),
+            ),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text(
+              "Cancelar",
+              style: TextStyle(color: AppTheme.textSubtle),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              final val = double.tryParse(
+                rateCtrl.text.replaceAll('.', '').replaceAll(',', '.'),
+              );
+              final name = nameCtrl.text.trim();
+
+              if (name.isNotEmpty && val != null) {
+                // Also validate max length just in case
+                if (name.length > 10) return;
+
+                // Validate duplicate name
+                final existingRates = ref.read(customRatesProvider);
+                final isDuplicate = existingRates.any(
+                  (r) =>
+                      r.name.toLowerCase() == name.toLowerCase() &&
+                      (rate == null || r.id != rate.id),
+                );
+
+                if (isDuplicate) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Ya existe una tasa con ese nombre"),
+                      backgroundColor: Colors.redAccent,
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                  return;
+                }
+
+                if (rate == null) {
+                  ref.read(customRatesProvider.notifier).addRate(name, val);
+                } else {
+                  ref
+                      .read(customRatesProvider.notifier)
+                      .updateRate(rate.id, name, val);
+                }
+                Navigator.pop(ctx);
+              }
+            },
+            child: const Text(
+              "Guardar",
+              style: TextStyle(color: AppTheme.textAccent),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

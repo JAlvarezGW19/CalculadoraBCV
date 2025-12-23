@@ -172,15 +172,18 @@ class ConversionNotifier extends Notifier<ConversionState> {
   }
 
   void setCurrency(CurrencyType type) {
+    if (state.currency == type) return;
     // When switching to custom, ensure we have a selection if available
     state = state.copyWith(currency: type, foreignValue: '', vesValue: '');
   }
 
   void setDateMode(RateDateMode mode) {
+    if (state.dateMode == mode) return;
     state = state.copyWith(dateMode: mode, foreignValue: '', vesValue: '');
   }
 
   void setSelectedCustomRate(String id) {
+    if (state.selectedCustomRateId == id) return;
     state = state.copyWith(
       selectedCustomRateId: id,
       foreignValue: '',
