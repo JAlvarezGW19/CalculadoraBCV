@@ -3,91 +3,76 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
-  static const String _endpointHistory =
-      'https://bcv-api.rafnixg.dev/rates/history';
-  static const String _endpointCrossRates =
-      'https://open.er-api.com/v6/latest/USD';
-
-  static const String _cachedDataKey = 'cached_rates_history_v3';
+  static const String _endpoint =
+      'https://api.dolarvzla.com/public/exchange-rate';
+  static const String _cachedDataKey = 'cached_rates_dolarvzla_v1';
 
   Future<Map<String, dynamic>> fetchRates() async {
     try {
-      final responseHistory = await http.get(Uri.parse(_endpointHistory));
+      final response = await http.get(Uri.parse(_endpoint));
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
 
-      double usdToday = 0.0;
-      double usdTomorrow = 0.0;
-      bool hasTomorrow = false;
+        // Parse 'current' and 'previous'
+        final current = data['current'];
+        final previous = data['previous'];
 
-      if (responseHistory.statusCode == 200) {
-        final data = json.decode(responseHistory.body);
-        if (data['rates'] != null && (data['rates'] as List).isNotEmpty) {
-          final List rates = data['rates'];
+        // Dates format in API is usually "YYYY-MM-DD" e.g. "2025-12-23"
+        // We parse it to DateTime.
+        final currentDate = DateTime.parse(current['date']);
 
-          if (rates.isNotEmpty) {
-            final latestRate = rates[0];
-            final latestDateStr = latestRate['date'] as String; // YYYY-MM-DD
-            final latestVal = (latestRate['dollar'] as num).toDouble();
+        final now = DateTime.now();
+        final today = DateTime(now.year, now.month, now.day);
 
-            final now = DateTime.now();
-            final todayStr =
-                "${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}";
+        double usdToday = 0.0;
+        double usdTomorrow = 0.0;
+        double eurToday = 0.0;
+        double eurTomorrow = 0.0;
+        bool hasTomorrow = false;
 
-            final latestDate = DateTime.parse(latestDateStr);
-            final todayDate = DateTime.parse(todayStr);
+        // Logic:
+        // If 'current' date is AFTER today -> It's Tomorrow's rate. 'previous' is Today's rate.
+        // If 'current' date is TODAY (or older) -> It's Today's rate. Tomorrow is unavailable.
 
-            if (latestDate.isAfter(todayDate)) {
-              // Tenemos tasa para mañana (publicada hoy para mañana)
-              usdTomorrow = latestVal;
-              hasTomorrow = true;
+        if (currentDate.isAfter(today)) {
+          // 'current' contains tomorrow's rates
+          usdTomorrow = (current['usd'] as num).toDouble();
+          eurTomorrow = (current['eur'] as num).toDouble();
+          hasTomorrow = true;
 
-              if (rates.length > 1) {
-                usdToday = (rates[1]['dollar'] as num).toDouble();
-              } else {
-                usdToday = latestVal;
-              }
-            } else {
-              // La última tasa es la de hoy (o anterior).
-              usdToday = latestVal;
-              usdTomorrow = 0.0;
-              hasTomorrow = false;
-            }
+          if (previous != null) {
+            usdToday = (previous['usd'] as num).toDouble();
+            eurToday = (previous['eur'] as num).toDouble();
+          } else {
+            // Fallback
+            usdToday = usdTomorrow;
+            eurToday = eurTomorrow;
           }
+        } else {
+          // 'current' contains today's rates
+          usdToday = (current['usd'] as num).toDouble();
+          eurToday = (current['eur'] as num).toDouble();
+          // Reset tomorrow values
+          usdTomorrow = 0.0;
+          eurTomorrow = 0.0;
+          hasTomorrow = false;
         }
-      }
 
-      // Fetch Euro Cross Rate
-      final responseCross = await http.get(Uri.parse(_endpointCrossRates));
-      double eurRateInUsd = 0.0;
+        final result = {
+          'usd_today': usdToday,
+          'usd_tomorrow': usdTomorrow,
+          'eur_today': eurToday,
+          'eur_tomorrow': eurTomorrow,
+          'has_tomorrow': hasTomorrow,
+          'last_fetch': DateTime.now().toIso8601String(),
+          'rate_date': currentDate.toIso8601String(),
+        };
 
-      if (responseCross.statusCode == 200) {
-        final data = json.decode(responseCross.body);
-        if (data['rates'] != null && data['rates']['EUR'] != null) {
-          eurRateInUsd = (data['rates']['EUR'] as num).toDouble();
-        }
-      }
-
-      // Calculate Euros
-      double eurToday = 0.0;
-      double eurTomorrow = 0.0;
-
-      if (eurRateInUsd > 0) {
-        if (usdToday > 0) eurToday = usdToday / eurRateInUsd;
-        if (usdTomorrow > 0) eurTomorrow = usdTomorrow / eurRateInUsd;
+        await _cacheData(result);
+        return result;
       } else {
-        if (usdToday > 0) eurToday = usdToday * 1.1; // Fallback
-        if (usdTomorrow > 0) eurTomorrow = usdTomorrow * 1.1;
+        return await _loadFromCache();
       }
-
-      final result = {
-        'usd_today': usdToday,
-        'usd_tomorrow': usdTomorrow,
-        'eur_today': eurToday,
-        'eur_tomorrow': eurTomorrow,
-        'has_tomorrow': hasTomorrow,
-      };
-
-      await _cacheData(result);
-      return result;
     } catch (e) {
       return await _loadFromCache();
     }
