@@ -1,0 +1,41 @@
+name: calculadora_bcv
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.10.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^3.0.3
+  google_fonts: ^6.3.3
+  http: ^1.6.0
+  intl: ^0.20.2
+  shared_preferences: ^2.5.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/Icono.png"
+  adaptive_icon_background: "#0A192F"
+  adaptive_icon_foreground: "assets/icon/Icono.png"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/icon/Icono.png"
+    background_color: "#0A192F"
+    theme_color: "#0A192F"
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icon/
