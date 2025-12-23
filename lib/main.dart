@@ -3,7 +3,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'screens/home_screen.dart';
 import 'theme/app_theme.dart';
 
-void main() {
+import 'services/background_service.dart';
+import 'services/notification_service.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Notifications
+  final notificationService = NotificationService();
+  await notificationService.init();
+  await notificationService.requestPermissions(); // Request on launch
+
+  // Initialize Background Tasks
+  await BackgroundService.initialize();
+  await BackgroundService.registerPeriodicTask();
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
