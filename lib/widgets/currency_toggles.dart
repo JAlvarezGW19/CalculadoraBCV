@@ -1,16 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import '../providers/bcv_provider.dart';
 import '../theme/app_theme.dart';
 
 class CurrencyToggles extends ConsumerWidget {
   final bool hasTomorrow;
+  final DateTime? tomorrowDate;
 
-  const CurrencyToggles({super.key, required this.hasTomorrow});
+  const CurrencyToggles({
+    super.key,
+    required this.hasTomorrow,
+    this.tomorrowDate,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(conversionProvider);
+
+    String tomorrowLabel = "Mañana";
+    if (hasTomorrow && tomorrowDate != null) {
+      final now = DateTime.now();
+      final today = DateTime(now.year, now.month, now.day);
+      final strictTomorrow = today.add(const Duration(days: 1));
+
+      final isStrictTomorrow =
+          tomorrowDate!.year == strictTomorrow.year &&
+          tomorrowDate!.month == strictTomorrow.month &&
+          tomorrowDate!.day == strictTomorrow.day;
+
+      if (!isStrictTomorrow) {
+        final dayName = DateFormat('EEEE', 'es').format(tomorrowDate!);
+        tomorrowLabel =
+            dayName[0].toUpperCase() + dayName.substring(1).toLowerCase();
+      }
+    }
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,7 +89,7 @@ class CurrencyToggles extends ConsumerWidget {
                       .setDateMode(RateDateMode.today),
                 ),
                 _buildToggleButton(
-                  "Mañana",
+                  tomorrowLabel,
                   state.dateMode == RateDateMode.tomorrow,
                   hasTomorrow
                       ? () => ref

@@ -6,8 +6,13 @@ import 'theme/app_theme.dart';
 import 'services/background_service.dart';
 import 'services/notification_service.dart';
 
+import 'package:intl/date_symbol_data_local.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Date Formatting
+  await initializeDateFormatting('es', null);
 
   // Initialize Notifications
   final notificationService = NotificationService();

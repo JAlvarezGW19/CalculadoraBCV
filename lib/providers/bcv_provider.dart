@@ -17,7 +17,8 @@ class RatesData {
   final double eurTomorrow;
   final bool hasTomorrow;
   final DateTime? lastFetch;
-  final DateTime? rateDate;
+  final DateTime? todayDate;
+  final DateTime? tomorrowDate;
 
   const RatesData({
     required this.usdToday,
@@ -26,7 +27,8 @@ class RatesData {
     required this.eurTomorrow,
     required this.hasTomorrow,
     this.lastFetch,
-    this.rateDate,
+    this.todayDate,
+    this.tomorrowDate,
   });
 }
 
@@ -64,14 +66,43 @@ final ratesProvider = FutureProvider<RatesData>((ref) async {
     return null;
   }
 
+  final fallbackDate = parseDate(data['rate_date']);
+
+  // Handle migration from old cache structure
+  DateTime? tDate = parseDate(data['today_date']);
+  DateTime? tomDate = parseDate(data['tomorrow_date']);
+  final bool hasTom = data['has_tomorrow'] as bool? ?? false;
+
+  if (tDate == null && tomDate == null && fallbackDate != null) {
+    if (hasTom) {
+      tomDate = fallbackDate;
+      // In old cache, if hasTomorrow was true, rate_date was the tomorrow date.
+      // We lost the exact 'today' date, but for UI consistency, showing the current system date
+      // (as 'Today') is preferable to showing tomorrow's date.
+      tDate = DateTime.now();
+    } else {
+      tDate = fallbackDate;
+    }
+  }
+
+  // SANITY CHECK: prevent Today == Tomorrow if hasTomorrow is true (common in old cache)
+  if (hasTom && tDate != null && tomDate != null) {
+    if (tDate.year == tomDate.year &&
+        tDate.month == tomDate.month &&
+        tDate.day == tomDate.day) {
+      tDate = DateTime.now();
+    }
+  }
+
   return RatesData(
     usdToday: (data['usd_today'] as num?)?.toDouble() ?? 0.0,
     usdTomorrow: (data['usd_tomorrow'] as num?)?.toDouble() ?? 0.0,
     eurToday: (data['eur_today'] as num?)?.toDouble() ?? 0.0,
     eurTomorrow: (data['eur_tomorrow'] as num?)?.toDouble() ?? 0.0,
-    hasTomorrow: data['has_tomorrow'] as bool? ?? false,
+    hasTomorrow: hasTom,
     lastFetch: parseDate(data['last_fetch']),
-    rateDate: parseDate(data['rate_date']),
+    todayDate: tDate,
+    tomorrowDate: tomDate,
   );
 });
 

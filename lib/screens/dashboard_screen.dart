@@ -21,8 +21,8 @@ class DashboardScreen extends ConsumerWidget {
           ratesAsync.when(
             data: (rates) {
               final hasTomorrow = rates.hasTomorrow;
-              final dateStr = rates.rateDate != null
-                  ? DateFormat('dd/MM/yyyy').format(rates.rateDate!)
+              final dateStr = rates.todayDate != null
+                  ? DateFormat('dd/MM/yyyy').format(rates.todayDate!)
                   : "---";
 
               return Column(

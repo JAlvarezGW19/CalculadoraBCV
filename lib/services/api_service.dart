@@ -34,19 +34,31 @@ class ApiService {
         // If 'current' date is AFTER today -> It's Tomorrow's rate. 'previous' is Today's rate.
         // If 'current' date is TODAY (or older) -> It's Today's rate. Tomorrow is unavailable.
 
+        DateTime? dateTodayVal;
+        DateTime? dateTomorrowVal;
+
         if (currentDate.isAfter(today)) {
           // 'current' contains tomorrow's rates
           usdTomorrow = (current['usd'] as num).toDouble();
           eurTomorrow = (current['eur'] as num).toDouble();
           hasTomorrow = true;
+          dateTomorrowVal = currentDate;
 
           if (previous != null) {
             usdToday = (previous['usd'] as num).toDouble();
             eurToday = (previous['eur'] as num).toDouble();
+
+            // Try to parse previous date if available
+            if (previous['date'] != null) {
+              dateTodayVal = DateTime.parse(previous['date']);
+            } else {
+              dateTodayVal = today;
+            }
           } else {
             // Fallback
             usdToday = usdTomorrow;
             eurToday = eurTomorrow;
+            dateTodayVal = today;
           }
         } else {
           // 'current' contains today's rates
@@ -56,6 +68,8 @@ class ApiService {
           usdTomorrow = 0.0;
           eurTomorrow = 0.0;
           hasTomorrow = false;
+          dateTodayVal = currentDate;
+          dateTomorrowVal = null;
         }
 
         final result = {
@@ -65,7 +79,8 @@ class ApiService {
           'eur_tomorrow': eurTomorrow,
           'has_tomorrow': hasTomorrow,
           'last_fetch': DateTime.now().toIso8601String(),
-          'rate_date': currentDate.toIso8601String(),
+          'today_date': dateTodayVal.toIso8601String(),
+          'tomorrow_date': dateTomorrowVal?.toIso8601String(),
         };
 
         await _cacheData(result);

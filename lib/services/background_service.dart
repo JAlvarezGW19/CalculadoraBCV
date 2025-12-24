@@ -1,6 +1,7 @@
 import 'package:workmanager/workmanager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'api_service.dart';
 import 'notification_service.dart';
 
@@ -10,6 +11,9 @@ const String lastNotifiedKey = "last_notified_date_v1";
 @pragma('vm:entry-point')
 void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
+    // Initialize date formatting for background isolate
+    await initializeDateFormatting('es', null);
+
     if (task == fetchRatesTask) {
       try {
         final apiService = ApiService();
@@ -19,7 +23,7 @@ void callbackDispatcher() {
         final bool hasTomorrow = rates['has_tomorrow'] == true;
 
         if (hasTomorrow) {
-          final String rateDate = rates['rate_date'];
+          final String rateDate = rates['tomorrow_date'] ?? rates['rate_date'];
 
           final prefs = await SharedPreferences.getInstance();
           await prefs.reload(); // Ensure we have latest data
@@ -35,13 +39,16 @@ void callbackDispatcher() {
             final formatter = NumberFormat("#,##0.00", "es_VE");
 
             final dateObj = DateTime.parse(rateDate);
-            final dateStr = DateFormat("dd/MM").format(dateObj);
+            final dayName = DateFormat('EEEE', 'es').format(dateObj);
+            final capDayName =
+                dayName[0].toUpperCase() + dayName.substring(1).toLowerCase();
+            final dateStr = DateFormat("dd/MM/yyyy").format(dateObj);
 
             await notificationService.showNotification(
               id: 1,
-              title: "Tasa BCV Mañana Disponible",
+              title: "Tasa BCV de $capDayName disponible",
               body:
-                  "\$1 = ${formatter.format(usd)} Bs, €1 = ${formatter.format(eur)} Bs ($dateStr)",
+                  "USD = ${formatter.format(usd)} Bs. | EUR = ${formatter.format(eur)} Bs.\nFecha: $dateStr",
             );
 
             await prefs.setString(lastNotifiedKey, rateDate);

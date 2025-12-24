@@ -77,6 +77,7 @@ class CalculatorScreen extends ConsumerWidget {
           // Toggles Row
           CurrencyToggles(
             hasTomorrow: ratesAsyncValue.value?.hasTomorrow ?? false,
+            tomorrowDate: ratesAsyncValue.value?.tomorrowDate,
           ),
           const SizedBox(height: 10),
 
@@ -100,7 +101,9 @@ class CalculatorScreen extends ConsumerWidget {
               activeRate: activeRate,
               customRate: currentCustomRate,
               bcvCompRate: bcvComparisonRate,
-              rateDate: ratesAsyncValue.value?.rateDate,
+              rateDate: conversionState.dateMode == RateDateMode.today
+                  ? ratesAsyncValue.value?.todayDate
+                  : ratesAsyncValue.value?.tomorrowDate,
             ),
         ],
       ),

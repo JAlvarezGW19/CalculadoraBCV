@@ -63,9 +63,11 @@ class RateDisplayCard extends ConsumerWidget {
                   : (isToday ? rates.eurToday : rates.eurTomorrow);
               final symbol = isUsd ? "USD" : "EUR";
 
+              final dateToUse = isToday ? rates.todayDate : rates.tomorrowDate;
+
               String dateStr = "---";
-              if (rates.rateDate != null) {
-                dateStr = DateFormat('dd/MM/yyyy').format(rates.rateDate!);
+              if (dateToUse != null) {
+                dateStr = DateFormat('dd/MM/yyyy').format(dateToUse);
               }
 
               return Column(
