@@ -173,7 +173,14 @@ class RateDisplayCard extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              onPressed: () => showAddEditRateDialog(context, ref),
+              onPressed: () async {
+                final newRate = await showAddEditRateDialog(context, ref);
+                if (newRate != null) {
+                  ref
+                      .read(conversionProvider.notifier)
+                      .setSelectedCustomRate(newRate.id);
+                }
+              },
             ),
           ],
         ),
@@ -255,7 +262,17 @@ class RateDisplayCard extends ConsumerWidget {
                           color: AppTheme.textAccent,
                         ),
                         iconSize: 20,
-                        onPressed: () => showAddEditRateDialog(context, ref),
+                        onPressed: () async {
+                          final newRate = await showAddEditRateDialog(
+                            context,
+                            ref,
+                          );
+                          if (newRate != null) {
+                            ref
+                                .read(conversionProvider.notifier)
+                                .setSelectedCustomRate(newRate.id);
+                          }
+                        },
                         constraints: const BoxConstraints(),
                         padding: EdgeInsets.zero,
                         tooltip: "Crear nueva tasa",
