@@ -130,7 +130,7 @@ class CustomRatesNotifier extends Notifier<List<CustomRate>> {
     await prefs.setString(_key, jsonStr);
   }
 
-  void addRate(String name, double rate) {
+  CustomRate addRate(String name, double rate) {
     final newRate = CustomRate(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       name: name,
@@ -138,6 +138,7 @@ class CustomRatesNotifier extends Notifier<List<CustomRate>> {
     );
     state = [...state, newRate];
     _saveRates();
+    return newRate;
   }
 
   void updateRate(String id, String name, double rate) {

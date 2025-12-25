@@ -4,7 +4,7 @@ import '../providers/bcv_provider.dart';
 import '../theme/app_theme.dart';
 import '../utils/currency_formatter.dart';
 
-void showAddEditRateDialog(
+Future<CustomRate?> showAddEditRateDialog(
   BuildContext context,
   WidgetRef ref, {
   CustomRate? rate,
@@ -12,7 +12,7 @@ void showAddEditRateDialog(
   final nameCtrl = TextEditingController(text: rate?.name ?? "");
   final rateCtrl = TextEditingController(text: rate?.rate.toString() ?? "");
 
-  showDialog(
+  return showDialog<CustomRate>(
     context: context,
     builder: (ctx) => AlertDialog(
       backgroundColor: AppTheme.cardBackground,
@@ -101,14 +101,18 @@ void showAddEditRateDialog(
                 return;
               }
 
+              CustomRate? resultRate;
               if (rate == null) {
-                ref.read(customRatesProvider.notifier).addRate(name, val);
+                resultRate = ref
+                    .read(customRatesProvider.notifier)
+                    .addRate(name, val);
               } else {
                 ref
                     .read(customRatesProvider.notifier)
                     .updateRate(rate.id, name, val);
+                resultRate = rate.copyWith(name: name, rate: val);
               }
-              Navigator.pop(ctx);
+              Navigator.pop(ctx, resultRate);
             }
           },
           child: const Text(

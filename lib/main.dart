@@ -2,27 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'screens/home_screen.dart';
 import 'theme/app_theme.dart';
-
-import 'services/background_service.dart';
-import 'services/notification_service.dart';
-
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Date Formatting
+  // Initialize Date Formatting (Fast & Crucial)
   await initializeDateFormatting('es', null);
 
-  // Initialize Notifications
-  final notificationService = NotificationService();
-  await notificationService.init();
-  await notificationService.requestPermissions(); // Request on launch
-
-  // Initialize Background Tasks
-  await BackgroundService.initialize();
-  await BackgroundService.registerPeriodicTask();
-
+  // Run App immediately
   runApp(const ProviderScope(child: MyApp()));
 }
 

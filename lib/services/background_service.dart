@@ -39,14 +39,28 @@ void callbackDispatcher() {
             final formatter = NumberFormat("#,##0.00", "es_VE");
 
             final dateObj = DateTime.parse(rateDate);
-            final dayName = DateFormat('EEEE', 'es').format(dateObj);
-            final capDayName =
-                dayName[0].toUpperCase() + dayName.substring(1).toLowerCase();
+            final dayName = DateFormat(
+              'EEEE',
+              'es',
+            ).format(dateObj).toLowerCase();
             final dateStr = DateFormat("dd/MM/yyyy").format(dateObj);
+
+            // Determine if it is strictly tomorrow
+            final now = DateTime.now();
+            final today = DateTime(now.year, now.month, now.day);
+            final strictTomorrow = today.add(const Duration(days: 1));
+            final isStrictTomorrow =
+                dateObj.year == strictTomorrow.year &&
+                dateObj.month == strictTomorrow.month &&
+                dateObj.day == strictTomorrow.day;
+
+            final String title = isStrictTomorrow
+                ? "Tasa BCV de mañana disponible"
+                : "Tasa BCV del $dayName disponible";
 
             await notificationService.showNotification(
               id: 1,
-              title: "Tasa BCV de $capDayName disponible",
+              title: title,
               body:
                   "USD = ${formatter.format(usd)} Bs. | EUR = ${formatter.format(eur)} Bs.\nFecha: $dateStr",
             );
