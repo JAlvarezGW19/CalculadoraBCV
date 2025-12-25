@@ -89,13 +89,24 @@ class RateDisplayCard extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    "Fecha Valor: $dateStr",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: AppTheme.textSubtle.withValues(alpha: 0.7),
-                      fontSize: 12,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.calendar_today,
+                        size: 12,
+                        color: AppTheme.textSubtle.withValues(alpha: 0.7),
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        "Fecha Valor: $dateStr",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: AppTheme.textSubtle.withValues(alpha: 0.7),
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               );
