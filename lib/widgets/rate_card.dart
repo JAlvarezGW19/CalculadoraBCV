@@ -82,7 +82,7 @@ class RateDisplayCard extends ConsumerWidget {
                         ),
                         TextSpan(
                           text:
-                              "${NumberFormat("#,##0.00", "es_VE").format(rate)} VES",
+                              "${NumberFormat("#,##0.00", "es_VE").format(rate)} Bs",
                           style: AppTheme.rateStyle,
                         ),
                       ],

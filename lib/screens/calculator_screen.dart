@@ -6,6 +6,7 @@ import '../theme/app_theme.dart';
 import '../widgets/currency_toggles.dart';
 import '../widgets/rate_card.dart';
 import '../widgets/conversion_card.dart';
+import '../widgets/native_ad_widget.dart';
 
 class CalculatorScreen extends ConsumerWidget {
   const CalculatorScreen({super.key});
@@ -105,6 +106,9 @@ class CalculatorScreen extends ConsumerWidget {
                   ? ratesAsyncValue.value?.todayDate
                   : ratesAsyncValue.value?.tomorrowDate,
             ),
+          const SizedBox(height: 24),
+          const NativeAdWidget(assignedTabIndex: 0),
+          const SizedBox(height: 80),
         ],
       ),
     );

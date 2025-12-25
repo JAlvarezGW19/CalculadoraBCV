@@ -281,3 +281,18 @@ final conversionProvider =
     NotifierProvider<ConversionNotifier, ConversionState>(
       ConversionNotifier.new,
     );
+
+// Provider to track the active tab index for Ad management
+// Provider to track the active tab index for Ad management
+class ActiveTabNotifier extends Notifier<int> {
+  @override
+  int build() => 0;
+
+  // Method to update state
+  @override
+  set state(int value) => super.state = value;
+}
+
+final activeTabProvider = NotifierProvider<ActiveTabNotifier, int>(
+  ActiveTabNotifier.new,
+);

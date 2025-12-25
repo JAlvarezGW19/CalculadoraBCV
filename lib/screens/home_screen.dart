@@ -447,7 +447,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 iconOutlined: Icons.dashboard_outlined,
                 iconFilled: Icons.dashboard,
                 label: "Inicio",
-                onTap: (i) => setState(() => _currentIndex = i),
+                onTap: (i) {
+                  setState(() => _currentIndex = i);
+                  ref.read(activeTabProvider.notifier).state = i;
+                },
               ),
               BottomNavItem(
                 index: 1,
@@ -455,7 +458,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 iconOutlined: Icons.calculate_outlined,
                 iconFilled: Icons.calculate,
                 label: "Calculadora",
-                onTap: (i) => setState(() => _currentIndex = i),
+                onTap: (i) {
+                  setState(() => _currentIndex = i);
+                  ref.read(activeTabProvider.notifier).state = i;
+                },
               ),
               const SizedBox(width: 48), // Space for FAB
               BottomNavItem(
@@ -464,7 +470,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 iconOutlined: Icons.history_outlined,
                 iconFilled: Icons.history,
                 label: "Historial",
-                onTap: (i) => setState(() => _currentIndex = i),
+                onTap: (i) {
+                  setState(() => _currentIndex = i);
+                  ref.read(activeTabProvider.notifier).state = i;
+                },
               ),
               BottomNavItem(
                 index: 3,
@@ -472,7 +481,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 iconOutlined: Icons.settings_outlined,
                 iconFilled: Icons.settings,
                 label: "Ajustes",
-                onTap: (i) => setState(() => _currentIndex = i),
+                onTap: (i) {
+                  setState(() => _currentIndex = i);
+                  ref.read(activeTabProvider.notifier).state = i;
+                },
               ),
             ],
           ),
