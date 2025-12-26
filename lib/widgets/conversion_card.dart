@@ -346,6 +346,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
                   ),
                 ],
                 onChanged: onChanged,
+                scrollPadding: const EdgeInsets.only(bottom: 200),
                 decoration: InputDecoration(
                   hintText: placeholder,
                   hintStyle: TextStyle(
