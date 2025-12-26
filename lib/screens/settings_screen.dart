@@ -8,6 +8,7 @@ import '../providers/notification_preferences_provider.dart';
 import '../theme/app_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../services/notification_service.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -205,28 +206,48 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildInfoRow(IconData icon, String label, String value) {
-    return Row(
-      children: [
-        Icon(icon, size: 20, color: AppTheme.textSubtle),
-        const SizedBox(width: 12),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+  Widget _buildInfoRow(
+    IconData icon,
+    String label,
+    String value, {
+    bool isLink = false,
+    VoidCallback? onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Row(
           children: [
-            Text(
-              label,
-              style: const TextStyle(color: AppTheme.textSubtle, fontSize: 12),
-            ),
-            Text(
-              value,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+            Icon(icon, size: 20, color: AppTheme.textSubtle),
+            const SizedBox(width: 12),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: const TextStyle(
+                    color: AppTheme.textSubtle,
+                    fontSize: 12,
+                  ),
+                ),
+                Text(
+                  value,
+                  style: TextStyle(
+                    color: isLink ? AppTheme.textAccent : Colors.white,
+                    fontWeight: FontWeight.bold,
+                    decoration: isLink
+                        ? TextDecoration.underline
+                        : TextDecoration.none,
+                    decorationColor: AppTheme.textAccent,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 
@@ -479,6 +500,7 @@ class SettingsScreen extends ConsumerWidget {
               onTap: () async {
                 Navigator.pop(ctx);
                 await ref.read(apiServiceProvider).clearCache();
+                ref.invalidate(ratesProvider); // Force UI update
                 if (!context.mounted) return;
                 ScaffoldMessenger.of(
                   context,
@@ -593,7 +615,23 @@ class SettingsScreen extends ConsumerWidget {
           children: [
             _buildInfoRow(Icons.code, l10n.developer, "Juan Álvarez"),
             const Divider(color: Colors.white10, height: 16),
-            _buildInfoRow(Icons.api, l10n.dataSource, l10n.officialRateBcv),
+            _buildInfoRow(
+              Icons.api,
+              l10n.dataSource,
+              l10n.officialRateBcv,
+              isLink: true,
+              onTap: () async {
+                final Uri url = Uri.parse("http://www.bcv.org.ve/");
+                if (!await launchUrl(
+                  url,
+                  mode: LaunchMode.externalApplication,
+                )) {
+                  // If it fails, maybe show a snackbar or just log it, but since we are in a dialog
+                  // keep it simple.
+                  debugPrint('Could not launch \$url');
+                }
+              },
+            ),
             const Divider(color: Colors.white10, height: 16),
             Text(
               "${l10n.legalNotice}:",

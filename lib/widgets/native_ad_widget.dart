@@ -6,6 +6,7 @@ import '../providers/bcv_provider.dart';
 import '../providers/iap_provider.dart';
 import '../theme/app_theme.dart';
 import '../utils/ad_helper.dart';
+import 'premium_benefits_dialog.dart';
 
 class NativeAdWidget extends ConsumerStatefulWidget {
   final int assignedTabIndex;
@@ -184,10 +185,10 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
           padding: const EdgeInsets.only(bottom: 4, right: 8),
           child: GestureDetector(
             onTap: () {
-              // Navigate to Settings to show the PRO Copy and Purchase button
-              // This satisfies "que salga tambien lo de conviertete en pro"
-              final state = ref.read(activeTabProvider.notifier);
-              state.state = 2; // Switch to Settings Tab (Index 2)
+              showDialog(
+                context: context,
+                builder: (context) => const PremiumBenefitsDialog(),
+              );
             },
             child: Text(
               "Quitar anuncios",
