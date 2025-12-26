@@ -315,4 +315,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get rangeCustom => 'Свой';
+
+  @override
+  String get removeAdsLink => 'Убрать рекламу';
+
+  @override
+  String get thanksSupport => 'Спасибо за поддержку!';
 }

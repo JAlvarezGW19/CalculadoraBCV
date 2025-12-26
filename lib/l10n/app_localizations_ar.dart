@@ -315,4 +315,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get rangeCustom => 'مخصص';
+
+  @override
+  String get removeAdsLink => 'إزالة الإعلانات';
+
+  @override
+  String get thanksSupport => 'شكرا لدعمك!';
 }

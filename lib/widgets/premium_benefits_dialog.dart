@@ -243,10 +243,13 @@ class PremiumBenefitsDialog extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                const Text(
-                  "¡Gracias por tu apoyo!", // Hardcoded friendly message or add to l10n if strict
+                Text(
+                  l10n.thanksSupport,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: AppTheme.textSubtle, fontSize: 14),
+                  style: const TextStyle(
+                    color: AppTheme.textSubtle,
+                    fontSize: 14,
+                  ),
                 ),
               ],
             ),

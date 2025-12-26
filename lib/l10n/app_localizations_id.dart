@@ -316,4 +316,10 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get rangeCustom => 'Kustom';
+
+  @override
+  String get removeAdsLink => 'Hapus Iklan';
+
+  @override
+  String get thanksSupport => 'Terima kasih atas dukungan Anda!';
 }

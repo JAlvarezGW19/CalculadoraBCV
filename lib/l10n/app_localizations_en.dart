@@ -318,4 +318,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get rangeCustom => 'Custom';
+
+  @override
+  String get removeAdsLink => 'Remove Ads';
+
+  @override
+  String get thanksSupport => 'Thanks for your support!';
 }

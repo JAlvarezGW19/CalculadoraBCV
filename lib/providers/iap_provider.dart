@@ -109,12 +109,23 @@ class IapNotifier extends Notifier<IapState> {
     state = state.copyWith(isLoading: true); // Show loading UI
 
     if (state.products.isEmpty) {
-      // SIMULATION MODE (As requested: "por ahora, vamos solo a simular la venta")
-      // If no products found from store (not configured yet), simulate success.
-      await Future.delayed(const Duration(seconds: 2));
-      await _grantPremium();
-      state = state.copyWith(isLoading: false);
-      return;
+      if (kDebugMode) {
+        // SIMULATION MODE (Only in Debug)
+        // Helps testing UI flow before Play Console setup is complete.
+        debugPrint("IAP: Simulation Mode (Debug Only) - Granting Premium");
+        await Future.delayed(const Duration(seconds: 2));
+        await _grantPremium();
+        state = state.copyWith(isLoading: false);
+        return;
+      } else {
+        // PRODUCTION MODE
+        // If products are missing in Release, it means Play Console setup is incomplete
+        // or there's a network error. Do NOT grant free premium.
+        debugPrint("IAP: No products found in Release mode.");
+        state = state.copyWith(isLoading: false);
+        // You might want to throw an error or show a snackbar here via a listener
+        return;
+      }
     }
 
     // Real Flow

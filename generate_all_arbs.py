@@ -374,7 +374,14 @@ translations = {
     "rangeMonth": {"es": "1 Mes", "en": "1 Mo", "pt": "1 Mês", "fr": "1 Mois", "de": "1 Mon", "it": "1 Mese", "ru": "1 Мес", "zh": "1月", "ja": "1ヶ月", "ko": "1개월", "ar": "1 شهر", "hi": "1 महीना", "tr": "1 Ay", "id": "1 Bln", "vi": "1 Tháng"},
     "rangeThreeMonths": {"es": "3 Meses", "en": "3 Mos", "pt": "3 Meses", "fr": "3 Mois", "de": "3 Mon", "it": "3 Mesi", "ru": "3 Мес", "zh": "3月", "ja": "3개월", "ko": "3개월", "ar": "3 أشهر", "hi": "3 महीने", "tr": "3 Ay", "id": "3 Bln", "vi": "3 Tháng"},
     "rangeYear": {"es": "1 Año", "en": "1 Yr", "pt": "1 Ano", "fr": "1 An", "de": "1 Jahr", "it": "1 Anno", "ru": "1 Год", "zh": "1年", "ja": "1年", "ko": "1년", "ar": "1 سنة", "hi": "1 साल", "tr": "1 Yıl", "id": "1 Thn", "vi": "1 Năm"},
-    "rangeCustom": {"es": "Personalizado", "en": "Custom", "pt": "Adoc", "fr": "Perso", "de": "Benutzer", "it": "Person", "ru": "Свой", "zh": "自定义", "ja": "カスタム", "ko": "맞춤", "ar": "مخصص", "hi": "कस्टम", "tr": "Özel", "id": "Kustom", "vi": "Tùy chỉnh"}
+    "rangeCustom": {"es": "Personalizado", "en": "Custom", "pt": "Adoc", "fr": "Perso", "de": "Benutzer", "it": "Person", "ru": "Свой", "zh": "自定义", "ja": "カスタム", "ko": "맞춤", "ar": "مخصص", "hi": "कस्टम", "tr": "Özel", "id": "Kustom", "vi": "Tùy chỉnh"},
+    
+    "removeAdsLink": {
+        "es": "Quitar anuncios", "en": "Remove Ads", "pt": "Remover Anúncios", "fr": "Supprimer les pubs", "de": "Werbung entfernen", "it": "Rimuovi pubblicità", "ru": "Убрать рекламу", "zh": "移除广告", "ja": "広告を削除", "ko": "광고 제거", "ar": "إزالة الإعلانات", "hi": "विज्ञापन हटाएं", "tr": "Reklamları Kaldır", "id": "Hapus Iklan", "vi": "Xóa quảng cáo"
+    },
+    "thanksSupport": {
+        "es": "¡Gracias por tu apoyo!", "en": "Thanks for your support!", "pt": "Obrigado pelo seu apoio!", "fr": "Merci pour votre soutien !", "de": "Danke für deine Unterstützung!", "it": "Grazie per il tuo supporto!", "ru": "Спасибо за поддержку!", "zh": "感谢您的支持！", "ja": "ご支援ありがとうございます！", "ko": "지원해 주셔서 감사합니다!", "ar": "شكرا لدعمك!", "hi": "आपके समर्थन के लिए धन्यवाद!", "tr": "Desteğiniz için teşekkürler!", "id": "Terima kasih atas dukungan Anda!", "vi": "Cảm ơn sự hỗ trợ của bạn!"
+    }
 }
 
 for lang in languages:

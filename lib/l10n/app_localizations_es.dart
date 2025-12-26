@@ -320,4 +320,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get rangeCustom => 'Personalizado';
+
+  @override
+  String get removeAdsLink => 'Quitar anuncios';
+
+  @override
+  String get thanksSupport => '¡Gracias por tu apoyo!';
 }

@@ -7,6 +7,7 @@ import '../providers/iap_provider.dart';
 import '../theme/app_theme.dart';
 import '../utils/ad_helper.dart';
 import 'premium_benefits_dialog.dart';
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
 class NativeAdWidget extends ConsumerStatefulWidget {
   final int assignedTabIndex;
@@ -170,6 +171,8 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
       }
     }
 
+    final l10n = AppLocalizations.of(context);
+
     // If Ad is NOT loaded (e.g. offline, loading, error), return spacer to prevent jumps,
     // but DO NOT show 'Remove Ads' link (satisfies "offline" requirement)
     if (!_isAdLoaded || _nativeAd == null) {
@@ -191,7 +194,7 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
               );
             },
             child: Text(
-              "Quitar anuncios",
+              l10n?.removeAdsLink ?? "Quitar anuncios",
               style: TextStyle(
                 color: AppTheme.textSubtle.withValues(alpha: 0.5),
                 fontSize: 10,

@@ -312,4 +312,10 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get rangeCustom => 'カスタム';
+
+  @override
+  String get removeAdsLink => '広告を削除';
+
+  @override
+  String get thanksSupport => 'ご支援ありがとうございます！';
 }

@@ -100,5 +100,7 @@
   "rangeMonth": "1 Мес",
   "rangeThreeMonths": "3 Мес",
   "rangeYear": "1 Год",
-  "rangeCustom": "Свой"
+  "rangeCustom": "Свой",
+  "removeAdsLink": "Убрать рекламу",
+  "thanksSupport": "Спасибо за поддержку!"
 }

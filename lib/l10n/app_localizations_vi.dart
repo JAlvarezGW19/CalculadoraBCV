@@ -318,4 +318,10 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get rangeCustom => 'Tùy chỉnh';
+
+  @override
+  String get removeAdsLink => 'Xóa quảng cáo';
+
+  @override
+  String get thanksSupport => 'Cảm ơn sự hỗ trợ của bạn!';
 }

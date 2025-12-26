@@ -100,5 +100,7 @@
   "rangeMonth": "1月",
   "rangeThreeMonths": "3月",
   "rangeYear": "1年",
-  "rangeCustom": "自定义"
+  "rangeCustom": "自定义",
+  "removeAdsLink": "移除广告",
+  "thanksSupport": "感谢您的支持！"
 }

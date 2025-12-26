@@ -100,5 +100,7 @@
   "rangeMonth": "1 Mo",
   "rangeThreeMonths": "3 Mos",
   "rangeYear": "1 Yr",
-  "rangeCustom": "Custom"
+  "rangeCustom": "Custom",
+  "removeAdsLink": "Remove Ads",
+  "thanksSupport": "Thanks for your support!"
 }

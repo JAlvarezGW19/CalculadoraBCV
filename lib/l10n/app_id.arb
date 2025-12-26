@@ -100,5 +100,7 @@
   "rangeMonth": "1 Bln",
   "rangeThreeMonths": "3 Bln",
   "rangeYear": "1 Thn",
-  "rangeCustom": "Kustom"
+  "rangeCustom": "Kustom",
+  "removeAdsLink": "Hapus Iklan",
+  "thanksSupport": "Terima kasih atas dukungan Anda!"
 }

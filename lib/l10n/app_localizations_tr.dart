@@ -319,4 +319,10 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get rangeCustom => 'Özel';
+
+  @override
+  String get removeAdsLink => 'Reklamları Kaldır';
+
+  @override
+  String get thanksSupport => 'Desteğiniz için teşekkürler!';
 }

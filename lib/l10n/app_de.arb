@@ -100,5 +100,7 @@
   "rangeMonth": "1 Mon",
   "rangeThreeMonths": "3 Mon",
   "rangeYear": "1 Jahr",
-  "rangeCustom": "Benutzer"
+  "rangeCustom": "Benutzer",
+  "removeAdsLink": "Werbung entfernen",
+  "thanksSupport": "Danke für deine Unterstützung!"
 }

@@ -100,5 +100,7 @@
   "rangeMonth": "1 شهر",
   "rangeThreeMonths": "3 أشهر",
   "rangeYear": "1 سنة",
-  "rangeCustom": "مخصص"
+  "rangeCustom": "مخصص",
+  "removeAdsLink": "إزالة الإعلانات",
+  "thanksSupport": "شكرا لدعمك!"
 }

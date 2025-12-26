@@ -311,4 +311,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get rangeCustom => '自定义';
+
+  @override
+  String get removeAdsLink => '移除广告';
+
+  @override
+  String get thanksSupport => '感谢您的支持！';
 }

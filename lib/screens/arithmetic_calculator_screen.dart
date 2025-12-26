@@ -1,9 +1,6 @@
 // ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:math_expressions/math_expressions.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import '../providers/bcv_provider.dart';
@@ -11,6 +8,12 @@ import '../theme/app_theme.dart';
 import '../widgets/currency_toggles.dart';
 import '../widgets/add_rate_dialog.dart';
 import '../widgets/native_ad_widget.dart';
+
+// New Imports
+import '../services/calculator_engine.dart';
+import '../widgets/calculator/calculator_display.dart';
+import '../widgets/calculator/calculator_keypad.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ArithmeticCalculatorScreen extends ConsumerStatefulWidget {
   final double? initialValue;
@@ -51,19 +54,14 @@ class _ArithmeticCalculatorScreenState
         if (key == 'C') {
           // Let standard C logic handle it
         } else if (key == '⌫') {
-          // Maybe clear result? Standard calc usually treats result as new entry to be edited.
-          // But simpler: if backspace after equal, just reset.
           _expression = _result;
           _shouldResetExpression = false;
-        } else if (_isOperator(key)) {
-          // Continue calculation with result
+        } else if (CalculatorEngine.isOperator(key)) {
           _expression = _result;
           _shouldResetExpression = false;
         } else if (key == '=') {
-          // Repeat calculation? For now just do nothing or recalc
           _shouldResetExpression = false;
         } else {
-          // Typed a number, start new
           _expression = '';
           _result = '0';
           _shouldResetExpression = false;
@@ -87,9 +85,9 @@ class _ArithmeticCalculatorScreenState
         _calculateResult(finalCalculation: true);
       } else {
         // Prevent duplicate operators
-        if (_isOperator(key) &&
+        if (CalculatorEngine.isOperator(key) &&
             _expression.isNotEmpty &&
-            _isOperator(_expression[_expression.length - 1])) {
+            CalculatorEngine.isOperator(_expression[_expression.length - 1])) {
           _expression = _expression.substring(0, _expression.length - 1) + key;
         } else {
           _expression += key;
@@ -99,46 +97,28 @@ class _ArithmeticCalculatorScreenState
     });
   }
 
-  bool _isOperator(String key) {
-    return key == '+' || key == '-' || key == '*' || key == '/';
-  }
-
   void _calculateResult({bool finalCalculation = false}) {
     if (_expression.isEmpty) {
       return;
     }
 
-    try {
-      // Replace visual operators with math operators if needed
-      String finalExpression = _expression
-          .replaceAll('x', '*')
-          .replaceAll('÷', '/');
+    double eval = CalculatorEngine.evaluate(_expression);
 
-      Parser p = ShuntingYardParser();
-      Expression exp = p.parse(finalExpression);
-      ContextModel cm = ContextModel();
-      double eval = exp.evaluate(EvaluationType.REAL, cm);
+    if (eval.isNaN) return;
 
-      // Check for clean integer text if possible
-      String resultStr = eval.toString();
-      if (resultStr.endsWith(".0")) {
-        resultStr = resultStr.substring(0, resultStr.length - 2);
+    String resultStr = CalculatorEngine.formatResult(eval);
+
+    setState(() {
+      _result = resultStr;
+      if (finalCalculation) {
+        _sessionHistory.add("$_expression = $_result");
+        _expression = _result;
+        _shouldResetExpression = true;
       }
-
-      setState(() {
-        _result = resultStr;
-        if (finalCalculation) {
-          // Add to history
-          _sessionHistory.add("$_expression = $_result");
-          // Update expression to be the result (ANS behavior)
-          _expression = _result;
-          _shouldResetExpression = true;
-        }
-      });
-    } catch (e) {
-      // debugPrint("Error evaluating: $e");
-    }
+    });
   }
+
+  // DIALOGS
 
   void _showHistoryDialog() {
     showModalBottomSheet(
@@ -173,8 +153,6 @@ class _ArithmeticCalculatorScreenState
                   child: ListView.builder(
                     shrinkWrap: true,
                     itemCount: _sessionHistory.length,
-                    // Show newest first? Or oldest? Newest usually at bottom of Calc logic.
-                    // Let's reverse to show newest at top of list.
                     itemBuilder: (context, index) {
                       final item =
                           _sessionHistory[_sessionHistory.length - 1 - index];
@@ -187,7 +165,6 @@ class _ArithmeticCalculatorScreenState
                           ),
                         ),
                         onTap: () {
-                          // Restore history item
                           final parts = item.split(' = ');
                           if (parts.length >= 2) {
                             setState(() {
@@ -319,6 +296,7 @@ class _ArithmeticCalculatorScreenState
     );
   }
 
+  // LOGIC HELPERS
   double _getEffectiveRate(WidgetRef ref) {
     final ratesAsync = ref.read(ratesProvider);
     final state = ref.read(conversionProvider);
@@ -326,8 +304,6 @@ class _ArithmeticCalculatorScreenState
 
     double rate = 0.0;
 
-    // Simplification for reading current rate synchronously
-    // (Relies on provider having data, which is likely if loaded)
     if (ratesAsync.hasValue) {
       final rates = ratesAsync.value!;
       final isToday = state.dateMode == RateDateMode.today;
@@ -372,10 +348,8 @@ class _ArithmeticCalculatorScreenState
 
     if (activeRate > 0) {
       if (_isDivisaToBs) {
-        // Foreign -> Bs
         finalConvertedValue = rawMathValue * activeRate;
       } else {
-        // Bs -> Foreign
         finalConvertedValue = rawMathValue / activeRate;
       }
     }
@@ -395,10 +369,6 @@ class _ArithmeticCalculatorScreenState
 
     // --- Formatting Logic ---
 
-    // Generalized Formatter based on User Rules:
-    // - Foreign ($/€) -> Prefix (e.g. "$50")
-    // - Bs -> Suffix (e.g. "50 Bs")
-    // - Custom -> Suffix (e.g. "50 USDT")
     String formatValue(
       double value,
       bool isBs,
@@ -408,67 +378,48 @@ class _ArithmeticCalculatorScreenState
       String formattedValue = _displayFormat.format(value);
 
       if (isBs) {
-        // Bs: Suffix (e.g. "14.422,47Bs")
         return "$formattedValue Bs";
       }
 
       if (type == CurrencyType.custom) {
-        // Custom: Suffix (e.g. "20 USDT")
         return "$formattedValue ${customName ?? 'Pers.'}";
       }
 
-      // Foreign Standard ($/€): Prefix (e.g. "$50")
       return "${_getCurrencySymbol(type!)}$formattedValue";
     }
 
-    // Determine Source/Target Strings using the single consistent logic
-    String sourceStr;
-    String targetStr;
-
-    // For the interactive input widget (Expression code)
-    // User Request: All symbols/Bs in the input expression (white text) go to the RIGHT (Suffix).
+    // For the interactive input widget
     String inputPrefix = "";
     String inputSuffix = "";
 
     if (_isDivisaToBs) {
-      // Source: Foreign/Custom
       if (state.currency == CurrencyType.custom) {
         inputSuffix = " ${customRateName ?? 'Pers.'}";
       } else {
-        // Foreign Standard -> Suffix for Input Expression
         inputSuffix = " ${_getCurrencySymbol(state.currency)}";
       }
     } else {
-      // Source: Bs -> Suffix
       inputSuffix = " Bs";
     }
 
+    String mainDisplayText;
     if (_isDivisaToBs) {
-      // Source: Foreign/Custom -> Target: Bs
-      sourceStr = formatValue(
-        rawMathValue,
-        false,
-        state.currency,
-        customRateName,
-      );
-      targetStr = formatValue(finalConvertedValue, true, null, null);
+      // Source: Foreign -> Target: Bs
+      String targetStr = formatValue(finalConvertedValue, true, null, null);
+      mainDisplayText = "= $targetStr";
     } else {
-      // Source: Bs -> Target: Foreign/Custom
-      sourceStr = formatValue(rawMathValue, true, null, null);
-      targetStr = formatValue(
+      // Source: Bs -> Target: Foreign
+      String targetStr = formatValue(
         finalConvertedValue,
         false,
         state.currency,
         customRateName,
       );
+      mainDisplayText = "= $targetStr";
     }
 
-    // Main Display: "$50 = 14.422,47Bs"
-    String mainDisplayText = "$sourceStr = $targetStr";
-
-    // Calculate BCV Equivalent for Custom Mode
-    double? bcvEquivalentValue;
-    String bcvLabel = "";
+    // BCV Equivalent Logic
+    String? bcvLabel;
     if (state.currency == CurrencyType.custom && ratesAsync.hasValue) {
       final rates = ratesAsync.value!;
       final isToday = state.dateMode == RateDateMode.today;
@@ -478,8 +429,7 @@ class _ArithmeticCalculatorScreenState
         double totalBs = _isDivisaToBs
             ? (rawMathValue * activeRate)
             : rawMathValue;
-        bcvEquivalentValue = totalBs / bcvRate;
-        // BCV Equivalent always USD? "$100"
+        double bcvEquivalentValue = totalBs / bcvRate;
         bcvLabel = "BCV: \$${_displayFormat.format(bcvEquivalentValue)}";
       }
     }
@@ -489,273 +439,58 @@ class _ArithmeticCalculatorScreenState
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 34), // Match CalculatorScreen top padding
-            // TOP SECTION: Toggles
+            const SizedBox(height: 34),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0), // Reduced
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: CurrencyToggles(
                 hasTomorrow: ratesAsync.value?.hasTomorrow ?? false,
                 tomorrowDate: ratesAsync.value?.tomorrowDate,
               ),
             ),
-
             const SizedBox(height: 10),
 
-            // MIDDLE SECTION: Display
             Expanded(
               flex: 4,
-              child: Container(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                ), // Reduced margin
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: AppTheme.cardBackground,
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    // Top Row: Rate & Swap Button
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.black26,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: InkWell(
-                            onTap: state.currency == CurrencyType.custom
-                                ? () => _showRateSelectionDialog(ref)
-                                : null,
-                            borderRadius: BorderRadius.circular(12),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  "Tasa: ${_displayFormat.format(activeRate)}",
-                                  style: AppTheme.subtitleStyle.copyWith(
-                                    fontSize: 12,
-                                    color: AppTheme.textAccent,
-                                  ),
-                                ),
-                                if (state.currency == CurrencyType.custom) ...[
-                                  const SizedBox(width: 4),
-                                  const Icon(
-                                    Icons.arrow_drop_down,
-                                    size: 16,
-                                    color: AppTheme.textAccent,
-                                  ),
-                                ],
-                              ],
-                            ),
-                          ),
-                        ),
-
-                        // Icons Row (Swap left, History right)
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              onPressed: () => setState(
-                                () => _isDivisaToBs = !_isDivisaToBs,
-                              ),
-                              icon: const Icon(
-                                Icons.swap_vert,
-                                color: AppTheme.textSubtle,
-                              ),
-                              tooltip: "Cambiar dirección",
-                              padding: EdgeInsets.zero,
-                              constraints: const BoxConstraints(),
-                            ),
-                            const SizedBox(width: 8),
-                            IconButton(
-                              onPressed: _showHistoryDialog,
-                              icon: const Icon(
-                                Icons.history,
-                                color: AppTheme.textSubtle,
-                              ),
-                              tooltip: "Historial",
-                              padding: EdgeInsets.zero,
-                              constraints: const BoxConstraints(),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-
-                    const SizedBox(height: 10),
-
-                    // Input Expression (Dynamic Prefix/Suffix)
-                    Flexible(
-                      flex: 1,
-                      child: FittedBox(
-                        alignment: Alignment.centerRight,
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          _expression.isEmpty
-                              ? "0"
-                              : "$inputPrefix$_expression$inputSuffix",
-                          textAlign: TextAlign.right,
-                          style: GoogleFonts.montserrat(
-                            color: AppTheme.textSubtle,
-                            fontSize: 46,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(height: 4),
-
-                    // Main Result
-                    Expanded(
-                      flex: 2,
-                      child: FittedBox(
-                        alignment: Alignment.centerRight,
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          mainDisplayText,
-                          style: GoogleFonts.montserrat(
-                            color: AppTheme.textAccent,
-                            fontSize: 70, // Slightly smaller base
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                    if (bcvEquivalentValue != null && rawMathValue != 0) ...[
-                      const SizedBox(height: 4),
-                      Text(
-                        bcvLabel,
-                        textAlign: TextAlign.right,
-                        style: GoogleFonts.montserrat(
-                          color: AppTheme.textSubtle,
-                          fontSize: 12, // Small font
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
+              child: CalculatorDisplay(
+                expression: _expression,
+                result:
+                    mainDisplayText, // Now showing just the result part? Or full equation? User said "$50 = 1442 Bs"
+                // Actually the design showed:
+                // Small text: input
+                // Big text: result
+                // Let's pass mainDisplayText as result.
+                bcvEquivalent: bcvLabel,
+                inputPrefix: inputPrefix,
+                inputSuffix: inputSuffix,
+                onSwap: () => setState(() => _isDivisaToBs = !_isDivisaToBs),
+                onHistory: _showHistoryDialog,
+                onRateClick: state.currency == CurrencyType.custom
+                    ? () => _showRateSelectionDialog(ref)
+                    : null,
+                rateText: _displayFormat.format(activeRate),
+                showRateDropdown: state.currency == CurrencyType.custom,
               ),
             ),
 
             const SizedBox(height: 16),
 
-            // BOTTOM SECTION: Keypad
             Expanded(
-              flex: 7, // Even larger keypad
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                ), // Reduced margin
-                child: Column(
-                  children: [
-                    _buildKeyRow(['C', '÷', '×', '⌫']),
-                    Expanded(child: _buildKeyRow(['7', '8', '9', '-'])),
-                    Expanded(child: _buildKeyRow(['4', '5', '6', '+'])),
-                    Expanded(child: _buildKeyRow(['1', '2', '3', '='])),
-                    Expanded(
-                      child: _buildKeyRow(['', '0', '.', '']),
-                    ), // 0 in second col to be under 2
-                  ],
-                ),
+              flex: 7,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: CalculatorKeypad(onKeyPressed: _onKeyPressed),
               ),
             ),
 
-            const SizedBox(height: 10), // Reduced margin above Ad
+            const SizedBox(height: 10),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: const NativeAdWidget(assignedTabIndex: 1),
             ),
-            const SizedBox(height: 20), // Reduced bottom margin to 20
+            const SizedBox(height: 20),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildKeyRow(List<String> keys) {
-    return Expanded(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: keys.map((key) {
-          if (key.isEmpty) {
-            return const Expanded(
-              child: SizedBox.shrink(),
-            ); // filler for special layout
-          }
-
-          // Special layout for '0' in last row to span 2 cols?
-          // Simplified grid for now:
-
-          bool isAction = ['C', '⌫'].contains(key);
-          bool isOperator = ['÷', '×', '-', '+', '='].contains(key);
-
-          Color bgColor = Colors.transparent;
-          Color textColor = Colors.white;
-
-          if (isAction) {
-            textColor = Colors.orangeAccent;
-          } else if (isOperator) {
-            bgColor = AppTheme.cardBackground;
-            textColor = AppTheme.textAccent;
-            if (key == '=') {
-              bgColor = AppTheme.textAccent;
-              textColor = Colors.white;
-            }
-          }
-
-          // Map display symbols to internal logic
-          String val = key;
-          if (key == '÷') {
-            val = '/';
-          }
-          if (key == '×') {
-            val = '*';
-          }
-
-          // Custom flex not needed if we follow standard grid.
-          // Last row keys: ['', '0', '.', ''] -> 4 items.
-          return Expanded(
-            flex: 1,
-            // Current list ['0', '.', ''] implies 0 is normal.
-            // Let's adjust last row keys.
-            child: Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: Material(
-                color: bgColor,
-                borderRadius: BorderRadius.circular(16),
-                clipBehavior: Clip.antiAlias,
-                child: InkWell(
-                  onTap: () => _onKeyPressed(val),
-                  child: Center(
-                    child: isAction && key == '⌫'
-                        ? const Icon(
-                            Icons.backspace_outlined,
-                            color: Colors.orangeAccent,
-                          )
-                        : Text(
-                            key,
-                            style: GoogleFonts.montserrat(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                              color: textColor,
-                            ),
-                          ),
-                  ),
-                ),
-              ),
-            ),
-          );
-        }).toList(),
       ),
     );
   }

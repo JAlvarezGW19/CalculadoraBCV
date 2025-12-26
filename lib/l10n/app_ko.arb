@@ -100,5 +100,7 @@
   "rangeMonth": "1개월",
   "rangeThreeMonths": "3개월",
   "rangeYear": "1년",
-  "rangeCustom": "맞춤"
+  "rangeCustom": "맞춤",
+  "removeAdsLink": "광고 제거",
+  "thanksSupport": "지원해 주셔서 감사합니다!"
 }

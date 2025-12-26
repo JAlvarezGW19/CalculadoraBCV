@@ -729,6 +729,18 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Personalizado'**
   String get rangeCustom;
+
+  /// No description provided for @removeAdsLink.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar anuncios'**
+  String get removeAdsLink;
+
+  /// No description provided for @thanksSupport.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Gracias por tu apoyo!'**
+  String get thanksSupport;
 }
 
 class _AppLocalizationsDelegate

@@ -312,4 +312,10 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get rangeCustom => '맞춤';
+
+  @override
+  String get removeAdsLink => '광고 제거';
+
+  @override
+  String get thanksSupport => '지원해 주셔서 감사합니다!';
 }

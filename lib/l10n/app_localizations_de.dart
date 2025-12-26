@@ -318,4 +318,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get rangeCustom => 'Benutzer';
+
+  @override
+  String get removeAdsLink => 'Werbung entfernen';
+
+  @override
+  String get thanksSupport => 'Danke für deine Unterstützung!';
 }

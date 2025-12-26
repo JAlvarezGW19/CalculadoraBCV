@@ -100,5 +100,7 @@
   "rangeMonth": "1 Ay",
   "rangeThreeMonths": "3 Ay",
   "rangeYear": "1 Yıl",
-  "rangeCustom": "Özel"
+  "rangeCustom": "Özel",
+  "removeAdsLink": "Reklamları Kaldır",
+  "thanksSupport": "Desteğiniz için teşekkürler!"
 }

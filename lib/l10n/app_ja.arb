@@ -100,5 +100,7 @@
   "rangeMonth": "1ヶ月",
   "rangeThreeMonths": "3개월",
   "rangeYear": "1年",
-  "rangeCustom": "カスタム"
+  "rangeCustom": "カスタム",
+  "removeAdsLink": "広告を削除",
+  "thanksSupport": "ご支援ありがとうございます！"
 }

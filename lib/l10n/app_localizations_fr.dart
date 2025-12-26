@@ -321,4 +321,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get rangeCustom => 'Perso';
+
+  @override
+  String get removeAdsLink => 'Supprimer les pubs';
+
+  @override
+  String get thanksSupport => 'Merci pour votre soutien !';
 }

@@ -317,4 +317,10 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get rangeCustom => 'कस्टम';
+
+  @override
+  String get removeAdsLink => 'विज्ञापन हटाएं';
+
+  @override
+  String get thanksSupport => 'आपके समर्थन के लिए धन्यवाद!';
 }
