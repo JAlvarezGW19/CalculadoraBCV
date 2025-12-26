@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
 import '../theme/app_theme.dart';
 import '../providers/bcv_provider.dart';
@@ -35,6 +36,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   ];
 
   Future<void> _checkPermissionsAndNavigate(VoidCallback navigateAction) async {
+    final l10n = AppLocalizations.of(context)!;
     // Check current status
     var camStatus = await Permission.camera.status;
 
@@ -51,21 +53,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         barrierDismissible: false,
         builder: (ctx) => AlertDialog(
           backgroundColor: AppTheme.cardBackground,
-          title: const Text(
-            "Escáner de Precios",
-            style: TextStyle(color: Colors.white),
+          title: Text(
+            l10n.priceScanner,
+            style: const TextStyle(color: Colors.white),
           ),
-          content: const Text(
-            "Esta herramienta utiliza la cámara para detectar precios y convertirlos en tiempo real.\n\n"
-            "Para funcionar, necesita acceso a la Cámara y a la Galería (para seleccionar imágenes).",
-            style: TextStyle(color: Colors.white70),
+          content: Text(
+            l10n.cameraPermissionText,
+            style: const TextStyle(color: Colors.white70),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child: const Text(
-                "Cancelar",
-                style: TextStyle(color: AppTheme.textSubtle),
+              child: Text(
+                l10n.cancel,
+                style: const TextStyle(color: AppTheme.textSubtle),
               ),
             ),
             ElevatedButton(
@@ -87,7 +88,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   navigateAction();
                 }
               },
-              child: const Text("Permitir y Continuar"),
+              child: Text(l10n.allowAndContinue),
             ),
           ],
         ),
@@ -96,6 +97,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   void _showScanOptions() {
+    final l10n = AppLocalizations.of(context)!;
     showModalBottomSheet(
       context: context,
       backgroundColor: AppTheme.cardBackground,
@@ -109,7 +111,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "¿Qué vas a escanear?",
+                l10n.whatToScan,
                 style: AppTheme.subtitleStyle.copyWith(
                   fontSize: 18,
                   color: Colors.white,
@@ -121,7 +123,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ScanOptionButton(
-                    label: "Monto USD",
+                    label: l10n.amountUsd,
                     symbol: "\$",
                     color: AppTheme.textAccent,
                     onTap: () {
@@ -141,7 +143,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     },
                   ),
                   ScanOptionButton(
-                    label: "Monto EUR",
+                    label: l10n.amountEur,
                     symbol: "€",
                     color: AppTheme.textAccent,
                     onTap: () {
@@ -161,7 +163,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     },
                   ),
                   ScanOptionButton(
-                    label: "Tasa Pers.",
+                    label: l10n.ratePers,
                     symbol: "P",
                     color: Colors.orangeAccent,
                     onTap: () {
@@ -170,7 +172,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     },
                   ),
                   ScanOptionButton(
-                    label: "Monto Bs.",
+                    label: l10n.amountVes,
                     symbol: "Bs",
                     color: Colors.blueAccent,
                     onTap: () {
@@ -189,26 +191,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   // Handle custom scan logic
   void _handleCustomScan({bool isInverse = false}) {
+    final l10n = AppLocalizations.of(context)!;
     final customRates = ref.read(customRatesProvider);
     if (customRates.isEmpty) {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
           backgroundColor: AppTheme.cardBackground,
-          title: const Text(
-            "Sin tasas personalizadas",
-            style: TextStyle(color: Colors.white),
+          title: Text(
+            l10n.noCustomRates,
+            style: const TextStyle(color: Colors.white),
           ),
-          content: const Text(
-            "Necesitas agregar una tasa personalizada para usar esta función.",
-            style: TextStyle(color: Colors.white70),
+          content: Text(
+            l10n.noCustomRatesDesc,
+            style: const TextStyle(color: Colors.white70),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child: const Text(
-                "Cancelar",
-                style: TextStyle(color: AppTheme.textSubtle),
+              child: Text(
+                l10n.cancel,
+                style: const TextStyle(color: AppTheme.textSubtle),
               ),
             ),
             TextButton(
@@ -232,9 +235,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   });
                 }
               },
-              child: const Text(
-                "Crear Tasa",
-                style: TextStyle(color: AppTheme.textAccent),
+              child: Text(
+                l10n.createRate,
+                style: const TextStyle(color: AppTheme.textAccent),
               ),
             ),
           ],
@@ -246,7 +249,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     showDialog(
       context: context,
       builder: (dialogCtx) => SimpleDialog(
-        title: const Text("Elige una tasa"),
+        title: Text(l10n.chooseRate),
         children: [
           ...customRates.map(
             (r) => SimpleDialogOption(
@@ -294,9 +297,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 });
               }
             },
-            child: const Text(
-              "Nueva Tasa...",
-              style: TextStyle(color: AppTheme.textAccent),
+            child: Text(
+              l10n.newRate,
+              style: const TextStyle(color: AppTheme.textAccent),
             ),
           ),
         ],
@@ -306,6 +309,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   void _showTargetOptionsForVES() {
     // Show second sheet: Convertir Bs a...
+    final l10n = AppLocalizations.of(context)!;
     showModalBottomSheet(
       context: context,
       backgroundColor: AppTheme.cardBackground,
@@ -316,7 +320,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "Convertir Bolívares a...",
+                l10n.convertVesTo,
                 style: AppTheme.subtitleStyle.copyWith(
                   fontSize: 18,
                   color: Colors.white,
@@ -328,7 +332,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ScanOptionButton(
-                    label: "Dólares",
+                    label: l10n.usd,
                     symbol: "\$",
                     color: AppTheme.textAccent,
                     onTap: () {
@@ -349,7 +353,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     },
                   ),
                   ScanOptionButton(
-                    label: "Euros",
+                    label: l10n.eur,
                     symbol: "€",
                     color: AppTheme.textAccent,
                     onTap: () {
@@ -370,7 +374,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     },
                   ),
                   ScanOptionButton(
-                    label: "Pers.",
+                    label: l10n.ratePers,
                     symbol: "P",
                     color: Colors.orangeAccent,
                     onTap: () {
@@ -411,6 +415,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Safe lookup or fallback (usually available after MaterialApp init)
+    final l10n = AppLocalizations.of(context);
+
+    // If l10n is null here it means we are too early or context is wrong,
+    // but in a normal Scaffold > ConsumerStatefulWidget it should be fine.
+    // We add a fallback just in case or assume ! null if we trust the tree.
+    // For build method of the root screen, it might be safer to use defaults if null.
+    // However, since MyApp sets locale, it should be ready.
+
+    if (l10n == null) return const Center(child: CircularProgressIndicator());
+
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: SafeArea(
@@ -446,7 +461,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 currentIndex: _currentIndex,
                 iconOutlined: Icons.dashboard_outlined,
                 iconFilled: Icons.dashboard,
-                label: "Inicio",
+                label: l10n.homeScreen,
                 onTap: (i) {
                   setState(() => _currentIndex = i);
                   ref.read(activeTabProvider.notifier).state = i;
@@ -457,7 +472,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 currentIndex: _currentIndex,
                 iconOutlined: Icons.calculate_outlined,
                 iconFilled: Icons.calculate,
-                label: "Calculadora",
+                label: l10n.calculatorScreen,
                 onTap: (i) {
                   setState(() => _currentIndex = i);
                   ref.read(activeTabProvider.notifier).state = i;
@@ -469,7 +484,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 currentIndex: _currentIndex,
                 iconOutlined: Icons.history_outlined,
                 iconFilled: Icons.history,
-                label: "Historial",
+                label: l10n.history,
                 onTap: (i) {
                   setState(() => _currentIndex = i);
                   ref.read(activeTabProvider.notifier).state = i;
@@ -480,7 +495,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 currentIndex: _currentIndex,
                 iconOutlined: Icons.settings_outlined,
                 iconFilled: Icons.settings,
-                label: "Ajustes",
+                label: l10n.settings,
                 onTap: (i) {
                   setState(() => _currentIndex = i);
                   ref.read(activeTabProvider.notifier).state = i;

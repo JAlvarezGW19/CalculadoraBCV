@@ -1,0 +1,321 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for English (`en`).
+class AppLocalizationsEn extends AppLocalizations {
+  AppLocalizationsEn([String locale = 'en']) : super(locale);
+
+  @override
+  String get appTitle => 'BCV Calculator';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get general => 'General';
+
+  @override
+  String get storageNetwork => 'Storage & Network';
+
+  @override
+  String get storageNetworkSubtitle => 'Manage cache and updates';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get notificationsSubtitle => 'Notify when new rate is available';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get systemDefault => 'System Default';
+
+  @override
+  String get information => 'Information';
+
+  @override
+  String get aboutApp => 'About the App';
+
+  @override
+  String get aboutAppSubtitle => 'Version, developer and licenses';
+
+  @override
+  String get forceUpdate => 'Force Update';
+
+  @override
+  String get forceUpdateSubtitle => 'Update rates from API';
+
+  @override
+  String get clearCache => 'Clear Cache';
+
+  @override
+  String get clearCacheSubtitle => 'Delete locally stored data';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get updatingRates => 'Updating rates...';
+
+  @override
+  String get cacheCleared => 'Cache cleared';
+
+  @override
+  String get developer => 'Developer';
+
+  @override
+  String get dataSource => 'Data Source';
+
+  @override
+  String get legalNotice => 'Legal Notice';
+
+  @override
+  String get legalNoticeText =>
+      'This application does NOT represent any government or banking entity. We are not affiliated with the Central Bank of Venezuela. Data is obtained via an API querying the official BCV website. Use of information is the sole responsibility of the user.';
+
+  @override
+  String get openSourceLicenses => 'Open Source Licenses';
+
+  @override
+  String get version => 'Version';
+
+  @override
+  String get becomePro => 'Become a PRO user!';
+
+  @override
+  String get proUser => 'You are a PRO User!';
+
+  @override
+  String get getPro => 'Get PRO for';
+
+  @override
+  String get oneTimePayment => '(Lifetime one-time payment)';
+
+  @override
+  String get restorePurchases => 'Restore Purchases';
+
+  @override
+  String get benefitAds => 'No Ads';
+
+  @override
+  String get benefitAdsDesc => 'Enjoy a clean, interruption-free interface.';
+
+  @override
+  String get benefitPdf => 'Instant Export';
+
+  @override
+  String get benefitPdfDesc =>
+      'Generate history PDFs without watching video ads.';
+
+  @override
+  String get benefitSpeed => 'Max Speed';
+
+  @override
+  String get benefitSpeedDesc =>
+      'Smoother navigation and lower battery consumption.';
+
+  @override
+  String get benefitSupport => 'Support the project';
+
+  @override
+  String get benefitSupportDesc => 'Help us continue improving the tool.';
+
+  @override
+  String get usd => 'Dollars';
+
+  @override
+  String get eur => 'Euros';
+
+  @override
+  String get ves => 'Bolivars';
+
+  @override
+  String get history => 'History';
+
+  @override
+  String get historyRates => 'Rate History';
+
+  @override
+  String get start => 'Start';
+
+  @override
+  String get end => 'End';
+
+  @override
+  String get generatePdf => 'Generate PDF';
+
+  @override
+  String get watchAd => 'Watch ad to unlock';
+
+  @override
+  String get loadingAd => 'Loading ad...';
+
+  @override
+  String get errorAd => 'Error loading ad';
+
+  @override
+  String get today => 'Today';
+
+  @override
+  String get tomorrow => 'Tomorrow';
+
+  @override
+  String get officialRate => 'Official Rate';
+
+  @override
+  String get customRate => 'Custom Rate';
+
+  @override
+  String get convert => 'Convert';
+
+  @override
+  String get priceScanner => 'Price Scanner';
+
+  @override
+  String get cameraPermissionText =>
+      'This tool uses the camera to detect prices and convert them in real time.\n\nTo function, it needs access to Camera and Gallery (to pick images).';
+
+  @override
+  String get allowAndContinue => 'Allow and Continue';
+
+  @override
+  String get whatToScan => 'What will you scan?';
+
+  @override
+  String get amountUsd => 'Amount USD';
+
+  @override
+  String get amountEur => 'Amount EUR';
+
+  @override
+  String get amountVes => 'Amount Bs.';
+
+  @override
+  String get ratePers => 'Cust. Rate';
+
+  @override
+  String get noCustomRates => 'No custom rates';
+
+  @override
+  String get noCustomRatesDesc =>
+      'You need to add a custom rate to use this feature.';
+
+  @override
+  String get createRate => 'Create Rate';
+
+  @override
+  String get chooseRate => 'Choose a rate';
+
+  @override
+  String get newRate => 'New Rate...';
+
+  @override
+  String get convertVesTo => 'Convert Bolivars to...';
+
+  @override
+  String get homeScreen => 'Home';
+
+  @override
+  String get calculatorScreen => 'Calculator';
+
+  @override
+  String get rateDate => 'Value Date';
+
+  @override
+  String get officialRateBcv => 'Official BCV Rate';
+
+  @override
+  String get createYourFirstRate => 'Create your first custom rate';
+
+  @override
+  String get addCustomRatesDescription =>
+      'Add custom exchange rates to calculate your conversions.';
+
+  @override
+  String get errorLoadingRate => 'Error loading rate';
+
+  @override
+  String get unlockPdfTitle => 'Unlock PDF Export';
+
+  @override
+  String get unlockPdfDesc =>
+      'To export history to PDF, please watch a short ad. This will unlock the feature for 24 hours.';
+
+  @override
+  String get adNotReady =>
+      'The ad is not ready yet. Try again in a few seconds.';
+
+  @override
+  String get featureUnlocked => 'Feature unlocked for 24 hours!';
+
+  @override
+  String get pdfHeader => 'BCV Price History';
+
+  @override
+  String get statsPeriod => 'Period Statistics';
+
+  @override
+  String get copiedClipboard => 'Copied to clipboard';
+
+  @override
+  String get amountDollars => 'Amount in Dollars';
+
+  @override
+  String get amountEuros => 'Amount in Euros';
+
+  @override
+  String get amountBolivars => 'Amount in Bolivars';
+
+  @override
+  String get amountCustom => 'Amount in';
+
+  @override
+  String get shareError => 'Error sharing';
+
+  @override
+  String get pdfError => 'Error generating PDF';
+
+  @override
+  String get viewList => 'View List';
+
+  @override
+  String get viewChart => 'View Chart';
+
+  @override
+  String get noData => 'No data available';
+
+  @override
+  String get mean => 'Average';
+
+  @override
+  String get min => 'Minimum';
+
+  @override
+  String get max => 'Maximum';
+
+  @override
+  String get change => 'Change';
+
+  @override
+  String get rangeWeek => '1 Wk';
+
+  @override
+  String get rangeMonth => '1 Mo';
+
+  @override
+  String get rangeThreeMonths => '3 Mos';
+
+  @override
+  String get rangeYear => '1 Yr';
+
+  @override
+  String get rangeCustom => 'Custom';
+}

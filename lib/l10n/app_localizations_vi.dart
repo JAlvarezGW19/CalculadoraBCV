@@ -1,0 +1,321 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Vietnamese (`vi`).
+class AppLocalizationsVi extends AppLocalizations {
+  AppLocalizationsVi([String locale = 'vi']) : super(locale);
+
+  @override
+  String get appTitle => 'Máy tính BCV';
+
+  @override
+  String get settings => 'Cài đặt';
+
+  @override
+  String get general => 'Chung';
+
+  @override
+  String get storageNetwork => 'Lưu trữ & Mạng';
+
+  @override
+  String get storageNetworkSubtitle => 'Quản lý bộ nhớ đệm và cập nhật';
+
+  @override
+  String get notifications => 'Thông báo';
+
+  @override
+  String get notificationsSubtitle => 'Thông báo khi có tỷ giá mới';
+
+  @override
+  String get language => 'Ngôn ngữ';
+
+  @override
+  String get systemDefault => 'Mặc định hệ thống';
+
+  @override
+  String get information => 'Thông tin';
+
+  @override
+  String get aboutApp => 'Về ứng dụng';
+
+  @override
+  String get aboutAppSubtitle => 'Phiên bản, nhà phát triển và giấy phép';
+
+  @override
+  String get forceUpdate => 'Bắt buộc cập nhật';
+
+  @override
+  String get forceUpdateSubtitle => 'Cập nhật tỷ giá từ API';
+
+  @override
+  String get clearCache => 'Xóa bộ nhớ đệm';
+
+  @override
+  String get clearCacheSubtitle => 'Xóa dữ liệu được lưu trữ cục bộ';
+
+  @override
+  String get cancel => 'Hủy';
+
+  @override
+  String get close => 'Đóng';
+
+  @override
+  String get updatingRates => 'Đang cập nhật tỷ giá...';
+
+  @override
+  String get cacheCleared => 'Đã xóa bộ nhớ đệm';
+
+  @override
+  String get developer => 'Nhà phát triển';
+
+  @override
+  String get dataSource => 'Nguồn dữ liệu';
+
+  @override
+  String get legalNotice => 'Thông báo pháp lý';
+
+  @override
+  String get legalNoticeText =>
+      'Ứng dụng này KHÔNG đại diện cho bất kỳ tổ chức chính phủ hoặc ngân hàng nào. Chúng tôi không liên kết với Ngân hàng Trung ương Venezuela. Dữ liệu được lấy thông qua API truy vấn trang web chính thức của BCV. Việc sử dụng thông tin hoàn toàn là trách nhiệm của người dùng.';
+
+  @override
+  String get openSourceLicenses => 'Giấy phép mã nguồn mở';
+
+  @override
+  String get version => 'Phiên bản';
+
+  @override
+  String get becomePro => 'Trở thành người dùng PRO!';
+
+  @override
+  String get proUser => 'Bạn là người dùng PRO!';
+
+  @override
+  String get getPro => 'Nhận PRO với giá';
+
+  @override
+  String get oneTimePayment => '(Thanh toán một lần trọn đời)';
+
+  @override
+  String get restorePurchases => 'Khôi phục mua hàng';
+
+  @override
+  String get benefitAds => 'Không quảng cáo';
+
+  @override
+  String get benefitAdsDesc =>
+      'Tận hưởng giao diện sạch sẽ không bị gián đoạn.';
+
+  @override
+  String get benefitPdf => 'Xuất ngay lập tức';
+
+  @override
+  String get benefitPdfDesc =>
+      'Tạo PDF lịch sử mà không cần xem quảng cáo video.';
+
+  @override
+  String get benefitSpeed => 'Tốc độ tối đa';
+
+  @override
+  String get benefitSpeedDesc =>
+      'Điều hướng mượt mà hơn và tiêu thụ ít pin hơn.';
+
+  @override
+  String get benefitSupport => 'Hỗ trợ dự án';
+
+  @override
+  String get benefitSupportDesc => 'Giúp chúng tôi tiếp tục cải thiện công cụ.';
+
+  @override
+  String get usd => 'Đô la';
+
+  @override
+  String get eur => 'Euro';
+
+  @override
+  String get ves => 'Bolivar';
+
+  @override
+  String get history => 'Lịch sử';
+
+  @override
+  String get historyRates => 'Lịch sử tỷ giá';
+
+  @override
+  String get start => 'Bắt đầu';
+
+  @override
+  String get end => 'Kết thúc';
+
+  @override
+  String get generatePdf => 'Tạo PDF';
+
+  @override
+  String get watchAd => 'Xem quảng cáo để mở khóa';
+
+  @override
+  String get loadingAd => 'Đang tải quảng cáo...';
+
+  @override
+  String get errorAd => 'Lỗi tải';
+
+  @override
+  String get today => 'Hôm nay';
+
+  @override
+  String get tomorrow => 'Ngày mai';
+
+  @override
+  String get officialRate => 'Tỷ giá chính thức';
+
+  @override
+  String get customRate => 'Tỷ giá tùy chỉnh';
+
+  @override
+  String get convert => 'Chuyển đổi';
+
+  @override
+  String get priceScanner => 'Máy quét giá';
+
+  @override
+  String get cameraPermissionText =>
+      'Công cụ này sử dụng camera để phát hiện giá và chuyển đổi.\n\nCần quyền truy cập Camera và Thư viện.';
+
+  @override
+  String get allowAndContinue => 'Cho phép và Tiếp tục';
+
+  @override
+  String get whatToScan => 'Bạn sẽ quét gì?';
+
+  @override
+  String get amountUsd => 'Số tiền USD';
+
+  @override
+  String get amountEur => 'Số tiền EUR';
+
+  @override
+  String get amountVes => 'Số tiền Bs.';
+
+  @override
+  String get ratePers => 'Tùy chỉnh';
+
+  @override
+  String get noCustomRates => 'Không có tỷ giá tùy chỉnh';
+
+  @override
+  String get noCustomRatesDesc =>
+      'Thêm tỷ giá tùy chỉnh để sử dụng tính năng này.';
+
+  @override
+  String get createRate => 'Tạo tỷ giá';
+
+  @override
+  String get chooseRate => 'Chọn tỷ giá';
+
+  @override
+  String get newRate => 'Tỷ giá mới...';
+
+  @override
+  String get convertVesTo => 'Chuyển đổi Bolivar sang...';
+
+  @override
+  String get homeScreen => 'Trang chủ';
+
+  @override
+  String get calculatorScreen => 'Máy tính';
+
+  @override
+  String get rateDate => 'Ngày giá trị';
+
+  @override
+  String get officialRateBcv => 'Tỷ giá chính thức BCV';
+
+  @override
+  String get createYourFirstRate => 'Tạo tỷ giá tùy chỉnh đầu tiên của bạn';
+
+  @override
+  String get addCustomRatesDescription =>
+      'Thêm tỷ giá hối đoái tùy chỉnh để tính toán chuyển đổi của bạn.';
+
+  @override
+  String get errorLoadingRate => 'Lỗi tải tỷ giá';
+
+  @override
+  String get unlockPdfTitle => 'Mở khóa xuất PDF';
+
+  @override
+  String get unlockPdfDesc =>
+      'Để xuất sang PDF, vui lòng xem một quảng cáo ngắn. Điều này sẽ mở khóa tính năng trong 24 giờ.';
+
+  @override
+  String get adNotReady => 'Quảng cáo chưa sẵn sàng. Hãy thử lại sau vài giây.';
+
+  @override
+  String get featureUnlocked => 'Tính năng đã được mở khóa trong 24 giờ!';
+
+  @override
+  String get pdfHeader => 'Lịch sử giá BCV';
+
+  @override
+  String get statsPeriod => 'Thống kê giai đoạn';
+
+  @override
+  String get copiedClipboard => 'Đã sao chép vào khay nhớ tạm';
+
+  @override
+  String get amountDollars => 'Số tiền bằng Đô la';
+
+  @override
+  String get amountEuros => 'Số tiền bằng Euro';
+
+  @override
+  String get amountBolivars => 'Số tiền bằng Bolivar';
+
+  @override
+  String get amountCustom => 'Số tiền bằng';
+
+  @override
+  String get shareError => 'Lỗi chia sẻ';
+
+  @override
+  String get pdfError => 'Lỗi tạo PDF';
+
+  @override
+  String get viewList => 'Xem danh sách';
+
+  @override
+  String get viewChart => 'Xem biểu đồ';
+
+  @override
+  String get noData => 'Không có dữ liệu';
+
+  @override
+  String get mean => 'Trung bình';
+
+  @override
+  String get min => 'Tối thiểu';
+
+  @override
+  String get max => 'Tối đa';
+
+  @override
+  String get change => 'Thay đổi';
+
+  @override
+  String get rangeWeek => '1 Tuần';
+
+  @override
+  String get rangeMonth => '1 Tháng';
+
+  @override
+  String get rangeThreeMonths => '3 Tháng';
+
+  @override
+  String get rangeYear => '1 Năm';
+
+  @override
+  String get rangeCustom => 'Tùy chỉnh';
+}

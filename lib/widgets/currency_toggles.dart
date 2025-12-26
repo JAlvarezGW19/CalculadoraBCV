@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 import '../providers/bcv_provider.dart';
 import '../theme/app_theme.dart';
 
@@ -17,8 +18,9 @@ class CurrencyToggles extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(conversionProvider);
+    final l10n = AppLocalizations.of(context)!;
 
-    String tomorrowLabel = "Mañana";
+    String tomorrowLabel = l10n.tomorrow; // Use localized string
     if (hasTomorrow && tomorrowDate != null) {
       final now = DateTime.now();
       final today = DateTime(now.year, now.month, now.day);
@@ -30,7 +32,12 @@ class CurrencyToggles extends ConsumerWidget {
           tomorrowDate!.day == strictTomorrow.day;
 
       if (!isStrictTomorrow) {
-        final dayName = DateFormat('EEEE', 'es').format(tomorrowDate!);
+        // If "tomorrow" data is actually Monday when today is Friday, show "Monday"
+        // But we need to make sure this is localized properly.
+        // DateFormat('EEEE', 'es') was hardcoded.
+        // We should use the current locale for DateFormat.
+        final localeCode = Localizations.localeOf(context).languageCode;
+        final dayName = DateFormat('EEEE', localeCode).format(tomorrowDate!);
         tomorrowLabel =
             dayName[0].toUpperCase() + dayName.substring(1).toLowerCase();
       }
@@ -62,7 +69,7 @@ class CurrencyToggles extends ConsumerWidget {
                     .setCurrency(CurrencyType.eur),
               ),
               _buildToggleButton(
-                "Pers.",
+                l10n.ratePers, // Was "Pers."
                 state.currency == CurrencyType.custom,
                 () => ref
                     .read(conversionProvider.notifier)
@@ -82,7 +89,7 @@ class CurrencyToggles extends ConsumerWidget {
             child: Row(
               children: [
                 _buildToggleButton(
-                  "Hoy",
+                  l10n.today,
                   state.dateMode == RateDateMode.today,
                   () => ref
                       .read(conversionProvider.notifier)

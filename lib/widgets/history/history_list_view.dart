@@ -2,30 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../models/history_point.dart';
 import '../../theme/app_theme.dart';
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
 class HistoryListView extends StatelessWidget {
   final List<HistoryPoint> dataPoints;
-  // Assume dataPoints are sorted ASCENDING (oldest to newest) from the provider?
-  // Actually, usually charts need ASC sorted.
-  // For List View, we prefer DESC (Newest first).
 
   const HistoryListView({super.key, required this.dataPoints});
 
   @override
   Widget build(BuildContext context) {
     if (dataPoints.isEmpty) {
-      return const SizedBox(
+      final l10n = AppLocalizations.of(context)!;
+      return SizedBox(
         height: 200,
         child: Center(
           child: Text(
-            "No hay datos",
-            style: TextStyle(color: AppTheme.textSubtle),
+            l10n.noData,
+            style: const TextStyle(color: AppTheme.textSubtle),
           ),
         ),
       );
     }
 
-    // Create a local reversed copy for display (Newest top)
     final reversedData = List<HistoryPoint>.from(dataPoints.reversed);
 
     return Container(
@@ -45,7 +43,6 @@ class HistoryListView extends StatelessWidget {
 
           double? changePercent;
 
-          // Compare with PREVIOUS day (which is i + 1 in this reversed list)
           if (i + 1 < reversedData.length) {
             final prevRate = reversedData[i + 1].rate;
             if (prevRate > 0) {
@@ -57,7 +54,7 @@ class HistoryListView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
             child: Row(
               children: [
-                _buildDateBox(point.date),
+                _buildDateBox(context, point.date),
                 const SizedBox(width: 16),
                 Expanded(
                   child: FittedBox(
@@ -83,7 +80,11 @@ class HistoryListView extends StatelessWidget {
     );
   }
 
-  Widget _buildDateBox(DateTime date) {
+  Widget _buildDateBox(BuildContext context, DateTime date) {
+    // Get current locale code
+    final l10n = AppLocalizations.of(context)!;
+    final locale = l10n.localeName;
+
     return Container(
       width: 55, // Fixed width for alignment
       padding: const EdgeInsets.symmetric(vertical: 6),
@@ -104,7 +105,7 @@ class HistoryListView extends StatelessWidget {
             ),
           ),
           Text(
-            DateFormat('MMM', 'es_VE').format(date).toUpperCase(),
+            DateFormat('MMM', locale).format(date).toUpperCase(),
             style: const TextStyle(color: AppTheme.textSubtle, fontSize: 10),
           ),
         ],
@@ -121,7 +122,6 @@ class HistoryListView extends StatelessWidget {
     final color = isPositive ? AppTheme.textAccent : Colors.redAccent;
     final icon = isPositive ? Icons.arrow_upward : Icons.arrow_downward;
 
-    // Low noise filter
     if (percent.abs() < 0.01) {
       return const Text(
         "0.00%",

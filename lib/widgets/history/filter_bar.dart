@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../providers/history_provider.dart';
 import '../../theme/app_theme.dart';
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
 class HistoryFilterBar extends StatelessWidget {
   final HistoryRange selectedRange;
@@ -14,20 +15,29 @@ class HistoryFilterBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return SizedBox(
       height: 40,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          _buildChip("1 Sem", HistoryRange.week),
+          _buildChip(l10n.rangeWeek, HistoryRange.week), // "1 Sem"
           const SizedBox(width: 8),
-          _buildChip("1 Mes", HistoryRange.month),
+          _buildChip(l10n.rangeMonth, HistoryRange.month), // "1 Mes"
           const SizedBox(width: 8),
-          _buildChip("3 Meses", HistoryRange.threeMonths),
+          _buildChip(
+            l10n.rangeThreeMonths,
+            HistoryRange.threeMonths,
+          ), // "3 Meses"
           const SizedBox(width: 8),
-          _buildChip("1 Año", HistoryRange.year),
+          _buildChip(l10n.rangeYear, HistoryRange.year), // "1 Año"
           const SizedBox(width: 8),
-          _buildChip("Personalizado", HistoryRange.custom, isIcon: true),
+          _buildChip(
+            l10n.rangeCustom,
+            HistoryRange.custom,
+            isIcon: true,
+          ), // "Personalizado"
         ],
       ),
     );

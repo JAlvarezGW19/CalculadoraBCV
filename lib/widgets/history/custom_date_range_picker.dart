@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../theme/app_theme.dart';
+import 'package:intl/intl.dart';
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
 class CustomDateRangePicker extends StatefulWidget {
   final DateTime initialStartDate;
@@ -35,6 +37,9 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final materialL10n = MaterialLocalizations.of(context);
+
     return Dialog(
       backgroundColor: AppTheme.cardBackground,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
@@ -46,8 +51,8 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
             // Tabs
             Row(
               children: [
-                Expanded(child: _buildTab("Desde", _startDate, 0)),
-                Expanded(child: _buildTab("Hasta", _endDate, 1)),
+                Expanded(child: _buildTab(l10n.start, _startDate, 0)),
+                Expanded(child: _buildTab(l10n.end, _endDate, 1)),
               ],
             ),
             const Divider(color: Colors.white10),
@@ -55,7 +60,6 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
             Expanded(
               child: _DateSelector(
                 key: ValueKey("selector_$_tabIndex"),
-
                 focusedDate: _tabIndex == 0 ? _startDate : _endDate,
                 startDate: _startDate,
                 endDate: _endDate,
@@ -64,23 +68,15 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
                 onChanged: (newDate) {
                   setState(() {
                     if (_tabIndex == 0) {
-                      // Selecting Start Date
                       _startDate = newDate;
-                      // Smart Flow: Reset end date to start date to start a fresh range selection from here.
-                      // This avoids jumping to an old end date 3 months away.
                       _endDate = newDate;
-                      // Auto-advance to End selection
                       _tabIndex = 1;
                     } else {
-                      // Selecting End Date
                       if (newDate.isBefore(_startDate)) {
-                        // If selected date is before start, treating it as a correction of Start Date
                         _startDate = newDate;
                         _endDate = newDate;
-                        // Keep focus on End tab to allow finishing the range immediately
                       } else {
                         _endDate = newDate;
-                        // Range completed
                       }
                     }
                   });
@@ -94,9 +90,9 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
               children: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: const Text(
-                    "Cancelar",
-                    style: TextStyle(color: AppTheme.textSubtle),
+                  child: Text(
+                    materialL10n.cancelButtonLabel, // "CANCELAR"
+                    style: const TextStyle(color: AppTheme.textSubtle),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -114,7 +110,7 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text("Aplicar"),
+                  child: Text(materialL10n.saveButtonLabel), // "GUARDAR"
                 ),
               ],
             ),
@@ -144,7 +140,7 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
             ),
             const SizedBox(height: 4),
             Text(
-              "${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}",
+              DateFormat('dd/MM/yyyy').format(date),
               style: TextStyle(
                 color: isSelected ? AppTheme.textAccent : Colors.white,
                 fontWeight: FontWeight.bold,
@@ -195,8 +191,6 @@ class _DateSelectorState extends State<_DateSelector> {
   void didUpdateWidget(covariant _DateSelector oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.focusedDate != oldWidget.focusedDate) {
-      // Only jump if year/month drastically different?
-      // Or just respect parent's wish to focus.
       _year = widget.focusedDate.year;
       _month = widget.focusedDate.month;
     }
@@ -204,6 +198,8 @@ class _DateSelectorState extends State<_DateSelector> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context).toString();
+
     return Column(
       children: [
         const SizedBox(height: 16),
@@ -215,7 +211,7 @@ class _DateSelectorState extends State<_DateSelector> {
             _buildDropdown(
               value: _month,
               items: List.generate(12, (i) => i + 1),
-              labelBuilder: (m) => _monthName(m),
+              labelBuilder: (m) => _monthName(m, locale),
               onChanged: (val) {
                 if (val != null) setState(() => _month = val);
               },
@@ -239,7 +235,7 @@ class _DateSelectorState extends State<_DateSelector> {
         const SizedBox(height: 20),
 
         // Days Grid
-        Expanded(child: _buildCalendarGrid()),
+        Expanded(child: _buildCalendarGrid(locale)),
       ],
     );
   }
@@ -277,12 +273,11 @@ class _DateSelectorState extends State<_DateSelector> {
     );
   }
 
-  Widget _buildCalendarGrid() {
+  Widget _buildCalendarGrid(String locale) {
     final daysInMonth = DateTime(_year, _month + 1, 0).day;
     final firstDayWeekday = DateTime(_year, _month, 1).weekday; // 1=Mon, 7=Sun
     final offset = firstDayWeekday - 1;
 
-    // Normalize comparison dates
     final start = DateTime(
       widget.startDate.year,
       widget.startDate.month,
@@ -294,11 +289,20 @@ class _DateSelectorState extends State<_DateSelector> {
       widget.endDate.day,
     );
 
+    // Generate Weekday Labels
+    // Mon (1) to Sun (7)
+    // Use an arbitrary Monday (e.g., Jan 1, 2024 was Monday)
+    final monday = DateTime(2024, 1, 1);
+    final weekdays = List.generate(7, (i) {
+      final d = monday.add(Duration(days: i));
+      return DateFormat.E(locale).format(d).toUpperCase().substring(0, 1);
+    });
+
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: ["L", "M", "M", "J", "V", "S", "D"]
+          children: weekdays
               .map(
                 (d) => Text(
                   d,
@@ -318,7 +322,7 @@ class _DateSelectorState extends State<_DateSelector> {
               crossAxisCount: 7,
               childAspectRatio: 1.0,
               mainAxisSpacing: 4,
-              crossAxisSpacing: 0, // Remove spacing for continuous highlight
+              crossAxisSpacing: 0,
             ),
             itemBuilder: (ctx, i) {
               if (i < offset) return const SizedBox.shrink();
@@ -326,14 +330,12 @@ class _DateSelectorState extends State<_DateSelector> {
               final d = i - offset + 1;
               final currentDate = DateTime(_year, _month, d);
 
-              // Logic
               final isStart = _isSameDay(currentDate, start);
               final isEnd = _isSameDay(currentDate, end);
               final isInRange =
                   currentDate.isAfter(start) && currentDate.isBefore(end);
               final isSelected = isStart || isEnd;
 
-              // Advanced Airline Style: Continuous Background Strip + Circle for endpoints
               return InkWell(
                 onTap: () {
                   widget.onChanged(currentDate);
@@ -342,16 +344,12 @@ class _DateSelectorState extends State<_DateSelector> {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    // Background Highlight Strip (Visible if in range or endpoint)
                     if (isInRange || isStart || isEnd)
                       Positioned.fill(
                         child: Container(
-                          margin: const EdgeInsets.symmetric(
-                            vertical: 4,
-                          ), // Small vertical gap
+                          margin: const EdgeInsets.symmetric(vertical: 4),
                           decoration: BoxDecoration(
                             color: AppTheme.textAccent.withValues(alpha: 0.2),
-                            // Rounded corners for range edges
                             borderRadius: BorderRadius.horizontal(
                               left: isStart
                                   ? const Radius.circular(20)
@@ -363,8 +361,6 @@ class _DateSelectorState extends State<_DateSelector> {
                           ),
                         ),
                       ),
-
-                    // Foreground Selected Circle (Only Start/End)
                     if (isSelected)
                       Container(
                         width: 36,
@@ -374,7 +370,6 @@ class _DateSelectorState extends State<_DateSelector> {
                           shape: BoxShape.circle,
                         ),
                       ),
-
                     Text(
                       "$d",
                       style: TextStyle(
@@ -402,21 +397,8 @@ class _DateSelectorState extends State<_DateSelector> {
     return a.year == b.year && a.month == b.month && a.day == b.day;
   }
 
-  String _monthName(int m) {
-    const months = [
-      "Enero",
-      "Febrero",
-      "Marzo",
-      "Abril",
-      "Mayo",
-      "Junio",
-      "Julio",
-      "Agosto",
-      "Septiembre",
-      "Octubre",
-      "Noviembre",
-      "Diciembre",
-    ];
-    return months[m - 1];
+  String _monthName(int m, String locale) {
+    // Arbitrary year 2024
+    return DateFormat.MMMM(locale).format(DateTime(2024, m));
   }
 }

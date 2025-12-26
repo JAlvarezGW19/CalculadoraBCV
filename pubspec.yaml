@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
 
   flutter_local_notifications: ^18.0.1
+  flutter_localizations:
+    sdk: flutter
   flutter_riverpod: ^3.0.3
   google_fonts: ^6.3.3
   http: ^1.6.0
@@ -28,6 +30,7 @@ dependencies:
   fl_chart: ^1.1.1
   pdf: ^3.11.3
   printing: ^5.14.2
+  in_app_purchase: ^3.2.3
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +52,7 @@ flutter_icons:
     theme_color: "#0A192F"
 
 flutter:
+  generate: true
   uses-material-design: true
   # assets:
   #   - assets/icon/

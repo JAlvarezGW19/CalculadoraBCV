@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 import '../../models/history_point.dart';
 import '../../theme/app_theme.dart';
 
@@ -31,6 +32,8 @@ class HistoryChartCard extends StatelessWidget {
       );
     }
 
+    final l10n = AppLocalizations.of(context)!;
+
     if (dataPoints.isEmpty) {
       return Container(
         height: 300,
@@ -38,10 +41,10 @@ class HistoryChartCard extends StatelessWidget {
           color: AppTheme.cardBackground,
           borderRadius: BorderRadius.circular(24),
         ),
-        child: const Center(
+        child: Center(
           child: Text(
-            "No hay datos disponibles",
-            style: TextStyle(color: AppTheme.textSubtle),
+            l10n.noData,
+            style: const TextStyle(color: AppTheme.textSubtle),
           ),
         ),
       );
@@ -54,12 +57,14 @@ class HistoryChartCard extends StatelessWidget {
         color: AppTheme.cardBackground,
         borderRadius: BorderRadius.circular(24),
       ),
-      child: LineChart(_mainData()),
+      child: LineChart(_mainData(context)),
     );
   }
 
-  LineChartData _mainData() {
+  LineChartData _mainData(BuildContext context) {
     if (dataPoints.isEmpty) return LineChartData();
+    // Use for locale if needed, though DateFormat('dd/MM/yy') is mostly numeric
+    // final l10n = AppLocalizations.of(context)!;
 
     // Normalization logic
     final firstDateMs = dataPoints.first.date.millisecondsSinceEpoch;
@@ -134,8 +139,24 @@ class HistoryChartCard extends StatelessWidget {
         leftTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
-            getTitlesWidget:
-                leftTitleWidgets, // Keeping existing logic or move inline? Existing is fine if pure
+            getTitlesWidget: (value, meta) {
+              if (value == meta.min || value == meta.max) {
+                return const SizedBox.shrink();
+              }
+              // Keeping locale hardcoded for number format "es_VE" for currency display consistency?
+              // Or switch to locale? "es_VE" typically uses comma decimal.
+              // If we switch to "en", it uses dot.
+              // However, the app seems to enforce "es_VE" for numbers to match Venezuela convention.
+              // I will keep "es_VE" for number format as it is specific to "Bs".
+              return Text(
+                "${NumberFormat.compact(locale: "es_VE").format(value)} ${currencySymbol == 'USD' ? '\$' : '€'}",
+                style: const TextStyle(
+                  color: AppTheme.textSubtle,
+                  fontSize: 10,
+                ),
+                textAlign: TextAlign.left,
+              );
+            },
             reservedSize: 45,
             interval: rangeY == 0 ? 1 : rangeY / 5,
           ),
@@ -190,20 +211,9 @@ class HistoryChartCard extends StatelessWidget {
               );
             }).toList();
           },
-          // Adjust tooltip styling if needed
           getTooltipColor: (_) => AppTheme.cardBackground,
         ),
       ),
-    );
-  }
-
-  Widget leftTitleWidgets(double value, TitleMeta meta) {
-    if (value == meta.min || value == meta.max) return const SizedBox.shrink();
-
-    return Text(
-      "${NumberFormat.compact(locale: "es_VE").format(value)} ${currencySymbol == 'USD' ? '\$' : '€'}",
-      style: const TextStyle(color: AppTheme.textSubtle, fontSize: 10),
-      textAlign: TextAlign.left,
     );
   }
 }

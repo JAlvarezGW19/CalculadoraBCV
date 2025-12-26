@@ -18,4 +18,13 @@ class AdHelper {
     }
     throw UnsupportedError("Unsupported platform");
   }
+
+  static String get rewardedAdUnitId {
+    if (Platform.isAndroid) {
+      return 'ca-app-pub-3940256099942544/5224354917'; // Test ID for Rewarded
+    } else if (Platform.isIOS) {
+      return 'ca-app-pub-3940256099942544/1712485313'; // Test ID for iOS Rewarded
+    }
+    throw UnsupportedError("Unsupported platform");
+  }
 }

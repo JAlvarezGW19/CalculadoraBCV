@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../models/history_point.dart';
 import '../../theme/app_theme.dart';
 import 'package:intl/intl.dart';
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
 class HistoryStatsCard extends StatelessWidget {
   final List<HistoryPoint> data;
@@ -11,6 +12,8 @@ class HistoryStatsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (data.isEmpty) return const SizedBox.shrink();
+
+    final l10n = AppLocalizations.of(context)!;
 
     final first = data.first.rate;
     final last = data.last.rate;
@@ -35,26 +38,26 @@ class HistoryStatsCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Estadísticas del Periodo", style: AppTheme.subtitleStyle),
+          Text(l10n.statsPeriod, style: AppTheme.subtitleStyle),
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildStatItem(
-                "Cambio",
+                l10n.change,
                 "${percent.toStringAsFixed(2)}%",
                 isPositive: percent >= 0,
                 colored: true,
               ),
-              _buildStatItem("Mínimo", _fmt(min)),
+              _buildStatItem(l10n.min, _fmt(min)),
             ],
           ),
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildStatItem("Promedio", _fmt(avg)),
-              _buildStatItem("Máximo", _fmt(max)),
+              _buildStatItem(l10n.mean, _fmt(avg)),
+              _buildStatItem(l10n.max, _fmt(max)),
             ],
           ),
         ],

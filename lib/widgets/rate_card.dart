@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 import '../providers/bcv_provider.dart';
 import '../theme/app_theme.dart';
 import 'add_rate_dialog.dart';
@@ -29,13 +30,15 @@ class RateDisplayCard extends ConsumerWidget {
         bcvComparisonRate,
       );
     }
-    return _buildStandardRateCard(state, ratesAsyncValue);
+    return _buildStandardRateCard(context, state, ratesAsyncValue);
   }
 
   Widget _buildStandardRateCard(
+    BuildContext context,
     ConversionState state,
     AsyncValue<RatesData> ratesAsyncValue,
   ) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -52,7 +55,7 @@ class RateDisplayCard extends ConsumerWidget {
       ),
       child: Column(
         children: [
-          Text("Tasa Oficial BCV", style: AppTheme.subtitleStyle),
+          Text(l10n.officialRateBcv, style: AppTheme.subtitleStyle),
           const SizedBox(height: 10),
           ratesAsyncValue.when(
             data: (rates) {
@@ -99,7 +102,7 @@ class RateDisplayCard extends ConsumerWidget {
                       ),
                       const SizedBox(width: 6),
                       Text(
-                        "Fecha Valor: $dateStr",
+                        "${l10n.rateDate}: $dateStr",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: AppTheme.textSubtle.withValues(alpha: 0.7),
@@ -113,9 +116,9 @@ class RateDisplayCard extends ConsumerWidget {
             },
             loading: () =>
                 const CircularProgressIndicator(color: AppTheme.textAccent),
-            error: (err, stack) => const Text(
-              "Error cargando tasa",
-              style: TextStyle(color: Colors.redAccent),
+            error: (err, stack) => Text(
+              l10n.errorLoadingRate,
+              style: const TextStyle(color: Colors.redAccent),
             ),
           ),
         ],
@@ -131,6 +134,7 @@ class RateDisplayCard extends ConsumerWidget {
     double bcvComparisonRate,
   ) {
     final customRates = ref.watch(customRatesProvider);
+    final l10n = AppLocalizations.of(context)!;
 
     // Fallback if null (shouldn't happen if list not empty)
     if (rate == null && customRates.isNotEmpty) rate = customRates.first;
@@ -151,13 +155,13 @@ class RateDisplayCard extends ConsumerWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              "Crea tu primera tasa personalizada",
+              l10n.createYourFirstRate,
               style: AppTheme.subtitleStyle.copyWith(color: Colors.white),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             Text(
-              "Agrega tasas de cambios personalizadas para calcular tus conversiones.",
+              l10n.addCustomRatesDescription,
               style: TextStyle(
                 color: AppTheme.textSubtle.withValues(alpha: 0.7),
                 fontSize: 14,
@@ -167,9 +171,9 @@ class RateDisplayCard extends ConsumerWidget {
             const SizedBox(height: 20),
             ElevatedButton.icon(
               icon: const Icon(Icons.add, color: Colors.black),
-              label: const Text(
-                "Crear Tasa",
-                style: TextStyle(
+              label: Text(
+                l10n.createRate,
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
@@ -203,6 +207,8 @@ class RateDisplayCard extends ConsumerWidget {
       diff = ((rate.rate - bcvComparisonRate) / bcvComparisonRate) * 100;
     }
 
+    // BCV Label can remain partially hardcoded as "BCV USD" is a proper noun-like
+    // Or we could localize it but structure is ok.
     final bcvLabel = state.comparisonBase == CurrencyType.usd
         ? "BCV USD"
         : "BCV EUR";
@@ -232,7 +238,7 @@ class RateDisplayCard extends ConsumerWidget {
                 Align(
                   alignment: Alignment.center,
                   child: customRates.isEmpty
-                      ? Text("Crea una tasa", style: AppTheme.subtitleStyle)
+                      ? Text(l10n.createRate, style: AppTheme.subtitleStyle)
                       : DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
                             value: customRates.any((r) => r.id == rate!.id)
@@ -286,7 +292,7 @@ class RateDisplayCard extends ConsumerWidget {
                         },
                         constraints: const BoxConstraints(),
                         padding: EdgeInsets.zero,
-                        tooltip: "Crear nueva tasa",
+                        tooltip: l10n.createRate,
                       ),
                       const SizedBox(width: 8),
                       IconButton(
@@ -299,7 +305,8 @@ class RateDisplayCard extends ConsumerWidget {
                             showAddEditRateDialog(context, ref, rate: rate),
                         constraints: const BoxConstraints(),
                         padding: EdgeInsets.zero,
-                        tooltip: "Editar tasa",
+                        tooltip:
+                            "Editar tasa", // No key for edit, maybe generic? Keeping hardcoded or using 'create' if ambiguous. Can add editRate if critical.
                       ),
                     ],
                   ),

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
 import '../providers/bcv_provider.dart';
 import '../theme/app_theme.dart';
@@ -77,6 +78,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
     CustomRate? customRate,
     double? bcvCompRate,
   ) {
+    final l10n = AppLocalizations.of(context)!;
     // Label & Prefix Logic
     String foreignLabel;
     String foreignPrefix;
@@ -85,16 +87,16 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
       if (customRate != null) {
         foreignLabel = customRate.name;
       } else {
-        foreignLabel = "Personalizada";
+        foreignLabel = l10n.customRate; // "Personalizada" (or similar)
       }
       // No symbol for custom rates as requested
       foreignPrefix = "";
     } else {
       if (state.currency == CurrencyType.usd) {
-        foreignLabel = "Dólares";
+        foreignLabel = l10n.usd;
         foreignPrefix = "\$ ";
       } else {
-        foreignLabel = "Euros";
+        foreignLabel = l10n.eur;
         foreignPrefix = "€ ";
       }
     }
@@ -102,19 +104,19 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
     // Determine Foreign Placeholder
     String foreignPlaceholder;
     if (state.currency == CurrencyType.usd) {
-      foreignPlaceholder = "Monto en Dólares";
+      foreignPlaceholder = l10n.amountDollars;
     } else if (state.currency == CurrencyType.eur) {
-      foreignPlaceholder = "Monto en Euros";
+      foreignPlaceholder = l10n.amountEuros;
     } else {
       // Custom
       if (customRate != null) {
-        foreignPlaceholder = "Monto en ${customRate.name}";
+        foreignPlaceholder = "${l10n.amountCustom} ${customRate.name}";
       } else {
-        foreignPlaceholder = "Monto en Personalizada";
+        foreignPlaceholder = "${l10n.amountCustom} ${l10n.customRate}";
       }
     }
 
-    const String vesLabel = "Bolívares";
+    final String vesLabel = l10n.ves; // "Bolívares"
     const String vesPrefix = "Bs. ";
 
     // BCV Equivalence Logic (for Custom Rate mode)
@@ -209,7 +211,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
             controller: _vesController,
             focusNode: _vesFocus,
             label: vesLabel,
-            placeholder: "Monto en Bolívares",
+            placeholder: l10n.amountBolivars,
             prefixText: vesPrefix,
             onChanged: (value) {
               final sanitized = value.replaceAll('.', '').replaceAll(',', '.');
@@ -233,6 +235,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
     DateTime? date,
     CustomRate? customRate,
   ) async {
+    final l10n = AppLocalizations.of(context)!;
     final foreignAmount = _foreignController.text;
     final vesAmount = _vesController.text;
 
@@ -247,8 +250,10 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
 
     final formattedRate = NumberFormat("#,##0.00", "es_VE").format(rate);
 
+    // Localized message structure (using symbol and amounts)
+    // "El monto es... " -> "$symbol... = ... Bs"
     final msg =
-        "El monto es $symbol$foreignAmount ($vesAmount Bs) | Tasa $rateName = $formattedRate Bs";
+        "$symbol$foreignAmount = $vesAmount Bs | $rateName: $formattedRate Bs";
 
     try {
       final box = context.findRenderObject() as RenderBox?;
@@ -264,7 +269,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text("Error al compartir: $e"),
+            content: Text("${l10n.shareError}: $e"),
             backgroundColor: Colors.redAccent,
           ),
         );
@@ -284,6 +289,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
     int maxIntegerDigits = 15,
     int maxDecimalDigits = 2,
   }) {
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -297,9 +303,9 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
                   if (controller.text.isNotEmpty) {
                     Clipboard.setData(ClipboardData(text: controller.text));
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Copiado al portapapeles"),
-                        duration: Duration(milliseconds: 1000),
+                      SnackBar(
+                        content: Text(l10n.copiedClipboard),
+                        duration: const Duration(milliseconds: 1000),
                       ),
                     );
                   }

@@ -4,6 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
 import '../models/history_point.dart'; // Explicit import
 import '../providers/history_provider.dart';
@@ -14,6 +17,7 @@ import '../widgets/history/custom_date_range_picker.dart';
 import '../widgets/history/filter_bar.dart';
 import '../widgets/history/history_list_view.dart';
 import '../widgets/history/stats_card.dart';
+import '../utils/ad_helper.dart';
 
 class HistoryScreen extends ConsumerStatefulWidget {
   const HistoryScreen({super.key});
@@ -23,12 +27,145 @@ class HistoryScreen extends ConsumerStatefulWidget {
 }
 
 class _HistoryScreenState extends ConsumerState<HistoryScreen> {
+  RewardedAd? _rewardedAd;
+  bool _isPdfUnlocked = false;
+
   @override
   void initState() {
     super.initState();
     Future.microtask(() {
       ref.read(historyProvider.notifier).loadHistory();
     });
+    _checkPdfUnlockStatus();
+    _loadRewardedAd();
+  }
+
+  @override
+  void dispose() {
+    _rewardedAd?.dispose();
+    super.dispose();
+  }
+
+  Future<void> _checkPdfUnlockStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    final unlockTimeStr = prefs.getString('pdf_export_unlock_time');
+
+    if (unlockTimeStr != null) {
+      final unlockTime = DateTime.parse(unlockTimeStr);
+      final now = DateTime.now();
+
+      // Check if within 24 hours
+      if (now.difference(unlockTime).inHours < 24) {
+        setState(() {
+          _isPdfUnlocked = true;
+        });
+      }
+    }
+  }
+
+  void _loadRewardedAd() {
+    RewardedAd.load(
+      adUnitId: AdHelper.rewardedAdUnitId,
+      request: const AdRequest(),
+      rewardedAdLoadCallback: RewardedAdLoadCallback(
+        onAdLoaded: (ad) {
+          debugPrint('$ad loaded.');
+          _rewardedAd = ad;
+        },
+        onAdFailedToLoad: (LoadAdError error) {
+          debugPrint('RewardedAd failed to load: $error');
+          _rewardedAd = null;
+          // Retry after a short delay
+          Future.delayed(const Duration(seconds: 5), _loadRewardedAd);
+        },
+      ),
+    );
+  }
+
+  void _showUnlockDialog() {
+    final l10n = AppLocalizations.of(context)!;
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: AppTheme.cardBackground,
+        title: Text(
+          l10n.unlockPdfTitle,
+          style: const TextStyle(color: Colors.white),
+        ),
+        content: Text(
+          l10n.unlockPdfDesc,
+          style: const TextStyle(color: AppTheme.textSubtle),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: Text(
+              l10n.cancel,
+              style: const TextStyle(color: AppTheme.textSubtle),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              _showRewardedAd();
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.textAccent,
+              foregroundColor: Colors.white,
+            ),
+            child: Text(
+              l10n.watchAd.split(' ').take(2).join(' '),
+            ), // "Ver anuncio..." -> "Ver anuncio" approx
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showRewardedAd() {
+    final l10n = AppLocalizations.of(context)!;
+    if (_rewardedAd == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.adNotReady)));
+      _loadRewardedAd();
+      return;
+    }
+
+    _rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
+      onAdShowedFullScreenContent: (ad) {},
+      onAdDismissedFullScreenContent: (ad) {
+        ad.dispose();
+        _loadRewardedAd();
+      },
+      onAdFailedToShowFullScreenContent: (ad, error) {
+        ad.dispose();
+        _loadRewardedAd();
+      },
+    );
+
+    _rewardedAd!.show(
+      onUserEarnedReward: (AdWithoutView ad, RewardItem reward) async {
+        // Unlock Feature
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString(
+          'pdf_export_unlock_time',
+          DateTime.now().toIso8601String(),
+        );
+
+        setState(() {
+          _isPdfUnlocked = true;
+        });
+
+        if (mounted) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(l10n.featureUnlocked)));
+          // Proceed with export
+          _exportPdf();
+        }
+      },
+    );
   }
 
   Future<void> _selectDateRange() async {
@@ -71,7 +208,14 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
 
   Future<void> _exportPdf() async {
     final state = ref.read(historyProvider);
+    final l10n = AppLocalizations.of(context)!;
     if (state.data.isEmpty) return;
+
+    // Check Lock
+    if (!_isPdfUnlocked) {
+      _showUnlockDialog();
+      return;
+    }
 
     // Safely handling PDF generation
     try {
@@ -114,7 +258,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                   mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                   children: [
                     pw.Text(
-                      "Historial de Precios BCV",
+                      l10n.pdfHeader,
                       style: pw.TextStyle(
                         fontSize: 24,
                         fontWeight: pw.FontWeight.bold,
@@ -128,7 +272,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
               ),
               pw.SizedBox(height: 20),
               pw.Text(
-                "Moneda: ${currency == 'USD' ? 'Dólar (USD)' : 'Euro (EUR)'} | Rango: $startDateStr - $endDateStr",
+                "Currency: ${currency == 'USD' ? 'USD' : 'EUR'} | Range: $startDateStr - $endDateStr",
                 style: const pw.TextStyle(fontSize: 14),
               ),
               pw.SizedBox(height: 10),
@@ -144,13 +288,13 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                   mainAxisAlignment: pw.MainAxisAlignment.spaceAround,
                   children: [
                     _buildPdfStat(
-                      "Cambio",
+                      l10n.change,
                       "${percent.toStringAsFixed(2)}%",
                       isPositive: percent >= 0,
                     ),
-                    _buildPdfStat("Mínimo", "${_fmt(min)} Bs"),
-                    _buildPdfStat("Máximo", "${_fmt(max)} Bs"),
-                    _buildPdfStat("Promedio", "${_fmt(avg)} Bs"),
+                    _buildPdfStat(l10n.min, "${_fmt(min)} Bs"),
+                    _buildPdfStat(l10n.max, "${_fmt(max)} Bs"),
+                    _buildPdfStat(l10n.mean, "${_fmt(avg)} Bs"),
                   ],
                 ),
               ),
@@ -159,7 +303,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
 
               // Data Table
               pw.Text(
-                "Detalle Diario (Orden Cronológico Inverso)",
+                "Daily Details (Reverse Chronological)",
                 style: pw.TextStyle(
                   fontSize: 16,
                   fontWeight: pw.FontWeight.bold,
@@ -168,7 +312,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
               pw.SizedBox(height: 10),
 
               pw.TableHelper.fromTextArray(
-                headers: ['Fecha', 'Tasa (Bs)', 'Cambio % (vs Prev)'],
+                headers: ['Date', 'Rate (Bs)', 'Change %'],
                 data: _buildPdfTableData(state.data.reversed.toList()),
                 border: null,
                 headerStyle: pw.TextStyle(
@@ -199,7 +343,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text("Error al generar PDF: $e"),
+            content: Text("${l10n.pdfError}: $e"),
             backgroundColor: Colors.red,
           ),
         );
@@ -221,7 +365,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
           style: pw.TextStyle(
             fontSize: 12,
             fontWeight: pw.FontWeight.bold,
-            color: label == "Cambio"
+            color: label == "Change" || label == "Cambio"
                 ? (isPositive ? PdfColors.green700 : PdfColors.red700)
                 : PdfColors.black,
           ),
@@ -256,6 +400,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(historyProvider);
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: AppTheme.background,
@@ -270,7 +415,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Historial",
+                    l10n.history,
                     style: AppTheme.subtitleStyle.copyWith(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
@@ -282,7 +427,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                       Icons.picture_as_pdf,
                       color: AppTheme.textAccent,
                     ),
-                    tooltip: "Exportar PDF",
+                    tooltip: l10n.generatePdf,
                   ),
                 ],
               ),
@@ -314,8 +459,8 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                       color: Colors.white,
                     ),
                     tooltip: state.viewMode == HistoryViewMode.chart
-                        ? "Ver Lista"
-                        : "Ver Gráfico",
+                        ? l10n.viewList
+                        : l10n.viewChart,
                   ),
                 ],
               ),
@@ -335,7 +480,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
               const SizedBox(height: 20),
 
               // Content Switch
-              _buildContent(state),
+              _buildContent(state, l10n),
 
               const SizedBox(height: 20),
 
@@ -350,7 +495,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     );
   }
 
-  Widget _buildContent(HistoryState state) {
+  Widget _buildContent(HistoryState state, AppLocalizations l10n) {
     if (state.isLoading) {
       return Container(
         height: 300,
@@ -371,10 +516,10 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
           color: AppTheme.cardBackground,
           borderRadius: BorderRadius.circular(24),
         ),
-        child: const Center(
+        child: Center(
           child: Text(
-            "No hay datos disponibles",
-            style: TextStyle(color: AppTheme.textSubtle),
+            l10n.noData,
+            style: const TextStyle(color: AppTheme.textSubtle),
           ),
         ),
       );

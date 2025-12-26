@@ -27,6 +27,13 @@ void callbackDispatcher() {
 
           final prefs = await SharedPreferences.getInstance();
           await prefs.reload(); // Ensure we have latest data
+
+          final bool notificationsEnabled =
+              prefs.getBool('notifications_enabled') ?? true;
+          if (!notificationsEnabled) {
+            return Future.value(true); // Task done, no notification
+          }
+
           final String? lastNotified = prefs.getString(lastNotifiedKey);
 
           // If we haven't notified for this specific date yet

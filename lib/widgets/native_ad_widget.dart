@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../providers/bcv_provider.dart';
+import '../providers/iap_provider.dart';
 import '../theme/app_theme.dart';
 import '../utils/ad_helper.dart';
 
@@ -147,6 +148,12 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
       return const SizedBox(height: 90.0);
     }
 
+    // Check Premium State
+    final iapState = ref.watch(iapProvider);
+    if (iapState.isPremium) {
+      return const SizedBox.shrink();
+    }
+
     // Check if this tab is active
     final activeTab = ref.watch(activeTabProvider);
     if (activeTab != widget.assignedTabIndex) {
@@ -162,16 +169,42 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
       }
     }
 
-    // If Ad is NOT loaded (e.g. offline, loading, error), return empty space (invisible)
+    // If Ad is NOT loaded (e.g. offline, loading, error), return spacer to prevent jumps,
+    // but DO NOT show 'Remove Ads' link (satisfies "offline" requirement)
     if (!_isAdLoaded || _nativeAd == null) {
       return const SizedBox(height: 90.0);
     }
 
-    // Ad Loaded: Show Native Ad (height 90)
-    return SizedBox(
-      height: 90.0,
-      width: double.infinity,
-      child: AdWidget(ad: _nativeAd!),
+    // Ad Loaded: Show Native Ad (height 90) + Remove Ads link
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 4, right: 8),
+          child: GestureDetector(
+            onTap: () {
+              // Navigate to Settings to show the PRO Copy and Purchase button
+              // This satisfies "que salga tambien lo de conviertete en pro"
+              final state = ref.read(activeTabProvider.notifier);
+              state.state = 2; // Switch to Settings Tab (Index 2)
+            },
+            child: Text(
+              "Quitar anuncios",
+              style: TextStyle(
+                color: AppTheme.textSubtle.withValues(alpha: 0.5),
+                fontSize: 10,
+                decoration: TextDecoration.underline,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 90.0,
+          width: double.infinity,
+          child: AdWidget(ad: _nativeAd!),
+        ),
+      ],
     );
   }
 }
