@@ -403,19 +403,29 @@ class _ArithmeticCalculatorScreenState
     }
 
     String mainDisplayText;
+    String sourceStr = "";
+    String targetStr = "";
+
     if (_isDivisaToBs) {
       // Source: Foreign -> Target: Bs
-      String targetStr = formatValue(finalConvertedValue, true, null, null);
-      mainDisplayText = "= $targetStr";
+      sourceStr = formatValue(
+        rawMathValue,
+        false,
+        state.currency,
+        customRateName,
+      );
+      targetStr = formatValue(finalConvertedValue, true, null, null);
+      mainDisplayText = "$sourceStr = $targetStr";
     } else {
       // Source: Bs -> Target: Foreign
-      String targetStr = formatValue(
+      sourceStr = formatValue(rawMathValue, true, null, null);
+      targetStr = formatValue(
         finalConvertedValue,
         false,
         state.currency,
         customRateName,
       );
-      mainDisplayText = "= $targetStr";
+      mainDisplayText = "$sourceStr = $targetStr";
     }
 
     // BCV Equivalent Logic
