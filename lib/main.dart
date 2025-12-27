@@ -16,7 +16,7 @@ void main() async {
     await initializeDateFormatting('es', null);
 
     // Initialize Google Mobile Ads (Fire and forget to not block startup)
-    // MobileAds.instance.initialize();
+    MobileAds.instance.initialize();
 
     // Run App immediately
     runApp(const ProviderScope(child: MyApp()));
