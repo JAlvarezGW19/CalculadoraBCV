@@ -94,10 +94,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get proUser => 'Вы PRO пользователь!';
 
   @override
-  String get getPro => 'Купить PRO за';
+  String get getPro => 'Активировать PRO функции (Бета)';
 
   @override
-  String get oneTimePayment => '(Единовременный платеж)';
+  String get oneTimePayment => '';
+
+  @override
+  String get activateProBetaTitle =>
+      'Активировать PRO функции для этой тестовой сессии?';
+
+  @override
+  String get activateProBetaAccept => 'Активировать';
 
   @override
   String get restorePurchases => 'Восстановить';

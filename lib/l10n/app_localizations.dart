@@ -295,14 +295,26 @@ abstract class AppLocalizations {
   /// No description provided for @getPro.
   ///
   /// In es, this message translates to:
-  /// **'Obtener PRO por'**
+  /// **'Activar Funciones PRO (Beta)'**
   String get getPro;
 
   /// No description provided for @oneTimePayment.
   ///
   /// In es, this message translates to:
-  /// **'(Pago único de por vida)'**
+  /// **''**
   String get oneTimePayment;
+
+  /// No description provided for @activateProBetaTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Deseas activar las funciones PRO para esta sesión de prueba?'**
+  String get activateProBetaTitle;
+
+  /// No description provided for @activateProBetaAccept.
+  ///
+  /// In es, this message translates to:
+  /// **'Activar'**
+  String get activateProBetaAccept;
 
   /// No description provided for @restorePurchases.
   ///

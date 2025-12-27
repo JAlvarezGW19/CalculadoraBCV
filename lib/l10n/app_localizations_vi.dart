@@ -94,10 +94,17 @@ class AppLocalizationsVi extends AppLocalizations {
   String get proUser => 'Bạn là người dùng PRO!';
 
   @override
-  String get getPro => 'Nhận PRO với giá';
+  String get getPro => 'Kích hoạt tính năng PRO (Beta)';
 
   @override
-  String get oneTimePayment => '(Thanh toán một lần trọn đời)';
+  String get oneTimePayment => '';
+
+  @override
+  String get activateProBetaTitle =>
+      'Bạn có muốn kích hoạt các tính năng PRO cho phiên thử nghiệm này không?';
+
+  @override
+  String get activateProBetaAccept => 'Kích hoạt';
 
   @override
   String get restorePurchases => 'Khôi phục mua hàng';

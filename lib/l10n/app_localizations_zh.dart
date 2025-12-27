@@ -94,10 +94,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get proUser => '您是 PRO 用户！';
 
   @override
-  String get getPro => '获取 PRO 仅需';
+  String get getPro => '激活 PRO 功能 (测试版)';
 
   @override
-  String get oneTimePayment => '（终身一次性付款）';
+  String get oneTimePayment => '';
+
+  @override
+  String get activateProBetaTitle => '是否为此测试会话激活 PRO 功能？';
+
+  @override
+  String get activateProBetaAccept => '激活';
 
   @override
   String get restorePurchases => '恢复购买';

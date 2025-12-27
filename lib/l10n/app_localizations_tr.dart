@@ -94,10 +94,17 @@ class AppLocalizationsTr extends AppLocalizations {
   String get proUser => 'PRO Kullanıcısısınız!';
 
   @override
-  String get getPro => 'PRO Satın Al:';
+  String get getPro => 'PRO Özelliklerini Etkinleştir (Beta)';
 
   @override
-  String get oneTimePayment => '(Ömür boyu tek seferlik ödeme)';
+  String get oneTimePayment => '';
+
+  @override
+  String get activateProBetaTitle =>
+      'Bu test oturumu için PRO özelliklerini etkinleştirmek ister misiniz?';
+
+  @override
+  String get activateProBetaAccept => 'Etkinleştir';
 
   @override
   String get restorePurchases => 'Satın Alımları Geri Yükle';

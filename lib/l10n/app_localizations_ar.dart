@@ -94,10 +94,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get proUser => 'أنت مستخدم PRO!';
 
   @override
-  String get getPro => 'احصل على PRO بـ';
+  String get getPro => 'تفعيل ميزات PRO (تجريبي)';
 
   @override
-  String get oneTimePayment => '(دفع لمرة واحدة مدى الحياة)';
+  String get oneTimePayment => '';
+
+  @override
+  String get activateProBetaTitle =>
+      'هل تريد تفعيل ميزات PRO لجلسة الاختبار هذه؟';
+
+  @override
+  String get activateProBetaAccept => 'تفعيل';
 
   @override
   String get restorePurchases => 'استعادة المشتريات';

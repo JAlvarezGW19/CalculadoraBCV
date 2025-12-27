@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../providers/iap_provider.dart';
 import '../../theme/app_theme.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
+import '../premium_benefits_dialog.dart';
 
 class PremiumCard extends StatelessWidget {
   final IapNotifier notifier;
@@ -90,7 +91,14 @@ class PremiumCard extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: isLoading ? null : () => notifier.buyPremium(),
+              onPressed: isLoading
+                  ? null
+                  : () {
+                      showDialog(
+                        context: context,
+                        builder: (_) => const PremiumBenefitsDialog(),
+                      );
+                    },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppTheme.textAccent,
                 foregroundColor: Colors.white,
@@ -110,7 +118,7 @@ class PremiumCard extends StatelessWidget {
                       ),
                     )
                   : Text(
-                      "${l10n.getPro} ${_getPrice(products)}",
+                      l10n.getPro, // Removed price display
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -119,12 +127,17 @@ class PremiumCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          Center(
-            child: Text(
-              l10n.oneTimePayment,
-              style: const TextStyle(color: AppTheme.textSubtle, fontSize: 12),
+          // Temporarily removed oneTimePayment text
+          if (l10n.oneTimePayment.isNotEmpty)
+            Center(
+              child: Text(
+                l10n.oneTimePayment,
+                style: const TextStyle(
+                  color: AppTheme.textSubtle,
+                  fontSize: 12,
+                ),
+              ),
             ),
-          ),
           const SizedBox(height: 12),
           Center(
             child: TextButton(
@@ -141,11 +154,6 @@ class PremiumCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  String _getPrice(List<dynamic> products) {
-    if (products.isEmpty) return "\$2.49";
-    return products.first.price;
   }
 
   Widget _buildBenefitRow(IconData icon, String text) {

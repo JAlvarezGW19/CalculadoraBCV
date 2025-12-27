@@ -94,10 +94,17 @@ class AppLocalizationsId extends AppLocalizations {
   String get proUser => 'Anda Pengguna PRO!';
 
   @override
-  String get getPro => 'Dapatkan PRO seharga';
+  String get getPro => 'Aktifkan Fitur PRO (Beta)';
 
   @override
-  String get oneTimePayment => '(Pembayaran satu kali seumur hidup)';
+  String get oneTimePayment => '';
+
+  @override
+  String get activateProBetaTitle =>
+      'Apakah Anda ingin mengaktifkan fitur PRO untuk sesi pengujian ini?';
+
+  @override
+  String get activateProBetaAccept => 'Aktifkan';
 
   @override
   String get restorePurchases => 'Pulihkan Pembelian';

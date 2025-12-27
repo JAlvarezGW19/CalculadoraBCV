@@ -152,6 +152,11 @@ class IapNotifier extends Notifier<IapState> {
     });
   }
 
+  Future<void> enableProBeta() async {
+    // Determine functionality for Google Play Review / Beta testing
+    await _grantPremium();
+  }
+
   Future<void> restorePurchases() async {
     await _iap.restorePurchases();
   }

@@ -95,10 +95,17 @@ class AppLocalizationsIt extends AppLocalizations {
   String get proUser => 'Sei un Utente PRO!';
 
   @override
-  String get getPro => 'Ottieni PRO per';
+  String get getPro => 'Attiva Funzioni PRO (Beta)';
 
   @override
-  String get oneTimePayment => '(Pagamento unico a vita)';
+  String get oneTimePayment => '';
+
+  @override
+  String get activateProBetaTitle =>
+      'Vuoi attivare le funzioni PRO per questa sessione di test?';
+
+  @override
+  String get activateProBetaAccept => 'Attiva';
 
   @override
   String get restorePurchases => 'Ripristina Acquisti';

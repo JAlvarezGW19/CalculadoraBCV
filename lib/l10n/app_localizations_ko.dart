@@ -94,10 +94,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get proUser => '당신은 PRO 사용자입니다!';
 
   @override
-  String get getPro => 'PRO 구매:';
+  String get getPro => 'PRO 기능 활성화 (베타)';
 
   @override
-  String get oneTimePayment => '(평생 일회성 결제)';
+  String get oneTimePayment => '';
+
+  @override
+  String get activateProBetaTitle => '이 테스트 세션에 대해 PRO 기능을 활성화하시겠습니까?';
+
+  @override
+  String get activateProBetaAccept => '활성화';
 
   @override
   String get restorePurchases => '구매 복원';

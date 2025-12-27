@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
 import '../providers/history_provider.dart';
+import '../providers/iap_provider.dart';
 import '../providers/bcv_provider.dart'; // For CurrencyType
 import '../services/pdf_export_service.dart';
 import '../theme/app_theme.dart';
@@ -170,7 +171,9 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     final l10n = AppLocalizations.of(context)!;
     if (state.data.isEmpty) return;
 
-    if (!_isPdfUnlocked) {
+    final iapState = ref.read(iapProvider);
+
+    if (!iapState.isPremium && !_isPdfUnlocked) {
       showDialog(
         context: context,
         builder: (_) => PdfUnlockDialog(onWatchAd: _showRewardedAd),
