@@ -1,4 +1,4 @@
-package com.example.calculadora_bcv
+package com.juanalvarez.calculadorabcv
 
 import io.flutter.embedding.android.FlutterActivity
 

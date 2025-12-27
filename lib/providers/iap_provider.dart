@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../services/home_widget_service.dart';
+import 'bcv_provider.dart'; // To access apiServiceProvider
 
 final iapProvider = NotifierProvider<IapNotifier, IapState>(IapNotifier.new);
 
@@ -178,5 +180,22 @@ class IapNotifier extends Notifier<IapState> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('is_premium', true);
     state = state.copyWith(isPremium: true);
+
+    // Update Widget Premium Status
+    // Update Widget Premium Status
+    try {
+      // Trigger API refresh to update widget with real data immediately
+      await ref.read(apiServiceProvider).fetchRates(forceRefresh: true);
+    } catch (_) {
+      // Fallback: Just update status if API fails
+      try {
+        await HomeWidgetService.updateWidgetData(
+          usdRate: 0.0,
+          eurRate: 0.0,
+          rateDate: DateTime.now().toIso8601String(),
+          isPremium: true,
+        );
+      } catch (_) {}
+    }
   }
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'home_widget_service.dart';
 
 class ApiService {
   static const String _endpoint =
@@ -207,6 +208,26 @@ class ApiService {
   Future<void> _cacheData(Map<String, dynamic> data) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_cachedDataKey, json.encode(data));
+
+    // Update Home Screen Widget
+    try {
+      final double usd = data['usd_today'] ?? 0.0;
+      final double eur = data['eur_today'] ?? 0.0;
+      final String date =
+          data['today_date'] ?? DateTime.now().toIso8601String();
+
+      final bool isPremium = prefs.getBool('is_premium') ?? false;
+
+      // Update widget in background (don't await to avoid blocking UI/Flow)
+      HomeWidgetService.updateWidgetData(
+        usdRate: usd,
+        eurRate: eur,
+        rateDate: date,
+        isPremium: isPremium,
+      );
+    } catch (e) {
+      debugPrint("Widget update error: $e");
+    }
   }
 
   Future<Map<String, dynamic>> _loadFromCache() async {
@@ -225,5 +246,33 @@ class ApiService {
   Future<void> clearCache() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_cachedDataKey);
+  }
+
+  Future<void> refreshWidgetFromCache() async {
+    try {
+      final data = await _loadFromCache();
+      // Since loadFromCache returns a Map if successful, we can use it.
+      // But we need to check if it has the data structure we expect.
+      // It relies on _cacheData logic which already does this, but we need to call updateWidget explicitly.
+      // Actually, let's just reuse _cacheData logic but without re-saving/overwriting if not needed?
+      // No, better to extract the widget update logic or just duplicate it briefly here for clarity.
+
+      final double usd = data['usd_today'] ?? 0.0;
+      final double eur = data['eur_today'] ?? 0.0;
+      final String date =
+          data['today_date'] ?? DateTime.now().toIso8601String();
+
+      final prefs = await SharedPreferences.getInstance();
+      final bool isPremium = prefs.getBool('is_premium') ?? false;
+
+      HomeWidgetService.updateWidgetData(
+        usdRate: usd,
+        eurRate: eur,
+        rateDate: date,
+        isPremium: isPremium,
+      );
+    } catch (_) {
+      // No cache or error
+    }
   }
 }

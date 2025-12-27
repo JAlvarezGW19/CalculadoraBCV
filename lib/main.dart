@@ -9,16 +9,27 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'providers/language_provider.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Date Formatting (Fast & Crucial)
-  await initializeDateFormatting('es', null);
+    // Initialize Date Formatting (Fast & Crucial)
+    await initializeDateFormatting('es', null);
 
-  // Initialize Google Mobile Ads (Fire and forget to not block startup)
-  MobileAds.instance.initialize();
+    // Initialize Google Mobile Ads (Fire and forget to not block startup)
+    // MobileAds.instance.initialize();
 
-  // Run App immediately
-  runApp(const ProviderScope(child: MyApp()));
+    // Run App immediately
+    runApp(const ProviderScope(child: MyApp()));
+  } catch (e, stack) {
+    debugPrint("Startup Error: $e");
+    debugPrint(stack.toString());
+    // Fallback?
+    runApp(
+      const MaterialApp(
+        home: Scaffold(body: Center(child: Text("Error al iniciar"))),
+      ),
+    );
+  }
 }
 
 class MyApp extends ConsumerWidget {

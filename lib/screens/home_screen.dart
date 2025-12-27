@@ -52,6 +52,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     } catch (e) {
       debugPrint("Background Initialization Failed: $e");
     }
+
+    // Refresh widget with cached data immediately (so it's not empty)
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(apiServiceProvider).refreshWidgetFromCache();
+    });
   }
 
   @override
