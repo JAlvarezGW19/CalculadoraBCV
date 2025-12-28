@@ -185,7 +185,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get convert => 'Dönüştür';
 
   @override
-  String get rateLabel => 'Tasa';
+  String get rateLabel => 'Oran';
 
   @override
   String get priceScanner => 'Fiyat Tarayıcı';
@@ -337,5 +337,5 @@ class AppLocalizationsTr extends AppLocalizations {
   String get thanksSupport => 'Desteğiniz için teşekkürler!';
 
   @override
-  String get privacyPolicy => 'Política de Privacidad';
+  String get privacyPolicy => 'Gizlilik Politikası';
 }

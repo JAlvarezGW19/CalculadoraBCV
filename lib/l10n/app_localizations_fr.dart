@@ -339,5 +339,5 @@ class AppLocalizationsFr extends AppLocalizations {
   String get thanksSupport => 'Merci pour votre soutien !';
 
   @override
-  String get privacyPolicy => 'Política de Privacidad';
+  String get privacyPolicy => 'Politique de confidentialité';
 }

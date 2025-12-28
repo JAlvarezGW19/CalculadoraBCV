@@ -334,5 +334,5 @@ class AppLocalizationsId extends AppLocalizations {
   String get thanksSupport => 'Terima kasih atas dukungan Anda!';
 
   @override
-  String get privacyPolicy => 'Política de Privacidad';
+  String get privacyPolicy => 'Kebijakan Privasi';
 }

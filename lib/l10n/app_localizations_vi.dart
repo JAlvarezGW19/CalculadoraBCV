@@ -336,5 +336,5 @@ class AppLocalizationsVi extends AppLocalizations {
   String get thanksSupport => 'Cảm ơn sự hỗ trợ của bạn!';
 
   @override
-  String get privacyPolicy => 'Política de Privacidad';
+  String get privacyPolicy => 'Chính sách bảo mật';
 }

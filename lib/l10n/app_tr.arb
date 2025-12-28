@@ -104,5 +104,7 @@
   "rangeYear": "1 Yıl",
   "rangeCustom": "Özel",
   "removeAdsLink": "Reklamları Kaldır",
-  "thanksSupport": "Desteğiniz için teşekkürler!"
+  "thanksSupport": "Desteğiniz için teşekkürler!",
+  "rateLabel": "Oran",
+  "privacyPolicy": "Gizlilik Politikası"
 }

@@ -335,5 +335,5 @@ class AppLocalizationsHi extends AppLocalizations {
   String get thanksSupport => 'आपके समर्थन के लिए धन्यवाद!';
 
   @override
-  String get privacyPolicy => 'Política de Privacidad';
+  String get privacyPolicy => 'गोपनीयता नीति';
 }
