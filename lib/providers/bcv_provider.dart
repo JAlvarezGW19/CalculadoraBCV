@@ -223,6 +223,7 @@ class ConversionState {
   final RateDateMode dateMode; // Applies to standard currencies
   final String? selectedCustomRateId; // For custom mode
   final CurrencyType comparisonBase; // Compare custom vs USD or EUR
+  final bool isVesSource; // True if VES was the last field edited
 
   ConversionState({
     this.foreignValue = '',
@@ -231,6 +232,7 @@ class ConversionState {
     this.dateMode = RateDateMode.today,
     this.selectedCustomRateId,
     this.comparisonBase = CurrencyType.usd,
+    this.isVesSource = false,
   });
 
   ConversionState copyWith({
@@ -240,6 +242,7 @@ class ConversionState {
     RateDateMode? dateMode,
     String? selectedCustomRateId,
     CurrencyType? comparisonBase,
+    bool? isVesSource,
   }) {
     return ConversionState(
       foreignValue: foreignValue ?? this.foreignValue,
@@ -248,6 +251,7 @@ class ConversionState {
       dateMode: dateMode ?? this.dateMode,
       selectedCustomRateId: selectedCustomRateId ?? this.selectedCustomRateId,
       comparisonBase: comparisonBase ?? this.comparisonBase,
+      isVesSource: isVesSource ?? this.isVesSource,
     );
   }
 }
@@ -255,27 +259,97 @@ class ConversionState {
 class ConversionNotifier extends Notifier<ConversionState> {
   @override
   ConversionState build() {
+    // Automatically recalculate if rates update (e.g. background fetch completes)
+    ref.listen(ratesProvider, (previous, next) {
+      if (next.hasValue && !next.isLoading) {
+        _recalculateValues();
+      }
+    });
     return ConversionState();
+  }
+
+  void _recalculateValues() {
+    final ratesAsync = ref.read(ratesProvider);
+    double rate = 0.0;
+
+    if (ratesAsync.hasValue) {
+      final r = ratesAsync.value!;
+      if (state.currency == CurrencyType.usd) {
+        rate = state.dateMode == RateDateMode.today
+            ? r.usdToday
+            : r.usdTomorrow;
+      } else if (state.currency == CurrencyType.eur) {
+        rate = state.dateMode == RateDateMode.today
+            ? r.eurToday
+            : r.eurTomorrow;
+      } else {
+        // Custom
+        final customRates = ref.read(customRatesProvider);
+        if (customRates.isNotEmpty) {
+          final id = state.selectedCustomRateId;
+          final match = customRates.firstWhere(
+            (c) => c.id == id,
+            orElse: () => customRates.first,
+          );
+          // Update ID if it was implicit/fallback
+          if (state.selectedCustomRateId != match.id) {
+            state = state.copyWith(selectedCustomRateId: match.id);
+          }
+          rate = match.rate;
+        }
+      }
+    }
+
+    if (rate <= 0) {
+      // If rate is invalid, maybe clear everything or just return
+      return;
+    }
+
+    if (state.isVesSource) {
+      // Recalculate Foreign based on VES
+      if (state.vesValue.isNotEmpty) {
+        final val = _parseInput(state.vesValue);
+        if (val != null) {
+          final foreign = val / rate;
+          state = state.copyWith(foreignValue: _formatter.format(foreign));
+        } else {
+          state = state.copyWith(foreignValue: '');
+        }
+      } else {
+        state = state.copyWith(foreignValue: '');
+      }
+    } else {
+      // Recalculate VES based on Foreign
+      if (state.foreignValue.isNotEmpty) {
+        final val = _parseInput(state.foreignValue);
+        if (val != null) {
+          final ves = val * rate;
+          state = state.copyWith(vesValue: _formatter.format(ves));
+        } else {
+          state = state.copyWith(vesValue: '');
+        }
+      } else {
+        state = state.copyWith(vesValue: '');
+      }
+    }
   }
 
   void setCurrency(CurrencyType type) {
     if (state.currency == type) return;
-    // When switching to custom, ensure we have a selection if available
-    state = state.copyWith(currency: type, foreignValue: '', vesValue: '');
+    state = state.copyWith(currency: type);
+    _recalculateValues();
   }
 
   void setDateMode(RateDateMode mode) {
     if (state.dateMode == mode) return;
-    state = state.copyWith(dateMode: mode, foreignValue: '', vesValue: '');
+    state = state.copyWith(dateMode: mode);
+    _recalculateValues();
   }
 
   void setSelectedCustomRate(String id) {
     if (state.selectedCustomRateId == id) return;
-    state = state.copyWith(
-      selectedCustomRateId: id,
-      foreignValue: '',
-      vesValue: '',
-    );
+    state = state.copyWith(selectedCustomRateId: id);
+    _recalculateValues();
   }
 
   void setComparisonBase(CurrencyType type) {
@@ -295,14 +369,16 @@ class ConversionNotifier extends Notifier<ConversionState> {
   // Update logic when user types Foreign Currency
   void updateForeign(String input, double rate) {
     if (input.isEmpty) {
-      state = state.copyWith(foreignValue: '', vesValue: '');
+      state = state.copyWith(
+        foreignValue: '',
+        vesValue: '',
+        isVesSource: false,
+      );
       return;
     }
 
     // Handle decimal separator being typed (comma or dot)
-    // If ending with separator, just update state so user sees it, don't recalc yet or do?
-    // standard behavior: allow typing.
-    state = state.copyWith(foreignValue: input);
+    state = state.copyWith(foreignValue: input, isVesSource: false);
 
     final val = _parseInput(input);
     if (val != null) {
@@ -316,11 +392,11 @@ class ConversionNotifier extends Notifier<ConversionState> {
   // Update logic when user types VES
   void updateVES(String input, double rate) {
     if (input.isEmpty) {
-      state = state.copyWith(foreignValue: '', vesValue: '');
+      state = state.copyWith(foreignValue: '', vesValue: '', isVesSource: true);
       return;
     }
 
-    state = state.copyWith(vesValue: input);
+    state = state.copyWith(vesValue: input, isVesSource: true);
 
     final val = _parseInput(input);
     if (val != null && rate > 0) {
