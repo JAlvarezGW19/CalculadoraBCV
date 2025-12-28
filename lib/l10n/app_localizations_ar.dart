@@ -331,4 +331,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get thanksSupport => 'شكرا لدعمك!';
+
+  @override
+  String get privacyPolicy => 'Política de Privacidad';
 }

@@ -327,4 +327,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get thanksSupport => '지원해 주셔서 감사합니다!';
+
+  @override
+  String get privacyPolicy => 'Política de Privacidad';
 }

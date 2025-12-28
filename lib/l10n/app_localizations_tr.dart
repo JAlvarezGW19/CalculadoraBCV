@@ -335,4 +335,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get thanksSupport => 'Desteğiniz için teşekkürler!';
+
+  @override
+  String get privacyPolicy => 'Política de Privacidad';
 }

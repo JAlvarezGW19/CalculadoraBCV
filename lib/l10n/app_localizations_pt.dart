@@ -336,4 +336,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get thanksSupport => 'Obrigado pelo seu apoio!';
+
+  @override
+  String get privacyPolicy => 'Política de Privacidad';
 }

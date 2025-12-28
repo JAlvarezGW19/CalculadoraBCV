@@ -33,6 +33,24 @@ class AboutAppDialog extends StatelessWidget {
             },
           ),
           const Divider(color: Colors.white10, height: 16),
+          _buildInfoRow(
+            Icons.privacy_tip_outlined,
+            l10n.privacyPolicy,
+            "Ver",
+            isLink: true,
+            onTap: () async {
+              final langCode = Localizations.localeOf(context).languageCode;
+              // If arabic, fallback to english, otherwise use current code
+              final targetLang = langCode == 'ar' ? 'en' : langCode;
+              final Uri url = Uri.parse(
+                "https://sites.google.com/view/calculadora-bcv-legal/$targetLang",
+              );
+              if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+                debugPrint('Could not launch \$url');
+              }
+            },
+          ),
+          const Divider(color: Colors.white10, height: 16),
           Text(
             "${l10n.legalNotice}:",
             style: const TextStyle(

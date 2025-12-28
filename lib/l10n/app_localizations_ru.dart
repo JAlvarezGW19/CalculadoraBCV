@@ -331,4 +331,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get thanksSupport => 'Спасибо за поддержку!';
+
+  @override
+  String get privacyPolicy => 'Política de Privacidad';
 }

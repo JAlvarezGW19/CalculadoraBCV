@@ -326,4 +326,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get thanksSupport => '感谢您的支持！';
+
+  @override
+  String get privacyPolicy => 'Política de Privacidad';
 }

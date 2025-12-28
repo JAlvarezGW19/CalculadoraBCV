@@ -51,6 +51,27 @@ class MyApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
+      localeListResolutionCallback: (locales, supportedLocales) {
+        // 1. If user selected a specific language in app, 'locale' (line 46) is not null,
+        // so this callback might not even be used or 'locale' takes precedence.
+        // Actually, 'locale' property takes precedence. This callback is for system default.
+
+        if (locales == null || locales.isEmpty) {
+          return supportedLocales.first;
+        }
+
+        // 2. Check if any of the user's system locales are supported
+        for (final locale in locales) {
+          for (final supported in supportedLocales) {
+            if (supported.languageCode == locale.languageCode) {
+              return supported;
+            }
+          }
+        }
+
+        // 3. If none match, return English
+        return const Locale('en');
+      },
       home: const HomeScreen(),
     );
   }

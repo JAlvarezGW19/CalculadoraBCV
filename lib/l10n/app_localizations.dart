@@ -759,6 +759,12 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'¡Gracias por tu apoyo!'**
   String get thanksSupport;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In es, this message translates to:
+  /// **'Política de Privacidad'**
+  String get privacyPolicy;
 }
 
 class _AppLocalizationsDelegate
