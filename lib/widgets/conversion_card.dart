@@ -241,19 +241,29 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
 
     if (foreignAmount.isEmpty || vesAmount.isEmpty) return;
 
-    String symbol = state.currency == CurrencyType.usd ? "\$" : "€";
-    String rateName = "BCV";
-    if (customRate != null) {
-      symbol = customRate.name;
+    String prefix = "";
+    String suffix = "";
+    String rateName = "Tasa BCV";
+
+    if (state.currency == CurrencyType.usd) {
+      prefix = "\$";
+    } else if (state.currency == CurrencyType.eur) {
+      prefix = "€";
+    } else if (customRate != null) {
+      suffix = " ${customRate.name}";
       rateName = customRate.name;
     }
 
+    // Manual localization for the specific intro requested
+    // We avoid adding a new ARB key to not break other languages build
+    final locale = Localizations.localeOf(context).languageCode;
+    final intro = locale == 'es' ? "El monto es" : "The amount is";
+
     final formattedRate = NumberFormat("#,##0.00", "es_VE").format(rate);
 
-    // Localized message structure (using symbol and amounts)
-    // "El monto es... " -> "$symbol... = ... Bs"
+    // Format: "El monto es $100 (5000,00 Bs.) | Tasa BCV = 45,00 Bs."
     final msg =
-        "$symbol$foreignAmount = $vesAmount Bs | $rateName: $formattedRate Bs";
+        "$intro $prefix$foreignAmount$suffix ($vesAmount Bs.) | $rateName = $formattedRate Bs.";
 
     try {
       final box = context.findRenderObject() as RenderBox?;
