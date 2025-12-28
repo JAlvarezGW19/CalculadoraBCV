@@ -183,6 +183,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get convert => 'Konversi';
 
   @override
+  String get rateLabel => 'Kurs';
+
+  @override
   String get priceScanner => 'Pemindai Harga';
 
   @override
@@ -196,13 +199,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get whatToScan => 'Apa yang akan Anda pindai?';
 
   @override
-  String get amountUsd => 'Jumlah USD';
+  String get amountUsd => 'USD';
 
   @override
-  String get amountEur => 'Jumlah EUR';
+  String get amountEur => 'EUR';
 
   @override
-  String get amountVes => 'Jumlah Bs.';
+  String get amountVes => 'Bs.';
 
   @override
   String get ratePers => 'Kustom';

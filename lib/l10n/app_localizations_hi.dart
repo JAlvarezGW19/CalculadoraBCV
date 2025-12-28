@@ -183,6 +183,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get convert => 'परिवर्तित करें';
 
   @override
+  String get rateLabel => 'दर';
+
+  @override
   String get priceScanner => 'मूल्य स्कैनर';
 
   @override
@@ -196,13 +199,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get whatToScan => 'आप क्या स्कैन करेंगे?';
 
   @override
-  String get amountUsd => 'USD राशि';
+  String get amountUsd => 'USD';
 
   @override
-  String get amountEur => 'EUR राशि';
+  String get amountEur => 'EUR';
 
   @override
-  String get amountVes => 'Bs. राशि';
+  String get amountVes => 'Bs.';
 
   @override
   String get ratePers => 'कस्टम';

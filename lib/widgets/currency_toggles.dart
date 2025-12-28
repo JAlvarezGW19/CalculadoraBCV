@@ -37,9 +37,14 @@ class CurrencyToggles extends ConsumerWidget {
         // DateFormat('EEEE', 'es') was hardcoded.
         // We should use the current locale for DateFormat.
         final localeCode = Localizations.localeOf(context).languageCode;
-        final dayName = DateFormat('EEEE', localeCode).format(tomorrowDate!);
+        String dayName = DateFormat('EEE', localeCode).format(tomorrowDate!);
+        // Remove trailing dot if present to avoid double dot, then re-add
+        if (dayName.endsWith('.')) {
+          dayName = dayName.substring(0, dayName.length - 1);
+        }
+
         tomorrowLabel =
-            dayName[0].toUpperCase() + dayName.substring(1).toLowerCase();
+            "${dayName[0].toUpperCase()}${dayName.substring(1).toLowerCase()}.";
       }
     }
 

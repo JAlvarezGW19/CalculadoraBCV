@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../theme/app_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
+
 class CalculatorDisplay extends StatelessWidget {
   final String expression;
   final String result;
@@ -60,7 +62,7 @@ class CalculatorDisplay extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "Tasa: $rateText",
+                        "${AppLocalizations.of(context)!.rateLabel}: $rateText",
                         style: AppTheme.subtitleStyle.copyWith(
                           fontSize: 12,
                           color: AppTheme.textAccent,

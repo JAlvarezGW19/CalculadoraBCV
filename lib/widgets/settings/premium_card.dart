@@ -138,19 +138,6 @@ class PremiumCard extends StatelessWidget {
                 ),
               ),
             ),
-          const SizedBox(height: 12),
-          Center(
-            child: TextButton(
-              onPressed: () => notifier.restorePurchases(),
-              child: Text(
-                l10n.restorePurchases,
-                style: const TextStyle(
-                  color: AppTheme.textSubtle,
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ),
         ],
       ),
     );

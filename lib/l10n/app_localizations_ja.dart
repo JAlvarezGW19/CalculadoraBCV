@@ -181,6 +181,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get convert => '変換';
 
   @override
+  String get rateLabel => 'レート';
+
+  @override
   String get priceScanner => '価格スキャナー';
 
   @override
@@ -194,13 +197,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get whatToScan => '何をスキャンしますか？';
 
   @override
-  String get amountUsd => 'USD金額';
+  String get amountUsd => 'USD';
 
   @override
-  String get amountEur => 'EUR金額';
+  String get amountEur => 'EUR';
 
   @override
-  String get amountVes => 'Bs.金額';
+  String get amountVes => 'Bs.';
 
   @override
   String get ratePers => 'カスタム';

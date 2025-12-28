@@ -185,6 +185,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get convert => 'Chuyển đổi';
 
   @override
+  String get rateLabel => 'Tỷ giá';
+
+  @override
   String get priceScanner => 'Máy quét giá';
 
   @override
@@ -198,16 +201,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get whatToScan => 'Bạn sẽ quét gì?';
 
   @override
-  String get amountUsd => 'Số tiền USD';
+  String get amountUsd => 'USD';
 
   @override
-  String get amountEur => 'Số tiền EUR';
+  String get amountEur => 'EUR';
 
   @override
-  String get amountVes => 'Số tiền Bs.';
+  String get amountVes => 'Bs.';
 
   @override
-  String get ratePers => 'Tùy chỉnh';
+  String get ratePers => 'Cust';
 
   @override
   String get noCustomRates => 'Không có tỷ giá tùy chỉnh';

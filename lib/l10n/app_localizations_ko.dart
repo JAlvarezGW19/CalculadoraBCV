@@ -181,6 +181,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get convert => '변환';
 
   @override
+  String get rateLabel => '환율';
+
+  @override
   String get priceScanner => '가격 스캐너';
 
   @override
@@ -194,16 +197,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get whatToScan => '무엇을 스캔하시겠습니까?';
 
   @override
-  String get amountUsd => 'USD 금액';
+  String get amountUsd => 'USD';
 
   @override
-  String get amountEur => 'EUR 금액';
+  String get amountEur => 'EUR';
 
   @override
-  String get amountVes => 'Bs. 금액';
+  String get amountVes => 'Bs.';
 
   @override
-  String get ratePers => '사용자 지정';
+  String get ratePers => '커스텀';
 
   @override
   String get noCustomRates => '사용자 지정 환율 없음';

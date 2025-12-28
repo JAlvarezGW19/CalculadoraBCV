@@ -12,7 +12,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get appTitle => 'Calcolatrice BCV';
 
   @override
-  String get settings => 'Impostazioni';
+  String get settings => 'Impostaz.';
 
   @override
   String get general => 'Generale';
@@ -184,7 +184,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get customRate => 'Tasso Personalizzato';
 
   @override
-  String get convert => 'Convertire';
+  String get convert => 'Converti';
+
+  @override
+  String get rateLabel => 'Tasso';
 
   @override
   String get priceScanner => 'Scanner Prezzi';
@@ -200,16 +203,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String get whatToScan => 'Cosa vuoi scansionare?';
 
   @override
-  String get amountUsd => 'Importo USD';
+  String get amountUsd => 'USD';
 
   @override
-  String get amountEur => 'Importo EUR';
+  String get amountEur => 'EUR';
 
   @override
-  String get amountVes => 'Importo Bs.';
+  String get amountVes => 'Bs.';
 
   @override
-  String get ratePers => 'Tasso Pers.';
+  String get ratePers => 'Pers.';
 
   @override
   String get noCustomRates => 'Nessun tasso personalizzato';

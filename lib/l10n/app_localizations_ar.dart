@@ -183,6 +183,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get convert => 'تحويل';
 
   @override
+  String get rateLabel => 'سعر';
+
+  @override
   String get priceScanner => 'ماسح الأسعار';
 
   @override
@@ -196,13 +199,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get whatToScan => 'ماذا ستمسح ضوئيًا؟';
 
   @override
-  String get amountUsd => 'مبلغ دولار';
+  String get amountUsd => 'USD';
 
   @override
-  String get amountEur => 'مبلغ يورو';
+  String get amountEur => 'EUR';
 
   @override
-  String get amountVes => 'مبلغ بوليفار';
+  String get amountVes => 'Bs.';
 
   @override
   String get ratePers => 'مخصص';

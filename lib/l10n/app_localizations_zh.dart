@@ -181,6 +181,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get convert => '转换';
 
   @override
+  String get rateLabel => '汇率';
+
+  @override
   String get priceScanner => '价格扫描仪';
 
   @override
@@ -193,16 +196,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get whatToScan => '你要扫描什么？';
 
   @override
-  String get amountUsd => 'USD 金额';
+  String get amountUsd => 'USD';
 
   @override
-  String get amountEur => 'EUR 金额';
+  String get amountEur => 'EUR';
 
   @override
-  String get amountVes => 'Bs. 金额';
+  String get amountVes => 'Bs.';
 
   @override
-  String get ratePers => '自定义';
+  String get ratePers => '自定';
 
   @override
   String get noCustomRates => '无自定义汇率';

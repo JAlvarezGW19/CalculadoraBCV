@@ -466,6 +466,12 @@ abstract class AppLocalizations {
   /// **'Convertir'**
   String get convert;
 
+  /// No description provided for @rateLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Tasa'**
+  String get rateLabel;
+
   /// No description provided for @priceScanner.
   ///
   /// In es, this message translates to:
@@ -493,25 +499,25 @@ abstract class AppLocalizations {
   /// No description provided for @amountUsd.
   ///
   /// In es, this message translates to:
-  /// **'Monto USD'**
+  /// **'USD'**
   String get amountUsd;
 
   /// No description provided for @amountEur.
   ///
   /// In es, this message translates to:
-  /// **'Monto EUR'**
+  /// **'EUR'**
   String get amountEur;
 
   /// No description provided for @amountVes.
   ///
   /// In es, this message translates to:
-  /// **'Monto Bs.'**
+  /// **'Bs.'**
   String get amountVes;
 
   /// No description provided for @ratePers.
   ///
   /// In es, this message translates to:
-  /// **'Tasa Pers.'**
+  /// **'Pers.'**
   String get ratePers;
 
   /// No description provided for @noCustomRates.

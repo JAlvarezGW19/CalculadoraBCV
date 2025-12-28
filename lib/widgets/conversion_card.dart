@@ -255,9 +255,53 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
     }
 
     // Manual localization for the specific intro requested
-    // We avoid adding a new ARB key to not break other languages build
-    final locale = Localizations.localeOf(context).languageCode;
-    final intro = locale == 'es' ? "El monto es" : "The amount is";
+    String intro;
+    switch (Localizations.localeOf(context).languageCode) {
+      case 'es':
+        intro = "El monto es";
+        break;
+      case 'fr':
+        intro = "Le montant est";
+        break;
+      case 'it':
+        intro = "L'importo è";
+        break;
+      case 'pt':
+        intro = "O valor é";
+        break;
+      case 'de':
+        intro = "Der Betrag ist";
+        break;
+      case 'tr':
+        intro = "Tutar";
+        break;
+      case 'ru':
+        intro = "Сумма составляет";
+        break;
+      case 'ja':
+        intro = "金額は";
+        break;
+      case 'zh':
+        intro = "金额为";
+        break;
+      case 'ko':
+        intro = "금액은";
+        break;
+      case 'ar':
+        intro = "المبلغ هو";
+        break;
+      case 'hi':
+        intro = "राशि है";
+        break;
+      case 'id':
+        intro = "Jumlahnya adalah";
+        break;
+      case 'vi':
+        intro = "Số tiền là";
+        break;
+      default:
+        intro = "The amount is";
+    }
 
     final formattedRate = NumberFormat("#,##0.00", "es_VE").format(rate);
 

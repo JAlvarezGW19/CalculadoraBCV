@@ -184,6 +184,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get convert => 'Konvertieren';
 
   @override
+  String get rateLabel => 'Kurs';
+
+  @override
   String get priceScanner => 'Preisscanner';
 
   @override
@@ -197,16 +200,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get whatToScan => 'Was möchtest du scannen?';
 
   @override
-  String get amountUsd => 'Betrag USD';
+  String get amountUsd => 'USD';
 
   @override
-  String get amountEur => 'Betrag EUR';
+  String get amountEur => 'EUR';
 
   @override
-  String get amountVes => 'Betrag Bs.';
+  String get amountVes => 'Bs.';
 
   @override
-  String get ratePers => 'Benutzerd.';
+  String get ratePers => 'Pers.';
 
   @override
   String get noCustomRates => 'Keine eigenen Kurse';

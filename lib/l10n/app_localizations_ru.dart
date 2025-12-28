@@ -182,6 +182,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get convert => 'Конвертировать';
 
   @override
+  String get rateLabel => 'Курс';
+
+  @override
   String get priceScanner => 'Сканер цен';
 
   @override
@@ -195,16 +198,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get whatToScan => 'Что сканируем?';
 
   @override
-  String get amountUsd => 'Сумма USD';
+  String get amountUsd => 'USD';
 
   @override
-  String get amountEur => 'Сумма EUR';
+  String get amountEur => 'EUR';
 
   @override
-  String get amountVes => 'Сумма Bs.';
+  String get amountVes => 'Bs.';
 
   @override
-  String get ratePers => 'Свой курс';
+  String get ratePers => 'Свой';
 
   @override
   String get noCustomRates => 'Нет своих курсов';

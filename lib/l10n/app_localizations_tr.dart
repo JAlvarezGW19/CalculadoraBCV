@@ -185,6 +185,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get convert => 'Dönüştür';
 
   @override
+  String get rateLabel => 'Tasa';
+
+  @override
   String get priceScanner => 'Fiyat Tarayıcı';
 
   @override

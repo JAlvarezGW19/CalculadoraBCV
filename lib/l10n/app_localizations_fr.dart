@@ -175,7 +175,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get today => 'Aujourd\'hui';
 
   @override
-  String get tomorrow => 'Demain';
+  String get tomorrow => 'Dem.';
 
   @override
   String get officialRate => 'Taux Officiel';
@@ -185,6 +185,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get convert => 'Convertir';
+
+  @override
+  String get rateLabel => 'Taux';
 
   @override
   String get priceScanner => 'Scanner de prix';
@@ -200,16 +203,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get whatToScan => 'Que allez-vous scanner?';
 
   @override
-  String get amountUsd => 'Montant USD';
+  String get amountUsd => 'USD';
 
   @override
-  String get amountEur => 'Montant EUR';
+  String get amountEur => 'EUR';
 
   @override
-  String get amountVes => 'Montant Bs.';
+  String get amountVes => 'Bs.';
 
   @override
-  String get ratePers => 'Taux Pers.';
+  String get ratePers => 'Pers.';
 
   @override
   String get noCustomRates => 'Aucun taux personnalisé';
