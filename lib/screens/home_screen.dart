@@ -25,12 +25,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = const [
-    CalculatorScreen(),
-    ArithmeticCalculatorScreen(),
-    HistoryScreen(),
-    SettingsScreen(),
-  ];
+  final Set<int> _visitedTabs = {0}; // Track visited tabs
 
   @override
   void initState() {
@@ -59,6 +54,22 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     });
   }
 
+  void _onTabSelected(int index) {
+    setState(() {
+      _currentIndex = index;
+      _visitedTabs.add(index);
+    });
+    ref.read(activeTabProvider.notifier).state = index;
+  }
+
+  // Helper to build lazy screens
+  Widget _buildLazyScreen(int index, Widget screen) {
+    if (_visitedTabs.contains(index)) {
+      return screen;
+    }
+    return const SizedBox.shrink(); // Empty placeholder until visited
+  }
+
   @override
   Widget build(BuildContext context) {
     // Safe lookup or fallback
@@ -68,9 +79,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: SafeArea(
-        child: IndexedStack(index: _currentIndex, children: _screens),
+        child: IndexedStack(
+          index: _currentIndex,
+          children: [
+            const CalculatorScreen(), // Always present (Index 0)
+            _buildLazyScreen(1, const ArithmeticCalculatorScreen()),
+            _buildLazyScreen(2, const HistoryScreen()),
+            _buildLazyScreen(3, const SettingsScreen()),
+          ],
+        ),
       ),
-      floatingActionButton: const ScanFloatingButton(), // Clean!
+      floatingActionButton: const ScanFloatingButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
@@ -87,10 +106,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 iconOutlined: Icons.dashboard_outlined,
                 iconFilled: Icons.dashboard,
                 label: l10n.homeScreen,
-                onTap: (i) {
-                  setState(() => _currentIndex = i);
-                  ref.read(activeTabProvider.notifier).state = i;
-                },
+                onTap: _onTabSelected,
               ),
               BottomNavItem(
                 index: 1,
@@ -98,10 +114,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 iconOutlined: Icons.calculate_outlined,
                 iconFilled: Icons.calculate,
                 label: l10n.calculatorScreen,
-                onTap: (i) {
-                  setState(() => _currentIndex = i);
-                  ref.read(activeTabProvider.notifier).state = i;
-                },
+                onTap: _onTabSelected,
               ),
               const SizedBox(width: 48), // Space for FAB
               BottomNavItem(
@@ -110,10 +123,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 iconOutlined: Icons.history_outlined,
                 iconFilled: Icons.history,
                 label: l10n.history,
-                onTap: (i) {
-                  setState(() => _currentIndex = i);
-                  ref.read(activeTabProvider.notifier).state = i;
-                },
+                onTap: _onTabSelected,
               ),
               BottomNavItem(
                 index: 3,
@@ -121,10 +131,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 iconOutlined: Icons.settings_outlined,
                 iconFilled: Icons.settings,
                 label: l10n.settings,
-                onTap: (i) {
-                  setState(() => _currentIndex = i);
-                  ref.read(activeTabProvider.notifier).state = i;
-                },
+                onTap: _onTabSelected,
               ),
             ],
           ),

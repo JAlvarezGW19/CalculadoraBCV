@@ -57,69 +57,77 @@ class RateDisplayCard extends ConsumerWidget {
         children: [
           Text(l10n.officialRateBcv, style: AppTheme.subtitleStyle),
           const SizedBox(height: 10),
-          ratesAsyncValue.when(
-            data: (rates) {
-              final isUsd = state.currency == CurrencyType.usd;
-              final isToday = state.dateMode == RateDateMode.today;
-              final rate = isUsd
-                  ? (isToday ? rates.usdToday : rates.usdTomorrow)
-                  : (isToday ? rates.eurToday : rates.eurTomorrow);
-              final symbol = isUsd ? "USD" : "EUR";
+          Builder(
+            builder: (context) {
+              final rates = ratesAsyncValue.value;
+              if (rates != null) {
+                final isUsd = state.currency == CurrencyType.usd;
+                final isToday = state.dateMode == RateDateMode.today;
+                final rate = isUsd
+                    ? (isToday ? rates.usdToday : rates.usdTomorrow)
+                    : (isToday ? rates.eurToday : rates.eurTomorrow);
+                final symbol = isUsd ? "USD" : "EUR";
 
-              final dateToUse = isToday ? rates.todayDate : rates.tomorrowDate;
+                final dateToUse = isToday
+                    ? rates.todayDate
+                    : rates.tomorrowDate;
 
-              String dateStr = "---";
-              if (dateToUse != null) {
-                dateStr = DateFormat('dd/MM/yyyy').format(dateToUse);
-              }
+                String dateStr = "---";
+                if (dateToUse != null) {
+                  dateStr = DateFormat('dd/MM/yyyy').format(dateToUse);
+                }
 
-              return Column(
-                children: [
-                  RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
+                return Column(
+                  children: [
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "1 $symbol = ",
+                            style: AppTheme.rateLabelStyle,
+                          ),
+                          TextSpan(
+                            text:
+                                "${NumberFormat("#,##0.00", "es_VE").format(rate)} Bs",
+                            style: AppTheme.rateStyle,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        TextSpan(
-                          text: "1 $symbol = ",
-                          style: AppTheme.rateLabelStyle,
+                        Icon(
+                          Icons.calendar_today,
+                          size: 12,
+                          color: AppTheme.textSubtle.withValues(alpha: 0.7),
                         ),
-                        TextSpan(
-                          text:
-                              "${NumberFormat("#,##0.00", "es_VE").format(rate)} Bs",
-                          style: AppTheme.rateStyle,
+                        const SizedBox(width: 6),
+                        Text(
+                          "${l10n.rateDate}: $dateStr",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: AppTheme.textSubtle.withValues(alpha: 0.7),
+                            fontSize: 12,
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.calendar_today,
-                        size: 12,
-                        color: AppTheme.textSubtle.withValues(alpha: 0.7),
-                      ),
-                      const SizedBox(width: 6),
-                      Text(
-                        "${l10n.rateDate}: $dateStr",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: AppTheme.textSubtle.withValues(alpha: 0.7),
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              );
+                  ],
+                );
+              } else if (ratesAsyncValue.isLoading) {
+                return const CircularProgressIndicator(
+                  color: AppTheme.textAccent,
+                );
+              } else {
+                return Text(
+                  l10n.errorLoadingRate,
+                  style: const TextStyle(color: Colors.redAccent),
+                );
+              }
             },
-            loading: () =>
-                const CircularProgressIndicator(color: AppTheme.textAccent),
-            error: (err, stack) => Text(
-              l10n.errorLoadingRate,
-              style: const TextStyle(color: Colors.redAccent),
-            ),
           ),
         ],
       ),

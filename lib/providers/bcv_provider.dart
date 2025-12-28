@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
@@ -57,54 +58,108 @@ class CustomRate {
 // 3. Providers
 final apiServiceProvider = Provider<ApiService>((ref) => ApiService());
 
-final ratesProvider = FutureProvider<RatesData>((ref) async {
-  final apiService = ref.read(apiServiceProvider);
-  final data = await apiService.fetchRates();
+final ratesProvider = AsyncNotifierProvider<RatesNotifier, RatesData>(
+  RatesNotifier.new,
+);
 
-  DateTime? parseDate(dynamic val) {
-    if (val is String) return DateTime.tryParse(val);
-    return null;
+class RatesNotifier extends AsyncNotifier<RatesData> {
+  @override
+  Future<RatesData> build() async {
+    final apiService = ref.read(apiServiceProvider);
+
+    // 1. Try to load cache immediately (optimistic UI)
+    Map<String, dynamic>? localData;
+    try {
+      localData = await apiService.loadInternalCache();
+    } catch (_) {}
+
+    if (localData != null) {
+      // Logic for optimistic return
+      final rates = _parseData(localData);
+
+      // Check if data is fresh. If not, trigger background update.
+      // But we return the stale data immediately so the UI renders.
+      if (!apiService.isCacheValid(localData)) {
+        _fetchInBackground();
+      }
+
+      return rates;
+    }
+
+    // 2. No cache? Must fetch (blocking UI, but only for first run ever)
+    final fresh = await apiService.fetchRates();
+    return _parseData(fresh);
   }
 
-  final fallbackDate = parseDate(data['rate_date']);
-
-  // Handle migration from old cache structure
-  DateTime? tDate = parseDate(data['today_date']);
-  DateTime? tomDate = parseDate(data['tomorrow_date']);
-  final bool hasTom = data['has_tomorrow'] as bool? ?? false;
-
-  if (tDate == null && tomDate == null && fallbackDate != null) {
-    if (hasTom) {
-      tomDate = fallbackDate;
-      // In old cache, if hasTomorrow was true, rate_date was the tomorrow date.
-      // We lost the exact 'today' date, but for UI consistency, showing the current system date
-      // (as 'Today') is preferable to showing tomorrow's date.
-      tDate = DateTime.now();
-    } else {
-      tDate = fallbackDate;
+  Future<void> _fetchInBackground() async {
+    // Avoid blocking the build
+    await Future.delayed(const Duration(milliseconds: 100));
+    try {
+      final apiService = ref.read(apiServiceProvider);
+      final fresh = await apiService.fetchRates(forceRefresh: true);
+      state = AsyncData(_parseData(fresh));
+    } catch (e) {
+      // If native fetch fails, we just keep the stale data.
+      // Maybe show a toast/snackbar if needed, but for now silent failure is better than crash.
+      debugPrint("Background fetch failed: $e");
     }
   }
 
-  // SANITY CHECK: prevent Today == Tomorrow if hasTomorrow is true (common in old cache)
-  if (hasTom && tDate != null && tomDate != null) {
-    if (tDate.year == tomDate.year &&
-        tDate.month == tomDate.month &&
-        tDate.day == tomDate.day) {
-      tDate = DateTime.now();
+  RatesData _parseData(Map<String, dynamic> data) {
+    DateTime? parseDate(dynamic val) {
+      if (val is String) return DateTime.tryParse(val);
+      return null;
     }
+
+    final fallbackDate = parseDate(data['rate_date']);
+
+    // Handle migration from old cache structure
+    DateTime? tDate = parseDate(data['today_date']);
+    DateTime? tomDate = parseDate(data['tomorrow_date']);
+    final bool hasTom = data['has_tomorrow'] as bool? ?? false;
+
+    if (tDate == null && tomDate == null && fallbackDate != null) {
+      if (hasTom) {
+        tomDate = fallbackDate;
+        tDate = DateTime.now();
+      } else {
+        tDate = fallbackDate;
+      }
+    }
+
+    // SANITY CHECK: prevent Today == Tomorrow if hasTomorrow is true
+    if (hasTom && tDate != null && tomDate != null) {
+      if (tDate.year == tomDate.year &&
+          tDate.month == tomDate.month &&
+          tDate.day == tomDate.day) {
+        tDate = DateTime.now();
+      }
+    }
+
+    return RatesData(
+      usdToday: (data['usd_today'] as num?)?.toDouble() ?? 0.0,
+      usdTomorrow: (data['usd_tomorrow'] as num?)?.toDouble() ?? 0.0,
+      eurToday: (data['eur_today'] as num?)?.toDouble() ?? 0.0,
+      eurTomorrow: (data['eur_tomorrow'] as num?)?.toDouble() ?? 0.0,
+      hasTomorrow: hasTom,
+      lastFetch: parseDate(data['last_fetch']),
+      todayDate: tDate,
+      tomorrowDate: tomDate,
+    );
   }
 
-  return RatesData(
-    usdToday: (data['usd_today'] as num?)?.toDouble() ?? 0.0,
-    usdTomorrow: (data['usd_tomorrow'] as num?)?.toDouble() ?? 0.0,
-    eurToday: (data['eur_today'] as num?)?.toDouble() ?? 0.0,
-    eurTomorrow: (data['eur_tomorrow'] as num?)?.toDouble() ?? 0.0,
-    hasTomorrow: hasTom,
-    lastFetch: parseDate(data['last_fetch']),
-    todayDate: tDate,
-    tomorrowDate: tomDate,
-  );
-});
+  // Method to manually force refresh if user wants
+  Future<void> refresh() async {
+    state = const AsyncLoading();
+    try {
+      final apiService = ref.read(apiServiceProvider);
+      final fresh = await apiService.fetchRates(forceRefresh: true);
+      state = AsyncData(_parseData(fresh));
+    } catch (e, stack) {
+      state = AsyncError(e, stack);
+    }
+  }
+}
 
 class CustomRatesNotifier extends Notifier<List<CustomRate>> {
   @override

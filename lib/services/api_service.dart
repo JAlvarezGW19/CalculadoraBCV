@@ -13,13 +13,13 @@ class ApiService {
     // 1. Try to load cache first to check freshness
     Map<String, dynamic>? cachedData;
     try {
-      cachedData = await _loadFromCache();
+      cachedData = await loadInternalCache();
     } catch (_) {
       // No cache or error loading it
     }
 
     if (!forceRefresh && cachedData != null) {
-      if (_isCacheValid(cachedData)) {
+      if (isCacheValid(cachedData)) {
         return cachedData;
       }
     }
@@ -48,7 +48,7 @@ class ApiService {
     }
   }
 
-  bool _isCacheValid(Map<String, dynamic> cache) {
+  bool isCacheValid(Map<String, dynamic> cache) {
     if (cache['last_fetch'] == null) return false;
 
     final lastFetch = DateTime.parse(cache['last_fetch']);
@@ -230,7 +230,7 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> _loadFromCache() async {
+  Future<Map<String, dynamic>> loadInternalCache() async {
     final prefs = await SharedPreferences.getInstance();
     if (prefs.containsKey(_cachedDataKey)) {
       final jsonString = prefs.getString(_cachedDataKey);
@@ -250,7 +250,7 @@ class ApiService {
 
   Future<void> refreshWidgetFromCache() async {
     try {
-      final data = await _loadFromCache();
+      final data = await loadInternalCache();
       // Since loadFromCache returns a Map if successful, we can use it.
       // But we need to check if it has the data structure we expect.
       // It relies on _cacheData logic which already does this, but we need to call updateWidget explicitly.

@@ -91,13 +91,8 @@ class CalculatorScreen extends ConsumerWidget {
           const SizedBox(height: 24),
 
           // 2. Main Conversion Area
-          if (ratesAsyncValue.isLoading)
-            const Center(
-              child: CircularProgressIndicator(color: AppTheme.textAccent),
-            )
-          else if (ratesAsyncValue.hasError)
-            const SizedBox.shrink()
-          else
+          // 2. Main Conversion Area
+          if (ratesAsyncValue.hasValue)
             ConversionCard(
               activeRate: activeRate,
               customRate: currentCustomRate,
@@ -105,7 +100,13 @@ class CalculatorScreen extends ConsumerWidget {
               rateDate: conversionState.dateMode == RateDateMode.today
                   ? ratesAsyncValue.value?.todayDate
                   : ratesAsyncValue.value?.tomorrowDate,
-            ),
+            )
+          else if (ratesAsyncValue.isLoading)
+            const Center(
+              child: CircularProgressIndicator(color: AppTheme.textAccent),
+            )
+          else if (ratesAsyncValue.hasError)
+            const SizedBox.shrink(),
           const SizedBox(height: 24),
           const NativeAdWidget(assignedTabIndex: 0),
           const SizedBox(height: 80),
