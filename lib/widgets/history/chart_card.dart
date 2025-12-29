@@ -9,12 +9,14 @@ class HistoryChartCard extends StatelessWidget {
   final List<HistoryPoint> dataPoints;
   final bool isLoading;
   final String currencySymbol;
+  final bool isRoundingEnabled;
 
   const HistoryChartCard({
     super.key,
     required this.dataPoints,
     required this.isLoading,
     required this.currencySymbol,
+    required this.isRoundingEnabled,
   });
 
   @override
@@ -194,13 +196,15 @@ class HistoryChartCard extends StatelessWidget {
             return touchedSpots.map((LineBarSpot touchedSpot) {
               final date = getDateFromValue(touchedSpot.x);
               final dateStr = DateFormat('dd/MM/yy').format(date);
+              final formatter = isRoundingEnabled
+                  ? NumberFormat("#,##0.00", "es_VE")
+                  : NumberFormat("#,##0.########", "es_VE");
               return LineTooltipItem(
                 '$dateStr\n',
                 const TextStyle(color: AppTheme.textSubtle, fontSize: 12),
                 children: [
                   TextSpan(
-                    text:
-                        "${NumberFormat("#,##0.00", "es_VE").format(touchedSpot.y)} Bs",
+                    text: "${formatter.format(touchedSpot.y)} Bs",
                     style: const TextStyle(
                       color: AppTheme.textAccent,
                       fontWeight: FontWeight.bold,

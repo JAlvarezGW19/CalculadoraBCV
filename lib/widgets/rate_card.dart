@@ -30,11 +30,12 @@ class RateDisplayCard extends ConsumerWidget {
         bcvComparisonRate,
       );
     }
-    return _buildStandardRateCard(context, state, ratesAsyncValue);
+    return _buildStandardRateCard(context, ref, state, ratesAsyncValue);
   }
 
   Widget _buildStandardRateCard(
     BuildContext context,
+    WidgetRef ref,
     ConversionState state,
     AsyncValue<RatesData> ratesAsyncValue,
   ) {
@@ -53,81 +54,106 @@ class RateDisplayCard extends ConsumerWidget {
           ),
         ],
       ),
-      child: Column(
+      child: Stack(
         children: [
-          Text(l10n.officialRateBcv, style: AppTheme.subtitleStyle),
-          const SizedBox(height: 10),
-          Builder(
-            builder: (context) {
-              final rates = ratesAsyncValue.value;
-              if (rates != null) {
-                final isUsd = state.currency == CurrencyType.usd;
-                final isToday = state.dateMode == RateDateMode.today;
-                final rate = isUsd
-                    ? (isToday ? rates.usdToday : rates.usdTomorrow)
-                    : (isToday ? rates.eurToday : rates.eurTomorrow);
-                final symbol = isUsd ? "USD" : "EUR";
+          // Content
+          Column(
+            children: [
+              Text(l10n.officialRateBcv, style: AppTheme.subtitleStyle),
+              const SizedBox(height: 10),
+              Builder(
+                builder: (context) {
+                  final rates = ratesAsyncValue.value;
+                  if (rates != null) {
+                    final isUsd = state.currency == CurrencyType.usd;
+                    final isToday = state.dateMode == RateDateMode.today;
+                    final rate = isUsd
+                        ? (isToday ? rates.usdToday : rates.usdTomorrow)
+                        : (isToday ? rates.eurToday : rates.eurTomorrow);
+                    final symbol = isUsd ? "USD" : "EUR";
 
-                final dateToUse = isToday
-                    ? rates.todayDate
-                    : rates.tomorrowDate;
+                    final dateToUse = isToday
+                        ? rates.todayDate
+                        : rates.tomorrowDate;
 
-                String dateStr = "---";
-                if (dateToUse != null) {
-                  dateStr = DateFormat('dd/MM/yyyy').format(dateToUse);
-                }
+                    String dateStr = "---";
+                    if (dateToUse != null) {
+                      dateStr = DateFormat('dd/MM/yyyy').format(dateToUse);
+                    }
 
-                return Column(
-                  children: [
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "1 $symbol = ",
-                            style: AppTheme.rateLabelStyle,
-                          ),
-                          TextSpan(
-                            text:
-                                "${NumberFormat("#,##0.00", "es_VE").format(rate)} Bs",
-                            style: AppTheme.rateStyle,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    return Column(
                       children: [
-                        Icon(
-                          Icons.calendar_today,
-                          size: 12,
-                          color: AppTheme.textSubtle.withValues(alpha: 0.7),
-                        ),
-                        const SizedBox(width: 6),
-                        Text(
-                          "${l10n.rateDate}: $dateStr",
+                        RichText(
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: AppTheme.textSubtle.withValues(alpha: 0.7),
-                            fontSize: 12,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: "1 $symbol = ",
+                                style: AppTheme.rateLabelStyle,
+                              ),
+                              TextSpan(
+                                text: state.isRoundingEnabled
+                                    ? "${NumberFormat("#,##0.00", "es_VE").format(rate)} Bs"
+                                    : "${NumberFormat("#,##0.########", "es_VE").format(rate)} Bs",
+                                style: AppTheme.rateStyle,
+                              ),
+                            ],
                           ),
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.calendar_today,
+                              size: 12,
+                              color: AppTheme.textSubtle.withValues(alpha: 0.7),
+                            ),
+                            const SizedBox(width: 6),
+                            Text(
+                              "${l10n.rateDate}: $dateStr",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: AppTheme.textSubtle.withValues(
+                                  alpha: 0.7,
+                                ),
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
-                    ),
-                  ],
-                );
-              } else if (ratesAsyncValue.isLoading) {
-                return const CircularProgressIndicator(
-                  color: AppTheme.textAccent,
-                );
-              } else {
-                return Text(
-                  l10n.errorLoadingRate,
-                  style: const TextStyle(color: Colors.redAccent),
-                );
-              }
-            },
+                    );
+                  } else if (ratesAsyncValue.isLoading) {
+                    return const CircularProgressIndicator(
+                      color: AppTheme.textAccent,
+                    );
+                  } else {
+                    return Text(
+                      l10n.errorLoadingRate,
+                      style: const TextStyle(color: Colors.redAccent),
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
+          // Toggle Rounding Button (Top Right)
+          Positioned(
+            right: 0,
+            top: 0,
+            child: GestureDetector(
+              onTap: () {
+                ref.read(conversionProvider.notifier).toggleRounding();
+              },
+              child: Icon(
+                Icons.code, // Approximating "arrows left right to line" -> < >
+                color: state.isRoundingEnabled
+                    ? AppTheme.textSubtle
+                    : AppTheme.textAccent,
+                size: 20,
+              ),
+            ),
           ),
         ],
       ),

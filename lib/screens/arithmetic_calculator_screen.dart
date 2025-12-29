@@ -2,18 +2,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../providers/bcv_provider.dart';
 import '../theme/app_theme.dart';
 import '../widgets/currency_toggles.dart';
 import '../widgets/add_rate_dialog.dart';
 import '../widgets/native_ad_widget.dart';
-
-// New Imports
 import '../services/calculator_engine.dart';
 import '../widgets/calculator/calculator_display.dart';
 import '../widgets/calculator/calculator_keypad.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ArithmeticCalculatorScreen extends ConsumerStatefulWidget {
   final double? initialValue;
@@ -34,9 +32,6 @@ class _ArithmeticCalculatorScreenState
   // History
   final List<String> _sessionHistory = [];
   bool _shouldResetExpression = false;
-
-  // Formatters
-  final NumberFormat _displayFormat = NumberFormat("#,##0.00", "es_VE");
 
   @override
   void initState() {
@@ -370,11 +365,6 @@ class _ArithmeticCalculatorScreenState
         } catch (_) {
           formattedInteger = integerPart;
         }
-      } else {
-        // If empty integer part (e.g. ".50"), convention? "0"?
-        // Or just leave empty? In calculator "0.5" usually has 0.
-        // If user typed "." it usually means "0." (handled by keypad logic?)
-        // Let's assume input "50" -> "50".
       }
 
       if (hasDecimal) {
@@ -400,6 +390,11 @@ class _ArithmeticCalculatorScreenState
   Widget build(BuildContext context) {
     final ratesAsync = ref.watch(ratesProvider);
     final state = ref.watch(conversionProvider);
+
+    // Dynamic formatter based on rounding preference
+    final formatter = state.isRoundingEnabled
+        ? NumberFormat("#,##0.00", "es_VE")
+        : NumberFormat("#,##0.########", "es_VE");
 
     // Calculate final display values
     double activeRate = _getEffectiveRate(ref);
@@ -435,7 +430,7 @@ class _ArithmeticCalculatorScreenState
       CurrencyType? type,
       String? customName,
     ) {
-      String formattedValue = _displayFormat.format(value);
+      String formattedValue = formatter.format(value);
 
       if (isBs) {
         return "$formattedValue Bs";
@@ -500,7 +495,7 @@ class _ArithmeticCalculatorScreenState
             ? (rawMathValue * activeRate)
             : rawMathValue;
         double bcvEquivalentValue = totalBs / bcvRate;
-        bcvLabel = "BCV: \$${_displayFormat.format(bcvEquivalentValue)}";
+        bcvLabel = "BCV: \$${formatter.format(bcvEquivalentValue)}";
       }
     }
 
@@ -509,9 +504,10 @@ class _ArithmeticCalculatorScreenState
       body: SafeArea(
         child: Column(
           children: [
+            // Top margin matching Home's padding (34 as requested in ID 241)
             const SizedBox(height: 34),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: CurrencyToggles(
                 hasTomorrow: ratesAsync.value?.hasTomorrow ?? false,
                 tomorrowDate: ratesAsync.value?.tomorrowDate,
@@ -520,7 +516,7 @@ class _ArithmeticCalculatorScreenState
             const SizedBox(height: 10),
 
             Expanded(
-              flex: 5,
+              flex: 7,
               child: CalculatorDisplay(
                 expression: _formatExpressionDisplay(_expression),
                 result: mainDisplayText,
@@ -532,17 +528,20 @@ class _ArithmeticCalculatorScreenState
                 onRateClick: state.currency == CurrencyType.custom
                     ? () => _showRateSelectionDialog(ref)
                     : null,
-                rateText: _displayFormat.format(activeRate),
+                rateText: formatter.format(activeRate),
                 showRateDropdown: state.currency == CurrencyType.custom,
+                onToggleRounding: () =>
+                    ref.read(conversionProvider.notifier).toggleRounding(),
+                isRoundingEnabled: state.isRoundingEnabled,
               ),
             ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
 
             Expanded(
-              flex: 7,
+              flex: 11, // Matching the last user edit in ID 242
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: CalculatorKeypad(onKeyPressed: _onKeyPressed),
               ),
             ),
@@ -550,10 +549,9 @@ class _ArithmeticCalculatorScreenState
             const SizedBox(height: 10),
 
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: const NativeAdWidget(assignedTabIndex: 1),
             ),
-            const SizedBox(height: 20),
           ],
         ),
       ),

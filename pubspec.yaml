@@ -56,9 +56,9 @@ flutter_icons:
 
 flutter_native_splash:
   color: "#0A192F"
-  image: "assets/icon/icon-rbg.png"
+  image: "assets/icon/icono-rbg.png"
   android_12:
-    image: "assets/icon/icon-rbg.png"
+    image: "assets/icon/icono-rbg.png"
     icon_background_color: "#0A192F"
 
 flutter:

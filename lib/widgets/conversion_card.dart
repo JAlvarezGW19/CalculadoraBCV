@@ -155,6 +155,21 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              // Toggle Rounding
+              IconButton(
+                icon: Icon(
+                  Icons.code,
+                  color: state.isRoundingEnabled
+                      ? AppTheme.textSubtle
+                      : AppTheme.textAccent,
+                ),
+                onPressed: () {
+                  ref.read(conversionProvider.notifier).toggleRounding();
+                },
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+              ),
+              const SizedBox(width: 16),
               IconButton(
                 icon: const Icon(Icons.refresh, color: AppTheme.textSubtle),
                 onPressed: () {

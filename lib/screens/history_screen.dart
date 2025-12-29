@@ -192,6 +192,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(historyProvider);
+    final conversionState = ref.watch(conversionProvider);
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
@@ -246,6 +247,19 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                         .setCurrency(CurrencyType.eur),
                   ),
                   const Spacer(),
+                  // Rounding Toggle
+                  IconButton(
+                    onPressed: () =>
+                        ref.read(conversionProvider.notifier).toggleRounding(),
+                    icon: Icon(
+                      Icons.code,
+                      color: conversionState.isRoundingEnabled
+                          ? AppTheme.textSubtle
+                          : AppTheme.textAccent,
+                    ),
+                    tooltip: "Alternar Redondeo",
+                  ),
+                  const SizedBox(width: 8),
                   // View Toggle
                   IconButton(
                     onPressed: () =>
@@ -278,12 +292,16 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
               const SizedBox(height: 20),
 
               // Content Switch
-              _buildContent(state, l10n),
+              _buildContent(state, conversionState, l10n),
 
               const SizedBox(height: 20),
 
               // Stats (Show always if data exists)
-              if (state.data.isNotEmpty) HistoryStatsCard(data: state.data),
+              if (state.data.isNotEmpty)
+                HistoryStatsCard(
+                  data: state.data,
+                  isRoundingEnabled: conversionState.isRoundingEnabled,
+                ),
 
               const SizedBox(height: 80), // Fab space
             ],
@@ -293,7 +311,11 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     );
   }
 
-  Widget _buildContent(HistoryState state, AppLocalizations l10n) {
+  Widget _buildContent(
+    HistoryState state,
+    ConversionState conversionState,
+    AppLocalizations l10n,
+  ) {
     if (state.isLoading) {
       return Container(
         height: 300,
@@ -330,9 +352,13 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
         currencySymbol: state.selectedCurrency == CurrencyType.usd
             ? "USD"
             : "EUR",
+        isRoundingEnabled: conversionState.isRoundingEnabled,
       );
     } else {
-      return HistoryListView(dataPoints: state.data);
+      return HistoryListView(
+        dataPoints: state.data,
+        isRoundingEnabled: conversionState.isRoundingEnabled,
+      );
     }
   }
 }

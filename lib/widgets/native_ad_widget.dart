@@ -161,9 +161,14 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
       }
     });
 
+    // Total height estimate based on:
+    // Top Spacer (16) + Text (~14) + Text Padding (4) + Bottom Spacer (12) = ~46
+    // We reserve this full space prevents layout jumps when ad loads.
+    final double fullContainerHeight = adHeight + 46;
+
     // Check visibility logic again for render
     if (!_shouldShowAd()) {
-      return SizedBox(height: adHeight);
+      return SizedBox(height: fullContainerHeight);
     }
 
     // Check Premium State
@@ -179,7 +184,7 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
       _nativeAd?.dispose();
       _nativeAd = null;
       _isAdLoaded = false;
-      return SizedBox(height: adHeight);
+      return SizedBox(height: fullContainerHeight);
     } else {
       // Active tab, load if not loaded
       if (_nativeAd == null) {
@@ -191,14 +196,18 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
 
     // If Ad is NOT loaded (e.g. offline, loading, error), return spacer
     if (!_isAdLoaded || _nativeAd == null) {
-      return SizedBox(height: adHeight);
+      return SizedBox(height: fullContainerHeight);
     }
+
+    // Ad Loaded: Show Native Ad (height responsive) + Remove Ads link
 
     // Ad Loaded: Show Native Ad (height responsive) + Remove Ads link
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
+        // Spacer to push ad down if needed
+        const SizedBox(height: 16),
         Padding(
           padding: const EdgeInsets.only(bottom: 4, right: 8),
           child: GestureDetector(
@@ -223,6 +232,8 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
           width: double.infinity,
           child: AdWidget(ad: _nativeAd!),
         ),
+        // Bottom margin
+        const SizedBox(height: 12),
       ],
     );
   }

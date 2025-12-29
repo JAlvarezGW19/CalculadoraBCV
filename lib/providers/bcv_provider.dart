@@ -271,6 +271,8 @@ class ConversionState {
   final String? selectedCustomRateId; // For custom mode
   final CurrencyType comparisonBase; // Compare custom vs USD or EUR
   final bool isVesSource; // True if VES was the last field edited
+  final bool
+  isRoundingEnabled; // True: 2 decimals, False: Dynamic decimals/precision
 
   ConversionState({
     this.foreignValue = '',
@@ -280,6 +282,7 @@ class ConversionState {
     this.selectedCustomRateId,
     this.comparisonBase = CurrencyType.usd,
     this.isVesSource = false,
+    this.isRoundingEnabled = true,
   });
 
   ConversionState copyWith({
@@ -290,6 +293,7 @@ class ConversionState {
     String? selectedCustomRateId,
     CurrencyType? comparisonBase,
     bool? isVesSource,
+    bool? isRoundingEnabled,
   }) {
     return ConversionState(
       foreignValue: foreignValue ?? this.foreignValue,
@@ -299,6 +303,7 @@ class ConversionState {
       selectedCustomRateId: selectedCustomRateId ?? this.selectedCustomRateId,
       comparisonBase: comparisonBase ?? this.comparisonBase,
       isVesSource: isVesSource ?? this.isVesSource,
+      isRoundingEnabled: isRoundingEnabled ?? this.isRoundingEnabled,
     );
   }
 }
@@ -313,6 +318,16 @@ class ConversionNotifier extends Notifier<ConversionState> {
       }
     });
     return ConversionState();
+  }
+
+  // Helper for dynamic formatting
+  String _formatNumber(double value) {
+    if (state.isRoundingEnabled) {
+      return NumberFormat("#,##0.00", "es_VE").format(value);
+    } else {
+      // Rounded disabled: Show full precision (up to 8 decimals)
+      return NumberFormat("#,##0.########", "es_VE").format(value);
+    }
   }
 
   void _recalculateValues() {
@@ -348,7 +363,6 @@ class ConversionNotifier extends Notifier<ConversionState> {
     }
 
     if (rate <= 0) {
-      // If rate is invalid, maybe clear everything or just return
       return;
     }
 
@@ -358,7 +372,7 @@ class ConversionNotifier extends Notifier<ConversionState> {
         final val = _parseInput(state.vesValue);
         if (val != null) {
           final foreign = val / rate;
-          state = state.copyWith(foreignValue: _formatter.format(foreign));
+          state = state.copyWith(foreignValue: _formatNumber(foreign));
         } else {
           state = state.copyWith(foreignValue: '');
         }
@@ -371,7 +385,7 @@ class ConversionNotifier extends Notifier<ConversionState> {
         final val = _parseInput(state.foreignValue);
         if (val != null) {
           final ves = val * rate;
-          state = state.copyWith(vesValue: _formatter.format(ves));
+          state = state.copyWith(vesValue: _formatNumber(ves));
         } else {
           state = state.copyWith(vesValue: '');
         }
@@ -405,7 +419,12 @@ class ConversionNotifier extends Notifier<ConversionState> {
     }
   }
 
-  final _formatter = NumberFormat("#,##0.00", "es_VE");
+  void toggleRounding() {
+    state = state.copyWith(isRoundingEnabled: !state.isRoundingEnabled);
+    _recalculateValues();
+  }
+
+  // Formatting helper logic removed from static field to instance method
 
   double? _parseInput(String input) {
     // Sanitize: Remove thousands separator (.), replace decimal separator (,) with (.)
@@ -430,7 +449,7 @@ class ConversionNotifier extends Notifier<ConversionState> {
     final val = _parseInput(input);
     if (val != null) {
       final ves = val * rate;
-      state = state.copyWith(vesValue: _formatter.format(ves));
+      state = state.copyWith(vesValue: _formatNumber(ves));
     } else {
       state = state.copyWith(vesValue: '');
     }
@@ -448,7 +467,7 @@ class ConversionNotifier extends Notifier<ConversionState> {
     final val = _parseInput(input);
     if (val != null && rate > 0) {
       final foreign = val / rate;
-      state = state.copyWith(foreignValue: _formatter.format(foreign));
+      state = state.copyWith(foreignValue: _formatNumber(foreign));
     } else {
       state = state.copyWith(foreignValue: '');
     }

@@ -15,6 +15,8 @@ class CalculatorDisplay extends StatelessWidget {
   final VoidCallback? onRateClick;
   final String rateText;
   final bool showRateDropdown;
+  final VoidCallback onToggleRounding;
+  final bool isRoundingEnabled;
 
   const CalculatorDisplay({
     super.key,
@@ -28,12 +30,14 @@ class CalculatorDisplay extends StatelessWidget {
     this.onRateClick,
     required this.rateText,
     this.showRateDropdown = false,
+    required this.onToggleRounding,
+    required this.isRoundingEnabled,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16.0),
+      margin: const EdgeInsets.symmetric(horizontal: 24.0),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppTheme.cardBackground,
@@ -81,10 +85,23 @@ class CalculatorDisplay extends StatelessWidget {
                 ),
               ),
 
-              // Icons Row (Swap left, History right)
+              // Icons Row (Rounding, Swap, History)
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  IconButton(
+                    onPressed: onToggleRounding,
+                    icon: Icon(
+                      Icons.code,
+                      color: isRoundingEnabled
+                          ? AppTheme.textSubtle
+                          : AppTheme.textAccent,
+                    ),
+                    tooltip: "Alternar Redondeo",
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  ),
+                  const SizedBox(width: 8),
                   IconButton(
                     onPressed: onSwap,
                     icon: const Icon(

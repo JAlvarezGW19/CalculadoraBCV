@@ -6,14 +6,28 @@ import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
 class HistoryStatsCard extends StatelessWidget {
   final List<HistoryPoint> data;
+  final bool isRoundingEnabled;
 
-  const HistoryStatsCard({super.key, required this.data});
+  const HistoryStatsCard({
+    super.key,
+    required this.data,
+    required this.isRoundingEnabled,
+  });
 
   @override
   Widget build(BuildContext context) {
     if (data.isEmpty) return const SizedBox.shrink();
 
     final l10n = AppLocalizations.of(context)!;
+    // ... (rest of build method unchanged until _fmt call) ...
+
+    String _fmt(double val) {
+      if (isRoundingEnabled) {
+        return "${NumberFormat("#,##0.00", "es_VE").format(val)} Bs";
+      } else {
+        return "${NumberFormat("#,##0.########", "es_VE").format(val)} Bs";
+      }
+    }
 
     final first = data.first.rate;
     final last = data.last.rate;
@@ -64,9 +78,6 @@ class HistoryStatsCard extends StatelessWidget {
       ),
     );
   }
-
-  String _fmt(double val) =>
-      "${NumberFormat("#,##0.00", "es_VE").format(val)} Bs";
 
   Widget _buildStatItem(
     String label,

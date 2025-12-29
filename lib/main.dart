@@ -30,6 +30,13 @@ void main() async {
     // Fire and forget, don't await to avoid blocking startup
     MobileAds.instance.initialize();
 
+    // Explicitly remove splash screen to prevent hanging
+    // try {
+    //   FlutterNativeSplash.remove();
+    // } catch (e) {
+    //   debugPrint("Error removing splash: $e");
+    // }
+
     // Run App immediately
     runApp(const ProviderScope(child: MyApp()));
   } catch (e, stack) {

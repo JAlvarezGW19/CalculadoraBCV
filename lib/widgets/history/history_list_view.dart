@@ -6,8 +6,13 @@ import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
 class HistoryListView extends StatelessWidget {
   final List<HistoryPoint> dataPoints;
+  final bool isRoundingEnabled;
 
-  const HistoryListView({super.key, required this.dataPoints});
+  const HistoryListView({
+    super.key,
+    required this.dataPoints,
+    required this.isRoundingEnabled,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +66,7 @@ class HistoryListView extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "${NumberFormat("#,##0.00", "es_VE").format(currentRate)} Bs",
+                      "${isRoundingEnabled ? NumberFormat("#,##0.00", "es_VE").format(currentRate) : NumberFormat("#,##0.########", "es_VE").format(currentRate)} Bs",
                       style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

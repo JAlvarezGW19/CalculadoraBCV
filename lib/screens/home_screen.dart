@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
 import 'dart:async';
+import 'package:flutter/services.dart';
 
 import '../theme/app_theme.dart';
 import '../providers/bcv_provider.dart';
@@ -40,6 +41,31 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     _dateCheckTimer = Timer.periodic(const Duration(minutes: 1), (_) {
       _checkForDateChange();
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _lockOrientation();
+  }
+
+  void _lockOrientation() {
+    final size = MediaQuery.of(context).size;
+    final isTablet = size.shortestSide >= 600;
+
+    if (!isTablet) {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
+    } else {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ]);
+    }
   }
 
   @override
