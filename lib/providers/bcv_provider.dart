@@ -273,6 +273,7 @@ class ConversionState {
   final bool isVesSource; // True if VES was the last field edited
   final bool
   isRoundingEnabled; // True: 2 decimals, False: Dynamic decimals/precision
+  final bool isInvertedOrder; // True: VES on top, Foreign on bottom
 
   ConversionState({
     this.foreignValue = '',
@@ -283,6 +284,7 @@ class ConversionState {
     this.comparisonBase = CurrencyType.usd,
     this.isVesSource = false,
     this.isRoundingEnabled = true,
+    this.isInvertedOrder = false,
   });
 
   ConversionState copyWith({
@@ -294,6 +296,7 @@ class ConversionState {
     CurrencyType? comparisonBase,
     bool? isVesSource,
     bool? isRoundingEnabled,
+    bool? isInvertedOrder,
   }) {
     return ConversionState(
       foreignValue: foreignValue ?? this.foreignValue,
@@ -304,6 +307,7 @@ class ConversionState {
       comparisonBase: comparisonBase ?? this.comparisonBase,
       isVesSource: isVesSource ?? this.isVesSource,
       isRoundingEnabled: isRoundingEnabled ?? this.isRoundingEnabled,
+      isInvertedOrder: isInvertedOrder ?? this.isInvertedOrder,
     );
   }
 }
@@ -318,6 +322,11 @@ class ConversionNotifier extends Notifier<ConversionState> {
       }
     });
     return ConversionState();
+  }
+
+  // Toggle Visual Order (Foreign/VES position)
+  void toggleOrder() {
+    state = state.copyWith(isInvertedOrder: !state.isInvertedOrder);
   }
 
   // Helper for dynamic formatting
@@ -363,6 +372,15 @@ class ConversionNotifier extends Notifier<ConversionState> {
     }
 
     if (rate <= 0) {
+      // If rate is valid (0 or negative, which shouldn't happen for rates but 0 is possible if empty),
+      // we must zero out the RESULT, but keep the INPUT.
+      if (state.isVesSource) {
+        // Source is VES, so Foreign Result should be 0
+        state = state.copyWith(foreignValue: _formatNumber(0));
+      } else {
+        // Source is Foreign, so VES Result should be 0
+        state = state.copyWith(vesValue: _formatNumber(0));
+      }
       return;
     }
 

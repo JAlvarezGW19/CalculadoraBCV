@@ -136,6 +136,57 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
       }
     }
 
+    // Build Input Fields to facilitate swapping order
+    final Widget foreignInput = _buildInputField(
+      controller: _foreignController,
+      focusNode: _foreignFocus,
+      label: foreignLabel,
+      placeholder: foreignPlaceholder,
+      prefixText: foreignPrefix,
+      onChanged: (value) {
+        final sanitized = value.replaceAll('.', '').replaceAll(',', '.');
+        if (double.tryParse(sanitized) != null || value.isEmpty) {
+          ref.read(conversionProvider.notifier).updateForeign(value, rate);
+        }
+      },
+      canCopy: true,
+      helperText: inputsHelper,
+      maxIntegerDigits: 10,
+      maxDecimalDigits: 3,
+    );
+
+    final Widget vesInput = _buildInputField(
+      controller: _vesController,
+      focusNode: _vesFocus,
+      label: vesLabel,
+      placeholder: l10n.amountBolivars,
+      prefixText: vesPrefix,
+      onChanged: (value) {
+        final sanitized = value.replaceAll('.', '').replaceAll(',', '.');
+        if (double.tryParse(sanitized) != null || value.isEmpty) {
+          ref.read(conversionProvider.notifier).updateVES(value, rate);
+        }
+      },
+      canCopy: true,
+      helperText: resultsHelper,
+      maxIntegerDigits: 12,
+      maxDecimalDigits: 4,
+    );
+
+    final Widget swapButton = Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
+      child: GestureDetector(
+        onTap: () {
+          ref.read(conversionProvider.notifier).toggleOrder();
+        },
+        child: const Icon(
+          Icons.swap_vert_rounded,
+          color: AppTheme.textSubtle,
+          size: 24,
+        ),
+      ),
+    );
+
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -190,55 +241,16 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
             ],
           ),
 
-          // Foreign Input
-          _buildInputField(
-            controller: _foreignController,
-            focusNode: _foreignFocus,
-            label: foreignLabel,
-            placeholder: foreignPlaceholder,
-            prefixText: foreignPrefix,
-            onChanged: (value) {
-              // validate with European format support
-              final sanitized = value.replaceAll('.', '').replaceAll(',', '.');
-              if (double.tryParse(sanitized) != null || value.isEmpty) {
-                ref
-                    .read(conversionProvider.notifier)
-                    .updateForeign(value, rate);
-              }
-            },
-            canCopy: true,
-            helperText: inputsHelper,
-            maxIntegerDigits: 10,
-            maxDecimalDigits: 3,
-          ),
-
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 12.0),
-            child: Icon(
-              Icons.swap_vert_rounded,
-              color: AppTheme.textSubtle,
-              size: 24,
-            ),
-          ),
-
-          // VES Input
-          _buildInputField(
-            controller: _vesController,
-            focusNode: _vesFocus,
-            label: vesLabel,
-            placeholder: l10n.amountBolivars,
-            prefixText: vesPrefix,
-            onChanged: (value) {
-              final sanitized = value.replaceAll('.', '').replaceAll(',', '.');
-              if (double.tryParse(sanitized) != null || value.isEmpty) {
-                ref.read(conversionProvider.notifier).updateVES(value, rate);
-              }
-            },
-            canCopy: true,
-            helperText: resultsHelper,
-            maxIntegerDigits: 12,
-            maxDecimalDigits: 4,
-          ),
+          // Inputs with configurable order
+          if (state.isInvertedOrder) ...[
+            vesInput,
+            swapButton,
+            foreignInput,
+          ] else ...[
+            foreignInput,
+            swapButton,
+            vesInput,
+          ],
         ],
       ),
     );

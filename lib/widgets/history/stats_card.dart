@@ -21,7 +21,7 @@ class HistoryStatsCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     // ... (rest of build method unchanged until _fmt call) ...
 
-    String _fmt(double val) {
+    String fmt(double val) {
       if (isRoundingEnabled) {
         return "${NumberFormat("#,##0.00", "es_VE").format(val)} Bs";
       } else {
@@ -63,15 +63,15 @@ class HistoryStatsCard extends StatelessWidget {
                 isPositive: percent >= 0,
                 colored: true,
               ),
-              _buildStatItem(l10n.min, _fmt(min)),
+              _buildStatItem(l10n.min, fmt(min)),
             ],
           ),
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildStatItem(l10n.mean, _fmt(avg)),
-              _buildStatItem(l10n.max, _fmt(max)),
+              _buildStatItem(l10n.mean, fmt(avg)),
+              _buildStatItem(l10n.max, fmt(max)),
             ],
           ),
         ],
