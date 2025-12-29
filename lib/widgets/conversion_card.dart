@@ -397,7 +397,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
                 keyboardType: const TextInputType.numberWithOptions(
                   decimal: true,
                 ),
-                style: AppTheme.inputTextStyle.copyWith(fontSize: 22),
+                style: AppTheme.inputTextStyle.copyWith(fontSize: 26),
                 cursorColor: AppTheme.textAccent,
                 inputFormatters: [
                   CurrencyInputFormatter(
@@ -420,7 +420,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
                             prefixText,
                             style: AppTheme.inputTextStyle.copyWith(
                               color: AppTheme.textSubtle,
-                              fontSize: 18,
+                              fontSize: 22,
                             ),
                           ),
                         )

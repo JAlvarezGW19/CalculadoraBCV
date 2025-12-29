@@ -15,7 +15,7 @@ class CalculatorKeypad extends StatelessWidget {
         Expanded(child: _buildKeyRow(['7', '8', '9', '-'])),
         Expanded(child: _buildKeyRow(['4', '5', '6', '+'])),
         Expanded(child: _buildKeyRow(['1', '2', '3', '='])),
-        Expanded(child: _buildKeyRow(['', '0', '.', ''])), // 0 aligned under 2
+        Expanded(child: _buildKeyRow(['', '0', ',', ''])), // 0 aligned under 2
       ],
     );
   }

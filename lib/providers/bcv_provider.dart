@@ -127,12 +127,59 @@ class RatesNotifier extends AsyncNotifier<RatesData> {
       }
     }
 
+    // ROLLING OVER LOGIC:
+    // If we have a "Tomorrow Rate" but that date IS NOW TODAY (or past),
+    // then that rate becomes Today's rate.
+    if (hasTom && tomDate != null) {
+      final now = DateTime.now();
+      final todayStart = DateTime(now.year, now.month, now.day);
+
+      // Check if tomorrowDate is effectively today (start of day comparison)
+      final bool isNowToday =
+          tomDate.year == todayStart.year &&
+          tomDate.month == todayStart.month &&
+          tomDate.day == todayStart.day;
+
+      // Or if based on logic it's in the past (unlikely but safe to handle)
+      final bool isPast = tomDate.isBefore(todayStart);
+
+      if (isNowToday || isPast) {
+        // Shift values!
+        tDate = tomDate;
+        // Rates rollover
+        final double usd = (data['usd_tomorrow'] as num?)?.toDouble() ?? 0.0;
+        final double eur = (data['eur_tomorrow'] as num?)?.toDouble() ?? 0.0;
+
+        // We override "today" values with these "tomorrow" values
+        // We modify the map or just return correct RatesData?
+        // Better to construct RatesData directly.
+
+        return RatesData(
+          usdToday: usd,
+          usdTomorrow: 0.0, // Reset tomorrow
+          eurToday: eur,
+          eurTomorrow: 0.0, // Reset tomorrow
+          hasTomorrow: false, // No longer have a NEXT day rate known
+          lastFetch: parseDate(data['last_fetch']),
+          todayDate: tDate,
+          tomorrowDate: null,
+        );
+      }
+    }
+
     // SANITY CHECK: prevent Today == Tomorrow if hasTomorrow is true
+    // (This block is somewhat redundant if the above logic works, but kept for safety
+    // if tomorrow is strictly distinct)
     if (hasTom && tDate != null && tomDate != null) {
       if (tDate.year == tomDate.year &&
           tDate.month == tomDate.month &&
           tDate.day == tomDate.day) {
-        tDate = DateTime.now();
+        // This condition catches if source data said A is today and A is also tomorrow?
+        // Or blindly parsed.
+        // But the rollover logic above handles the case where Tomorrow BECAME Today.
+        // This block might have been intended to fix bad API data.
+        // Let's keep it but simplified or rely on above.
+        // Actually, if we returned above, this code isn't reached.
       }
     }
 

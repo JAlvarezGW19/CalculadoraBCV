@@ -4,18 +4,30 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart'; // Import generated localizations
 import 'screens/home_screen.dart';
 import 'theme/app_theme.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:intl/date_symbol_data_local.dart';
+
 import 'providers/language_provider.dart';
 
 void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
 
-    // Initialize Date Formatting (Fast & Crucial)
-    await initializeDateFormatting('es', null);
+    // Initialize Date Formatting with timeout and error handling
+    try {
+      await initializeDateFormatting('es', null).timeout(
+        const Duration(seconds: 2),
+        onTimeout: () {
+          debugPrint("DateFormatting timed out, proceeding anyway.");
+          return null;
+        },
+      );
+    } catch (e) {
+      debugPrint("DateFormatting Error: $e");
+    }
 
-    // Initialize Google Mobile Ads (Fire and forget to not block startup)
+    // Initialize Google Mobile Ads (Wrapped to prevent hangs)
+    // Fire and forget, don't await to avoid blocking startup
     MobileAds.instance.initialize();
 
     // Run App immediately
@@ -23,10 +35,17 @@ void main() async {
   } catch (e, stack) {
     debugPrint("Startup Error: $e");
     debugPrint(stack.toString());
-    // Fallback?
     runApp(
       const MaterialApp(
-        home: Scaffold(body: Center(child: Text("Error al iniciar"))),
+        home: Scaffold(
+          backgroundColor: Color(0xFF0A192F),
+          body: Center(
+            child: Text(
+              "Error Critical al Iniciar",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
       ),
     );
   }

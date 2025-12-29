@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
+import 'dart:async';
 
 import '../theme/app_theme.dart';
 import '../providers/bcv_provider.dart';
@@ -27,11 +28,48 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   final Set<int> _visitedTabs = {0}; // Track visited tabs
 
+  Timer? _dateCheckTimer;
+
   @override
   void initState() {
     super.initState();
     _currentIndex = 0;
     _initServices();
+
+    // Check for date rollover every minute while app is open
+    _dateCheckTimer = Timer.periodic(const Duration(minutes: 1), (_) {
+      _checkForDateChange();
+    });
+  }
+
+  @override
+  void dispose() {
+    _dateCheckTimer?.cancel();
+    super.dispose();
+  }
+
+  void _checkForDateChange() {
+    final ratesState = ref.read(ratesProvider);
+    if (ratesState.hasValue) {
+      final rates = ratesState.value!;
+      if (rates.todayDate != null) {
+        final now = DateTime.now();
+        final today = DateTime(now.year, now.month, now.day);
+        final cachedToday = DateTime(
+          rates.todayDate!.year,
+          rates.todayDate!.month,
+          rates.todayDate!.day,
+        );
+
+        // If cached "Today" is older than real "Today", refresh!
+        // Example: Cache says "Today is Friday". Real is "Monday".
+        // The provider rollover logic will see the "Tomorrow" (Monday) and promote it to Today.
+        if (today.isAfter(cachedToday)) {
+          debugPrint("Date change detected, refreshing rates...");
+          ref.read(ratesProvider.notifier).refresh();
+        }
+      }
+    }
   }
 
   Future<void> _initServices() async {
@@ -51,6 +89,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     // Refresh widget with cached data immediately (so it's not empty)
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(apiServiceProvider).refreshWidgetFromCache();
+      // Added initial check on startup too in case it was opened exactly after midnight
+      _checkForDateChange();
     });
   }
 
@@ -74,7 +114,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     // Safe lookup or fallback
     final l10n = AppLocalizations.of(context);
-    if (l10n == null) return const Center(child: CircularProgressIndicator());
+    if (l10n == null) {
+      return const Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(height: 16),
+              Text(
+                "Cargando recursos...",
+                style: TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       backgroundColor: AppTheme.background,

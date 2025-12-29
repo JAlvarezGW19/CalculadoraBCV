@@ -216,14 +216,13 @@ class ApiService {
       final String date =
           data['today_date'] ?? DateTime.now().toIso8601String();
 
-      final bool isPremium = prefs.getBool('is_premium') ?? false;
-
       // Update widget in background (don't await to avoid blocking UI/Flow)
+      // WIDGET IS NOW FREE FOR EVERYONE (Requested by User)
       HomeWidgetService.updateWidgetData(
         usdRate: usd,
         eurRate: eur,
         rateDate: date,
-        isPremium: isPremium,
+        isPremium: true, // Force true to unlock widget for all
       );
     } catch (e) {
       debugPrint("Widget update error: $e");
@@ -262,14 +261,11 @@ class ApiService {
       final String date =
           data['today_date'] ?? DateTime.now().toIso8601String();
 
-      final prefs = await SharedPreferences.getInstance();
-      final bool isPremium = prefs.getBool('is_premium') ?? false;
-
       HomeWidgetService.updateWidgetData(
         usdRate: usd,
         eurRate: eur,
         rateDate: date,
-        isPremium: isPremium,
+        isPremium: true, // Force true (Widget is free)
       );
     } catch (_) {
       // No cache or error

@@ -95,7 +95,7 @@ class AboutAppDialog extends StatelessWidget {
           const SizedBox(height: 4),
           Center(
             child: Text(
-              "${l10n.version} 1.0.0",
+              "${l10n.version} 1.0.1",
               style: const TextStyle(color: AppTheme.textSubtle, fontSize: 10),
             ),
           ),

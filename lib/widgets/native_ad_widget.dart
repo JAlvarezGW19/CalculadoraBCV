@@ -48,13 +48,25 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
 
     if (!_shouldShowAd()) return;
 
+    // Responsive logic (Calculate inside loadAd to apply correct template style)
+    // Tablets usually have a shortest side >= 600
+    // If context is somehow invalid (rare here due to microtask), default to phone.
+    bool isTablet = false;
+    try {
+      isTablet = MediaQuery.of(context).size.shortestSide >= 600;
+    } catch (_) {}
+
+    // On phones: ~118 is safe and compact.
+    // On tablets: 200 ensures no clipping errors.
+    final double cornerRadius = isTablet ? 12.0 : 20.0;
+
     _nativeAd = NativeAd(
       adUnitId: AdHelper.nativeAdUnitId,
       // No factoryId -> Uses standard Native Template
       nativeTemplateStyle: NativeTemplateStyle(
         templateType: TemplateType.small,
         mainBackgroundColor: AppTheme.cardBackground,
-        cornerRadius: 24.0, // Match app card radius
+        cornerRadius: cornerRadius,
         callToActionTextStyle: NativeTemplateTextStyle(
           textColor: AppTheme.background,
           backgroundColor: AppTheme.textAccent,
@@ -120,6 +132,10 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
 
   @override
   Widget build(BuildContext context) {
+    // Responsive Height calculation for the Container
+    final isTablet = MediaQuery.of(context).size.shortestSide >= 600;
+    final double adHeight = isTablet ? 200.0 : 118.0;
+
     // Listen to provider changes for triggers
     ref.listen(conversionProvider, (prev, next) {
       bool shouldRefresh = false;
@@ -147,7 +163,7 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
 
     // Check visibility logic again for render
     if (!_shouldShowAd()) {
-      return const SizedBox(height: 90.0);
+      return SizedBox(height: adHeight);
     }
 
     // Check Premium State
@@ -163,7 +179,7 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
       _nativeAd?.dispose();
       _nativeAd = null;
       _isAdLoaded = false;
-      return const SizedBox(height: 90.0);
+      return SizedBox(height: adHeight);
     } else {
       // Active tab, load if not loaded
       if (_nativeAd == null) {
@@ -173,13 +189,12 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
 
     final l10n = AppLocalizations.of(context);
 
-    // If Ad is NOT loaded (e.g. offline, loading, error), return spacer to prevent jumps,
-    // but DO NOT show 'Remove Ads' link (satisfies "offline" requirement)
+    // If Ad is NOT loaded (e.g. offline, loading, error), return spacer
     if (!_isAdLoaded || _nativeAd == null) {
-      return const SizedBox(height: 90.0);
+      return SizedBox(height: adHeight);
     }
 
-    // Ad Loaded: Show Native Ad (height 90) + Remove Ads link
+    // Ad Loaded: Show Native Ad (height responsive) + Remove Ads link
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -204,7 +219,7 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
           ),
         ),
         SizedBox(
-          height: 90.0,
+          height: adHeight,
           width: double.infinity,
           child: AdWidget(ad: _nativeAd!),
         ),

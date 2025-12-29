@@ -111,8 +111,8 @@ class CalculatorDisplay extends StatelessWidget {
           const SizedBox(height: 10),
 
           // Input Expression
-          Flexible(
-            flex: 1,
+          Expanded(
+            flex: 2,
             child: FittedBox(
               alignment: Alignment.centerRight,
               fit: BoxFit.scaleDown,
@@ -123,8 +123,8 @@ class CalculatorDisplay extends StatelessWidget {
                 textAlign: TextAlign.right,
                 style: GoogleFonts.montserrat(
                   color: AppTheme.textSubtle,
-                  fontSize: 46,
-                  fontWeight: FontWeight.w400,
+                  fontSize: 70,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),
@@ -134,7 +134,7 @@ class CalculatorDisplay extends StatelessWidget {
 
           // Main Result
           Expanded(
-            flex: 2,
+            flex: 3,
             child: FittedBox(
               alignment: Alignment.centerRight,
               fit: BoxFit.scaleDown,

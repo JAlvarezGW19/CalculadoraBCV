@@ -90,7 +90,12 @@ class _ArithmeticCalculatorScreenState
             CalculatorEngine.isOperator(_expression[_expression.length - 1])) {
           _expression = _expression.substring(0, _expression.length - 1) + key;
         } else {
-          _expression += key;
+          // Normalize Decimal Separator
+          String valueToAppend = key;
+          if (key == ',') {
+            valueToAppend = '.';
+          }
+          _expression += valueToAppend;
         }
         _calculateResult();
       }
@@ -325,6 +330,61 @@ class _ArithmeticCalculatorScreenState
     return rate;
   }
 
+  String _formatExpressionDisplay(String expression) {
+    if (expression.isEmpty) return "";
+
+    // Regex to find numbers (integer or decimal)
+    // Matches: 123, 123.456, .456
+    // We want to capture them and format them
+    return expression.replaceAllMapped(RegExp(r'(\d*\.?\d+)'), (match) {
+      String numberStr = match.group(0)!;
+
+      // If it's just ".", leave it (or handle as "0,")?
+      if (numberStr == '.') return ',';
+
+      // Split by dot
+      List<String> parts = numberStr.split('.');
+      String integerPart = parts[0];
+      String decimalPart = parts.length > 1 ? parts[1] : '';
+      bool hasDecimal = parts.length > 1;
+
+      // Format Integer Part
+      String formattedInteger = "";
+      if (integerPart.isNotEmpty) {
+        try {
+          // Identify if we have very large ints?
+          // Standard int.parse handles decent size.
+          // Or use naive chunks of 3.
+          // Let's use NumberFormat for safety, but check overflow?
+          // If purely string manipulation:
+          final buffer = StringBuffer();
+          int count = 0;
+          for (int i = integerPart.length - 1; i >= 0; i--) {
+            buffer.write(integerPart[i]);
+            count++;
+            if (count % 3 == 0 && i > 0) {
+              buffer.write('.');
+            }
+          }
+          formattedInteger = buffer.toString().split('').reversed.join('');
+        } catch (_) {
+          formattedInteger = integerPart;
+        }
+      } else {
+        // If empty integer part (e.g. ".50"), convention? "0"?
+        // Or just leave empty? In calculator "0.5" usually has 0.
+        // If user typed "." it usually means "0." (handled by keypad logic?)
+        // Let's assume input "50" -> "50".
+      }
+
+      if (hasDecimal) {
+        return "$formattedInteger,$decimalPart";
+      } else {
+        return formattedInteger;
+      }
+    });
+  }
+
   String _getCurrencySymbol(CurrencyType type, [String? customName]) {
     switch (type) {
       case CurrencyType.usd:
@@ -460,15 +520,10 @@ class _ArithmeticCalculatorScreenState
             const SizedBox(height: 10),
 
             Expanded(
-              flex: 4,
+              flex: 5,
               child: CalculatorDisplay(
-                expression: _expression,
-                result:
-                    mainDisplayText, // Now showing just the result part? Or full equation? User said "$50 = 1442 Bs"
-                // Actually the design showed:
-                // Small text: input
-                // Big text: result
-                // Let's pass mainDisplayText as result.
+                expression: _formatExpressionDisplay(_expression),
+                result: mainDisplayText,
                 bcvEquivalent: bcvLabel,
                 inputPrefix: inputPrefix,
                 inputSuffix: inputSuffix,

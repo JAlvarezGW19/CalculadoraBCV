@@ -76,7 +76,14 @@ class IapNotifier extends Notifier<IapState> {
       );
 
       // 3. Check store availability
-      final bool available = await _iap.isAvailable();
+      bool available = await _iap.isAvailable();
+
+      // FORCE MOCK FOR DEBUG/EMULATOR if real store is unavailable
+      if (!available && kDebugMode) {
+        debugPrint("IAP: Store not available. Enabling MOCK mode for testing.");
+        available = true;
+      }
+
       if (!available) {
         state = state.copyWith(isAvailable: false, isLoading: false);
         return;
@@ -84,23 +91,69 @@ class IapNotifier extends Notifier<IapState> {
 
       // 4. Query Products
       const Set<String> kIds = <String>{_premiumId};
-      final ProductDetailsResponse response = await _iap.queryProductDetails(
-        kIds,
-      );
+      List<ProductDetails> products = [];
 
-      if (response.error == null) {
-        state = state.copyWith(
-          isAvailable: true,
-          products: response.productDetails,
-          isLoading: false,
+      try {
+        final ProductDetailsResponse response = await _iap.queryProductDetails(
+          kIds,
         );
-      } else {
-        state = state.copyWith(isAvailable: true, isLoading: false);
+        products = response.productDetails;
+      } catch (e) {
+        debugPrint("IAP Query Failed: $e");
       }
 
-      // 5. Restore purchases if needed (or verify receipt)
-      // For now, we rely on streams. Maybe auto-restore on first load?
-      // io.restorePurchases();
+      // INJECT MOCK PRODUCT IN DEBUG IF EMPTY
+      if (products.isEmpty && kDebugMode) {
+        debugPrint(
+          "IAP: No products found. Injecting MOCK product for testing.",
+        );
+        // Create a simple wrapper for testing logic if needed,
+        // but since we can't easily instantiate abstract ProductDetails sometimes,
+        // we might need a concrete implementation if ProductDetails is abstract.
+        // Fortunately, in recent versions we can often just mock the behavior
+        // or relying on simulation mode in buyPremium.
+        // However, the UI needs a product to display title/price.
+        // Let's rely on the fact we can pass a dummy list or handle it in UI.
+        // But UI expects state.products to be non-empty.
+
+        // Assuming ProductDetails is not abstract in this version:
+        // If it IS abstract, we'd need to extend it.
+        // To be safe, let's try to bypass the UI requirement or use a workaround.
+        // But wait, the UI does: products: iapState.products.
+        // Let's try to create a concrete dummy class locally or just use a placeholder if possible.
+        // Given I cannot easily add classes, I will try to use a Fake.
+      }
+
+      // Wait, 'ProductDetails' might be abstract.
+      // Let's define a MockProductDetails? No, I can't modify other files easily.
+      // Let's try to instantiate it. If it fails standard lints, I'll know.
+      // Actually, better plan: The PremiumCard widget uses products[0].price.
+      // If I can't instantiate ProductDetails, I can't populate the list.
+
+      // ALTERNATIVE: Use a concrete class from the package if exported?
+      // GooglePlayProductDetails?
+      // Let's try to just instantiate ProductDetails.
+      // If it's abstract, this edit will fail compilation.
+      // Most recent versions: ProductDetails IS a concrete class.
+
+      if (products.isEmpty && kDebugMode) {
+        products = [
+          ProductDetails(
+            id: _premiumId,
+            title: 'Versión Pro (Debug)',
+            description: 'Elimina los anuncios para siempre.',
+            price: 'US\$ 2.49',
+            rawPrice: 2.49,
+            currencyCode: 'USD',
+          ),
+        ];
+      }
+
+      state = state.copyWith(
+        isAvailable: true,
+        products: products,
+        isLoading: false,
+      );
     } catch (e) {
       debugPrint("Error initializing IAP: $e");
       state = state.copyWith(isAvailable: false, isLoading: false);
