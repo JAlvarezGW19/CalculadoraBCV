@@ -47,5 +47,11 @@ class HomeWidgetService {
       name: 'HomeWidgetProvider1x1',
       androidName: 'HomeWidgetProvider1x1',
     );
+
+    // Trigger Update for 1x1 EUR Widget
+    await HomeWidget.updateWidget(
+      name: 'HomeWidgetProvider1x1Eur',
+      androidName: 'HomeWidgetProvider1x1Eur',
+    );
   }
 }

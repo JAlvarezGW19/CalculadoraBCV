@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:calculadora_bcv/l10n/app_localizations.dart'; // Import generated localizations
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 import 'screens/home_screen.dart';
 import 'theme/app_theme.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -12,6 +13,11 @@ import 'providers/language_provider.dart';
 void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
+
+    // Lock orientation to portrait
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+    // ... existing code ...
 
     // Initialize Date Formatting with timeout and error handling
     try {

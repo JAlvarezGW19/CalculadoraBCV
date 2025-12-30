@@ -337,4 +337,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get deactivateProTest => 'Deactivate PRO (Testing)';
+
+  @override
+  String get deactivateProTitle => 'Deactivate PRO';
+
+  @override
+  String get deactivateProMessage =>
+      'Do you want to deactivate PRO mode? (Testing only)';
+
+  @override
+  String get deactivateProSuccess =>
+      'PRO deactivated. Restart the app to apply changes.';
 }

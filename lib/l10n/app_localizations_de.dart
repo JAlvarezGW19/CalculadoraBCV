@@ -337,4 +337,18 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get privacyPolicy => 'Datenschutzerklärung';
+
+  @override
+  String get deactivateProTest => 'PRO deaktivieren (Tests)';
+
+  @override
+  String get deactivateProTitle => 'PRO deaktivieren';
+
+  @override
+  String get deactivateProMessage =>
+      'Möchten Sie den PRO-Modus deaktivieren? (Nur für Tests)';
+
+  @override
+  String get deactivateProSuccess =>
+      'PRO deaktiviert. Starten Sie die App neu, um Änderungen anzuwenden.';
 }

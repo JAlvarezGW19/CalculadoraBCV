@@ -125,8 +125,10 @@ class RateDisplayCard extends ConsumerWidget {
                       ],
                     );
                   } else if (ratesAsyncValue.isLoading) {
-                    return const CircularProgressIndicator(
-                      color: AppTheme.textAccent,
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: AppTheme.textAccent,
+                      ),
                     );
                   } else {
                     return Text(

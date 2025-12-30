@@ -765,6 +765,30 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Política de Privacidad'**
   String get privacyPolicy;
+
+  /// No description provided for @deactivateProTest.
+  ///
+  /// In es, this message translates to:
+  /// **'Desactivar PRO (Pruebas)'**
+  String get deactivateProTest;
+
+  /// No description provided for @deactivateProTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Desactivar PRO'**
+  String get deactivateProTitle;
+
+  /// No description provided for @deactivateProMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Deseas desactivar el modo PRO? (Solo para pruebas)'**
+  String get deactivateProMessage;
+
+  /// No description provided for @deactivateProSuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'PRO desactivado. Reinicia la app para aplicar cambios.'**
+  String get deactivateProSuccess;
 }
 
 class _AppLocalizationsDelegate

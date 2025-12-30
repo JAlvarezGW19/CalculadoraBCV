@@ -1,4 +1,4 @@
-{
+﻿{
   "@@locale": "fr",
   "appTitle": "Calculatrice BCV",
   "settings": "Paramètres",
@@ -106,5 +106,9 @@
   "rangeCustom": "Perso",
   "removeAdsLink": "Supprimer les pubs",
   "thanksSupport": "Merci pour votre soutien !",
-  "privacyPolicy": "Politique de confidentialité"
+  "privacyPolicy": "Politique de confidentialité",
+  "deactivateProTest": "Désactiver PRO (Tests)",
+  "deactivateProTitle": "Désactiver PRO",
+  "deactivateProMessage": "Voulez-vous désactiver le mode PRO? (Tests uniquement)",
+  "deactivateProSuccess": "PRO désactivé. Redémarrez l'app pour appliquer les changements."
 }

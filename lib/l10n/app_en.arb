@@ -106,5 +106,9 @@
   "rangeCustom": "Custom",
   "removeAdsLink": "Remove Ads",
   "thanksSupport": "Thanks for your support!",
-  "privacyPolicy": "Privacy Policy"
+  "privacyPolicy": "Privacy Policy",
+  "deactivateProTest": "Deactivate PRO (Testing)",
+  "deactivateProTitle": "Deactivate PRO",
+  "deactivateProMessage": "Do you want to deactivate PRO mode? (Testing only)",
+  "deactivateProSuccess": "PRO deactivated. Restart the app to apply changes."
 }

@@ -28,7 +28,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get notificationsSubtitle =>
-      'Avvisa quando è disponibile un nuovo tasso';
+      'Avvisa quando Ã¨ disponibile un nuovo tasso';
 
   @override
   String get language => 'Lingua';
@@ -80,7 +80,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get legalNoticeText =>
-      'Questa applicazione NON rappresenta alcuna entità governativa o bancaria. Non siamo affiliati alla Banca Centrale del Venezuela. I dati sono ottenuti tramite un\'API che consulta il sito ufficiale della BCV. L\'uso delle informazioni è di esclusiva responsabilità dell\'utente.';
+      'Questa applicazione NON rappresenta alcuna entitÃ  governativa o bancaria. Non siamo affiliati alla Banca Centrale del Venezuela. I dati sono ottenuti tramite un\'API che consulta il sito ufficiale della BCV. L\'uso delle informazioni Ã¨ di esclusiva responsabilitÃ  dell\'utente.';
 
   @override
   String get openSourceLicenses => 'Licenze Open Source';
@@ -111,7 +111,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get restorePurchases => 'Ripristina Acquisti';
 
   @override
-  String get benefitAds => 'Niente pubblicità';
+  String get benefitAds => 'Niente pubblicitÃ ';
 
   @override
   String get benefitAdsDesc =>
@@ -125,11 +125,11 @@ class AppLocalizationsIt extends AppLocalizations {
       'Genera PDF della cronologia senza guardare video pubblicitari.';
 
   @override
-  String get benefitSpeed => 'Massima Velocità';
+  String get benefitSpeed => 'Massima VelocitÃ ';
 
   @override
   String get benefitSpeedDesc =>
-      'Navigazione più fluida e minor consumo di batteria.';
+      'Navigazione piÃ¹ fluida e minor consumo di batteria.';
 
   @override
   String get benefitSupport => 'Supporta il progetto';
@@ -163,10 +163,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get generatePdf => 'Genera PDF';
 
   @override
-  String get watchAd => 'Guarda pubblicità per sbloccare';
+  String get watchAd => 'Guarda pubblicitÃ  per sbloccare';
 
   @override
-  String get loadingAd => 'Caricamento pubblicità...';
+  String get loadingAd => 'Caricamento pubblicitÃ ...';
 
   @override
   String get errorAd => 'Errore caricamento';
@@ -260,11 +260,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get unlockPdfDesc =>
-      'Per esportare in PDF, guarda una pubblicità. Sbloccherà la funzione per 24 ore.';
+      'Per esportare in PDF, guarda una pubblicitÃ . SbloccherÃ  la funzione per 24 ore.';
 
   @override
   String get adNotReady =>
-      'La pubblicità non è ancora pronta. Riprova tra qualche secondo.';
+      'La pubblicitÃ  non Ã¨ ancora pronta. Riprova tra qualche secondo.';
 
   @override
   String get featureUnlocked => 'Funzione sbloccata per 24 ore!';
@@ -333,11 +333,25 @@ class AppLocalizationsIt extends AppLocalizations {
   String get rangeCustom => 'Person';
 
   @override
-  String get removeAdsLink => 'Rimuovi pubblicità';
+  String get removeAdsLink => 'Rimuovi pubblicitÃ ';
 
   @override
   String get thanksSupport => 'Grazie per il tuo supporto!';
 
   @override
   String get privacyPolicy => 'Informativa sulla privacy';
+
+  @override
+  String get deactivateProTest => 'Disattiva PRO (Test)';
+
+  @override
+  String get deactivateProTitle => 'Disattiva PRO';
+
+  @override
+  String get deactivateProMessage =>
+      'Vuoi disattivare la modalità PRO? (Solo per test)';
+
+  @override
+  String get deactivateProSuccess =>
+      'PRO disattivato. Riavvia l\'app per applicare le modifiche.';
 }

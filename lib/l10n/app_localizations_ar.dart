@@ -9,194 +9,201 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get appTitle => 'حاسبة BCV';
+  String get appTitle => 'Ø­Ø§Ø³Ø¨Ø© BCV';
 
   @override
-  String get settings => 'الإعدادات';
+  String get settings => 'Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª';
 
   @override
-  String get general => 'عام';
+  String get general => 'Ø¹Ø§Ù…';
 
   @override
-  String get storageNetwork => 'التخزين والشبكة';
+  String get storageNetwork => 'Ø§Ù„ØªØ®Ø²ÙŠÙ† ÙˆØ§Ù„Ø´Ø¨ÙƒØ©';
 
   @override
-  String get storageNetworkSubtitle => 'إدارة التخزين المؤقت والتحديثات';
+  String get storageNetworkSubtitle =>
+      'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„ØªØ®Ø²ÙŠÙ† Ø§Ù„Ù…Ø¤Ù‚Øª ÙˆØ§Ù„ØªØ­Ø¯ÙŠØ«Ø§Øª';
 
   @override
-  String get notifications => 'إشعارات';
+  String get notifications => 'Ø¥Ø´Ø¹Ø§Ø±Ø§Øª';
 
   @override
-  String get notificationsSubtitle => 'إشعار عند توفر سعر جديد';
+  String get notificationsSubtitle =>
+      'Ø¥Ø´Ø¹Ø§Ø± Ø¹Ù†Ø¯ ØªÙˆÙØ± Ø³Ø¹Ø± Ø¬Ø¯ÙŠØ¯';
 
   @override
-  String get language => 'اللغة';
+  String get language => 'Ø§Ù„Ù„ØºØ©';
 
   @override
-  String get systemDefault => 'الافتراضي للنظام';
+  String get systemDefault => 'Ø§Ù„Ø§ÙØªØ±Ø§Ø¶ÙŠ Ù„Ù„Ù†Ø¸Ø§Ù…';
 
   @override
-  String get information => 'معلومات';
+  String get information => 'Ù…Ø¹Ù„ÙˆÙ…Ø§Øª';
 
   @override
-  String get aboutApp => 'حول التطبيق';
+  String get aboutApp => 'Ø­ÙˆÙ„ Ø§Ù„ØªØ·Ø¨ÙŠÙ‚';
 
   @override
-  String get aboutAppSubtitle => 'الإصدار، المطور والتراخيص';
+  String get aboutAppSubtitle =>
+      'Ø§Ù„Ø¥ØµØ¯Ø§Ø±ØŒ Ø§Ù„Ù…Ø·ÙˆØ± ÙˆØ§Ù„ØªØ±Ø§Ø®ÙŠØµ';
 
   @override
-  String get forceUpdate => 'فرض التحديث';
+  String get forceUpdate => 'ÙØ±Ø¶ Ø§Ù„ØªØ­Ø¯ÙŠØ«';
 
   @override
-  String get forceUpdateSubtitle => 'تحديث الأسعار من API';
+  String get forceUpdateSubtitle => 'ØªØ­Ø¯ÙŠØ« Ø§Ù„Ø£Ø³Ø¹Ø§Ø± Ù…Ù† API';
 
   @override
-  String get clearCache => 'مسح التخزين المؤقت';
+  String get clearCache => 'Ù…Ø³Ø­ Ø§Ù„ØªØ®Ø²ÙŠÙ† Ø§Ù„Ù…Ø¤Ù‚Øª';
 
   @override
-  String get clearCacheSubtitle => 'حذف البيانات المحفوظة محليًا';
+  String get clearCacheSubtitle =>
+      'Ø­Ø°Ù Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ù…Ø­ÙÙˆØ¸Ø© Ù…Ø­Ù„ÙŠÙ‹Ø§';
 
   @override
-  String get cancel => 'إلغاء';
+  String get cancel => 'Ø¥Ù„ØºØ§Ø¡';
 
   @override
-  String get close => 'إغلاق';
+  String get close => 'Ø¥ØºÙ„Ø§Ù‚';
 
   @override
-  String get updatingRates => 'جاري تحديث الأسعار...';
+  String get updatingRates => 'Ø¬Ø§Ø±ÙŠ ØªØ­Ø¯ÙŠØ« Ø§Ù„Ø£Ø³Ø¹Ø§Ø±...';
 
   @override
-  String get cacheCleared => 'تم مسح الذاكرة المؤقتة';
+  String get cacheCleared => 'ØªÙ… Ù…Ø³Ø­ Ø§Ù„Ø°Ø§ÙƒØ±Ø© Ø§Ù„Ù…Ø¤Ù‚ØªØ©';
 
   @override
-  String get developer => 'المطور';
+  String get developer => 'Ø§Ù„Ù…Ø·ÙˆØ±';
 
   @override
-  String get dataSource => 'مصدر البيانات';
+  String get dataSource => 'Ù…ØµØ¯Ø± Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª';
 
   @override
-  String get legalNotice => 'إشعار قانوني';
+  String get legalNotice => 'Ø¥Ø´Ø¹Ø§Ø± Ù‚Ø§Ù†ÙˆÙ†ÙŠ';
 
   @override
   String get legalNoticeText =>
-      'هذا التطبيق لا يمثل أي جهة حكومية أو مصرفية. ليس لدينا أي ارتباط بالبنك المركزي الفنزويلي. يتم الحصول على البيانات عبر API تستعلم من موقع BCV الرسمي. استخدام المعلومات هو مسؤولية المستخدم وحده.';
+      'Ù‡Ø°Ø§ Ø§Ù„ØªØ·Ø¨ÙŠÙ‚ Ù„Ø§ ÙŠÙ…Ø«Ù„ Ø£ÙŠ Ø¬Ù‡Ø© Ø­ÙƒÙˆÙ…ÙŠØ© Ø£Ùˆ Ù…ØµØ±ÙÙŠØ©. Ù„ÙŠØ³ Ù„Ø¯ÙŠÙ†Ø§ Ø£ÙŠ Ø§Ø±ØªØ¨Ø§Ø· Ø¨Ø§Ù„Ø¨Ù†Ùƒ Ø§Ù„Ù…Ø±ÙƒØ²ÙŠ Ø§Ù„ÙÙ†Ø²ÙˆÙŠÙ„ÙŠ. ÙŠØªÙ… Ø§Ù„Ø­ØµÙˆÙ„ Ø¹Ù„Ù‰ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø¹Ø¨Ø± API ØªØ³ØªØ¹Ù„Ù… Ù…Ù† Ù…ÙˆÙ‚Ø¹ BCV Ø§Ù„Ø±Ø³Ù…ÙŠ. Ø§Ø³ØªØ®Ø¯Ø§Ù… Ø§Ù„Ù…Ø¹Ù„ÙˆÙ…Ø§Øª Ù‡Ùˆ Ù…Ø³Ø¤ÙˆÙ„ÙŠØ© Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… ÙˆØ­Ø¯Ù‡.';
 
   @override
-  String get openSourceLicenses => 'تراخيص المصدر المفتوح';
+  String get openSourceLicenses => 'ØªØ±Ø§Ø®ÙŠØµ Ø§Ù„Ù…ØµØ¯Ø± Ø§Ù„Ù…ÙØªÙˆØ­';
 
   @override
-  String get version => 'الإصدار';
+  String get version => 'Ø§Ù„Ø¥ØµØ¯Ø§Ø±';
 
   @override
-  String get becomePro => 'كن مستخدم PRO!';
+  String get becomePro => 'ÙƒÙ† Ù…Ø³ØªØ®Ø¯Ù… PRO!';
 
   @override
-  String get proUser => 'أنت مستخدم PRO!';
+  String get proUser => 'Ø£Ù†Øª Ù…Ø³ØªØ®Ø¯Ù… PRO!';
 
   @override
-  String get getPro => 'تفعيل ميزات PRO (تجريبي)';
+  String get getPro => 'ØªÙØ¹ÙŠÙ„ Ù…ÙŠØ²Ø§Øª PRO (ØªØ¬Ø±ÙŠØ¨ÙŠ)';
 
   @override
   String get oneTimePayment => '';
 
   @override
   String get activateProBetaTitle =>
-      'هل تريد تفعيل ميزات PRO لجلسة الاختبار هذه؟';
+      'Ù‡Ù„ ØªØ±ÙŠØ¯ ØªÙØ¹ÙŠÙ„ Ù…ÙŠØ²Ø§Øª PRO Ù„Ø¬Ù„Ø³Ø© Ø§Ù„Ø§Ø®ØªØ¨Ø§Ø± Ù‡Ø°Ù‡ØŸ';
 
   @override
-  String get activateProBetaAccept => 'تفعيل';
+  String get activateProBetaAccept => 'ØªÙØ¹ÙŠÙ„';
 
   @override
-  String get restorePurchases => 'استعادة المشتريات';
+  String get restorePurchases => 'Ø§Ø³ØªØ¹Ø§Ø¯Ø© Ø§Ù„Ù…Ø´ØªØ±ÙŠØ§Øª';
 
   @override
-  String get benefitAds => 'بدون إعلانات';
+  String get benefitAds => 'Ø¨Ø¯ÙˆÙ† Ø¥Ø¹Ù„Ø§Ù†Ø§Øª';
 
   @override
-  String get benefitAdsDesc => 'استمتع بواجهة نظيفة وبدون انقطاع.';
+  String get benefitAdsDesc =>
+      'Ø§Ø³ØªÙ…ØªØ¹ Ø¨ÙˆØ§Ø¬Ù‡Ø© Ù†Ø¸ÙŠÙØ© ÙˆØ¨Ø¯ÙˆÙ† Ø§Ù†Ù‚Ø·Ø§Ø¹.';
 
   @override
-  String get benefitPdf => 'تصدير فوري';
+  String get benefitPdf => 'ØªØµØ¯ÙŠØ± ÙÙˆØ±ÙŠ';
 
   @override
   String get benefitPdfDesc =>
-      'أنشئ تقارير PDF للسجل دون مشاهدة إعلانات الفيديو.';
+      'Ø£Ù†Ø´Ø¦ ØªÙ‚Ø§Ø±ÙŠØ± PDF Ù„Ù„Ø³Ø¬Ù„ Ø¯ÙˆÙ† Ù…Ø´Ø§Ù‡Ø¯Ø© Ø¥Ø¹Ù„Ø§Ù†Ø§Øª Ø§Ù„ÙÙŠØ¯ÙŠÙˆ.';
 
   @override
-  String get benefitSpeed => 'سرعة قصوى';
+  String get benefitSpeed => 'Ø³Ø±Ø¹Ø© Ù‚ØµÙˆÙ‰';
 
   @override
-  String get benefitSpeedDesc => 'تصفح أكثر سلاسة واستهلاك أقل للبطارية.';
+  String get benefitSpeedDesc =>
+      'ØªØµÙØ­ Ø£ÙƒØ«Ø± Ø³Ù„Ø§Ø³Ø© ÙˆØ§Ø³ØªÙ‡Ù„Ø§Ùƒ Ø£Ù‚Ù„ Ù„Ù„Ø¨Ø·Ø§Ø±ÙŠØ©.';
 
   @override
-  String get benefitSupport => 'ادعم المشروع';
+  String get benefitSupport => 'Ø§Ø¯Ø¹Ù… Ø§Ù„Ù…Ø´Ø±ÙˆØ¹';
 
   @override
-  String get benefitSupportDesc => 'ساعدنا في مواصلة تحسين الأداة.';
+  String get benefitSupportDesc =>
+      'Ø³Ø§Ø¹Ø¯Ù†Ø§ ÙÙŠ Ù…ÙˆØ§ØµÙ„Ø© ØªØ­Ø³ÙŠÙ† Ø§Ù„Ø£Ø¯Ø§Ø©.';
 
   @override
-  String get usd => 'دولار';
+  String get usd => 'Ø¯ÙˆÙ„Ø§Ø±';
 
   @override
-  String get eur => 'يورو';
+  String get eur => 'ÙŠÙˆØ±Ùˆ';
 
   @override
-  String get ves => 'بوليفار';
+  String get ves => 'Ø¨ÙˆÙ„ÙŠÙØ§Ø±';
 
   @override
-  String get history => 'السجل';
+  String get history => 'Ø§Ù„Ø³Ø¬Ù„';
 
   @override
-  String get historyRates => 'سجل الأسعار';
+  String get historyRates => 'Ø³Ø¬Ù„ Ø§Ù„Ø£Ø³Ø¹Ø§Ø±';
 
   @override
-  String get start => 'البداية';
+  String get start => 'Ø§Ù„Ø¨Ø¯Ø§ÙŠØ©';
 
   @override
-  String get end => 'النهاية';
+  String get end => 'Ø§Ù„Ù†Ù‡Ø§ÙŠØ©';
 
   @override
-  String get generatePdf => 'إنشاء PDF';
+  String get generatePdf => 'Ø¥Ù†Ø´Ø§Ø¡ PDF';
 
   @override
-  String get watchAd => 'شاهد إعلان لفتح الميزة';
+  String get watchAd => 'Ø´Ø§Ù‡Ø¯ Ø¥Ø¹Ù„Ø§Ù† Ù„ÙØªØ­ Ø§Ù„Ù…ÙŠØ²Ø©';
 
   @override
-  String get loadingAd => 'جاري تحميل الإعلان...';
+  String get loadingAd => 'Ø¬Ø§Ø±ÙŠ ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ø¥Ø¹Ù„Ø§Ù†...';
 
   @override
-  String get errorAd => 'خطأ في التحميل';
+  String get errorAd => 'Ø®Ø·Ø£ ÙÙŠ Ø§Ù„ØªØ­Ù…ÙŠÙ„';
 
   @override
-  String get today => 'اليوم';
+  String get today => 'Ø§Ù„ÙŠÙˆÙ…';
 
   @override
-  String get tomorrow => 'غداً';
+  String get tomorrow => 'ØºØ¯Ø§Ù‹';
 
   @override
-  String get officialRate => 'السعر الرسمي';
+  String get officialRate => 'Ø§Ù„Ø³Ø¹Ø± Ø§Ù„Ø±Ø³Ù…ÙŠ';
 
   @override
-  String get customRate => 'سعر مخصص';
+  String get customRate => 'Ø³Ø¹Ø± Ù…Ø®ØµØµ';
 
   @override
-  String get convert => 'تحويل';
+  String get convert => 'ØªØ­ÙˆÙŠÙ„';
 
   @override
-  String get rateLabel => 'سعر';
+  String get rateLabel => 'Ø³Ø¹Ø±';
 
   @override
-  String get priceScanner => 'ماسح الأسعار';
+  String get priceScanner => 'Ù…Ø§Ø³Ø­ Ø§Ù„Ø£Ø³Ø¹Ø§Ø±';
 
   @override
   String get cameraPermissionText =>
-      'تستخدم هذه الأداة الكاميرا لاكتشاف الأسعار وتحويلها في الوقت الفعلي.\n\nيتطلب الوصول إلى الكاميرا والمعرض.';
+      'ØªØ³ØªØ®Ø¯Ù… Ù‡Ø°Ù‡ Ø§Ù„Ø£Ø¯Ø§Ø© Ø§Ù„ÙƒØ§Ù…ÙŠØ±Ø§ Ù„Ø§ÙƒØªØ´Ø§Ù Ø§Ù„Ø£Ø³Ø¹Ø§Ø± ÙˆØªØ­ÙˆÙŠÙ„Ù‡Ø§ ÙÙŠ Ø§Ù„ÙˆÙ‚Øª Ø§Ù„ÙØ¹Ù„ÙŠ.\n\nÙŠØªØ·Ù„Ø¨ Ø§Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ø§Ù„ÙƒØ§Ù…ÙŠØ±Ø§ ÙˆØ§Ù„Ù…Ø¹Ø±Ø¶.';
 
   @override
-  String get allowAndContinue => 'سماح ومتابعة';
+  String get allowAndContinue => 'Ø³Ù…Ø§Ø­ ÙˆÙ…ØªØ§Ø¨Ø¹Ø©';
 
   @override
-  String get whatToScan => 'ماذا ستمسح ضوئيًا؟';
+  String get whatToScan => 'Ù…Ø§Ø°Ø§ Ø³ØªÙ…Ø³Ø­ Ø¶ÙˆØ¦ÙŠÙ‹Ø§ØŸ';
 
   @override
   String get amountUsd => 'USD';
@@ -208,130 +215,147 @@ class AppLocalizationsAr extends AppLocalizations {
   String get amountVes => 'Bs.';
 
   @override
-  String get ratePers => 'مخصص';
+  String get ratePers => 'Ù…Ø®ØµØµ';
 
   @override
-  String get noCustomRates => 'لا توجد أسعار مخصصة';
+  String get noCustomRates => 'Ù„Ø§ ØªÙˆØ¬Ø¯ Ø£Ø³Ø¹Ø§Ø± Ù…Ø®ØµØµØ©';
 
   @override
-  String get noCustomRatesDesc => 'تحتاج لإضافة سعر مخصص لاستخدام هذه الميزة.';
+  String get noCustomRatesDesc =>
+      'ØªØ­ØªØ§Ø¬ Ù„Ø¥Ø¶Ø§ÙØ© Ø³Ø¹Ø± Ù…Ø®ØµØµ Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù… Ù‡Ø°Ù‡ Ø§Ù„Ù…ÙŠØ²Ø©.';
 
   @override
-  String get createRate => 'إنشاء سعر';
+  String get createRate => 'Ø¥Ù†Ø´Ø§Ø¡ Ø³Ø¹Ø±';
 
   @override
-  String get chooseRate => 'اختر سعرًا';
+  String get chooseRate => 'Ø§Ø®ØªØ± Ø³Ø¹Ø±Ù‹Ø§';
 
   @override
-  String get newRate => 'سعر جديد...';
+  String get newRate => 'Ø³Ø¹Ø± Ø¬Ø¯ÙŠØ¯...';
 
   @override
-  String get convertVesTo => 'تحويل بوليفار إلى...';
+  String get convertVesTo => 'ØªØ­ÙˆÙŠÙ„ Ø¨ÙˆÙ„ÙŠÙØ§Ø± Ø¥Ù„Ù‰...';
 
   @override
-  String get homeScreen => 'الرئيسية';
+  String get homeScreen => 'Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©';
 
   @override
-  String get calculatorScreen => 'آلة حاسبة';
+  String get calculatorScreen => 'Ø¢Ù„Ø© Ø­Ø§Ø³Ø¨Ø©';
 
   @override
-  String get rateDate => 'تاريخ الاستحقاق';
+  String get rateDate => 'ØªØ§Ø±ÙŠØ® Ø§Ù„Ø§Ø³ØªØ­Ù‚Ø§Ù‚';
 
   @override
-  String get officialRateBcv => 'سعر BCV الرسمي';
+  String get officialRateBcv => 'Ø³Ø¹Ø± BCV Ø§Ù„Ø±Ø³Ù…ÙŠ';
 
   @override
-  String get createYourFirstRate => 'أنشئ سعرك المخصص الأول';
+  String get createYourFirstRate => 'Ø£Ù†Ø´Ø¦ Ø³Ø¹Ø±Ùƒ Ø§Ù„Ù…Ø®ØµØµ Ø§Ù„Ø£ÙˆÙ„';
 
   @override
-  String get addCustomRatesDescription => 'أضف أسعار صرف مخصصة لحساب تحويلاتك.';
+  String get addCustomRatesDescription =>
+      'Ø£Ø¶Ù Ø£Ø³Ø¹Ø§Ø± ØµØ±Ù Ù…Ø®ØµØµØ© Ù„Ø­Ø³Ø§Ø¨ ØªØ­ÙˆÙŠÙ„Ø§ØªÙƒ.';
 
   @override
-  String get errorLoadingRate => 'خطأ في تحميل السعر';
+  String get errorLoadingRate => 'Ø®Ø·Ø£ ÙÙŠ ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ø³Ø¹Ø±';
 
   @override
-  String get unlockPdfTitle => 'فتح تصدير PDF';
+  String get unlockPdfTitle => 'ÙØªØ­ ØªØµØ¯ÙŠØ± PDF';
 
   @override
   String get unlockPdfDesc =>
-      'لتصدير السجل إلى PDF، يرجى مشاهدة إعلان قصير. سيؤدي هذا إلى فتح الميزة لمدة 24 ساعة.';
+      'Ù„ØªØµØ¯ÙŠØ± Ø§Ù„Ø³Ø¬Ù„ Ø¥Ù„Ù‰ PDFØŒ ÙŠØ±Ø¬Ù‰ Ù…Ø´Ø§Ù‡Ø¯Ø© Ø¥Ø¹Ù„Ø§Ù† Ù‚ØµÙŠØ±. Ø³ÙŠØ¤Ø¯ÙŠ Ù‡Ø°Ø§ Ø¥Ù„Ù‰ ÙØªØ­ Ø§Ù„Ù…ÙŠØ²Ø© Ù„Ù…Ø¯Ø© 24 Ø³Ø§Ø¹Ø©.';
 
   @override
   String get adNotReady =>
-      'الإعلان ليس جاهزًا بعد. حاول مرة أخرى في غضون ثوان.';
+      'Ø§Ù„Ø¥Ø¹Ù„Ø§Ù† Ù„ÙŠØ³ Ø¬Ø§Ù‡Ø²Ù‹Ø§ Ø¨Ø¹Ø¯. Ø­Ø§ÙˆÙ„ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ ÙÙŠ ØºØ¶ÙˆÙ† Ø«ÙˆØ§Ù†.';
 
   @override
-  String get featureUnlocked => 'تم فتح الميزة لمدة 24 ساعة!';
+  String get featureUnlocked =>
+      'ØªÙ… ÙØªØ­ Ø§Ù„Ù…ÙŠØ²Ø© Ù„Ù…Ø¯Ø© 24 Ø³Ø§Ø¹Ø©!';
 
   @override
-  String get pdfHeader => 'تاريخ أسعار BCV';
+  String get pdfHeader => 'ØªØ§Ø±ÙŠØ® Ø£Ø³Ø¹Ø§Ø± BCV';
 
   @override
-  String get statsPeriod => 'إحصائيات الفترة';
+  String get statsPeriod => 'Ø¥Ø­ØµØ§Ø¦ÙŠØ§Øª Ø§Ù„ÙØªØ±Ø©';
 
   @override
-  String get copiedClipboard => 'تم النسخ إلى الحافظة';
+  String get copiedClipboard => 'ØªÙ… Ø§Ù„Ù†Ø³Ø® Ø¥Ù„Ù‰ Ø§Ù„Ø­Ø§ÙØ¸Ø©';
 
   @override
-  String get amountDollars => 'المبلغ بالدولار';
+  String get amountDollars => 'Ø§Ù„Ù…Ø¨Ù„Øº Ø¨Ø§Ù„Ø¯ÙˆÙ„Ø§Ø±';
 
   @override
-  String get amountEuros => 'المبلغ باليورو';
+  String get amountEuros => 'Ø§Ù„Ù…Ø¨Ù„Øº Ø¨Ø§Ù„ÙŠÙˆØ±Ùˆ';
 
   @override
-  String get amountBolivars => 'المبلغ بالبوليفار';
+  String get amountBolivars => 'Ø§Ù„Ù…Ø¨Ù„Øº Ø¨Ø§Ù„Ø¨ÙˆÙ„ÙŠÙØ§Ø±';
 
   @override
-  String get amountCustom => 'المبلغ بـ';
+  String get amountCustom => 'Ø§Ù„Ù…Ø¨Ù„Øº Ø¨Ù€';
 
   @override
-  String get shareError => 'خطأ في المشاركة';
+  String get shareError => 'Ø®Ø·Ø£ ÙÙŠ Ø§Ù„Ù…Ø´Ø§Ø±ÙƒØ©';
 
   @override
-  String get pdfError => 'خطأ في إنشاء PDF';
+  String get pdfError => 'Ø®Ø·Ø£ ÙÙŠ Ø¥Ù†Ø´Ø§Ø¡ PDF';
 
   @override
-  String get viewList => 'عرض القائمة';
+  String get viewList => 'Ø¹Ø±Ø¶ Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©';
 
   @override
-  String get viewChart => 'عرض الرسم البياني';
+  String get viewChart => 'Ø¹Ø±Ø¶ Ø§Ù„Ø±Ø³Ù… Ø§Ù„Ø¨ÙŠØ§Ù†ÙŠ';
 
   @override
-  String get noData => 'لا توجد بيانات';
+  String get noData => 'Ù„Ø§ ØªÙˆØ¬Ø¯ Ø¨ÙŠØ§Ù†Ø§Øª';
 
   @override
-  String get mean => 'متوسط';
+  String get mean => 'Ù…ØªÙˆØ³Ø·';
 
   @override
-  String get min => 'الحد الأدنى';
+  String get min => 'Ø§Ù„Ø­Ø¯ Ø§Ù„Ø£Ø¯Ù†Ù‰';
 
   @override
-  String get max => 'الحد الأقصى';
+  String get max => 'Ø§Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰';
 
   @override
-  String get change => 'تغيير';
+  String get change => 'ØªØºÙŠÙŠØ±';
 
   @override
-  String get rangeWeek => '1 أسبوع';
+  String get rangeWeek => '1 Ø£Ø³Ø¨ÙˆØ¹';
 
   @override
-  String get rangeMonth => '1 شهر';
+  String get rangeMonth => '1 Ø´Ù‡Ø±';
 
   @override
-  String get rangeThreeMonths => '3 أشهر';
+  String get rangeThreeMonths => '3 Ø£Ø´Ù‡Ø±';
 
   @override
-  String get rangeYear => '1 سنة';
+  String get rangeYear => '1 Ø³Ù†Ø©';
 
   @override
-  String get rangeCustom => 'مخصص';
+  String get rangeCustom => 'Ù…Ø®ØµØµ';
 
   @override
-  String get removeAdsLink => 'إزالة الإعلانات';
+  String get removeAdsLink => 'Ø¥Ø²Ø§Ù„Ø© Ø§Ù„Ø¥Ø¹Ù„Ø§Ù†Ø§Øª';
 
   @override
-  String get thanksSupport => 'شكرا لدعمك!';
+  String get thanksSupport => 'Ø´ÙƒØ±Ø§ Ù„Ø¯Ø¹Ù…Ùƒ!';
 
   @override
-  String get privacyPolicy => 'سياسة الخصوصية';
+  String get privacyPolicy => 'Ø³ÙŠØ§Ø³Ø© Ø§Ù„Ø®ØµÙˆØµÙŠØ©';
+
+  @override
+  String get deactivateProTest => 'إلغاء تنشيط PRO (اختبار)';
+
+  @override
+  String get deactivateProTitle => 'إلغاء تنشيط PRO';
+
+  @override
+  String get deactivateProMessage =>
+      'هل تريد إلغاء تنشيط وضع PRO؟ (للاختبار فقط)';
+
+  @override
+  String get deactivateProSuccess =>
+      'تم إلغاء تنشيط PRO. أعد تشغيل التطبيق لتطبيق التغييرات.';
 }

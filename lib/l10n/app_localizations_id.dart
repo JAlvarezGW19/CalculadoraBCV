@@ -335,4 +335,18 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get privacyPolicy => 'Kebijakan Privasi';
+
+  @override
+  String get deactivateProTest => 'Nonaktifkan PRO (Pengujian)';
+
+  @override
+  String get deactivateProTitle => 'Nonaktifkan PRO';
+
+  @override
+  String get deactivateProMessage =>
+      'Apakah Anda ingin menonaktifkan mode PRO? (Hanya untuk pengujian)';
+
+  @override
+  String get deactivateProSuccess =>
+      'PRO dinonaktifkan. Mulai ulang aplikasi untuk menerapkan perubahan.';
 }

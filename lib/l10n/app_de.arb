@@ -1,4 +1,4 @@
-{
+﻿{
   "@@locale": "de",
   "appTitle": "BCV Rechner",
   "settings": "Einstellungen",
@@ -106,5 +106,9 @@
   "rangeCustom": "Benutzer",
   "removeAdsLink": "Werbung entfernen",
   "thanksSupport": "Danke für deine Unterstützung!",
-  "privacyPolicy": "Datenschutzerklärung"
+  "privacyPolicy": "Datenschutzerklärung",
+  "deactivateProTest": "PRO deaktivieren (Tests)",
+  "deactivateProTitle": "PRO deaktivieren",
+  "deactivateProMessage": "Möchten Sie den PRO-Modus deaktivieren? (Nur für Tests)",
+  "deactivateProSuccess": "PRO deaktiviert. Starten Sie die App neu, um Änderungen anzuwenden."
 }

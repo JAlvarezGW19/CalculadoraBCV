@@ -1,4 +1,4 @@
-{
+﻿{
   "@@locale": "id",
   "appTitle": "Kalkulator BCV",
   "settings": "Pengaturan",
@@ -106,5 +106,9 @@
   "rangeCustom": "Kustom",
   "removeAdsLink": "Hapus Iklan",
   "thanksSupport": "Terima kasih atas dukungan Anda!",
-  "privacyPolicy": "Kebijakan Privasi"
+  "privacyPolicy": "Kebijakan Privasi",
+  "deactivateProTest": "Nonaktifkan PRO (Pengujian)",
+  "deactivateProTitle": "Nonaktifkan PRO",
+  "deactivateProMessage": "Apakah Anda ingin menonaktifkan mode PRO? (Hanya untuk pengujian)",
+  "deactivateProSuccess": "PRO dinonaktifkan. Mulai ulang aplikasi untuk menerapkan perubahan."
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../theme/app_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,6 +13,7 @@ class CalculatorDisplay extends StatelessWidget {
   final String inputSuffix;
   final VoidCallback onSwap;
   final VoidCallback onHistory;
+  final ValueChanged<String> onPaste;
   final VoidCallback? onRateClick;
   final String rateText;
   final bool showRateDropdown;
@@ -27,6 +29,7 @@ class CalculatorDisplay extends StatelessWidget {
     required this.inputSuffix,
     required this.onSwap,
     required this.onHistory,
+    required this.onPaste,
     this.onRateClick,
     required this.rateText,
     this.showRateDropdown = false,
@@ -133,15 +136,53 @@ class CalculatorDisplay extends StatelessWidget {
             child: FittedBox(
               alignment: Alignment.centerRight,
               fit: BoxFit.scaleDown,
-              child: Text(
-                expression.isEmpty
-                    ? "0"
-                    : "$inputPrefix$expression$inputSuffix",
-                textAlign: TextAlign.right,
-                style: GoogleFonts.montserrat(
-                  color: AppTheme.textSubtle,
-                  fontSize: 70,
-                  fontWeight: FontWeight.w500,
+              child: GestureDetector(
+                onLongPressStart: (details) async {
+                  // Get overlay before any async operations
+                  final currentContext = context;
+                  final RenderBox? overlay =
+                      Overlay.of(currentContext).context.findRenderObject()
+                          as RenderBox?;
+
+                  final clipboardData = await Clipboard.getData('text/plain');
+                  if (!currentContext.mounted) return;
+
+                  if (clipboardData != null && clipboardData.text != null) {
+                    final text = clipboardData.text!;
+                    // Validate that it's a number (integer or decimal)
+                    final numRegex = RegExp(r'^-?\d+([.,]\d+)?$');
+                    if (numRegex.hasMatch(text) && overlay != null) {
+                      // Show menu with paste option
+                      await showMenu(
+                        context: currentContext,
+                        position: RelativeRect.fromRect(
+                          details.globalPosition & const Size(40, 40),
+                          Offset.zero & overlay.size,
+                        ),
+                        items: [
+                          PopupMenuItem(
+                            child: const Text('Pegar'),
+                            onTap: () {
+                              // Replace comma with period for decimal
+                              final cleanText = text.replaceAll(',', '.');
+                              onPaste(cleanText);
+                            },
+                          ),
+                        ],
+                      );
+                    }
+                  }
+                },
+                child: Text(
+                  expression.isEmpty
+                      ? "0$inputSuffix"
+                      : "$inputPrefix$expression$inputSuffix",
+                  textAlign: TextAlign.right,
+                  style: GoogleFonts.montserrat(
+                    color: AppTheme.textSubtle,
+                    fontSize: 70,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),

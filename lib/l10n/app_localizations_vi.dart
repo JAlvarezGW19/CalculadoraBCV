@@ -9,135 +9,139 @@ class AppLocalizationsVi extends AppLocalizations {
   AppLocalizationsVi([String locale = 'vi']) : super(locale);
 
   @override
-  String get appTitle => 'Máy tính BCV';
+  String get appTitle => 'MÃ¡y tÃ­nh BCV';
 
   @override
-  String get settings => 'Cài đặt';
+  String get settings => 'CÃ i Ä‘áº·t';
 
   @override
   String get general => 'Chung';
 
   @override
-  String get storageNetwork => 'Lưu trữ & Mạng';
+  String get storageNetwork => 'LÆ°u trá»¯ & Máº¡ng';
 
   @override
-  String get storageNetworkSubtitle => 'Quản lý bộ nhớ đệm và cập nhật';
+  String get storageNetworkSubtitle =>
+      'Quáº£n lÃ½ bá»™ nhá»› Ä‘á»‡m vÃ  cáº­p nháº­t';
 
   @override
-  String get notifications => 'Thông báo';
+  String get notifications => 'ThÃ´ng bÃ¡o';
 
   @override
-  String get notificationsSubtitle => 'Thông báo khi có tỷ giá mới';
+  String get notificationsSubtitle => 'ThÃ´ng bÃ¡o khi cÃ³ tá»· giÃ¡ má»›i';
 
   @override
-  String get language => 'Ngôn ngữ';
+  String get language => 'NgÃ´n ngá»¯';
 
   @override
-  String get systemDefault => 'Mặc định hệ thống';
+  String get systemDefault => 'Máº·c Ä‘á»‹nh há»‡ thá»‘ng';
 
   @override
-  String get information => 'Thông tin';
+  String get information => 'ThÃ´ng tin';
 
   @override
-  String get aboutApp => 'Về ứng dụng';
+  String get aboutApp => 'Vá» á»©ng dá»¥ng';
 
   @override
-  String get aboutAppSubtitle => 'Phiên bản, nhà phát triển và giấy phép';
+  String get aboutAppSubtitle =>
+      'PhiÃªn báº£n, nhÃ  phÃ¡t triá»ƒn vÃ  giáº¥y phÃ©p';
 
   @override
-  String get forceUpdate => 'Bắt buộc cập nhật';
+  String get forceUpdate => 'Báº¯t buá»™c cáº­p nháº­t';
 
   @override
-  String get forceUpdateSubtitle => 'Cập nhật tỷ giá từ API';
+  String get forceUpdateSubtitle => 'Cáº­p nháº­t tá»· giÃ¡ tá»« API';
 
   @override
-  String get clearCache => 'Xóa bộ nhớ đệm';
+  String get clearCache => 'XÃ³a bá»™ nhá»› Ä‘á»‡m';
 
   @override
-  String get clearCacheSubtitle => 'Xóa dữ liệu được lưu trữ cục bộ';
+  String get clearCacheSubtitle =>
+      'XÃ³a dá»¯ liá»‡u Ä‘Æ°á»£c lÆ°u trá»¯ cá»¥c bá»™';
 
   @override
-  String get cancel => 'Hủy';
+  String get cancel => 'Há»§y';
 
   @override
-  String get close => 'Đóng';
+  String get close => 'ÄÃ³ng';
 
   @override
-  String get updatingRates => 'Đang cập nhật tỷ giá...';
+  String get updatingRates => 'Äang cáº­p nháº­t tá»· giÃ¡...';
 
   @override
-  String get cacheCleared => 'Đã xóa bộ nhớ đệm';
+  String get cacheCleared => 'ÄÃ£ xÃ³a bá»™ nhá»› Ä‘á»‡m';
 
   @override
-  String get developer => 'Nhà phát triển';
+  String get developer => 'NhÃ  phÃ¡t triá»ƒn';
 
   @override
-  String get dataSource => 'Nguồn dữ liệu';
+  String get dataSource => 'Nguá»“n dá»¯ liá»‡u';
 
   @override
-  String get legalNotice => 'Thông báo pháp lý';
+  String get legalNotice => 'ThÃ´ng bÃ¡o phÃ¡p lÃ½';
 
   @override
   String get legalNoticeText =>
-      'Ứng dụng này KHÔNG đại diện cho bất kỳ tổ chức chính phủ hoặc ngân hàng nào. Chúng tôi không liên kết với Ngân hàng Trung ương Venezuela. Dữ liệu được lấy thông qua API truy vấn trang web chính thức của BCV. Việc sử dụng thông tin hoàn toàn là trách nhiệm của người dùng.';
+      'á»¨ng dá»¥ng nÃ y KHÃ”NG Ä‘áº¡i diá»‡n cho báº¥t ká»³ tá»• chá»©c chÃ­nh phá»§ hoáº·c ngÃ¢n hÃ ng nÃ o. ChÃºng tÃ´i khÃ´ng liÃªn káº¿t vá»›i NgÃ¢n hÃ ng Trung Æ°Æ¡ng Venezuela. Dá»¯ liá»‡u Ä‘Æ°á»£c láº¥y thÃ´ng qua API truy váº¥n trang web chÃ­nh thá»©c cá»§a BCV. Viá»‡c sá»­ dá»¥ng thÃ´ng tin hoÃ n toÃ n lÃ  trÃ¡ch nhiá»‡m cá»§a ngÆ°á»i dÃ¹ng.';
 
   @override
-  String get openSourceLicenses => 'Giấy phép mã nguồn mở';
+  String get openSourceLicenses => 'Giáº¥y phÃ©p mÃ£ nguá»“n má»Ÿ';
 
   @override
-  String get version => 'Phiên bản';
+  String get version => 'PhiÃªn báº£n';
 
   @override
-  String get becomePro => 'Trở thành người dùng PRO!';
+  String get becomePro => 'Trá»Ÿ thÃ nh ngÆ°á»i dÃ¹ng PRO!';
 
   @override
-  String get proUser => 'Bạn là người dùng PRO!';
+  String get proUser => 'Báº¡n lÃ  ngÆ°á»i dÃ¹ng PRO!';
 
   @override
-  String get getPro => 'Kích hoạt tính năng PRO (Beta)';
+  String get getPro => 'KÃ­ch hoáº¡t tÃ­nh nÄƒng PRO (Beta)';
 
   @override
   String get oneTimePayment => '';
 
   @override
   String get activateProBetaTitle =>
-      'Bạn có muốn kích hoạt các tính năng PRO cho phiên thử nghiệm này không?';
+      'Báº¡n cÃ³ muá»‘n kÃ­ch hoáº¡t cÃ¡c tÃ­nh nÄƒng PRO cho phiÃªn thá»­ nghiá»‡m nÃ y khÃ´ng?';
 
   @override
-  String get activateProBetaAccept => 'Kích hoạt';
+  String get activateProBetaAccept => 'KÃ­ch hoáº¡t';
 
   @override
-  String get restorePurchases => 'Khôi phục mua hàng';
+  String get restorePurchases => 'KhÃ´i phá»¥c mua hÃ ng';
 
   @override
-  String get benefitAds => 'Không quảng cáo';
+  String get benefitAds => 'KhÃ´ng quáº£ng cÃ¡o';
 
   @override
   String get benefitAdsDesc =>
-      'Tận hưởng giao diện sạch sẽ không bị gián đoạn.';
+      'Táº­n hÆ°á»Ÿng giao diá»‡n sáº¡ch sáº½ khÃ´ng bá»‹ giÃ¡n Ä‘oáº¡n.';
 
   @override
-  String get benefitPdf => 'Xuất ngay lập tức';
+  String get benefitPdf => 'Xuáº¥t ngay láº­p tá»©c';
 
   @override
   String get benefitPdfDesc =>
-      'Tạo PDF lịch sử mà không cần xem quảng cáo video.';
+      'Táº¡o PDF lá»‹ch sá»­ mÃ  khÃ´ng cáº§n xem quáº£ng cÃ¡o video.';
 
   @override
-  String get benefitSpeed => 'Tốc độ tối đa';
+  String get benefitSpeed => 'Tá»‘c Ä‘á»™ tá»‘i Ä‘a';
 
   @override
   String get benefitSpeedDesc =>
-      'Điều hướng mượt mà hơn và tiêu thụ ít pin hơn.';
+      'Äiá»u hÆ°á»›ng mÆ°á»£t mÃ  hÆ¡n vÃ  tiÃªu thá»¥ Ã­t pin hÆ¡n.';
 
   @override
-  String get benefitSupport => 'Hỗ trợ dự án';
+  String get benefitSupport => 'Há»— trá»£ dá»± Ã¡n';
 
   @override
-  String get benefitSupportDesc => 'Giúp chúng tôi tiếp tục cải thiện công cụ.';
+  String get benefitSupportDesc =>
+      'GiÃºp chÃºng tÃ´i tiáº¿p tá»¥c cáº£i thiá»‡n cÃ´ng cá»¥.';
 
   @override
-  String get usd => 'Đô la';
+  String get usd => 'ÄÃ´ la';
 
   @override
   String get eur => 'Euro';
@@ -146,59 +150,59 @@ class AppLocalizationsVi extends AppLocalizations {
   String get ves => 'Bolivar';
 
   @override
-  String get history => 'Lịch sử';
+  String get history => 'Lá»‹ch sá»­';
 
   @override
-  String get historyRates => 'Lịch sử tỷ giá';
+  String get historyRates => 'Lá»‹ch sá»­ tá»· giÃ¡';
 
   @override
-  String get start => 'Bắt đầu';
+  String get start => 'Báº¯t Ä‘áº§u';
 
   @override
-  String get end => 'Kết thúc';
+  String get end => 'Káº¿t thÃºc';
 
   @override
-  String get generatePdf => 'Tạo PDF';
+  String get generatePdf => 'Táº¡o PDF';
 
   @override
-  String get watchAd => 'Xem quảng cáo để mở khóa';
+  String get watchAd => 'Xem quáº£ng cÃ¡o Ä‘á»ƒ má»Ÿ khÃ³a';
 
   @override
-  String get loadingAd => 'Đang tải quảng cáo...';
+  String get loadingAd => 'Äang táº£i quáº£ng cÃ¡o...';
 
   @override
-  String get errorAd => 'Lỗi tải';
+  String get errorAd => 'Lá»—i táº£i';
 
   @override
-  String get today => 'Hôm nay';
+  String get today => 'HÃ´m nay';
 
   @override
-  String get tomorrow => 'Ngày mai';
+  String get tomorrow => 'NgÃ y mai';
 
   @override
-  String get officialRate => 'Tỷ giá chính thức';
+  String get officialRate => 'Tá»· giÃ¡ chÃ­nh thá»©c';
 
   @override
-  String get customRate => 'Tỷ giá tùy chỉnh';
+  String get customRate => 'Tá»· giÃ¡ tÃ¹y chá»‰nh';
 
   @override
-  String get convert => 'Chuyển đổi';
+  String get convert => 'Chuyá»ƒn Ä‘á»•i';
 
   @override
-  String get rateLabel => 'Tỷ giá';
+  String get rateLabel => 'Tá»· giÃ¡';
 
   @override
-  String get priceScanner => 'Máy quét giá';
+  String get priceScanner => 'MÃ¡y quÃ©t giÃ¡';
 
   @override
   String get cameraPermissionText =>
-      'Công cụ này sử dụng camera để phát hiện giá và chuyển đổi.\n\nCần quyền truy cập Camera và Thư viện.';
+      'CÃ´ng cá»¥ nÃ y sá»­ dá»¥ng camera Ä‘á»ƒ phÃ¡t hiá»‡n giÃ¡ vÃ  chuyá»ƒn Ä‘á»•i.\n\nCáº§n quyá»n truy cáº­p Camera vÃ  ThÆ° viá»‡n.';
 
   @override
-  String get allowAndContinue => 'Cho phép và Tiếp tục';
+  String get allowAndContinue => 'Cho phÃ©p vÃ  Tiáº¿p tá»¥c';
 
   @override
-  String get whatToScan => 'Bạn sẽ quét gì?';
+  String get whatToScan => 'Báº¡n sáº½ quÃ©t gÃ¬?';
 
   @override
   String get amountUsd => 'USD';
@@ -213,128 +217,145 @@ class AppLocalizationsVi extends AppLocalizations {
   String get ratePers => 'Cust';
 
   @override
-  String get noCustomRates => 'Không có tỷ giá tùy chỉnh';
+  String get noCustomRates => 'KhÃ´ng cÃ³ tá»· giÃ¡ tÃ¹y chá»‰nh';
 
   @override
   String get noCustomRatesDesc =>
-      'Thêm tỷ giá tùy chỉnh để sử dụng tính năng này.';
+      'ThÃªm tá»· giÃ¡ tÃ¹y chá»‰nh Ä‘á»ƒ sá»­ dá»¥ng tÃ­nh nÄƒng nÃ y.';
 
   @override
-  String get createRate => 'Tạo tỷ giá';
+  String get createRate => 'Táº¡o tá»· giÃ¡';
 
   @override
-  String get chooseRate => 'Chọn tỷ giá';
+  String get chooseRate => 'Chá»n tá»· giÃ¡';
 
   @override
-  String get newRate => 'Tỷ giá mới...';
+  String get newRate => 'Tá»· giÃ¡ má»›i...';
 
   @override
-  String get convertVesTo => 'Chuyển đổi Bolivar sang...';
+  String get convertVesTo => 'Chuyá»ƒn Ä‘á»•i Bolivar sang...';
 
   @override
-  String get homeScreen => 'Trang chủ';
+  String get homeScreen => 'Trang chá»§';
 
   @override
-  String get calculatorScreen => 'Máy tính';
+  String get calculatorScreen => 'MÃ¡y tÃ­nh';
 
   @override
-  String get rateDate => 'Ngày giá trị';
+  String get rateDate => 'NgÃ y giÃ¡ trá»‹';
 
   @override
-  String get officialRateBcv => 'Tỷ giá chính thức BCV';
+  String get officialRateBcv => 'Tá»· giÃ¡ chÃ­nh thá»©c BCV';
 
   @override
-  String get createYourFirstRate => 'Tạo tỷ giá tùy chỉnh đầu tiên của bạn';
+  String get createYourFirstRate =>
+      'Táº¡o tá»· giÃ¡ tÃ¹y chá»‰nh Ä‘áº§u tiÃªn cá»§a báº¡n';
 
   @override
   String get addCustomRatesDescription =>
-      'Thêm tỷ giá hối đoái tùy chỉnh để tính toán chuyển đổi của bạn.';
+      'ThÃªm tá»· giÃ¡ há»‘i Ä‘oÃ¡i tÃ¹y chá»‰nh Ä‘á»ƒ tÃ­nh toÃ¡n chuyá»ƒn Ä‘á»•i cá»§a báº¡n.';
 
   @override
-  String get errorLoadingRate => 'Lỗi tải tỷ giá';
+  String get errorLoadingRate => 'Lá»—i táº£i tá»· giÃ¡';
 
   @override
-  String get unlockPdfTitle => 'Mở khóa xuất PDF';
+  String get unlockPdfTitle => 'Má»Ÿ khÃ³a xuáº¥t PDF';
 
   @override
   String get unlockPdfDesc =>
-      'Để xuất sang PDF, vui lòng xem một quảng cáo ngắn. Điều này sẽ mở khóa tính năng trong 24 giờ.';
+      'Äá»ƒ xuáº¥t sang PDF, vui lÃ²ng xem má»™t quáº£ng cÃ¡o ngáº¯n. Äiá»u nÃ y sáº½ má»Ÿ khÃ³a tÃ­nh nÄƒng trong 24 giá».';
 
   @override
-  String get adNotReady => 'Quảng cáo chưa sẵn sàng. Hãy thử lại sau vài giây.';
+  String get adNotReady =>
+      'Quáº£ng cÃ¡o chÆ°a sáºµn sÃ ng. HÃ£y thá»­ láº¡i sau vÃ i giÃ¢y.';
 
   @override
-  String get featureUnlocked => 'Tính năng đã được mở khóa trong 24 giờ!';
+  String get featureUnlocked =>
+      'TÃ­nh nÄƒng Ä‘Ã£ Ä‘Æ°á»£c má»Ÿ khÃ³a trong 24 giá»!';
 
   @override
-  String get pdfHeader => 'Lịch sử giá BCV';
+  String get pdfHeader => 'Lá»‹ch sá»­ giÃ¡ BCV';
 
   @override
-  String get statsPeriod => 'Thống kê giai đoạn';
+  String get statsPeriod => 'Thá»‘ng kÃª giai Ä‘oáº¡n';
 
   @override
-  String get copiedClipboard => 'Đã sao chép vào khay nhớ tạm';
+  String get copiedClipboard => 'ÄÃ£ sao chÃ©p vÃ o khay nhá»› táº¡m';
 
   @override
-  String get amountDollars => 'Số tiền bằng Đô la';
+  String get amountDollars => 'Sá»‘ tiá»n báº±ng ÄÃ´ la';
 
   @override
-  String get amountEuros => 'Số tiền bằng Euro';
+  String get amountEuros => 'Sá»‘ tiá»n báº±ng Euro';
 
   @override
-  String get amountBolivars => 'Số tiền bằng Bolivar';
+  String get amountBolivars => 'Sá»‘ tiá»n báº±ng Bolivar';
 
   @override
-  String get amountCustom => 'Số tiền bằng';
+  String get amountCustom => 'Sá»‘ tiá»n báº±ng';
 
   @override
-  String get shareError => 'Lỗi chia sẻ';
+  String get shareError => 'Lá»—i chia sáº»';
 
   @override
-  String get pdfError => 'Lỗi tạo PDF';
+  String get pdfError => 'Lá»—i táº¡o PDF';
 
   @override
-  String get viewList => 'Xem danh sách';
+  String get viewList => 'Xem danh sÃ¡ch';
 
   @override
-  String get viewChart => 'Xem biểu đồ';
+  String get viewChart => 'Xem biá»ƒu Ä‘á»“';
 
   @override
-  String get noData => 'Không có dữ liệu';
+  String get noData => 'KhÃ´ng cÃ³ dá»¯ liá»‡u';
 
   @override
-  String get mean => 'Trung bình';
+  String get mean => 'Trung bÃ¬nh';
 
   @override
-  String get min => 'Tối thiểu';
+  String get min => 'Tá»‘i thiá»ƒu';
 
   @override
-  String get max => 'Tối đa';
+  String get max => 'Tá»‘i Ä‘a';
 
   @override
-  String get change => 'Thay đổi';
+  String get change => 'Thay Ä‘á»•i';
 
   @override
-  String get rangeWeek => '1 Tuần';
+  String get rangeWeek => '1 Tuáº§n';
 
   @override
-  String get rangeMonth => '1 Tháng';
+  String get rangeMonth => '1 ThÃ¡ng';
 
   @override
-  String get rangeThreeMonths => '3 Tháng';
+  String get rangeThreeMonths => '3 ThÃ¡ng';
 
   @override
-  String get rangeYear => '1 Năm';
+  String get rangeYear => '1 NÄƒm';
 
   @override
-  String get rangeCustom => 'Tùy chỉnh';
+  String get rangeCustom => 'TÃ¹y chá»‰nh';
 
   @override
-  String get removeAdsLink => 'Xóa quảng cáo';
+  String get removeAdsLink => 'XÃ³a quáº£ng cÃ¡o';
 
   @override
-  String get thanksSupport => 'Cảm ơn sự hỗ trợ của bạn!';
+  String get thanksSupport => 'Cáº£m Æ¡n sá»± há»— trá»£ cá»§a báº¡n!';
 
   @override
-  String get privacyPolicy => 'Chính sách bảo mật';
+  String get privacyPolicy => 'ChÃ­nh sÃ¡ch báº£o máº­t';
+
+  @override
+  String get deactivateProTest => 'Tắt PRO (Thử nghiệm)';
+
+  @override
+  String get deactivateProTitle => 'Tắt PRO';
+
+  @override
+  String get deactivateProMessage =>
+      'Bạn có muốn tắt chế độ PRO không? (Chỉ để thử nghiệm)';
+
+  @override
+  String get deactivateProSuccess =>
+      'Đã tắt PRO. Khởi động lại ứng dụng để áp dụng thay đổi.';
 }

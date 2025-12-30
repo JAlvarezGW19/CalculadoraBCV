@@ -448,12 +448,14 @@ class _ArithmeticCalculatorScreenState
     String inputSuffix = "";
 
     if (_isDivisaToBs) {
+      // Divisa -> Bs: Show currency symbol as suffix
       if (state.currency == CurrencyType.custom) {
         inputSuffix = " ${customRateName ?? 'Pers.'}";
       } else {
         inputSuffix = " ${_getCurrencySymbol(state.currency)}";
       }
     } else {
+      // Bs -> Divisa: Show Bs as suffix
       inputSuffix = " Bs";
     }
 
@@ -525,6 +527,11 @@ class _ArithmeticCalculatorScreenState
                 inputSuffix: inputSuffix,
                 onSwap: () => setState(() => _isDivisaToBs = !_isDivisaToBs),
                 onHistory: _showHistoryDialog,
+                onPaste: (text) {
+                  setState(() {
+                    _expression = _expression + text;
+                  });
+                },
                 onRateClick: state.currency == CurrencyType.custom
                     ? () => _showRateSelectionDialog(ref)
                     : null,

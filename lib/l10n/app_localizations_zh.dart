@@ -9,191 +9,195 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appTitle => 'BCV 计算器';
+  String get appTitle => 'BCV è®¡ç®—å™¨';
 
   @override
-  String get settings => '设置';
+  String get settings => 'è®¾ç½®';
 
   @override
-  String get general => '常规';
+  String get general => 'å¸¸è§„';
 
   @override
-  String get storageNetwork => '存储与网络';
+  String get storageNetwork => 'å­˜å‚¨ä¸Žç½‘ç»œ';
 
   @override
-  String get storageNetworkSubtitle => '管理缓存和更新';
+  String get storageNetworkSubtitle => 'ç®¡ç†ç¼“å­˜å’Œæ›´æ–°';
 
   @override
-  String get notifications => '通知';
+  String get notifications => 'é€šçŸ¥';
 
   @override
-  String get notificationsSubtitle => '新汇率可用时通知';
+  String get notificationsSubtitle => 'æ–°æ±‡çŽ‡å¯ç”¨æ—¶é€šçŸ¥';
 
   @override
-  String get language => '语言';
+  String get language => 'è¯­è¨€';
 
   @override
-  String get systemDefault => '系统默认';
+  String get systemDefault => 'ç³»ç»Ÿé»˜è®¤';
 
   @override
-  String get information => '信息';
+  String get information => 'ä¿¡æ¯';
 
   @override
-  String get aboutApp => '关于应用';
+  String get aboutApp => 'å…³äºŽåº”ç”¨';
 
   @override
-  String get aboutAppSubtitle => '版本、开发者和许可';
+  String get aboutAppSubtitle => 'ç‰ˆæœ¬ã€å¼€å‘è€…å’Œè®¸å¯';
 
   @override
-  String get forceUpdate => '强制更新';
+  String get forceUpdate => 'å¼ºåˆ¶æ›´æ–°';
 
   @override
-  String get forceUpdateSubtitle => '从 API 更新汇率';
+  String get forceUpdateSubtitle => 'ä»Ž API æ›´æ–°æ±‡çŽ‡';
 
   @override
-  String get clearCache => '清除缓存';
+  String get clearCache => 'æ¸…é™¤ç¼“å­˜';
 
   @override
-  String get clearCacheSubtitle => '删除本地存储的数据';
+  String get clearCacheSubtitle => 'åˆ é™¤æœ¬åœ°å­˜å‚¨çš„æ•°æ®';
 
   @override
-  String get cancel => '取消';
+  String get cancel => 'å–æ¶ˆ';
 
   @override
-  String get close => '关闭';
+  String get close => 'å…³é—­';
 
   @override
-  String get updatingRates => '正在更新汇率...';
+  String get updatingRates => 'æ­£åœ¨æ›´æ–°æ±‡çŽ‡...';
 
   @override
-  String get cacheCleared => '缓存已清除';
+  String get cacheCleared => 'ç¼“å­˜å·²æ¸…é™¤';
 
   @override
-  String get developer => '开发者';
+  String get developer => 'å¼€å‘è€…';
 
   @override
-  String get dataSource => '数据来源';
+  String get dataSource => 'æ•°æ®æ¥æº';
 
   @override
-  String get legalNotice => '法律声明';
+  String get legalNotice => 'æ³•å¾‹å£°æ˜Ž';
 
   @override
   String get legalNoticeText =>
-      '此应用程序不代表任何政府或银行实体。我们与委内瑞拉中央银行没有关联。数据通过查询 BCV 官方网站的 API 获取。信息的使用由用户自行承担责任。';
+      'æ­¤åº”ç”¨ç¨‹åºä¸ä»£è¡¨ä»»ä½•æ”¿åºœæˆ–é“¶è¡Œå®žä½“ã€‚æˆ‘ä»¬ä¸Žå§”å†…ç‘žæ‹‰ä¸­å¤®é“¶è¡Œæ²¡æœ‰å…³è”ã€‚æ•°æ®é€šè¿‡æŸ¥è¯¢ BCV å®˜æ–¹ç½‘ç«™çš„ API èŽ·å–ã€‚ä¿¡æ¯çš„ä½¿ç”¨ç”±ç”¨æˆ·è‡ªè¡Œæ‰¿æ‹…è´£ä»»ã€‚';
 
   @override
-  String get openSourceLicenses => '开源许可证';
+  String get openSourceLicenses => 'å¼€æºè®¸å¯è¯';
 
   @override
-  String get version => '版本';
+  String get version => 'ç‰ˆæœ¬';
 
   @override
-  String get becomePro => '成为 PRO 用户！';
+  String get becomePro => 'æˆä¸º PRO ç”¨æˆ·ï¼';
 
   @override
-  String get proUser => '您是 PRO 用户！';
+  String get proUser => 'æ‚¨æ˜¯ PRO ç”¨æˆ·ï¼';
 
   @override
-  String get getPro => '激活 PRO 功能 (测试版)';
+  String get getPro => 'æ¿€æ´» PRO åŠŸèƒ½ (æµ‹è¯•ç‰ˆ)';
 
   @override
   String get oneTimePayment => '';
 
   @override
-  String get activateProBetaTitle => '是否为此测试会话激活 PRO 功能？';
+  String get activateProBetaTitle =>
+      'æ˜¯å¦ä¸ºæ­¤æµ‹è¯•ä¼šè¯æ¿€æ´» PRO åŠŸèƒ½ï¼Ÿ';
 
   @override
-  String get activateProBetaAccept => '激活';
+  String get activateProBetaAccept => 'æ¿€æ´»';
 
   @override
-  String get restorePurchases => '恢复购买';
+  String get restorePurchases => 'æ¢å¤è´­ä¹°';
 
   @override
-  String get benefitAds => '无广告';
+  String get benefitAds => 'æ— å¹¿å‘Š';
 
   @override
-  String get benefitAdsDesc => '享受干净无干扰的界面。';
+  String get benefitAdsDesc => 'äº«å—å¹²å‡€æ— å¹²æ‰°çš„ç•Œé¢ã€‚';
 
   @override
-  String get benefitPdf => '即时导出';
+  String get benefitPdf => 'å³æ—¶å¯¼å‡º';
 
   @override
-  String get benefitPdfDesc => '无需观看视频广告即可生成历史 PDF。';
+  String get benefitPdfDesc =>
+      'æ— éœ€è§‚çœ‹è§†é¢‘å¹¿å‘Šå³å¯ç”ŸæˆåŽ†å² PDFã€‚';
 
   @override
-  String get benefitSpeed => '极速体验';
+  String get benefitSpeed => 'æžé€Ÿä½“éªŒ';
 
   @override
-  String get benefitSpeedDesc => '更流畅的导航和更低的电池消耗。';
+  String get benefitSpeedDesc =>
+      'æ›´æµç•…çš„å¯¼èˆªå’Œæ›´ä½Žçš„ç”µæ± æ¶ˆè€—ã€‚';
 
   @override
-  String get benefitSupport => '支持项目';
+  String get benefitSupport => 'æ”¯æŒé¡¹ç›®';
 
   @override
-  String get benefitSupportDesc => '帮助我们持续改进工具。';
+  String get benefitSupportDesc => 'å¸®åŠ©æˆ‘ä»¬æŒç»­æ”¹è¿›å·¥å…·ã€‚';
 
   @override
-  String get usd => '美元';
+  String get usd => 'ç¾Žå…ƒ';
 
   @override
-  String get eur => '欧元';
+  String get eur => 'æ¬§å…ƒ';
 
   @override
-  String get ves => '玻利瓦尔';
+  String get ves => 'çŽ»åˆ©ç“¦å°”';
 
   @override
-  String get history => '历史记录';
+  String get history => 'åŽ†å²è®°å½•';
 
   @override
-  String get historyRates => '汇率历史';
+  String get historyRates => 'æ±‡çŽ‡åŽ†å²';
 
   @override
-  String get start => '开始';
+  String get start => 'å¼€å§‹';
 
   @override
-  String get end => '结束';
+  String get end => 'ç»“æŸ';
 
   @override
-  String get generatePdf => '生成 PDF';
+  String get generatePdf => 'ç”Ÿæˆ PDF';
 
   @override
-  String get watchAd => '观看广告以解锁';
+  String get watchAd => 'è§‚çœ‹å¹¿å‘Šä»¥è§£é”';
 
   @override
-  String get loadingAd => '加载广告中...';
+  String get loadingAd => 'åŠ è½½å¹¿å‘Šä¸­...';
 
   @override
-  String get errorAd => '加载错误';
+  String get errorAd => 'åŠ è½½é”™è¯¯';
 
   @override
-  String get today => '今天';
+  String get today => 'ä»Šå¤©';
 
   @override
-  String get tomorrow => '明天';
+  String get tomorrow => 'æ˜Žå¤©';
 
   @override
-  String get officialRate => '官方汇率';
+  String get officialRate => 'å®˜æ–¹æ±‡çŽ‡';
 
   @override
-  String get customRate => '自定义汇率';
+  String get customRate => 'è‡ªå®šä¹‰æ±‡çŽ‡';
 
   @override
-  String get convert => '转换';
+  String get convert => 'è½¬æ¢';
 
   @override
-  String get rateLabel => '汇率';
+  String get rateLabel => 'æ±‡çŽ‡';
 
   @override
-  String get priceScanner => '价格扫描仪';
+  String get priceScanner => 'ä»·æ ¼æ‰«æä»ª';
 
   @override
-  String get cameraPermissionText => '此工具使用相机检测价格并实时转换。\n\n需要相机和图库访问权限。';
+  String get cameraPermissionText =>
+      'æ­¤å·¥å…·ä½¿ç”¨ç›¸æœºæ£€æµ‹ä»·æ ¼å¹¶å®žæ—¶è½¬æ¢ã€‚\n\néœ€è¦ç›¸æœºå’Œå›¾åº“è®¿é—®æƒé™ã€‚';
 
   @override
-  String get allowAndContinue => '允许并继续';
+  String get allowAndContinue => 'å…è®¸å¹¶ç»§ç»­';
 
   @override
-  String get whatToScan => '你要扫描什么？';
+  String get whatToScan => 'ä½ è¦æ‰«æä»€ä¹ˆï¼Ÿ';
 
   @override
   String get amountUsd => 'USD';
@@ -205,128 +209,143 @@ class AppLocalizationsZh extends AppLocalizations {
   String get amountVes => 'Bs.';
 
   @override
-  String get ratePers => '自定';
+  String get ratePers => 'è‡ªå®š';
 
   @override
-  String get noCustomRates => '无自定义汇率';
+  String get noCustomRates => 'æ— è‡ªå®šä¹‰æ±‡çŽ‡';
 
   @override
-  String get noCustomRatesDesc => '需要添加自定义汇率才能使用此功能。';
+  String get noCustomRatesDesc =>
+      'éœ€è¦æ·»åŠ è‡ªå®šä¹‰æ±‡çŽ‡æ‰èƒ½ä½¿ç”¨æ­¤åŠŸèƒ½ã€‚';
 
   @override
-  String get createRate => '创建汇率';
+  String get createRate => 'åˆ›å»ºæ±‡çŽ‡';
 
   @override
-  String get chooseRate => '选择汇率';
+  String get chooseRate => 'é€‰æ‹©æ±‡çŽ‡';
 
   @override
-  String get newRate => '新汇率...';
+  String get newRate => 'æ–°æ±‡çŽ‡...';
 
   @override
-  String get convertVesTo => '玻利瓦尔兑换为...';
+  String get convertVesTo => 'çŽ»åˆ©ç“¦å°”å…‘æ¢ä¸º...';
 
   @override
-  String get homeScreen => '首页';
+  String get homeScreen => 'é¦–é¡µ';
 
   @override
-  String get calculatorScreen => '计算器';
+  String get calculatorScreen => 'è®¡ç®—å™¨';
 
   @override
-  String get rateDate => '起息日';
+  String get rateDate => 'èµ·æ¯æ—¥';
 
   @override
-  String get officialRateBcv => 'BCV 官方汇率';
+  String get officialRateBcv => 'BCV å®˜æ–¹æ±‡çŽ‡';
 
   @override
-  String get createYourFirstRate => '创建您的第一个汇率';
+  String get createYourFirstRate => 'åˆ›å»ºæ‚¨çš„ç¬¬ä¸€ä¸ªæ±‡çŽ‡';
 
   @override
-  String get addCustomRatesDescription => '添加自定义汇率以计算转换。';
+  String get addCustomRatesDescription =>
+      'æ·»åŠ è‡ªå®šä¹‰æ±‡çŽ‡ä»¥è®¡ç®—è½¬æ¢ã€‚';
 
   @override
-  String get errorLoadingRate => '加载汇率错误';
+  String get errorLoadingRate => 'åŠ è½½æ±‡çŽ‡é”™è¯¯';
 
   @override
-  String get unlockPdfTitle => '解锁 PDF 导出';
+  String get unlockPdfTitle => 'è§£é” PDF å¯¼å‡º';
 
   @override
-  String get unlockPdfDesc => '要导出 PDF，请观看简短广告。这将解锁该功能 24 小时。';
+  String get unlockPdfDesc =>
+      'è¦å¯¼å‡º PDFï¼Œè¯·è§‚çœ‹ç®€çŸ­å¹¿å‘Šã€‚è¿™å°†è§£é”è¯¥åŠŸèƒ½ 24 å°æ—¶ã€‚';
 
   @override
-  String get adNotReady => '广告尚未准备好。请几秒钟后再试。';
+  String get adNotReady => 'å¹¿å‘Šå°šæœªå‡†å¤‡å¥½ã€‚è¯·å‡ ç§’é’ŸåŽå†è¯•ã€‚';
 
   @override
-  String get featureUnlocked => '功能已解锁 24 小时！';
+  String get featureUnlocked => 'åŠŸèƒ½å·²è§£é” 24 å°æ—¶ï¼';
 
   @override
-  String get pdfHeader => 'BCV 价格历史';
+  String get pdfHeader => 'BCV ä»·æ ¼åŽ†å²';
 
   @override
-  String get statsPeriod => '期间统计';
+  String get statsPeriod => 'æœŸé—´ç»Ÿè®¡';
 
   @override
-  String get copiedClipboard => '已复制到剪贴板';
+  String get copiedClipboard => 'å·²å¤åˆ¶åˆ°å‰ªè´´æ¿';
 
   @override
-  String get amountDollars => '美元金额';
+  String get amountDollars => 'ç¾Žå…ƒé‡‘é¢';
 
   @override
-  String get amountEuros => '欧元金额';
+  String get amountEuros => 'æ¬§å…ƒé‡‘é¢';
 
   @override
-  String get amountBolivars => '玻利瓦尔金额';
+  String get amountBolivars => 'çŽ»åˆ©ç“¦å°”é‡‘é¢';
 
   @override
-  String get amountCustom => '金额';
+  String get amountCustom => 'é‡‘é¢';
 
   @override
-  String get shareError => '分享错误';
+  String get shareError => 'åˆ†äº«é”™è¯¯';
 
   @override
-  String get pdfError => '生成 PDF 错误';
+  String get pdfError => 'ç”Ÿæˆ PDF é”™è¯¯';
 
   @override
-  String get viewList => '查看列表';
+  String get viewList => 'æŸ¥çœ‹åˆ—è¡¨';
 
   @override
-  String get viewChart => '查看图表';
+  String get viewChart => 'æŸ¥çœ‹å›¾è¡¨';
 
   @override
-  String get noData => '无可用数据';
+  String get noData => 'æ— å¯ç”¨æ•°æ®';
 
   @override
-  String get mean => '平均';
+  String get mean => 'å¹³å‡';
 
   @override
-  String get min => '最小';
+  String get min => 'æœ€å°';
 
   @override
-  String get max => '最大';
+  String get max => 'æœ€å¤§';
 
   @override
-  String get change => '变化';
+  String get change => 'å˜åŒ–';
 
   @override
-  String get rangeWeek => '1周';
+  String get rangeWeek => '1å‘¨';
 
   @override
-  String get rangeMonth => '1月';
+  String get rangeMonth => '1æœˆ';
 
   @override
-  String get rangeThreeMonths => '3月';
+  String get rangeThreeMonths => '3æœˆ';
 
   @override
-  String get rangeYear => '1年';
+  String get rangeYear => '1å¹´';
 
   @override
-  String get rangeCustom => '自定义';
+  String get rangeCustom => 'è‡ªå®šä¹‰';
 
   @override
-  String get removeAdsLink => '移除广告';
+  String get removeAdsLink => 'ç§»é™¤å¹¿å‘Š';
 
   @override
-  String get thanksSupport => '感谢您的支持！';
+  String get thanksSupport => 'æ„Ÿè°¢æ‚¨çš„æ”¯æŒï¼';
 
   @override
-  String get privacyPolicy => '隐私政策';
+  String get privacyPolicy => 'éšç§æ”¿ç­–';
+
+  @override
+  String get deactivateProTest => '停用 PRO (测试)';
+
+  @override
+  String get deactivateProTitle => '停用 PRO';
+
+  @override
+  String get deactivateProMessage => '是否要停用 PRO 模式？ (仅用于测试)';
+
+  @override
+  String get deactivateProSuccess => 'PRO 已停用。重启应用以应用更改。';
 }

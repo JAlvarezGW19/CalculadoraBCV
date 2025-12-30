@@ -11,6 +11,7 @@
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize">
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
@@ -39,7 +40,7 @@
             android:value="ca-app-pub-3940256099942544~3347511713"/>
 
         <!-- Home Widget Provider (Standard 2x2) -->
-        <receiver android:name=".HomeWidgetProvider" android:exported="true">
+        <receiver android:name=".HomeWidgetProvider" android:exported="true" android:label="Tasa Calculadora (2x2)">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -48,12 +49,21 @@
         </receiver>
 
         <!-- Home Widget Provider (Mini 1x1) -->
-        <receiver android:name=".HomeWidgetProvider1x1" android:exported="true">
+        <receiver android:name=".HomeWidgetProvider1x1" android:exported="true" android:label="Tasa USD (1x1)">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info_1x1" />
+        </receiver>
+
+        <!-- Home Widget Provider (Mini 1x1 EUR) -->
+        <receiver android:name=".HomeWidgetProvider1x1Eur" android:exported="true" android:label="Tasa EUR (1x1)">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_1x1_eur" />
         </receiver>
     </application>
     <!-- Required to query activities that can process text, see:
