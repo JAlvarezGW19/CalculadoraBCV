@@ -1,4 +1,4 @@
-﻿{
+{
   "@@locale": "fr",
   "appTitle": "Calculatrice BCV",
   "settings": "Paramètres",
@@ -110,5 +110,11 @@
   "deactivateProTest": "Désactiver PRO (Tests)",
   "deactivateProTitle": "Désactiver PRO",
   "deactivateProMessage": "Voulez-vous désactiver le mode PRO? (Tests uniquement)",
-  "deactivateProSuccess": "PRO désactivé. Redémarrez l'app pour appliquer les changements."
+  "deactivateProSuccess": "PRO désactivé. Redémarrez l'app pour appliquer les changements.",
+  "pdfCurrency": "Devise",
+  "pdfRange": "Intervalle",
+  "pdfDailyDetails": "Détails Quotidiens",
+  "pdfDate": "Date",
+  "pdfRate": "Taux (Bs)",
+  "pdfChangePercent": "Chang. %"
 }

@@ -18,124 +18,123 @@ class AppLocalizationsTr extends AppLocalizations {
   String get general => 'Genel';
 
   @override
-  String get storageNetwork => 'Depolama ve AÄŸ';
+  String get storageNetwork => 'Depolama ve Ağ';
 
   @override
-  String get storageNetworkSubtitle => 'Ã–nbelleÄŸi ve gÃ¼ncellemeleri yÃ¶net';
+  String get storageNetworkSubtitle => 'Önbelleği ve güncellemeleri yönet';
 
   @override
   String get notifications => 'Bildirimler';
 
   @override
-  String get notificationsSubtitle => 'Yeni oran mevcut olduÄŸunda bildir';
+  String get notificationsSubtitle => 'Yeni oran mevcut olduğunda bildir';
 
   @override
   String get language => 'Dil';
 
   @override
-  String get systemDefault => 'Sistem VarsayÄ±lanÄ±';
+  String get systemDefault => 'Sistem Varsayılanı';
 
   @override
   String get information => 'Bilgi';
 
   @override
-  String get aboutApp => 'Uygulama HakkÄ±nda';
+  String get aboutApp => 'Uygulama Hakkında';
 
   @override
-  String get aboutAppSubtitle => 'SÃ¼rÃ¼m, geliÅŸtirici ve lisanslar';
+  String get aboutAppSubtitle => 'Sürüm, geliştirici ve lisanslar';
 
   @override
-  String get forceUpdate => 'GÃ¼ncellemeyi Zorla';
+  String get forceUpdate => 'Güncellemeyi Zorla';
 
   @override
-  String get forceUpdateSubtitle => 'OranlarÄ± API\'den gÃ¼ncelle';
+  String get forceUpdateSubtitle => 'Oranları API\'den güncelle';
 
   @override
-  String get clearCache => 'Ã–nbelleÄŸi Temizle';
+  String get clearCache => 'Önbelleği Temizle';
 
   @override
   String get clearCacheSubtitle => 'Yerel verileri sil';
 
   @override
-  String get cancel => 'Ä°ptal';
+  String get cancel => 'İptal';
 
   @override
   String get close => 'Kapat';
 
   @override
-  String get updatingRates => 'Oranlar gÃ¼ncelleniyor...';
+  String get updatingRates => 'Oranlar güncelleniyor...';
 
   @override
-  String get cacheCleared => 'Ã–nbellek temizlendi';
+  String get cacheCleared => 'Önbellek temizlendi';
 
   @override
-  String get developer => 'GeliÅŸtirici';
+  String get developer => 'Geliştirici';
 
   @override
-  String get dataSource => 'Veri KaynaÄŸÄ±';
+  String get dataSource => 'Veri Kaynağı';
 
   @override
-  String get legalNotice => 'Yasal UyarÄ±';
+  String get legalNotice => 'Yasal Uyarı';
 
   @override
   String get legalNoticeText =>
-      'Bu uygulama herhangi bir devlet veya banka kurumunu temsil ETMEMEKTEDÄ°R. Venezuela Merkez BankasÄ± (BCV) ile bir baÄŸlantÄ±mÄ±z yoktur. Veriler, resmi BCV web sitesini sorgulayan bir API aracÄ±lÄ±ÄŸÄ±yla elde edilir. Bilgilerin kullanÄ±mÄ± tamamen kullanÄ±cÄ±nÄ±n sorumluluÄŸundadÄ±r.';
+      'Bu uygulama herhangi bir devlet veya banka kurumunu temsil ETMEMEKTEDİR. Venezuela Merkez Bankası (BCV) ile bir bağlantımız yoktur. Veriler, resmi BCV web sitesini sorgulayan bir API aracılığıyla elde edilir. Bilgilerin kullanımı tamamen kullanıcının sorumluluğundadır.';
 
   @override
-  String get openSourceLicenses => 'AÃ§Ä±k Kaynak LisanslarÄ±';
+  String get openSourceLicenses => 'Açık Kaynak Lisansları';
 
   @override
-  String get version => 'SÃ¼rÃ¼m';
+  String get version => 'Sürüm';
 
   @override
   String get becomePro => 'PRO Olun!';
 
   @override
-  String get proUser => 'PRO KullanÄ±cÄ±sÄ±sÄ±nÄ±z!';
+  String get proUser => 'PRO Kullanıcısısınız!';
 
   @override
-  String get getPro => 'PRO Ã–zelliklerini EtkinleÅŸtir (Beta)';
+  String get getPro => 'PRO Özelliklerini Etkinleştir (Beta)';
 
   @override
   String get oneTimePayment => '';
 
   @override
   String get activateProBetaTitle =>
-      'Bu test oturumu iÃ§in PRO Ã¶zelliklerini etkinleÅŸtirmek ister misiniz?';
+      'Bu test oturumu için PRO özelliklerini etkinleştirmek ister misiniz?';
 
   @override
-  String get activateProBetaAccept => 'EtkinleÅŸtir';
+  String get activateProBetaAccept => 'Etkinleştir';
 
   @override
-  String get restorePurchases => 'SatÄ±n AlÄ±mlarÄ± Geri YÃ¼kle';
+  String get restorePurchases => 'Satın Alımları Geri Yükle';
 
   @override
-  String get benefitAds => 'ReklamsÄ±z';
+  String get benefitAds => 'Reklamsız';
 
   @override
   String get benefitAdsDesc =>
-      'Kesintisiz ve temiz bir arayÃ¼zÃ¼n keyfini Ã§Ä±karÄ±n.';
+      'Kesintisiz ve temiz bir arayüzün keyfini çıkarın.';
 
   @override
-  String get benefitPdf => 'AnÄ±nda DÄ±ÅŸa Aktar';
+  String get benefitPdf => 'Anında Dışa Aktar';
 
   @override
   String get benefitPdfDesc =>
-      'Video reklam izlemeden geÃ§miÅŸ PDF\'leri oluÅŸturun.';
+      'Video reklam izlemeden geçmiş PDF\'leri oluşturun.';
 
   @override
-  String get benefitSpeed => 'Maksimum HÄ±z';
+  String get benefitSpeed => 'Maksimum Hız';
 
   @override
-  String get benefitSpeedDesc =>
-      'Daha akÄ±cÄ± gezinme ve daha az pil tÃ¼ketimi.';
+  String get benefitSpeedDesc => 'Daha akıcı gezinme ve daha az pil tüketimi.';
 
   @override
   String get benefitSupport => 'Projeyi Destekle';
 
   @override
   String get benefitSupportDesc =>
-      'AracÄ± geliÅŸtirmeye devam etmemize yardÄ±mcÄ± olun.';
+      'Aracı geliştirmeye devam etmemize yardımcı olun.';
 
   @override
   String get usd => 'Dolar';
@@ -147,90 +146,90 @@ class AppLocalizationsTr extends AppLocalizations {
   String get ves => 'Bolivar';
 
   @override
-  String get history => 'GeÃ§miÅŸ';
+  String get history => 'Geçmiş';
 
   @override
-  String get historyRates => 'Oran GeÃ§miÅŸi';
+  String get historyRates => 'Oran Geçmişi';
 
   @override
-  String get start => 'BaÅŸlangÄ±Ã§';
+  String get start => 'Başlangıç';
 
   @override
-  String get end => 'BitiÅŸ';
+  String get end => 'Bitiş';
 
   @override
-  String get generatePdf => 'PDF OluÅŸtur';
+  String get generatePdf => 'PDF Oluştur';
 
   @override
-  String get watchAd => 'Kilidi aÃ§mak iÃ§in reklam izle';
+  String get watchAd => 'Kilidi açmak için reklam izle';
 
   @override
-  String get loadingAd => 'Reklam yÃ¼kleniyor...';
+  String get loadingAd => 'Reklam yükleniyor...';
 
   @override
-  String get errorAd => 'YÃ¼kleme hatasÄ±';
+  String get errorAd => 'Yükleme hatası';
 
   @override
-  String get today => 'BugÃ¼n';
+  String get today => 'Bugün';
 
   @override
-  String get tomorrow => 'YarÄ±n';
+  String get tomorrow => 'Yarın';
 
   @override
   String get officialRate => 'Resmi Kur';
 
   @override
-  String get customRate => 'Ã–zel Kur';
+  String get customRate => 'Özel Kur';
 
   @override
-  String get convert => 'DÃ¶nÃ¼ÅŸtÃ¼r';
+  String get convert => 'Dönüştür';
 
   @override
   String get rateLabel => 'Oran';
 
   @override
-  String get priceScanner => 'Fiyat TarayÄ±cÄ±';
+  String get priceScanner => 'Fiyat Tarayıcı';
 
   @override
   String get cameraPermissionText =>
-      'Bu araÃ§ fiyatlarÄ± algÄ±lamak ve dÃ¶nÃ¼ÅŸtÃ¼rmek iÃ§in kamerayÄ± kullanÄ±r.\n\nKamera ve Galeri eriÅŸimi gerekir.';
+      'Bu araç fiyatları algılamak ve dönüştürmek için kamerayı kullanır.\n\nKamera ve Galeri erişimi gerekir.';
 
   @override
-  String get allowAndContinue => 'Ä°zin Ver ve Devam Et';
+  String get allowAndContinue => 'İzin Ver ve Devam Et';
 
   @override
-  String get whatToScan => 'Ne tarayacaksÄ±nÄ±z?';
+  String get whatToScan => 'Ne tarayacaksınız?';
 
   @override
-  String get amountUsd => 'USD TutarÄ±';
+  String get amountUsd => 'USD Tutarı';
 
   @override
-  String get amountEur => 'EUR TutarÄ±';
+  String get amountEur => 'EUR Tutarı';
 
   @override
-  String get amountVes => 'Bs. TutarÄ±';
+  String get amountVes => 'Bs. Tutarı';
 
   @override
-  String get ratePers => 'Ã–zel';
+  String get ratePers => 'Özel';
 
   @override
-  String get noCustomRates => 'Ã–zel oran yok';
+  String get noCustomRates => 'Özel oran yok';
 
   @override
   String get noCustomRatesDesc =>
-      'Bu Ã¶zelliÄŸi kullanmak iÃ§in Ã¶zel oran ekleyin.';
+      'Bu özelliği kullanmak için özel oran ekleyin.';
 
   @override
-  String get createRate => 'Oran OluÅŸtur';
+  String get createRate => 'Oran Oluştur';
 
   @override
-  String get chooseRate => 'Oran seÃ§in';
+  String get chooseRate => 'Oran seçin';
 
   @override
   String get newRate => 'Yeni Oran...';
 
   @override
-  String get convertVesTo => 'Bolivar\'Ä± ÅŸuna dÃ¶nÃ¼ÅŸtÃ¼r...';
+  String get convertVesTo => 'Bolivar\'ı şuna dönüştür...';
 
   @override
   String get homeScreen => 'Ana Sayfa';
@@ -239,67 +238,67 @@ class AppLocalizationsTr extends AppLocalizations {
   String get calculatorScreen => 'Hesap Makinesi';
 
   @override
-  String get rateDate => 'ValÃ¶r Tarihi';
+  String get rateDate => 'Valör Tarihi';
 
   @override
   String get officialRateBcv => 'Resmi BCV Kuru';
 
   @override
-  String get createYourFirstRate => 'Ä°lk Ã¶zel oranÄ±nÄ±zÄ± oluÅŸturun';
+  String get createYourFirstRate => 'İlk özel oranınızı oluşturun';
 
   @override
   String get addCustomRatesDescription =>
-      'DÃ¶nÃ¼ÅŸÃ¼mlerinizi hesaplamak iÃ§in Ã¶zel dÃ¶viz kurlarÄ± ekleyin.';
+      'Dönüşümlerinizi hesaplamak için özel döviz kurları ekleyin.';
 
   @override
-  String get errorLoadingRate => 'Oran yÃ¼klenirken hata';
+  String get errorLoadingRate => 'Oran yüklenirken hata';
 
   @override
-  String get unlockPdfTitle => 'PDF DÄ±ÅŸa AktarmayÄ± AÃ§';
+  String get unlockPdfTitle => 'PDF Dışa Aktarmayı Aç';
 
   @override
   String get unlockPdfDesc =>
-      'PDF\'ye aktarmak iÃ§in lÃ¼tfen kÄ±sa bir reklam izleyin. Bu Ã¶zellik 24 saatliÄŸine aÃ§Ä±lacaktÄ±r.';
+      'PDF\'ye aktarmak için lütfen kısa bir reklam izleyin. Bu özellik 24 saatliğine açılacaktır.';
 
   @override
   String get adNotReady =>
-      'Reklam henÃ¼z hazÄ±r deÄŸil. BirkaÃ§ saniye sonra tekrar deneyin.';
+      'Reklam henüz hazır değil. Birkaç saniye sonra tekrar deneyin.';
 
   @override
-  String get featureUnlocked => 'Ã–zellik 24 saatliÄŸine aÃ§Ä±ldÄ±!';
+  String get featureUnlocked => 'Özellik 24 saatliğine açıldı!';
 
   @override
-  String get pdfHeader => 'BCV Fiyat GeÃ§miÅŸi';
+  String get pdfHeader => 'BCV Fiyat Geçmişi';
 
   @override
-  String get statsPeriod => 'DÃ¶nem Ä°statistikleri';
+  String get statsPeriod => 'Dönem İstatistikleri';
 
   @override
-  String get copiedClipboard => 'Panoya kopyalandÄ±';
+  String get copiedClipboard => 'Panoya kopyalandı';
 
   @override
-  String get amountDollars => 'Dolar TutarÄ±';
+  String get amountDollars => 'Dolar Tutarı';
 
   @override
-  String get amountEuros => 'Euro TutarÄ±';
+  String get amountEuros => 'Euro Tutarı';
 
   @override
-  String get amountBolivars => 'Bolivar TutarÄ±';
+  String get amountBolivars => 'Bolivar Tutarı';
 
   @override
   String get amountCustom => 'Tutar';
 
   @override
-  String get shareError => 'PaylaÅŸma hatasÄ±';
+  String get shareError => 'Paylaşma hatası';
 
   @override
-  String get pdfError => 'PDF oluÅŸturma hatasÄ±';
+  String get pdfError => 'PDF oluşturma hatası';
 
   @override
-  String get viewList => 'Listeyi GÃ¶rÃ¼ntÃ¼le';
+  String get viewList => 'Listeyi Görüntüle';
 
   @override
-  String get viewChart => 'GrafiÄŸi GÃ¶rÃ¼ntÃ¼le';
+  String get viewChart => 'Grafiği Görüntüle';
 
   @override
   String get noData => 'Veri yok';
@@ -314,7 +313,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get max => 'Maksimum';
 
   @override
-  String get change => 'DeÄŸiÅŸim';
+  String get change => 'Değişim';
 
   @override
   String get rangeWeek => '1 Haf';
@@ -326,19 +325,19 @@ class AppLocalizationsTr extends AppLocalizations {
   String get rangeThreeMonths => '3 Ay';
 
   @override
-  String get rangeYear => '1 YÄ±l';
+  String get rangeYear => '1 Yıl';
 
   @override
-  String get rangeCustom => 'Ã–zel';
+  String get rangeCustom => 'Özel';
 
   @override
-  String get removeAdsLink => 'ReklamlarÄ± KaldÄ±r';
+  String get removeAdsLink => 'Reklamları Kaldır';
 
   @override
-  String get thanksSupport => 'DesteÄŸiniz iÃ§in teÅŸekkÃ¼rler!';
+  String get thanksSupport => 'Desteğiniz için teşekkürler!';
 
   @override
-  String get privacyPolicy => 'Gizlilik PolitikasÄ±';
+  String get privacyPolicy => 'Gizlilik Politikası';
 
   @override
   String get deactivateProTest => 'PRO\'yu Devre Dışı Bırak (Test)';
@@ -353,4 +352,22 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get deactivateProSuccess =>
       'PRO devre dışı bırakıldı. Değişiklikleri uygulamak için uygulamayı yeniden başlatın.';
+
+  @override
+  String get pdfCurrency => 'Para Birimi';
+
+  @override
+  String get pdfRange => 'Aralık';
+
+  @override
+  String get pdfDailyDetails => 'Günlük Detaylar';
+
+  @override
+  String get pdfDate => 'Tarih';
+
+  @override
+  String get pdfRate => 'Kur (Bs)';
+
+  @override
+  String get pdfChangePercent => 'Değişim %';
 }

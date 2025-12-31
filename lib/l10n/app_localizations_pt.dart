@@ -12,7 +12,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get appTitle => 'Calculadora BCV';
 
   @override
-  String get settings => 'ConfiguraÃ§Ãµes';
+  String get settings => 'Configurações';
 
   @override
   String get general => 'Geral';
@@ -21,10 +21,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get storageNetwork => 'Armazenamento e Rede';
 
   @override
-  String get storageNetworkSubtitle => 'Gerenciar cache e atualizaÃ§Ãµes';
+  String get storageNetworkSubtitle => 'Gerenciar cache e atualizações';
 
   @override
-  String get notifications => 'NotificaÃ§Ãµes';
+  String get notifications => 'Notificações';
 
   @override
   String get notificationsSubtitle => 'Avisar quando houver nova taxa';
@@ -33,19 +33,19 @@ class AppLocalizationsPt extends AppLocalizations {
   String get language => 'Idioma';
 
   @override
-  String get systemDefault => 'PadrÃ£o do sistema';
+  String get systemDefault => 'Padrão do sistema';
 
   @override
-  String get information => 'InformaÃ§Ãµes';
+  String get information => 'Informações';
 
   @override
   String get aboutApp => 'Sobre o App';
 
   @override
-  String get aboutAppSubtitle => 'VersÃ£o, desenvolvedor e licenÃ§as';
+  String get aboutAppSubtitle => 'Versão, desenvolvedor e licenças';
 
   @override
-  String get forceUpdate => 'ForÃ§ar AtualizaÃ§Ã£o';
+  String get forceUpdate => 'Forçar Atualização';
 
   @override
   String get forceUpdateSubtitle => 'Atualizar taxas da API';
@@ -79,19 +79,19 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get legalNoticeText =>
-      'Este aplicativo NÃƒO representa nenhuma entidade governamental ou bancÃ¡ria. NÃ£o temos afiliaÃ§Ã£o com o Banco Central da Venezuela. Os dados sÃ£o obtidos por meio de uma API que consulta o site oficial do BCV. O uso das informaÃ§Ãµes Ã© de responsabilidade exclusiva do usuÃ¡rio.';
+      'Este aplicativo NÃO representa nenhuma entidade governamental ou bancária. Não temos afiliação com o Banco Central da Venezuela. Os dados são obtidos por meio de uma API que consulta o site oficial do BCV. O uso das informações é de responsabilidade exclusiva do usuário.';
 
   @override
-  String get openSourceLicenses => 'LicenÃ§as de CÃ³digo Aberto';
+  String get openSourceLicenses => 'Licenças de Código Aberto';
 
   @override
-  String get version => 'VersÃ£o';
+  String get version => 'Versão';
 
   @override
   String get becomePro => 'Torne-se PRO!';
 
   @override
-  String get proUser => 'VocÃª Ã© um UsuÃ¡rio PRO!';
+  String get proUser => 'Você é um Usuário PRO!';
 
   @override
   String get getPro => 'Ativar recursos PRO (Beta)';
@@ -101,7 +101,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get activateProBetaTitle =>
-      'Deseja ativar os recursos PRO para esta sessÃ£o de teste?';
+      'Deseja ativar os recursos PRO para esta sessão de teste?';
 
   @override
   String get activateProBetaAccept => 'Ativar';
@@ -110,25 +110,25 @@ class AppLocalizationsPt extends AppLocalizations {
   String get restorePurchases => 'Restaurar Compras';
 
   @override
-  String get benefitAds => 'Sem anÃºncios';
+  String get benefitAds => 'Sem anúncios';
 
   @override
   String get benefitAdsDesc =>
-      'Desfrute de uma interface limpa e sem interrupÃ§Ãµes.';
+      'Desfrute de uma interface limpa e sem interrupções.';
 
   @override
-  String get benefitPdf => 'ExportaÃ§Ã£o InstantÃ¢nea';
+  String get benefitPdf => 'Exportação Instantânea';
 
   @override
   String get benefitPdfDesc =>
-      'Gere PDFs do seu histÃ³rico sem assistir anÃºncios.';
+      'Gere PDFs do seu histórico sem assistir anúncios.';
 
   @override
-  String get benefitSpeed => 'Velocidade MÃ¡xima';
+  String get benefitSpeed => 'Velocidade Máxima';
 
   @override
   String get benefitSpeedDesc =>
-      'NavegaÃ§Ã£o mais fluida e menor consumo de bateria.';
+      'Navegação mais fluida e menor consumo de bateria.';
 
   @override
   String get benefitSupport => 'Apoie o projeto';
@@ -138,22 +138,22 @@ class AppLocalizationsPt extends AppLocalizations {
       'Ajude-nos a continuar melhorando a ferramenta.';
 
   @override
-  String get usd => 'DÃ³lares';
+  String get usd => 'Dólares';
 
   @override
   String get eur => 'Euros';
 
   @override
-  String get ves => 'BolÃ­vares';
+  String get ves => 'Bolívares';
 
   @override
-  String get history => 'HistÃ³rico';
+  String get history => 'Histórico';
 
   @override
-  String get historyRates => 'HistÃ³rico de Taxas';
+  String get historyRates => 'Histórico de Taxas';
 
   @override
-  String get start => 'InÃ­cio';
+  String get start => 'Início';
 
   @override
   String get end => 'Fim';
@@ -162,19 +162,19 @@ class AppLocalizationsPt extends AppLocalizations {
   String get generatePdf => 'Gerar PDF';
 
   @override
-  String get watchAd => 'Assista ao anÃºncio para desbloquear';
+  String get watchAd => 'Assista ao anúncio para desbloquear';
 
   @override
-  String get loadingAd => 'Carregando anÃºncio...';
+  String get loadingAd => 'Carregando anúncio...';
 
   @override
-  String get errorAd => 'Erro ao carregar anÃºncio';
+  String get errorAd => 'Erro ao carregar anúncio';
 
   @override
   String get today => 'Hoje';
 
   @override
-  String get tomorrow => 'AmanhÃ£';
+  String get tomorrow => 'Amanhã';
 
   @override
   String get officialRate => 'Taxa Oficial';
@@ -189,17 +189,17 @@ class AppLocalizationsPt extends AppLocalizations {
   String get rateLabel => 'Taxa';
 
   @override
-  String get priceScanner => 'Scanner de PreÃ§os';
+  String get priceScanner => 'Scanner de Preços';
 
   @override
   String get cameraPermissionText =>
-      'Esta ferramenta usa a cÃ¢mera para detectar preÃ§os e convertÃª-los em tempo real.\n\nRequer acesso Ã  CÃ¢mera e Galeria.';
+      'Esta ferramenta usa a câmera para detectar preços e convertê-los em tempo real.\n\nRequer acesso à Câmera e Galeria.';
 
   @override
   String get allowAndContinue => 'Permitir e Continuar';
 
   @override
-  String get whatToScan => 'O que vocÃª vai escanear?';
+  String get whatToScan => 'O que você vai escanear?';
 
   @override
   String get amountUsd => 'USD';
@@ -230,10 +230,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get newRate => 'Nova Taxa...';
 
   @override
-  String get convertVesTo => 'Converter BolÃ­vares para...';
+  String get convertVesTo => 'Converter Bolívares para...';
 
   @override
-  String get homeScreen => 'InÃ­cio';
+  String get homeScreen => 'Início';
 
   @override
   String get calculatorScreen => 'Calculadora';
@@ -249,42 +249,42 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get addCustomRatesDescription =>
-      'Adicione taxas personalizadas para calcular conversÃµes.';
+      'Adicione taxas personalizadas para calcular conversões.';
 
   @override
   String get errorLoadingRate => 'Erro ao carregar taxa';
 
   @override
-  String get unlockPdfTitle => 'Desbloquear ExportaÃ§Ã£o PDF';
+  String get unlockPdfTitle => 'Desbloquear Exportação PDF';
 
   @override
   String get unlockPdfDesc =>
-      'Para exportar para PDF, assista a um anÃºncio. Isso desbloquearÃ¡ o recurso por 24h.';
+      'Para exportar para PDF, assista a um anúncio. Isso desbloqueará o recurso por 24h.';
 
   @override
   String get adNotReady =>
-      'O anÃºncio ainda nÃ£o estÃ¡ pronto. Tente novamente em alguns segundos.';
+      'O anúncio ainda não está pronto. Tente novamente em alguns segundos.';
 
   @override
   String get featureUnlocked => 'Recurso desbloqueado por 24 horas!';
 
   @override
-  String get pdfHeader => 'HistÃ³rico de PreÃ§os BCV';
+  String get pdfHeader => 'Histórico de Preços BCV';
 
   @override
-  String get statsPeriod => 'EstatÃ­sticas do PerÃ­odo';
+  String get statsPeriod => 'Estatísticas do Período';
 
   @override
-  String get copiedClipboard => 'Copiado para a Ã¡rea de transferÃªncia';
+  String get copiedClipboard => 'Copiado para a área de transferência';
 
   @override
-  String get amountDollars => 'Valor em DÃ³lares';
+  String get amountDollars => 'Valor em Dólares';
 
   @override
   String get amountEuros => 'Valor em Euros';
 
   @override
-  String get amountBolivars => 'Valor em BolÃ­vares';
+  String get amountBolivars => 'Valor em Bolívares';
 
   @override
   String get amountCustom => 'Valor em';
@@ -299,28 +299,28 @@ class AppLocalizationsPt extends AppLocalizations {
   String get viewList => 'Ver Lista';
 
   @override
-  String get viewChart => 'Ver GrÃ¡fico';
+  String get viewChart => 'Ver Gráfico';
 
   @override
-  String get noData => 'Sem dados disponÃ­veis';
+  String get noData => 'Sem dados disponíveis';
 
   @override
-  String get mean => 'MÃ©dia';
+  String get mean => 'Média';
 
   @override
-  String get min => 'MÃ­nimo';
+  String get min => 'Mínimo';
 
   @override
-  String get max => 'MÃ¡ximo';
+  String get max => 'Máximo';
 
   @override
-  String get change => 'VariaÃ§Ã£o';
+  String get change => 'Variação';
 
   @override
   String get rangeWeek => '1 Sem';
 
   @override
-  String get rangeMonth => '1 MÃªs';
+  String get rangeMonth => '1 Mês';
 
   @override
   String get rangeThreeMonths => '3 Meses';
@@ -332,13 +332,13 @@ class AppLocalizationsPt extends AppLocalizations {
   String get rangeCustom => 'Adoc';
 
   @override
-  String get removeAdsLink => 'Remover AnÃºncios';
+  String get removeAdsLink => 'Remover Anúncios';
 
   @override
   String get thanksSupport => 'Obrigado pelo seu apoio!';
 
   @override
-  String get privacyPolicy => 'PolÃ­tica de Privacidade';
+  String get privacyPolicy => 'Política de Privacidade';
 
   @override
   String get deactivateProTest => 'Desativar PRO (Testes)';
@@ -353,4 +353,22 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get deactivateProSuccess =>
       'PRO desativado. Reinicie o app para aplicar alterações.';
+
+  @override
+  String get pdfCurrency => 'Moeda';
+
+  @override
+  String get pdfRange => 'Intervalo';
+
+  @override
+  String get pdfDailyDetails => 'Detalhes Diários (Crono. Inverso)';
+
+  @override
+  String get pdfDate => 'Data';
+
+  @override
+  String get pdfRate => 'Taxa (Bs)';
+
+  @override
+  String get pdfChangePercent => 'Variação %';
 }

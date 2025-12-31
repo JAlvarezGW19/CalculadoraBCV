@@ -354,4 +354,22 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get deactivateProSuccess =>
       'PRO désactivé. Redémarrez l\'app pour appliquer les changements.';
+
+  @override
+  String get pdfCurrency => 'Devise';
+
+  @override
+  String get pdfRange => 'Intervalle';
+
+  @override
+  String get pdfDailyDetails => 'Détails Quotidiens';
+
+  @override
+  String get pdfDate => 'Date';
+
+  @override
+  String get pdfRate => 'Taux (Bs)';
+
+  @override
+  String get pdfChangePercent => 'Chang. %';
 }

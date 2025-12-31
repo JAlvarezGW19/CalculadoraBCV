@@ -3,7 +3,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart'
-    show BuildContext, ScaffoldMessenger, SnackBar, Text, Colors;
+    show BuildContext, ScaffoldMessenger, SnackBar, Text, Colors, Localizations;
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
 import '../models/history_point.dart';
 import '../providers/bcv_provider.dart';
@@ -19,14 +19,59 @@ class PdfExportService {
 
     try {
       final doc = pw.Document();
-      // Use standard google fonts
-      final font = await PdfGoogleFonts.montserratRegular();
-      final boldFont = await PdfGoogleFonts.montserratBold();
+      // Determine font based on locale to support specific characters
+      final locale = Localizations.localeOf(context);
+      final langCode = locale.languageCode;
+
+      // Load Latin fonts (Montserrat) as the universal fallback for numbers/dates
+      final latinFont = await PdfGoogleFonts.montserratRegular();
+      final latinBoldFont = await PdfGoogleFonts.montserratBold();
+
+      pw.Font contentFont = latinFont;
+      pw.Font contentBoldFont = latinBoldFont;
+      List<pw.Font> fallbacks = [];
+
+      // Determine content text direction
+      pw.TextDirection textDirection = pw.TextDirection.ltr;
+
+      // Select specific font based on language
+      if (langCode == 'zh') {
+        contentFont = await PdfGoogleFonts.notoSansSCRegular();
+        contentBoldFont = await PdfGoogleFonts.notoSansSCBold();
+        fallbacks = [latinFont];
+      } else if (langCode == 'ja') {
+        contentFont = await PdfGoogleFonts.notoSansJPRegular();
+        contentBoldFont = await PdfGoogleFonts.notoSansJPBold();
+        fallbacks = [latinFont];
+      } else if (langCode == 'ko') {
+        contentFont = await PdfGoogleFonts.notoSansKRRegular();
+        contentBoldFont = await PdfGoogleFonts.notoSansKRBold();
+        fallbacks = [latinFont];
+      } else if (langCode == 'ar') {
+        contentFont = await PdfGoogleFonts.notoSansArabicRegular();
+        contentBoldFont = await PdfGoogleFonts.notoSansArabicBold();
+        fallbacks = [latinFont];
+        textDirection = pw.TextDirection.rtl;
+      } else if (langCode == 'ru' || langCode == 'vi' || langCode == 'tr') {
+        // Roboto covers Cyrillic, Vietnamese, Turkish well
+        contentFont = await PdfGoogleFonts.robotoRegular();
+        contentBoldFont = await PdfGoogleFonts.robotoBold();
+        fallbacks = [latinFont];
+      } else {
+        // Default for Latin languages, use Montserrat directly
+        contentFont = latinFont;
+        contentBoldFont = latinBoldFont;
+      }
 
       doc.addPage(
         pw.MultiPage(
           pageFormat: PdfPageFormat.a4,
-          theme: pw.ThemeData.withFont(base: font, bold: boldFont),
+          theme: pw.ThemeData.withFont(
+            base: contentFont,
+            bold: contentBoldFont,
+            fontFallback: fallbacks,
+          ),
+          textDirection: textDirection,
           build: (pw.Context context) {
             // Stats Calculation
             final sorted = data.map((e) => e.rate).toList()..sort();
@@ -69,7 +114,7 @@ class PdfExportService {
               ),
               pw.SizedBox(height: 20),
               pw.Text(
-                "Currency: $currencySymbol | Range: $startDateStr - $endDateStr",
+                "${l10n.pdfCurrency}: $currencySymbol | ${l10n.pdfRange}: $startDateStr - $endDateStr",
                 style: const pw.TextStyle(fontSize: 14),
               ),
               pw.SizedBox(height: 10),
@@ -85,7 +130,7 @@ class PdfExportService {
                   mainAxisAlignment: pw.MainAxisAlignment.spaceAround,
                   children: [
                     _buildPdfStat(
-                      l10n.change,
+                      l10n.pdfChangePercent, // Use new localized key
                       "${percent.toStringAsFixed(2)}%",
                       isPositive: percent >= 0,
                     ),
@@ -100,7 +145,7 @@ class PdfExportService {
 
               // Data Table
               pw.Text(
-                "Daily Details (Reverse Chronological)",
+                l10n.pdfDailyDetails, // Localized
                 style: pw.TextStyle(
                   fontSize: 16,
                   fontWeight: pw.FontWeight.bold,
@@ -109,7 +154,11 @@ class PdfExportService {
               pw.SizedBox(height: 10),
 
               pw.TableHelper.fromTextArray(
-                headers: ['Date', 'Rate (Bs)', 'Change %'],
+                headers: [
+                  l10n.pdfDate,
+                  l10n.pdfRate,
+                  l10n.pdfChangePercent,
+                ], // Localized headers
                 data: _buildPdfTableData(data.reversed.toList()),
                 border: null,
                 headerStyle: pw.TextStyle(

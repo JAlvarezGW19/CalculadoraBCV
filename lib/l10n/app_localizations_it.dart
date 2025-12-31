@@ -28,7 +28,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get notificationsSubtitle =>
-      'Avvisa quando Ã¨ disponibile un nuovo tasso';
+      'Avvisa quando è disponibile un nuovo tasso';
 
   @override
   String get language => 'Lingua';
@@ -80,7 +80,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get legalNoticeText =>
-      'Questa applicazione NON rappresenta alcuna entitÃ  governativa o bancaria. Non siamo affiliati alla Banca Centrale del Venezuela. I dati sono ottenuti tramite un\'API che consulta il sito ufficiale della BCV. L\'uso delle informazioni Ã¨ di esclusiva responsabilitÃ  dell\'utente.';
+      'Questa applicazione NON rappresenta alcuna entità governativa o bancaria. Non siamo affiliati alla Banca Centrale del Venezuela. I dati sono ottenuti tramite un\'API che consulta il sito ufficiale della BCV. L\'uso delle informazioni è di esclusiva responsabilità dell\'utente.';
 
   @override
   String get openSourceLicenses => 'Licenze Open Source';
@@ -111,7 +111,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get restorePurchases => 'Ripristina Acquisti';
 
   @override
-  String get benefitAds => 'Niente pubblicitÃ ';
+  String get benefitAds => 'Niente pubblicità';
 
   @override
   String get benefitAdsDesc =>
@@ -125,11 +125,11 @@ class AppLocalizationsIt extends AppLocalizations {
       'Genera PDF della cronologia senza guardare video pubblicitari.';
 
   @override
-  String get benefitSpeed => 'Massima VelocitÃ ';
+  String get benefitSpeed => 'Massima Velocità';
 
   @override
   String get benefitSpeedDesc =>
-      'Navigazione piÃ¹ fluida e minor consumo di batteria.';
+      'Navigazione più fluida e minor consumo di batteria.';
 
   @override
   String get benefitSupport => 'Supporta il progetto';
@@ -163,10 +163,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get generatePdf => 'Genera PDF';
 
   @override
-  String get watchAd => 'Guarda pubblicitÃ  per sbloccare';
+  String get watchAd => 'Guarda pubblicità per sbloccare';
 
   @override
-  String get loadingAd => 'Caricamento pubblicitÃ ...';
+  String get loadingAd => 'Caricamento pubblicità...';
 
   @override
   String get errorAd => 'Errore caricamento';
@@ -260,11 +260,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get unlockPdfDesc =>
-      'Per esportare in PDF, guarda una pubblicitÃ . SbloccherÃ  la funzione per 24 ore.';
+      'Per esportare in PDF, guarda una pubblicità. Sbloccherà la funzione per 24 ore.';
 
   @override
   String get adNotReady =>
-      'La pubblicitÃ  non Ã¨ ancora pronta. Riprova tra qualche secondo.';
+      'La pubblicità non è ancora pronta. Riprova tra qualche secondo.';
 
   @override
   String get featureUnlocked => 'Funzione sbloccata per 24 ore!';
@@ -333,7 +333,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get rangeCustom => 'Person';
 
   @override
-  String get removeAdsLink => 'Rimuovi pubblicitÃ ';
+  String get removeAdsLink => 'Rimuovi pubblicità';
 
   @override
   String get thanksSupport => 'Grazie per il tuo supporto!';
@@ -354,4 +354,22 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get deactivateProSuccess =>
       'PRO disattivato. Riavvia l\'app per applicare le modifiche.';
+
+  @override
+  String get pdfCurrency => 'Valuta';
+
+  @override
+  String get pdfRange => 'Intervallo';
+
+  @override
+  String get pdfDailyDetails => 'Dettagli Giornalieri';
+
+  @override
+  String get pdfDate => 'Data';
+
+  @override
+  String get pdfRate => 'Tasso (Bs)';
+
+  @override
+  String get pdfChangePercent => 'Var. %';
 }

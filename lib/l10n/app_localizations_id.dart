@@ -349,4 +349,22 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get deactivateProSuccess =>
       'PRO dinonaktifkan. Mulai ulang aplikasi untuk menerapkan perubahan.';
+
+  @override
+  String get pdfCurrency => 'Mata Uang';
+
+  @override
+  String get pdfRange => 'Rentang';
+
+  @override
+  String get pdfDailyDetails => 'Rincian Harian';
+
+  @override
+  String get pdfDate => 'Tanggal';
+
+  @override
+  String get pdfRate => 'Kurs (Bs)';
+
+  @override
+  String get pdfChangePercent => 'Perubahan %';
 }

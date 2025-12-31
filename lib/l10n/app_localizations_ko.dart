@@ -9,197 +9,192 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
-  String get appTitle => 'BCV ê³„ì‚°ê¸°';
+  String get appTitle => 'BCV 계산기';
 
   @override
-  String get settings => 'ì„¤ì •';
+  String get settings => '설정';
 
   @override
-  String get general => 'ì¼ë°˜';
+  String get general => '일반';
 
   @override
-  String get storageNetwork => 'ì €ìž¥ ê³µê°„ ë° ë„¤íŠ¸ì›Œí¬';
+  String get storageNetwork => '저장 공간 및 네트워크';
 
   @override
-  String get storageNetworkSubtitle => 'ìºì‹œ ë° ì—…ë°ì´íŠ¸ ê´€ë¦¬';
+  String get storageNetworkSubtitle => '캐시 및 업데이트 관리';
 
   @override
-  String get notifications => 'ì•Œë¦¼';
+  String get notifications => '알림';
 
   @override
-  String get notificationsSubtitle => 'ìƒˆë¡œìš´ í™˜ìœ¨ì´ ë‚˜ì˜¤ë©´ ì•Œë¦¼';
+  String get notificationsSubtitle => '새로운 환율이 나오면 알림';
 
   @override
-  String get language => 'ì–¸ì–´';
+  String get language => '언어';
 
   @override
-  String get systemDefault => 'ì‹œìŠ¤í…œ ê¸°ë³¸ê°’';
+  String get systemDefault => '시스템 기본값';
 
   @override
-  String get information => 'ì •ë³´';
+  String get information => '정보';
 
   @override
-  String get aboutApp => 'ì•± ì •ë³´';
+  String get aboutApp => '앱 정보';
 
   @override
-  String get aboutAppSubtitle => 'ë²„ì „, ê°œë°œìž ë° ë¼ì´ì„ ìŠ¤';
+  String get aboutAppSubtitle => '버전, 개발자 및 라이선스';
 
   @override
-  String get forceUpdate => 'ê°•ì œ ì—…ë°ì´íŠ¸';
+  String get forceUpdate => '강제 업데이트';
 
   @override
-  String get forceUpdateSubtitle => 'APIì—ì„œ í™˜ìœ¨ ì—…ë°ì´íŠ¸';
+  String get forceUpdateSubtitle => 'API에서 환율 업데이트';
 
   @override
-  String get clearCache => 'ìºì‹œ ì§€ìš°ê¸°';
+  String get clearCache => '캐시 지우기';
 
   @override
-  String get clearCacheSubtitle => 'ë¡œì»¬ ë°ì´í„° ì‚­ì œ';
+  String get clearCacheSubtitle => '로컬 데이터 삭제';
 
   @override
-  String get cancel => 'ì·¨ì†Œ';
+  String get cancel => '취소';
 
   @override
-  String get close => 'ë‹«ê¸°';
+  String get close => '닫기';
 
   @override
-  String get updatingRates => 'í™˜ìœ¨ ì—…ë°ì´íŠ¸ ì¤‘...';
+  String get updatingRates => '환율 업데이트 중...';
 
   @override
-  String get cacheCleared => 'ìºì‹œ ì‚­ì œë¨';
+  String get cacheCleared => '캐시 삭제됨';
 
   @override
-  String get developer => 'ê°œë°œìž';
+  String get developer => '개발자';
 
   @override
-  String get dataSource => 'ë°ì´í„° ì¶œì²˜';
+  String get dataSource => '데이터 출처';
 
   @override
-  String get legalNotice => 'ë²•ì  ê³ ì§€';
+  String get legalNotice => '법적 고지';
 
   @override
   String get legalNoticeText =>
-      'ì´ ì• í”Œë¦¬ì¼€ì´ì…˜ì€ ì •ë¶€ë‚˜ ì€í–‰ ê¸°ê´€ì„ ëŒ€í‘œí•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ë² ë„¤ìˆ˜ì—˜ë¼ ì¤‘ì•™ì€í–‰(BCV)ê³¼ ì œíœ´í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤. ë°ì´í„°ëŠ” BCV ê³µì‹ ì›¹ì‚¬ì´íŠ¸ë¥¼ ì¡°íšŒí•˜ëŠ” APIë¥¼ í†µí•´ ì–»ìŠµë‹ˆë‹¤. ì •ë³´ ì‚¬ìš©ì— ëŒ€í•œ ì±…ìž„ì€ ì‚¬ìš©ìžì—ê²Œ ìžˆìŠµë‹ˆë‹¤.';
+      '이 애플리케이션은 정부나 은행 기관을 대표하지 않습니다. 베네수엘라 중앙은행(BCV)과 제휴하지 않았습니다. 데이터는 BCV 공식 웹사이트를 조회하는 API를 통해 얻습니다. 정보 사용에 대한 책임은 사용자에게 있습니다.';
 
   @override
-  String get openSourceLicenses => 'ì˜¤í”ˆ ì†ŒìŠ¤ ë¼ì´ì„ ìŠ¤';
+  String get openSourceLicenses => '오픈 소스 라이선스';
 
   @override
-  String get version => 'ë²„ì „';
+  String get version => '버전';
 
   @override
-  String get becomePro => 'PRO ì‚¬ìš©ìžê°€ ë˜ì„¸ìš”!';
+  String get becomePro => 'PRO 사용자가 되세요!';
 
   @override
-  String get proUser => 'ë‹¹ì‹ ì€ PRO ì‚¬ìš©ìžìž…ë‹ˆë‹¤!';
+  String get proUser => '당신은 PRO 사용자입니다!';
 
   @override
-  String get getPro => 'PRO ê¸°ëŠ¥ í™œì„±í™” (ë² íƒ€)';
+  String get getPro => 'PRO 기능 활성화 (베타)';
 
   @override
   String get oneTimePayment => '';
 
   @override
-  String get activateProBetaTitle =>
-      'ì´ í…ŒìŠ¤íŠ¸ ì„¸ì…˜ì— ëŒ€í•´ PRO ê¸°ëŠ¥ì„ í™œì„±í™”í•˜ì‹œê² ìŠµë‹ˆê¹Œ?';
+  String get activateProBetaTitle => '이 테스트 세션에 대해 PRO 기능을 활성화하시겠습니까?';
 
   @override
-  String get activateProBetaAccept => 'í™œì„±í™”';
+  String get activateProBetaAccept => '활성화';
 
   @override
-  String get restorePurchases => 'êµ¬ë§¤ ë³µì›';
+  String get restorePurchases => '구매 복원';
 
   @override
-  String get benefitAds => 'ê´‘ê³  ì—†ìŒ';
+  String get benefitAds => '광고 없음';
 
   @override
-  String get benefitAdsDesc =>
-      'ë°©í•´ ì—†ëŠ” ê¹”ë”í•œ ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ ì¦ê¸°ì„¸ìš”.';
+  String get benefitAdsDesc => '방해 없는 깔끔한 인터페이스를 즐기세요.';
 
   @override
-  String get benefitPdf => 'ì¦‰ì‹œ ë‚´ë³´ë‚´ê¸°';
+  String get benefitPdf => '즉시 내보내기';
 
   @override
-  String get benefitPdfDesc =>
-      'ë™ì˜ìƒ ê´‘ê³  ì‹œì²­ ì—†ì´ ê¸°ë¡ PDFë¥¼ ìƒì„±í•˜ì„¸ìš”.';
+  String get benefitPdfDesc => '동영상 광고 시청 없이 기록 PDF를 생성하세요.';
 
   @override
-  String get benefitSpeed => 'ìµœê³  ì†ë„';
+  String get benefitSpeed => '최고 속도';
 
   @override
-  String get benefitSpeedDesc =>
-      'ë” ë¶€ë“œëŸ¬ìš´ íƒìƒ‰ê³¼ ë°°í„°ë¦¬ ì†Œëª¨ ê°ì†Œ.';
+  String get benefitSpeedDesc => '더 부드러운 탐색과 배터리 소모 감소.';
 
   @override
-  String get benefitSupport => 'í”„ë¡œì íŠ¸ í›„ì›';
+  String get benefitSupport => '프로젝트 후원';
 
   @override
-  String get benefitSupportDesc =>
-      'ë„êµ¬ë¥¼ ì§€ì†ì ìœ¼ë¡œ ê°œì„ í•  ìˆ˜ ìžˆë„ë¡ ë„ì™€ì£¼ì„¸ìš”.';
+  String get benefitSupportDesc => '도구를 지속적으로 개선할 수 있도록 도와주세요.';
 
   @override
-  String get usd => 'ë‹¬ëŸ¬';
+  String get usd => '달러';
 
   @override
-  String get eur => 'ìœ ë¡œ';
+  String get eur => '유로';
 
   @override
-  String get ves => 'ë³¼ë¦¬ë°”ë¥´';
+  String get ves => '볼리바르';
 
   @override
-  String get history => 'ê¸°ë¡';
+  String get history => '기록';
 
   @override
-  String get historyRates => 'í™˜ìœ¨ ê¸°ë¡';
+  String get historyRates => '환율 기록';
 
   @override
-  String get start => 'ì‹œìž‘';
+  String get start => '시작';
 
   @override
-  String get end => 'ì¢…ë£Œ';
+  String get end => '종료';
 
   @override
-  String get generatePdf => 'PDF ìƒì„±';
+  String get generatePdf => 'PDF 생성';
 
   @override
-  String get watchAd => 'ê´‘ê³  ë³´ê³  ìž ê¸ˆ í•´ì œ';
+  String get watchAd => '광고 보고 잠금 해제';
 
   @override
-  String get loadingAd => 'ê´‘ê³  ë¡œë”© ì¤‘...';
+  String get loadingAd => '광고 로딩 중...';
 
   @override
-  String get errorAd => 'ë¡œë”© ì˜¤ë¥˜';
+  String get errorAd => '로딩 오류';
 
   @override
-  String get today => 'ì˜¤ëŠ˜';
+  String get today => '오늘';
 
   @override
-  String get tomorrow => 'ë‚´ì¼';
+  String get tomorrow => '내일';
 
   @override
-  String get officialRate => 'ê³µì‹ í™˜ìœ¨';
+  String get officialRate => '공식 환율';
 
   @override
-  String get customRate => 'ì‚¬ìš©ìž ì§€ì • í™˜ìœ¨';
+  String get customRate => '사용자 지정 환율';
 
   @override
-  String get convert => 'ë³€í™˜';
+  String get convert => '변환';
 
   @override
-  String get rateLabel => 'í™˜ìœ¨';
+  String get rateLabel => '환율';
 
   @override
-  String get priceScanner => 'ê°€ê²© ìŠ¤ìºë„ˆ';
+  String get priceScanner => '가격 스캐너';
 
   @override
   String get cameraPermissionText =>
-      'ì´ ë„êµ¬ëŠ” ì¹´ë©”ë¼ë¥¼ ì‚¬ìš©í•˜ì—¬ ê°€ê²©ì„ ê°ì§€í•˜ê³  ì‹¤ì‹œê°„ìœ¼ë¡œ ë³€í™˜í•©ë‹ˆë‹¤.\n\nì¹´ë©”ë¼ ë° ê°¤ëŸ¬ë¦¬ ì•¡ì„¸ìŠ¤ê°€ í•„ìš”í•©ë‹ˆë‹¤.';
+      '이 도구는 카메라를 사용하여 가격을 감지하고 실시간으로 변환합니다.\n\n카메라 및 갤러리 액세스가 필요합니다.';
 
   @override
-  String get allowAndContinue => 'í—ˆìš© ë° ê³„ì†';
+  String get allowAndContinue => '허용 및 계속';
 
   @override
-  String get whatToScan => 'ë¬´ì—‡ì„ ìŠ¤ìº”í•˜ì‹œê² ìŠµë‹ˆê¹Œ?';
+  String get whatToScan => '무엇을 스캔하시겠습니까?';
 
   @override
   String get amountUsd => 'USD';
@@ -211,135 +206,130 @@ class AppLocalizationsKo extends AppLocalizations {
   String get amountVes => 'Bs.';
 
   @override
-  String get ratePers => 'ì»¤ìŠ¤í…€';
+  String get ratePers => '커스텀';
 
   @override
-  String get noCustomRates => 'ì‚¬ìš©ìž ì§€ì • í™˜ìœ¨ ì—†ìŒ';
+  String get noCustomRates => '사용자 지정 환율 없음';
 
   @override
-  String get noCustomRatesDesc =>
-      'ì´ ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ë ¤ë©´ ì‚¬ìš©ìž ì§€ì • í™˜ìœ¨ì„ ì¶”ê°€í•˜ì„¸ìš”.';
+  String get noCustomRatesDesc => '이 기능을 사용하려면 사용자 지정 환율을 추가하세요.';
 
   @override
-  String get createRate => 'í™˜ìœ¨ ìƒì„±';
+  String get createRate => '환율 생성';
 
   @override
-  String get chooseRate => 'í™˜ìœ¨ ì„ íƒ';
+  String get chooseRate => '환율 선택';
 
   @override
-  String get newRate => 'ìƒˆ í™˜ìœ¨...';
+  String get newRate => '새 환율...';
 
   @override
-  String get convertVesTo => 'ë³¼ë¦¬ë°”ë¥´ ë³€í™˜...';
+  String get convertVesTo => '볼리바르 변환...';
 
   @override
-  String get homeScreen => 'í™ˆ';
+  String get homeScreen => '홈';
 
   @override
-  String get calculatorScreen => 'ê³„ì‚°ê¸°';
+  String get calculatorScreen => '계산기';
 
   @override
-  String get rateDate => 'ê¸°ì¤€ì¼';
+  String get rateDate => '기준일';
 
   @override
-  String get officialRateBcv => 'BCV ê³µì‹ í™˜ìœ¨';
+  String get officialRateBcv => 'BCV 공식 환율';
 
   @override
-  String get createYourFirstRate => 'ì²« ë²ˆì§¸ ì‚¬ìš©ìž ì§€ì • í™˜ìœ¨ ìƒì„±';
+  String get createYourFirstRate => '첫 번째 사용자 지정 환율 생성';
 
   @override
-  String get addCustomRatesDescription =>
-      'í™˜ì‚° ê³„ì‚°ì„ ìœ„í•´ ì‚¬ìš©ìž ì§€ì • í™˜ìœ¨ì„ ì¶”ê°€í•˜ì„¸ìš”.';
+  String get addCustomRatesDescription => '환산 계산을 위해 사용자 지정 환율을 추가하세요.';
 
   @override
-  String get errorLoadingRate => 'í™˜ìœ¨ ë¡œë”© ì˜¤ë¥˜';
+  String get errorLoadingRate => '환율 로딩 오류';
 
   @override
-  String get unlockPdfTitle => 'PDF ë‚´ë³´ë‚´ê¸° ìž ê¸ˆ í•´ì œ';
+  String get unlockPdfTitle => 'PDF 내보내기 잠금 해제';
 
   @override
-  String get unlockPdfDesc =>
-      'PDFë¡œ ë‚´ë³´ë‚´ë ¤ë©´ ì§§ì€ ê´‘ê³ ë¥¼ ì‹œì²­í•˜ì„¸ìš”. 24ì‹œê°„ ë™ì•ˆ ê¸°ëŠ¥ì´ ìž ê¸ˆ í•´ì œë©ë‹ˆë‹¤.';
+  String get unlockPdfDesc => 'PDF로 내보내려면 짧은 광고를 시청하세요. 24시간 동안 기능이 잠금 해제됩니다.';
 
   @override
-  String get adNotReady =>
-      'ê´‘ê³ ê°€ ì•„ì§ ì¤€ë¹„ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤. ëª‡ ì´ˆ í›„ì— ë‹¤ì‹œ ì‹œë„í•˜ì„¸ìš”.';
+  String get adNotReady => '광고가 아직 준비되지 않았습니다. 몇 초 후에 다시 시도하세요.';
 
   @override
-  String get featureUnlocked =>
-      'ê¸°ëŠ¥ì´ 24ì‹œê°„ ë™ì•ˆ ìž ê¸ˆ í•´ì œë˜ì—ˆìŠµë‹ˆë‹¤!';
+  String get featureUnlocked => '기능이 24시간 동안 잠금 해제되었습니다!';
 
   @override
-  String get pdfHeader => 'BCV ê°€ê²© ê¸°ë¡';
+  String get pdfHeader => 'BCV 가격 기록';
 
   @override
-  String get statsPeriod => 'ê¸°ê°„ í†µê³„';
+  String get statsPeriod => '기간 통계';
 
   @override
-  String get copiedClipboard => 'í´ë¦½ë³´ë“œì— ë³µì‚¬ë¨';
+  String get copiedClipboard => '클립보드에 복사됨';
 
   @override
-  String get amountDollars => 'ë‹¬ëŸ¬ ê¸ˆì•¡';
+  String get amountDollars => '달러 금액';
 
   @override
-  String get amountEuros => 'ìœ ë¡œ ê¸ˆì•¡';
+  String get amountEuros => '유로 금액';
 
   @override
-  String get amountBolivars => 'ë³¼ë¦¬ë°”ë¥´ ê¸ˆì•¡';
+  String get amountBolivars => '볼리바르 금액';
 
   @override
-  String get amountCustom => 'ê¸ˆì•¡';
+  String get amountCustom => '금액';
 
   @override
-  String get shareError => 'ê³µìœ  ì˜¤ë¥˜';
+  String get shareError => '공유 오류';
 
   @override
-  String get pdfError => 'PDF ìƒì„± ì˜¤ë¥˜';
+  String get pdfError => 'PDF 생성 오류';
 
   @override
-  String get viewList => 'ëª©ë¡ ë³´ê¸°';
+  String get viewList => '목록 보기';
 
   @override
-  String get viewChart => 'ì°¨íŠ¸ ë³´ê¸°';
+  String get viewChart => '차트 보기';
 
   @override
-  String get noData => 'ë°ì´í„° ì—†ìŒ';
+  String get noData => '데이터 없음';
 
   @override
-  String get mean => 'í‰ê· ';
+  String get mean => '평균';
 
   @override
-  String get min => 'ìµœì†Œ';
+  String get min => '최소';
 
   @override
-  String get max => 'ìµœëŒ€';
+  String get max => '최대';
 
   @override
-  String get change => 'ë³€ë™';
+  String get change => '변동';
 
   @override
-  String get rangeWeek => '1ì£¼';
+  String get rangeWeek => '1주';
 
   @override
-  String get rangeMonth => '1ê°œì›”';
+  String get rangeMonth => '1개월';
 
   @override
-  String get rangeThreeMonths => '3ê°œì›”';
+  String get rangeThreeMonths => '3개월';
 
   @override
-  String get rangeYear => '1ë…„';
+  String get rangeYear => '1년';
 
   @override
-  String get rangeCustom => 'ë§žì¶¤';
+  String get rangeCustom => '맞춤';
 
   @override
-  String get removeAdsLink => 'ê´‘ê³  ì œê±°';
+  String get removeAdsLink => '광고 제거';
 
   @override
-  String get thanksSupport => 'ì§€ì›í•´ ì£¼ì…”ì„œ ê°ì‚¬í•©ë‹ˆë‹¤!';
+  String get thanksSupport => '지원해 주셔서 감사합니다!';
 
   @override
-  String get privacyPolicy => 'ê°œì¸ì •ë³´ ì²˜ë¦¬ë°©ì¹¨';
+  String get privacyPolicy => '개인정보 처리방침';
 
   @override
   String get deactivateProTest => 'PRO 비활성화 (테스트)';
@@ -353,4 +343,22 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get deactivateProSuccess =>
       'PRO가 비활성화되었습니다. 변경 사항을 적용하려면 앱을 다시 시작하세요.';
+
+  @override
+  String get pdfCurrency => '통화';
+
+  @override
+  String get pdfRange => '범위';
+
+  @override
+  String get pdfDailyDetails => '일일 상세';
+
+  @override
+  String get pdfDate => '날짜';
+
+  @override
+  String get pdfRate => '환율 (Bs)';
+
+  @override
+  String get pdfChangePercent => '변동 %';
 }

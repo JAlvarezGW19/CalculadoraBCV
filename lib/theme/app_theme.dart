@@ -12,35 +12,54 @@ class AppTheme {
   static const Color textSubtle = Color(0xFFA0AEC0); // Light Grayish Blue
 
   // Text Styles
-  static TextStyle get rateStyle => GoogleFonts.montserrat(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-    color: textAccent,
-  );
+  static Locale? currentLocale;
 
-  static TextStyle get rateLabelStyle => GoogleFonts.montserrat(
-    fontSize: 24,
-    fontWeight: FontWeight.w500,
-    color: textPrimary,
-  );
+  static const _supportedCustomFontCodes = ['en', 'es', 'fr', 'it', 'pt', 'de'];
 
-  static TextStyle get inputTextStyle => GoogleFonts.montserrat(
-    fontSize: 36,
-    fontWeight: FontWeight.bold,
-    color: textPrimary,
-  );
+  static TextStyle _getFont({
+    double? fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+  }) {
+    // If locale is null or NOT in the clean list (Latin based), use system font
+    // This ensures CJK/Arabic/Cyrillic render correctly with system fonts
+    final code = currentLocale?.languageCode ?? 'en';
+    if (_supportedCustomFontCodes.contains(code)) {
+      return GoogleFonts.montserrat(
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        color: color,
+      );
+    } else {
+      // Return system font (no family specified)
+      return TextStyle(
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        color: color,
+        fontFamilyFallback: const [
+          'Roboto',
+          'sans-serif',
+          'Arial',
+        ], // Basic fallback
+      );
+    }
+  }
 
-  static TextStyle get inputLabelStyle => GoogleFonts.montserrat(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-    color: textPrimary,
-  );
+  // Text Styles
+  static TextStyle get rateStyle =>
+      _getFont(fontSize: 24, fontWeight: FontWeight.bold, color: textAccent);
 
-  static TextStyle get subtitleStyle => GoogleFonts.montserrat(
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: textSubtle,
-  );
+  static TextStyle get rateLabelStyle =>
+      _getFont(fontSize: 24, fontWeight: FontWeight.w500, color: textPrimary);
+
+  static TextStyle get inputTextStyle =>
+      _getFont(fontSize: 36, fontWeight: FontWeight.bold, color: textPrimary);
+
+  static TextStyle get inputLabelStyle =>
+      _getFont(fontSize: 24, fontWeight: FontWeight.bold, color: textPrimary);
+
+  static TextStyle get subtitleStyle =>
+      _getFont(fontSize: 14, fontWeight: FontWeight.w400, color: textSubtle);
 
   // Global Theme Data
   static ThemeData get themeData {
@@ -53,8 +72,8 @@ class AppTheme {
         surface: cardBackground,
       ),
       textTheme: TextTheme(
-        bodyMedium: GoogleFonts.montserrat(color: textPrimary),
-        bodyLarge: GoogleFonts.montserrat(color: textPrimary),
+        bodyMedium: _getFont(color: textPrimary),
+        bodyLarge: _getFont(color: textPrimary),
       ),
     );
   }

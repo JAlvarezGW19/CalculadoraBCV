@@ -1,4 +1,4 @@
-﻿{
+{
   "@@locale": "id",
   "appTitle": "Kalkulator BCV",
   "settings": "Pengaturan",
@@ -110,5 +110,11 @@
   "deactivateProTest": "Nonaktifkan PRO (Pengujian)",
   "deactivateProTitle": "Nonaktifkan PRO",
   "deactivateProMessage": "Apakah Anda ingin menonaktifkan mode PRO? (Hanya untuk pengujian)",
-  "deactivateProSuccess": "PRO dinonaktifkan. Mulai ulang aplikasi untuk menerapkan perubahan."
+  "deactivateProSuccess": "PRO dinonaktifkan. Mulai ulang aplikasi untuk menerapkan perubahan.",
+  "pdfCurrency": "Mata Uang",
+  "pdfRange": "Rentang",
+  "pdfDailyDetails": "Rincian Harian",
+  "pdfDate": "Tanggal",
+  "pdfRate": "Kurs (Bs)",
+  "pdfChangePercent": "Perubahan %"
 }

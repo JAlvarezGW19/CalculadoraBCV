@@ -70,6 +70,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(languageProvider);
+    AppTheme.currentLocale = locale; // Update theme locale
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,

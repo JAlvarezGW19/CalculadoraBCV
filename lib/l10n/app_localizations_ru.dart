@@ -9,203 +9,193 @@ class AppLocalizationsRu extends AppLocalizations {
   AppLocalizationsRu([String locale = 'ru']) : super(locale);
 
   @override
-  String get appTitle => 'ÐšÐ°Ð»ÑŒÐºÑƒÐ»ÑÑ‚Ð¾Ñ€ BCV';
+  String get appTitle => 'Калькулятор BCV';
 
   @override
-  String get settings => 'ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸';
+  String get settings => 'Настройки';
 
   @override
-  String get general => 'ÐžÐ±Ñ‰Ð¸Ðµ';
+  String get general => 'Общие';
 
   @override
-  String get storageNetwork => 'ÐŸÐ°Ð¼ÑÑ‚ÑŒ Ð¸ ÑÐµÑ‚ÑŒ';
+  String get storageNetwork => 'Память и сеть';
 
   @override
-  String get storageNetworkSubtitle =>
-      'Ð£Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÐºÑÑˆÐµÐ¼ Ð¸ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸ÑÐ¼Ð¸';
+  String get storageNetworkSubtitle => 'Управление кэшем и обновлениями';
 
   @override
-  String get notifications => 'Ð£Ð²ÐµÐ´Ð¾Ð¼Ð»ÐµÐ½Ð¸Ñ';
+  String get notifications => 'Уведомления';
 
   @override
-  String get notificationsSubtitle =>
-      'Ð£Ð²ÐµÐ´Ð¾Ð¼Ð»ÑÑ‚ÑŒ Ð¾ Ð½Ð¾Ð²Ð¾Ð¼ ÐºÑƒÑ€ÑÐµ';
+  String get notificationsSubtitle => 'Уведомлять о новом курсе';
 
   @override
-  String get language => 'Ð¯Ð·Ñ‹Ðº';
+  String get language => 'Язык';
 
   @override
-  String get systemDefault => 'Ð¡Ð¸ÑÑ‚ÐµÐ¼Ð½Ñ‹Ð¹ Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ';
+  String get systemDefault => 'Системный по умолчанию';
 
   @override
-  String get information => 'Ð˜Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ';
+  String get information => 'Информация';
 
   @override
-  String get aboutApp => 'Ðž Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ð¸';
+  String get aboutApp => 'О приложении';
 
   @override
-  String get aboutAppSubtitle =>
-      'Ð’ÐµÑ€ÑÐ¸Ñ, Ñ€Ð°Ð·Ñ€Ð°Ð±Ð¾Ñ‚Ñ‡Ð¸Ðº Ð¸ Ð»Ð¸Ñ†ÐµÐ½Ð·Ð¸Ð¸';
+  String get aboutAppSubtitle => 'Версия, разработчик и лицензии';
 
   @override
-  String get forceUpdate => 'ÐžÐ±Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ Ð¿Ñ€Ð¸Ð½ÑƒÐ´Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾';
+  String get forceUpdate => 'Обновить принудительно';
 
   @override
-  String get forceUpdateSubtitle =>
-      'ÐžÐ±Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ ÐºÑƒÑ€ÑÑ‹ Ñ‡ÐµÑ€ÐµÐ· API';
+  String get forceUpdateSubtitle => 'Обновить курсы через API';
 
   @override
-  String get clearCache => 'ÐžÑ‡Ð¸ÑÑ‚Ð¸Ñ‚ÑŒ ÐºÑÑˆ';
+  String get clearCache => 'Очистить кэш';
 
   @override
-  String get clearCacheSubtitle =>
-      'Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ð»Ð¾ÐºÐ°Ð»ÑŒÐ½Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ';
+  String get clearCacheSubtitle => 'Удалить локальные данные';
 
   @override
-  String get cancel => 'ÐžÑ‚Ð¼ÐµÐ½Ð°';
+  String get cancel => 'Отмена';
 
   @override
-  String get close => 'Ð—Ð°ÐºÑ€Ñ‹Ñ‚ÑŒ';
+  String get close => 'Закрыть';
 
   @override
-  String get updatingRates => 'ÐžÐ±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ðµ ÐºÑƒÑ€ÑÐ¾Ð²...';
+  String get updatingRates => 'Обновление курсов...';
 
   @override
-  String get cacheCleared => 'ÐšÑÑˆ Ð¾Ñ‡Ð¸Ñ‰ÐµÐ½';
+  String get cacheCleared => 'Кэш очищен';
 
   @override
-  String get developer => 'Ð Ð°Ð·Ñ€Ð°Ð±Ð¾Ñ‚Ñ‡Ð¸Ðº';
+  String get developer => 'Разработчик';
 
   @override
-  String get dataSource => 'Ð˜ÑÑ‚Ð¾Ñ‡Ð½Ð¸Ðº Ð´Ð°Ð½Ð½Ñ‹Ñ…';
+  String get dataSource => 'Источник данных';
 
   @override
-  String get legalNotice => 'ÐŸÑ€Ð°Ð²Ð¾Ð²Ð¾Ðµ ÑƒÐ²ÐµÐ´Ð¾Ð¼Ð»ÐµÐ½Ð¸Ðµ';
+  String get legalNotice => 'Правовое уведомление';
 
   @override
   String get legalNoticeText =>
-      'Ð­Ñ‚Ð¾ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ ÐÐ• Ð¿Ñ€ÐµÐ´ÑÑ‚Ð°Ð²Ð»ÑÐµÑ‚ ÑÐ¾Ð±Ð¾Ð¹ Ð³Ð¾ÑÑƒÐ´Ð°Ñ€ÑÑ‚Ð²ÐµÐ½Ð½ÑƒÑŽ Ð¸Ð»Ð¸ Ð±Ð°Ð½ÐºÐ¾Ð²ÑÐºÑƒÑŽ ÑÑ‚Ñ€ÑƒÐºÑ‚ÑƒÑ€Ñƒ. ÐœÑ‹ Ð½Ðµ ÑÐ²ÑÐ·Ð°Ð½Ñ‹ Ñ Ð¦ÐµÐ½Ñ‚Ñ€Ð°Ð»ÑŒÐ½Ñ‹Ð¼ Ð±Ð°Ð½ÐºÐ¾Ð¼ Ð’ÐµÐ½ÐµÑÑƒÑÐ»Ñ‹. Ð”Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ñ‹ Ñ‡ÐµÑ€ÐµÐ· API Ñ Ð¾Ñ„Ð¸Ñ†Ð¸Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ ÑÐ°Ð¹Ñ‚Ð° BCV. ÐžÑ‚Ð²ÐµÑ‚ÑÑ‚Ð²ÐµÐ½Ð½Ð¾ÑÑ‚ÑŒ Ð·Ð° Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¸ Ð»ÐµÐ¶Ð¸Ñ‚ Ð½Ð° Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ðµ.';
+      'Это приложение НЕ представляет собой государственную или банковскую структуру. Мы не связаны с Центральным банком Венесуэлы. Данные получены через API с официального сайта BCV. Ответственность за использование информации лежит на пользователе.';
 
   @override
-  String get openSourceLicenses => 'Ð›Ð¸Ñ†ÐµÐ½Ð·Ð¸Ð¸ ÐŸÐž';
+  String get openSourceLicenses => 'Лицензии ПО';
 
   @override
-  String get version => 'Ð’ÐµÑ€ÑÐ¸Ñ';
+  String get version => 'Версия';
 
   @override
-  String get becomePro => 'Ð¡Ñ‚Ð°Ñ‚ÑŒ PRO!';
+  String get becomePro => 'Стать PRO!';
 
   @override
-  String get proUser => 'Ð’Ñ‹ PRO Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ!';
+  String get proUser => 'Вы PRO пользователь!';
 
   @override
-  String get getPro => 'ÐÐºÑ‚Ð¸Ð²Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ PRO Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ (Ð‘ÐµÑ‚Ð°)';
+  String get getPro => 'Активировать PRO функции (Бета)';
 
   @override
   String get oneTimePayment => '';
 
   @override
   String get activateProBetaTitle =>
-      'ÐÐºÑ‚Ð¸Ð²Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ PRO Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ Ð´Ð»Ñ ÑÑ‚Ð¾Ð¹ Ñ‚ÐµÑÑ‚Ð¾Ð²Ð¾Ð¹ ÑÐµÑÑÐ¸Ð¸?';
+      'Активировать PRO функции для этой тестовой сессии?';
 
   @override
-  String get activateProBetaAccept => 'ÐÐºÑ‚Ð¸Ð²Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ';
+  String get activateProBetaAccept => 'Активировать';
 
   @override
-  String get restorePurchases => 'Ð’Ð¾ÑÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ';
+  String get restorePurchases => 'Восстановить';
 
   @override
-  String get benefitAds => 'Ð‘ÐµÐ· Ñ€ÐµÐºÐ»Ð°Ð¼Ñ‹';
+  String get benefitAds => 'Без рекламы';
 
   @override
-  String get benefitAdsDesc =>
-      'Ð§Ð¸ÑÑ‚Ñ‹Ð¹ Ð¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹Ñ Ð±ÐµÐ· Ð¾Ñ‚Ð²Ð»ÐµÐºÐ°ÑŽÑ‰Ð¸Ñ… Ñ„Ð°ÐºÑ‚Ð¾Ñ€Ð¾Ð².';
+  String get benefitAdsDesc => 'Чистый интерфейс без отвлекающих факторов.';
 
   @override
-  String get benefitPdf => 'ÐœÐ³Ð½Ð¾Ð²ÐµÐ½Ð½Ñ‹Ð¹ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚';
+  String get benefitPdf => 'Мгновенный экспорт';
 
   @override
-  String get benefitPdfDesc =>
-      'PDF Ð±ÐµÐ· Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€Ð° Ð²Ð¸Ð´ÐµÐ¾Ñ€ÐµÐºÐ»Ð°Ð¼Ñ‹.';
+  String get benefitPdfDesc => 'PDF без просмотра видеорекламы.';
 
   @override
-  String get benefitSpeed => 'ÐœÐ°ÐºÑ. ÑÐºÐ¾Ñ€Ð¾ÑÑ‚ÑŒ';
+  String get benefitSpeed => 'Макс. скорость';
 
   @override
-  String get benefitSpeedDesc =>
-      'ÐŸÐ»Ð°Ð²Ð½Ð°Ñ Ð½Ð°Ð²Ð¸Ð³Ð°Ñ†Ð¸Ñ Ð¸ ÑÐºÐ¾Ð½Ð¾Ð¼Ð¸Ñ Ð·Ð°Ñ€ÑÐ´Ð°.';
+  String get benefitSpeedDesc => 'Плавная навигация и экономия заряда.';
 
   @override
-  String get benefitSupport => 'ÐŸÐ¾Ð´Ð´ÐµÑ€Ð¶Ð°Ñ‚ÑŒ Ð¿Ñ€Ð¾ÐµÐºÑ‚';
+  String get benefitSupport => 'Поддержать проект';
 
   @override
-  String get benefitSupportDesc =>
-      'ÐŸÐ¾Ð¼Ð¾Ð³Ð¸Ñ‚Ðµ Ð½Ð°Ð¼ ÑƒÐ»ÑƒÑ‡ÑˆÐ°Ñ‚ÑŒ Ð¸Ð½ÑÑ‚Ñ€ÑƒÐ¼ÐµÐ½Ñ‚.';
+  String get benefitSupportDesc => 'Помогите нам улучшать инструмент.';
 
   @override
-  String get usd => 'Ð”Ð¾Ð»Ð»Ð°Ñ€Ñ‹';
+  String get usd => 'Доллары';
 
   @override
-  String get eur => 'Ð•Ð²Ñ€Ð¾';
+  String get eur => 'Евро';
 
   @override
-  String get ves => 'Ð‘Ð¾Ð»Ð¸Ð²Ð°Ñ€Ñ‹';
+  String get ves => 'Боливары';
 
   @override
-  String get history => 'Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ñ';
+  String get history => 'История';
 
   @override
-  String get historyRates => 'Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ñ ÐºÑƒÑ€ÑÐ¾Ð²';
+  String get historyRates => 'История курсов';
 
   @override
-  String get start => 'ÐÐ°Ñ‡Ð°Ð»Ð¾';
+  String get start => 'Начало';
 
   @override
-  String get end => 'ÐšÐ¾Ð½ÐµÑ†';
+  String get end => 'Конец';
 
   @override
-  String get generatePdf => 'Ð¡Ð¾Ð·Ð´Ð°Ñ‚ÑŒ PDF';
+  String get generatePdf => 'Создать PDF';
 
   @override
-  String get watchAd =>
-      'Ð¡Ð¼Ð¾Ñ‚Ñ€ÐµÑ‚ÑŒ Ñ€ÐµÐºÐ»Ð°Ð¼Ñƒ Ð´Ð»Ñ Ñ€Ð°Ð·Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²ÐºÐ¸';
+  String get watchAd => 'Смотреть рекламу для разблокировки';
 
   @override
-  String get loadingAd => 'Ð—Ð°Ð³Ñ€ÑƒÐ·ÐºÐ°...';
+  String get loadingAd => 'Загрузка...';
 
   @override
-  String get errorAd => 'ÐžÑˆÐ¸Ð±ÐºÐ°';
+  String get errorAd => 'Ошибка';
 
   @override
-  String get today => 'Ð¡ÐµÐ³Ð¾Ð´Ð½Ñ';
+  String get today => 'Сегодня';
 
   @override
-  String get tomorrow => 'Ð—Ð°Ð²Ñ‚Ñ€Ð°';
+  String get tomorrow => 'Завтра';
 
   @override
-  String get officialRate => 'ÐžÑ„Ð¸Ñ†. ÐºÑƒÑ€Ñ';
+  String get officialRate => 'Офиц. курс';
 
   @override
-  String get customRate => 'Ð¡Ð²Ð¾Ð¹ ÐºÑƒÑ€Ñ';
+  String get customRate => 'Свой курс';
 
   @override
-  String get convert => 'ÐšÐ¾Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ';
+  String get convert => 'Конвертировать';
 
   @override
-  String get rateLabel => 'ÐšÑƒÑ€Ñ';
+  String get rateLabel => 'Курс';
 
   @override
-  String get priceScanner => 'Ð¡ÐºÐ°Ð½ÐµÑ€ Ñ†ÐµÐ½';
+  String get priceScanner => 'Сканер цен';
 
   @override
   String get cameraPermissionText =>
-      'Ð­Ñ‚Ð¾Ñ‚ Ð¸Ð½ÑÑ‚Ñ€ÑƒÐ¼ÐµÐ½Ñ‚ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ ÐºÐ°Ð¼ÐµÑ€Ñƒ Ð´Ð»Ñ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ Ñ†ÐµÐ½ Ð¸ ÐºÐ¾Ð½Ð²ÐµÑ€Ñ‚Ð°Ñ†Ð¸Ð¸.\n\nÐ¢Ñ€ÐµÐ±ÑƒÐµÑ‚ÑÑ Ð´Ð¾ÑÑ‚ÑƒÐ¿ Ðº ÐºÐ°Ð¼ÐµÑ€Ðµ Ð¸ Ð³Ð°Ð»ÐµÑ€ÐµÐµ.';
+      'Этот инструмент использует камеру для определения цен и конвертации.\n\nТребуется доступ к камере и галерее.';
 
   @override
-  String get allowAndContinue => 'Ð Ð°Ð·Ñ€ÐµÑˆÐ¸Ñ‚ÑŒ Ð¸ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ';
+  String get allowAndContinue => 'Разрешить и продолжить';
 
   @override
-  String get whatToScan => 'Ð§Ñ‚Ð¾ ÑÐºÐ°Ð½Ð¸Ñ€ÑƒÐµÐ¼?';
+  String get whatToScan => 'Что сканируем?';
 
   @override
   String get amountUsd => 'USD';
@@ -217,139 +207,133 @@ class AppLocalizationsRu extends AppLocalizations {
   String get amountVes => 'Bs.';
 
   @override
-  String get ratePers => 'Ð¡Ð²Ð¾Ð¹';
+  String get ratePers => 'Свой';
 
   @override
-  String get noCustomRates => 'ÐÐµÑ‚ ÑÐ²Ð¾Ð¸Ñ… ÐºÑƒÑ€ÑÐ¾Ð²';
+  String get noCustomRates => 'Нет своих курсов';
 
   @override
   String get noCustomRatesDesc =>
-      'Ð”Ð¾Ð±Ð°Ð²ÑŒÑ‚Ðµ ÑÐ²Ð¾Ð¹ ÐºÑƒÑ€Ñ Ð´Ð»Ñ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸.';
+      'Добавьте свой курс для использования функции.';
 
   @override
-  String get createRate => 'Ð¡Ð¾Ð·Ð´Ð°Ñ‚ÑŒ ÐºÑƒÑ€Ñ';
+  String get createRate => 'Создать курс';
 
   @override
-  String get chooseRate => 'Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÐºÑƒÑ€Ñ';
+  String get chooseRate => 'Выберите курс';
 
   @override
-  String get newRate => 'ÐÐ¾Ð²Ñ‹Ð¹ ÐºÑƒÑ€Ñ...';
+  String get newRate => 'Новый курс...';
 
   @override
-  String get convertVesTo =>
-      'ÐšÐ¾Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð‘Ð¾Ð»Ð¸Ð²Ð°Ñ€Ñ‹ Ð²...';
+  String get convertVesTo => 'Конвертировать Боливары в...';
 
   @override
-  String get homeScreen => 'Ð“Ð»Ð°Ð²Ð½Ð°Ñ';
+  String get homeScreen => 'Главная';
 
   @override
-  String get calculatorScreen => 'ÐšÐ°Ð»ÑŒÐºÑƒÐ»ÑÑ‚Ð¾Ñ€';
+  String get calculatorScreen => 'Калькулятор';
 
   @override
-  String get rateDate => 'Ð”Ð°Ñ‚Ð° ÐºÑƒÑ€ÑÐ°';
+  String get rateDate => 'Дата курса';
 
   @override
-  String get officialRateBcv => 'ÐžÑ„Ð¸Ñ†. ÐºÑƒÑ€Ñ BCV';
+  String get officialRateBcv => 'Офиц. курс BCV';
 
   @override
-  String get createYourFirstRate =>
-      'Ð¡Ð¾Ð·Ð´Ð°Ð¹Ñ‚Ðµ ÑÐ²Ð¾Ð¹ Ð¿ÐµÑ€Ð²Ñ‹Ð¹ ÐºÑƒÑ€Ñ';
+  String get createYourFirstRate => 'Создайте свой первый курс';
 
   @override
-  String get addCustomRatesDescription =>
-      'Ð”Ð¾Ð±Ð°Ð²ÑŒÑ‚Ðµ ÑÐ²Ð¾Ð¸ ÐºÑƒÑ€ÑÑ‹ Ð´Ð»Ñ Ñ€Ð°ÑÑ‡ÐµÑ‚Ð¾Ð².';
+  String get addCustomRatesDescription => 'Добавьте свои курсы для расчетов.';
 
   @override
-  String get errorLoadingRate => 'ÐžÑˆÐ¸Ð±ÐºÐ° Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐ¸ ÐºÑƒÑ€ÑÐ°';
+  String get errorLoadingRate => 'Ошибка загрузки курса';
 
   @override
-  String get unlockPdfTitle => 'Ð Ð°Ð·Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ PDF';
+  String get unlockPdfTitle => 'Разблокировать PDF';
 
   @override
   String get unlockPdfDesc =>
-      'Ð§Ñ‚Ð¾Ð±Ñ‹ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð² PDF, Ð¿Ð¾ÑÐ¼Ð¾Ñ‚Ñ€Ð¸Ñ‚Ðµ Ñ€ÐµÐºÐ»Ð°Ð¼Ñƒ. Ð­Ñ‚Ð¾ Ñ€Ð°Ð·Ð±Ð»Ð¾ÐºÐ¸Ñ€ÑƒÐµÑ‚ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑŽ Ð½Ð° 24 Ñ‡Ð°ÑÐ°.';
+      'Чтобы экспортировать в PDF, посмотрите рекламу. Это разблокирует функцию на 24 часа.';
 
   @override
   String get adNotReady =>
-      'Ð ÐµÐºÐ»Ð°Ð¼Ð° ÐµÑ‰Ðµ Ð½Ðµ Ð³Ð¾Ñ‚Ð¾Ð²Ð°. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ Ñ‡ÐµÑ€ÐµÐ· Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ ÑÐµÐºÑƒÐ½Ð´.';
+      'Реклама еще не готова. Попробуйте через несколько секунд.';
 
   @override
-  String get featureUnlocked =>
-      'Ð¤ÑƒÐ½ÐºÑ†Ð¸Ñ Ñ€Ð°Ð·Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð° Ð½Ð° 24 Ñ‡Ð°ÑÐ°!';
+  String get featureUnlocked => 'Функция разблокирована на 24 часа!';
 
   @override
-  String get pdfHeader => 'Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ñ Ñ†ÐµÐ½ BCV';
+  String get pdfHeader => 'История цен BCV';
 
   @override
-  String get statsPeriod => 'Ð¡Ñ‚Ð°Ñ‚Ð¸ÑÑ‚Ð¸ÐºÐ° Ð·Ð° Ð¿ÐµÑ€Ð¸Ð¾Ð´';
+  String get statsPeriod => 'Статистика за период';
 
   @override
-  String get copiedClipboard =>
-      'Ð¡ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾ Ð² Ð±ÑƒÑ„ÐµÑ€ Ð¾Ð±Ð¼ÐµÐ½Ð°';
+  String get copiedClipboard => 'Скопировано в буфер обмена';
 
   @override
-  String get amountDollars => 'Ð¡ÑƒÐ¼Ð¼Ð° Ð² Ð´Ð¾Ð»Ð»Ð°Ñ€Ð°Ñ…';
+  String get amountDollars => 'Сумма в долларах';
 
   @override
-  String get amountEuros => 'Ð¡ÑƒÐ¼Ð¼Ð° Ð² ÐµÐ²Ñ€Ð¾';
+  String get amountEuros => 'Сумма в евро';
 
   @override
-  String get amountBolivars => 'Ð¡ÑƒÐ¼Ð¼Ð° Ð² Ð±Ð¾Ð»Ð¸Ð²Ð°Ñ€Ð°Ñ…';
+  String get amountBolivars => 'Сумма в боливарах';
 
   @override
-  String get amountCustom => 'Ð¡ÑƒÐ¼Ð¼Ð° Ð²';
+  String get amountCustom => 'Сумма в';
 
   @override
-  String get shareError => 'ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÐºÐµ';
+  String get shareError => 'Ошибка при отправке';
 
   @override
-  String get pdfError => 'ÐžÑˆÐ¸Ð±ÐºÐ° ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ PDF';
+  String get pdfError => 'Ошибка создания PDF';
 
   @override
-  String get viewList => 'Ð¡Ð¿Ð¸ÑÐºÐ¾Ð¼';
+  String get viewList => 'Списком';
 
   @override
-  String get viewChart => 'Ð“Ñ€Ð°Ñ„Ð¸Ðº';
+  String get viewChart => 'График';
 
   @override
-  String get noData => 'ÐÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ…';
+  String get noData => 'Нет данных';
 
   @override
-  String get mean => 'Ð¡Ñ€ÐµÐ´Ð½ÐµÐµ';
+  String get mean => 'Среднее';
 
   @override
-  String get min => 'ÐœÐ¸Ð½.';
+  String get min => 'Мин.';
 
   @override
-  String get max => 'ÐœÐ°ÐºÑ.';
+  String get max => 'Макс.';
 
   @override
-  String get change => 'Ð˜Ð·Ð¼.';
+  String get change => 'Изм.';
 
   @override
-  String get rangeWeek => '1 ÐÐµÐ´';
+  String get rangeWeek => '1 Нед';
 
   @override
-  String get rangeMonth => '1 ÐœÐµÑ';
+  String get rangeMonth => '1 Мес';
 
   @override
-  String get rangeThreeMonths => '3 ÐœÐµÑ';
+  String get rangeThreeMonths => '3 Мес';
 
   @override
-  String get rangeYear => '1 Ð“Ð¾Ð´';
+  String get rangeYear => '1 Год';
 
   @override
-  String get rangeCustom => 'Ð¡Ð²Ð¾Ð¹';
+  String get rangeCustom => 'Свой';
 
   @override
-  String get removeAdsLink => 'Ð£Ð±Ñ€Ð°Ñ‚ÑŒ Ñ€ÐµÐºÐ»Ð°Ð¼Ñƒ';
+  String get removeAdsLink => 'Убрать рекламу';
 
   @override
-  String get thanksSupport => 'Ð¡Ð¿Ð°ÑÐ¸Ð±Ð¾ Ð·Ð° Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶ÐºÑƒ!';
+  String get thanksSupport => 'Спасибо за поддержку!';
 
   @override
-  String get privacyPolicy =>
-      'ÐŸÐ¾Ð»Ð¸Ñ‚Ð¸ÐºÐ° ÐºÐ¾Ð½Ñ„Ð¸Ð´ÐµÐ½Ñ†Ð¸Ð°Ð»ÑŒÐ½Ð¾ÑÑ‚Ð¸';
+  String get privacyPolicy => 'Политика конфиденциальности';
 
   @override
   String get deactivateProTest => 'Отключить PRO (Тесты)';
@@ -364,4 +348,22 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get deactivateProSuccess =>
       'PRO отключен. Перезапустите приложение, чтобы применить изменения.';
+
+  @override
+  String get pdfCurrency => 'Валюта';
+
+  @override
+  String get pdfRange => 'Диапазон';
+
+  @override
+  String get pdfDailyDetails => 'Ежедневные детали';
+
+  @override
+  String get pdfDate => 'Дата';
+
+  @override
+  String get pdfRate => 'Курс (Bs)';
+
+  @override
+  String get pdfChangePercent => 'Изм. %';
 }

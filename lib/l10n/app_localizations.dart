@@ -789,6 +789,42 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'PRO desactivado. Reinicia la app para aplicar cambios.'**
   String get deactivateProSuccess;
+
+  /// No description provided for @pdfCurrency.
+  ///
+  /// In es, this message translates to:
+  /// **'Moneda'**
+  String get pdfCurrency;
+
+  /// No description provided for @pdfRange.
+  ///
+  /// In es, this message translates to:
+  /// **'Rango'**
+  String get pdfRange;
+
+  /// No description provided for @pdfDailyDetails.
+  ///
+  /// In es, this message translates to:
+  /// **'Detalles Diarios (Crono. Inverso)'**
+  String get pdfDailyDetails;
+
+  /// No description provided for @pdfDate.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha'**
+  String get pdfDate;
+
+  /// No description provided for @pdfRate.
+  ///
+  /// In es, this message translates to:
+  /// **'Tasa (Bs)'**
+  String get pdfRate;
+
+  /// No description provided for @pdfChangePercent.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambio %'**
+  String get pdfChangePercent;
 }
 
 class _AppLocalizationsDelegate

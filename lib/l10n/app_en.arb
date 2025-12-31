@@ -110,5 +110,11 @@
   "deactivateProTest": "Deactivate PRO (Testing)",
   "deactivateProTitle": "Deactivate PRO",
   "deactivateProMessage": "Do you want to deactivate PRO mode? (Testing only)",
-  "deactivateProSuccess": "PRO deactivated. Restart the app to apply changes."
+  "deactivateProSuccess": "PRO deactivated. Restart the app to apply changes.",
+  "pdfCurrency": "Currency",
+  "pdfRange": "Range",
+  "pdfDailyDetails": "Daily Details (Reverse Chronological)",
+  "pdfDate": "Date",
+  "pdfRate": "Rate (Bs)",
+  "pdfChangePercent": "Change %"
 }

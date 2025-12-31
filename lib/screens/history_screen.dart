@@ -30,6 +30,7 @@ class HistoryScreen extends ConsumerStatefulWidget {
 class _HistoryScreenState extends ConsumerState<HistoryScreen> {
   RewardedAd? _rewardedAd;
   bool _isPdfUnlocked = false;
+  bool _isExportingPdf = false;
 
   @override
   void initState() {
@@ -181,12 +182,24 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
       return;
     }
 
-    await PdfExportService.exportPdf(
-      context: context,
-      data: state.data,
-      selectedCurrency: state.selectedCurrency,
-      headerTitle: l10n.pdfHeader,
-    );
+    setState(() {
+      _isExportingPdf = true;
+    });
+
+    try {
+      await PdfExportService.exportPdf(
+        context: context,
+        data: state.data,
+        selectedCurrency: state.selectedCurrency,
+        headerTitle: l10n.pdfHeader,
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isExportingPdf = false;
+        });
+      }
+    }
   }
 
   @override
@@ -215,11 +228,22 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                     ),
                   ),
                   IconButton(
-                    onPressed: state.data.isEmpty ? null : _exportPdf,
-                    icon: const Icon(
-                      Icons.picture_as_pdf,
-                      color: AppTheme.textAccent,
-                    ),
+                    onPressed: (state.data.isEmpty || _isExportingPdf)
+                        ? null
+                        : _exportPdf,
+                    icon: _isExportingPdf
+                        ? const SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: AppTheme.textAccent,
+                            ),
+                          )
+                        : const Icon(
+                            Icons.picture_as_pdf,
+                            color: AppTheme.textAccent,
+                          ),
                     tooltip: l10n.generatePdf,
                   ),
                 ],

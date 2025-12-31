@@ -1,4 +1,4 @@
-﻿{
+{
   "@@locale": "de",
   "appTitle": "BCV Rechner",
   "settings": "Einstellungen",
@@ -110,5 +110,11 @@
   "deactivateProTest": "PRO deaktivieren (Tests)",
   "deactivateProTitle": "PRO deaktivieren",
   "deactivateProMessage": "Möchten Sie den PRO-Modus deaktivieren? (Nur für Tests)",
-  "deactivateProSuccess": "PRO deaktiviert. Starten Sie die App neu, um Änderungen anzuwenden."
+  "deactivateProSuccess": "PRO deaktiviert. Starten Sie die App neu, um Änderungen anzuwenden.",
+  "pdfCurrency": "Währung",
+  "pdfRange": "Bereich",
+  "pdfDailyDetails": "Tägliche Details",
+  "pdfDate": "Datum",
+  "pdfRate": "Kurs (Bs)",
+  "pdfChangePercent": "Änd. %"
 }

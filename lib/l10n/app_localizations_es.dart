@@ -353,4 +353,22 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get deactivateProSuccess =>
       'PRO desactivado. Reinicia la app para aplicar cambios.';
+
+  @override
+  String get pdfCurrency => 'Moneda';
+
+  @override
+  String get pdfRange => 'Rango';
+
+  @override
+  String get pdfDailyDetails => 'Detalles Diarios (Crono. Inverso)';
+
+  @override
+  String get pdfDate => 'Fecha';
+
+  @override
+  String get pdfRate => 'Tasa (Bs)';
+
+  @override
+  String get pdfChangePercent => 'Cambio %';
 }

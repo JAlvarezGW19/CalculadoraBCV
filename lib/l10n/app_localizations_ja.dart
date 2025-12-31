@@ -9,199 +9,192 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get appTitle => 'BCVé›»å“';
+  String get appTitle => 'BCV電卓';
 
   @override
-  String get settings => 'è¨­å®š';
+  String get settings => '設定';
 
   @override
-  String get general => 'ä¸€èˆ¬';
+  String get general => '一般';
 
   @override
-  String get storageNetwork => 'ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã¨ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯';
+  String get storageNetwork => 'ストレージとネットワーク';
 
   @override
-  String get storageNetworkSubtitle => 'ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¨æ›´æ–°ã®ç®¡ç†';
+  String get storageNetworkSubtitle => 'キャッシュと更新の管理';
 
   @override
-  String get notifications => 'é€šçŸ¥';
+  String get notifications => '通知';
 
   @override
-  String get notificationsSubtitle =>
-      'æ–°ã—ã„ãƒ¬ãƒ¼ãƒˆãŒåˆ©ç”¨å¯èƒ½ãªã¨ãã«é€šçŸ¥';
+  String get notificationsSubtitle => '新しいレートが利用可能なときに通知';
 
   @override
-  String get language => 'è¨€èªž';
+  String get language => '言語';
 
   @override
-  String get systemDefault => 'ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ';
+  String get systemDefault => 'システムデフォルト';
 
   @override
-  String get information => 'æƒ…å ±';
+  String get information => '情報';
 
   @override
-  String get aboutApp => 'ã‚¢ãƒ—ãƒªã«ã¤ã„ã¦';
+  String get aboutApp => 'アプリについて';
 
   @override
-  String get aboutAppSubtitle =>
-      'ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã€é–‹ç™ºè€…ã€ãƒ©ã‚¤ã‚»ãƒ³ã‚¹';
+  String get aboutAppSubtitle => 'バージョン、開発者、ライセンス';
 
   @override
-  String get forceUpdate => 'å¼·åˆ¶æ›´æ–°';
+  String get forceUpdate => '強制更新';
 
   @override
-  String get forceUpdateSubtitle => 'APIã‹ã‚‰ãƒ¬ãƒ¼ãƒˆã‚’æ›´æ–°';
+  String get forceUpdateSubtitle => 'APIからレートを更新';
 
   @override
-  String get clearCache => 'ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ã‚¯ãƒªã‚¢';
+  String get clearCache => 'キャッシュをクリア';
 
   @override
-  String get clearCacheSubtitle => 'ãƒ­ãƒ¼ã‚«ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤';
+  String get clearCacheSubtitle => 'ローカルデータを削除';
 
   @override
-  String get cancel => 'ã‚­ãƒ£ãƒ³ã‚»ãƒ«';
+  String get cancel => 'キャンセル';
 
   @override
-  String get close => 'é–‰ã˜ã‚‹';
+  String get close => '閉じる';
 
   @override
-  String get updatingRates => 'ãƒ¬ãƒ¼ãƒˆã‚’æ›´æ–°ä¸­...';
+  String get updatingRates => 'レートを更新中...';
 
   @override
-  String get cacheCleared => 'ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’æ¶ˆåŽ»ã—ã¾ã—ãŸ';
+  String get cacheCleared => 'キャッシュを消去しました';
 
   @override
-  String get developer => 'é–‹ç™ºè€…';
+  String get developer => '開発者';
 
   @override
-  String get dataSource => 'ãƒ‡ãƒ¼ã‚¿ã‚½ãƒ¼ã‚¹';
+  String get dataSource => 'データソース';
 
   @override
-  String get legalNotice => 'æ³•çš„é€šçŸ¥';
+  String get legalNotice => '法的通知';
 
   @override
   String get legalNoticeText =>
-      'ã“ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¯æ”¿åºœã‚„éŠ€è¡Œæ©Ÿé–¢ã‚’ä»£è¡¨ã™ã‚‹ã‚‚ã®ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚ãƒ™ãƒã‚ºã‚¨ãƒ©ä¸­å¤®éŠ€è¡Œï¼ˆBCVï¼‰ã¨ã¯ææºã—ã¦ã„ã¾ã›ã‚“ã€‚ãƒ‡ãƒ¼ã‚¿ã¯BCVå…¬å¼ã‚µã‚¤ãƒˆã‚’ç…§ä¼šã™ã‚‹APIã‚’é€šã˜ã¦å–å¾—ã•ã‚Œã¾ã™ã€‚æƒ…å ±ã®åˆ©ç”¨ã¯ãƒ¦ãƒ¼ã‚¶ãƒ¼è‡ªèº«ã®è²¬ä»»ã¨ãªã‚Šã¾ã™ã€‚';
+      'このアプリケーションは政府や銀行機関を代表するものではありません。ベネズエラ中央銀行（BCV）とは提携していません。データはBCV公式サイトを照会するAPIを通じて取得されます。情報の利用はユーザー自身の責任となります。';
 
   @override
-  String get openSourceLicenses => 'ã‚ªãƒ¼ãƒ—ãƒ³ã‚½ãƒ¼ã‚¹ãƒ©ã‚¤ã‚»ãƒ³ã‚¹';
+  String get openSourceLicenses => 'オープンソースライセンス';
 
   @override
-  String get version => 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
+  String get version => 'バージョン';
 
   @override
-  String get becomePro => 'PROãƒ¦ãƒ¼ã‚¶ãƒ¼ã«ãªã‚ã†ï¼';
+  String get becomePro => 'PROユーザーになろう！';
 
   @override
-  String get proUser => 'ã‚ãªãŸã¯PROãƒ¦ãƒ¼ã‚¶ãƒ¼ã§ã™ï¼';
+  String get proUser => 'あなたはPROユーザーです！';
 
   @override
-  String get getPro => 'PROæ©Ÿèƒ½ã‚’æœ‰åŠ¹åŒ–ï¼ˆãƒ™ãƒ¼ã‚¿ï¼‰';
+  String get getPro => 'PRO機能を有効化（ベータ）';
 
   @override
   String get oneTimePayment => '';
 
   @override
-  String get activateProBetaTitle =>
-      'ã“ã®ãƒ†ã‚¹ãƒˆã‚»ãƒƒã‚·ãƒ§ãƒ³ã§PROæ©Ÿèƒ½ã‚’æœ‰åŠ¹ã«ã—ã¾ã™ã‹ï¼Ÿ';
+  String get activateProBetaTitle => 'このテストセッションでPRO機能を有効にしますか？';
 
   @override
-  String get activateProBetaAccept => 'æœ‰åŠ¹ã«ã™ã‚‹';
+  String get activateProBetaAccept => '有効にする';
 
   @override
-  String get restorePurchases => 'è³¼å…¥ã‚’å¾©å…ƒ';
+  String get restorePurchases => '購入を復元';
 
   @override
-  String get benefitAds => 'åºƒå‘Šãªã—';
+  String get benefitAds => '広告なし';
 
   @override
-  String get benefitAdsDesc =>
-      'ä¸­æ–­ã®ãªã„ã‚¯ãƒªãƒ¼ãƒ³ãªã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’ãŠæ¥½ã—ã¿ãã ã•ã„ã€‚';
+  String get benefitAdsDesc => '中断のないクリーンなインターフェースをお楽しみください。';
 
   @override
-  String get benefitPdf => 'å³æ™‚ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆ';
+  String get benefitPdf => '即時エクスポート';
 
   @override
-  String get benefitPdfDesc =>
-      'å‹•ç”»åºƒå‘Šã‚’è¦‹ãšã«å±¥æ­´PDFã‚’ä½œæˆã§ãã¾ã™ã€‚';
+  String get benefitPdfDesc => '動画広告を見ずに履歴PDFを作成できます。';
 
   @override
-  String get benefitSpeed => 'æœ€é«˜é€Ÿåº¦';
+  String get benefitSpeed => '最高速度';
 
   @override
-  String get benefitSpeedDesc =>
-      'ã‚ˆã‚Šã‚¹ãƒ ãƒ¼ã‚ºãªæ“ä½œã¨ãƒãƒƒãƒ†ãƒªãƒ¼æ¶ˆè²»ã®å‰Šæ¸›ã€‚';
+  String get benefitSpeedDesc => 'よりスムーズな操作とバッテリー消費の削減。';
 
   @override
-  String get benefitSupport => 'ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’æ”¯æ´';
+  String get benefitSupport => 'プロジェクトを支援';
 
   @override
-  String get benefitSupportDesc =>
-      'ãƒ„ãƒ¼ãƒ«ã®æ”¹å–„ã«ã”å”åŠ›ãã ã•ã„ã€‚';
+  String get benefitSupportDesc => 'ツールの改善にご協力ください。';
 
   @override
-  String get usd => 'ãƒ‰ãƒ«';
+  String get usd => 'ドル';
 
   @override
-  String get eur => 'ãƒ¦ãƒ¼ãƒ­';
+  String get eur => 'ユーロ';
 
   @override
-  String get ves => 'ãƒœãƒªãƒãƒ«';
+  String get ves => 'ボリバル';
 
   @override
-  String get history => 'å±¥æ­´';
+  String get history => '履歴';
 
   @override
-  String get historyRates => 'ãƒ¬ãƒ¼ãƒˆå±¥æ­´';
+  String get historyRates => 'レート履歴';
 
   @override
-  String get start => 'é–‹å§‹';
+  String get start => '開始';
 
   @override
-  String get end => 'çµ‚äº†';
+  String get end => '終了';
 
   @override
-  String get generatePdf => 'PDFç”Ÿæˆ';
+  String get generatePdf => 'PDF生成';
 
   @override
-  String get watchAd => 'åºƒå‘Šã‚’è¦‹ã¦ãƒ­ãƒƒã‚¯è§£é™¤';
+  String get watchAd => '広告を見てロック解除';
 
   @override
-  String get loadingAd => 'åºƒå‘Šèª­ã¿è¾¼ã¿ä¸­...';
+  String get loadingAd => '広告読み込み中...';
 
   @override
-  String get errorAd => 'èª­ã¿è¾¼ã¿ã‚¨ãƒ©ãƒ¼';
+  String get errorAd => '読み込みエラー';
 
   @override
-  String get today => 'ä»Šæ—¥';
+  String get today => '今日';
 
   @override
-  String get tomorrow => 'æ˜Žæ—¥';
+  String get tomorrow => '明日';
 
   @override
-  String get officialRate => 'å…¬å¼ãƒ¬ãƒ¼ãƒˆ';
+  String get officialRate => '公式レート';
 
   @override
-  String get customRate => 'ã‚«ã‚¹ã‚¿ãƒ ãƒ¬ãƒ¼ãƒˆ';
+  String get customRate => 'カスタムレート';
 
   @override
-  String get convert => 'å¤‰æ›';
+  String get convert => '変換';
 
   @override
-  String get rateLabel => 'ãƒ¬ãƒ¼ãƒˆ';
+  String get rateLabel => 'レート';
 
   @override
-  String get priceScanner => 'ä¾¡æ ¼ã‚¹ã‚­ãƒ£ãƒŠãƒ¼';
+  String get priceScanner => '価格スキャナー';
 
   @override
   String get cameraPermissionText =>
-      'ã“ã®ãƒ„ãƒ¼ãƒ«ã¯ã‚«ãƒ¡ãƒ©ã‚’ä½¿ç”¨ã—ã¦ä¾¡æ ¼ã‚’æ¤œå‡ºã—ã€ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ ã§å¤‰æ›ã—ã¾ã™ã€‚\n\nã‚«ãƒ¡ãƒ©ã¨ã‚®ãƒ£ãƒ©ãƒªãƒ¼ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ãŒå¿…è¦ã§ã™ã€‚';
+      'このツールはカメラを使用して価格を検出し、リアルタイムで変換します。\n\nカメラとギャラリーへのアクセスが必要です。';
 
   @override
-  String get allowAndContinue => 'è¨±å¯ã—ã¦ç¶šè¡Œ';
+  String get allowAndContinue => '許可して続行';
 
   @override
-  String get whatToScan => 'ä½•ã‚’ã‚¹ã‚­ãƒ£ãƒ³ã—ã¾ã™ã‹ï¼Ÿ';
+  String get whatToScan => '何をスキャンしますか？';
 
   @override
   String get amountUsd => 'USD';
@@ -213,134 +206,130 @@ class AppLocalizationsJa extends AppLocalizations {
   String get amountVes => 'Bs.';
 
   @override
-  String get ratePers => 'ã‚«ã‚¹ã‚¿ãƒ ';
+  String get ratePers => 'カスタム';
 
   @override
-  String get noCustomRates => 'ã‚«ã‚¹ã‚¿ãƒ ãƒ¬ãƒ¼ãƒˆãªã—';
+  String get noCustomRates => 'カスタムレートなし';
 
   @override
-  String get noCustomRatesDesc =>
-      'ã“ã®æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹ã«ã¯ã‚«ã‚¹ã‚¿ãƒ ãƒ¬ãƒ¼ãƒˆã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚';
+  String get noCustomRatesDesc => 'この機能を使用するにはカスタムレートを追加してください。';
 
   @override
-  String get createRate => 'ãƒ¬ãƒ¼ãƒˆä½œæˆ';
+  String get createRate => 'レート作成';
 
   @override
-  String get chooseRate => 'ãƒ¬ãƒ¼ãƒˆã‚’é¸æŠž';
+  String get chooseRate => 'レートを選択';
 
   @override
-  String get newRate => 'æ–°ã—ã„ãƒ¬ãƒ¼ãƒˆ...';
+  String get newRate => '新しいレート...';
 
   @override
-  String get convertVesTo => 'ãƒœãƒªãƒãƒ«ã‚’å¤‰æ›...';
+  String get convertVesTo => 'ボリバルを変換...';
 
   @override
-  String get homeScreen => 'ãƒ›ãƒ¼ãƒ ';
+  String get homeScreen => 'ホーム';
 
   @override
-  String get calculatorScreen => 'é›»å“';
+  String get calculatorScreen => '電卓';
 
   @override
-  String get rateDate => 'è©•ä¾¡æ—¥';
+  String get rateDate => '評価日';
 
   @override
-  String get officialRateBcv => 'BCVå…¬å¼ãƒ¬ãƒ¼ãƒˆ';
+  String get officialRateBcv => 'BCV公式レート';
 
   @override
-  String get createYourFirstRate => 'æœ€åˆã®ã‚«ã‚¹ã‚¿ãƒ ãƒ¬ãƒ¼ãƒˆã‚’ä½œæˆ';
+  String get createYourFirstRate => '最初のカスタムレートを作成';
 
   @override
-  String get addCustomRatesDescription =>
-      'å¤‰æ›è¨ˆç®—ç”¨ã«ã‚«ã‚¹ã‚¿ãƒ ãƒ¬ãƒ¼ãƒˆã‚’è¿½åŠ ã—ã¾ã™ã€‚';
+  String get addCustomRatesDescription => '変換計算用にカスタムレートを追加します。';
 
   @override
-  String get errorLoadingRate => 'ãƒ¬ãƒ¼ãƒˆã®èª­ã¿è¾¼ã¿ã‚¨ãƒ©ãƒ¼';
+  String get errorLoadingRate => 'レートの読み込みエラー';
 
   @override
-  String get unlockPdfTitle => 'PDFã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆã‚’è§£é™¤';
+  String get unlockPdfTitle => 'PDFエクスポートを解除';
 
   @override
-  String get unlockPdfDesc =>
-      'PDFã«ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆã™ã‚‹ã«ã¯ã€çŸ­ã„åºƒå‘Šã‚’ã”è¦§ãã ã•ã„ã€‚24æ™‚é–“æ©Ÿèƒ½ãŒè§£æ”¾ã•ã‚Œã¾ã™ã€‚';
+  String get unlockPdfDesc => 'PDFにエクスポートするには、短い広告をご覧ください。24時間機能が解放されます。';
 
   @override
-  String get adNotReady =>
-      'åºƒå‘Šã®æº–å‚™ãŒã§ãã¦ã„ã¾ã›ã‚“ã€‚æ•°ç§’å¾Œã«ã‚‚ã†ä¸€åº¦ãŠè©¦ã—ãã ã•ã„ã€‚';
+  String get adNotReady => '広告の準備ができていません。数秒後にもう一度お試しください。';
 
   @override
-  String get featureUnlocked => 'æ©Ÿèƒ½ãŒ24æ™‚é–“è§£æ”¾ã•ã‚Œã¾ã—ãŸï¼';
+  String get featureUnlocked => '機能が24時間解放されました！';
 
   @override
-  String get pdfHeader => 'BCVä¾¡æ ¼å±¥æ­´';
+  String get pdfHeader => 'BCV価格履歴';
 
   @override
-  String get statsPeriod => 'æœŸé–“çµ±è¨ˆ';
+  String get statsPeriod => '期間統計';
 
   @override
-  String get copiedClipboard => 'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ã‚³ãƒ”ãƒ¼ã—ã¾ã—ãŸ';
+  String get copiedClipboard => 'クリップボードにコピーしました';
 
   @override
-  String get amountDollars => 'ãƒ‰ãƒ«ã®é‡‘é¡';
+  String get amountDollars => 'ドルの金額';
 
   @override
-  String get amountEuros => 'ãƒ¦ãƒ¼ãƒ­ã®é‡‘é¡';
+  String get amountEuros => 'ユーロの金額';
 
   @override
-  String get amountBolivars => 'ãƒœãƒªãƒãƒ«ã®é‡‘é¡';
+  String get amountBolivars => 'ボリバルの金額';
 
   @override
-  String get amountCustom => 'é‡‘é¡';
+  String get amountCustom => '金額';
 
   @override
-  String get shareError => 'å…±æœ‰ã‚¨ãƒ©ãƒ¼';
+  String get shareError => '共有エラー';
 
   @override
-  String get pdfError => 'PDFç”Ÿæˆã‚¨ãƒ©ãƒ¼';
+  String get pdfError => 'PDF生成エラー';
 
   @override
-  String get viewList => 'ãƒªã‚¹ãƒˆè¡¨ç¤º';
+  String get viewList => 'リスト表示';
 
   @override
-  String get viewChart => 'ãƒãƒ£ãƒ¼ãƒˆè¡¨ç¤º';
+  String get viewChart => 'チャート表示';
 
   @override
-  String get noData => 'ãƒ‡ãƒ¼ã‚¿ãªã—';
+  String get noData => 'データなし';
 
   @override
-  String get mean => 'å¹³å‡';
+  String get mean => '平均';
 
   @override
-  String get min => 'æœ€å°';
+  String get min => '最小';
 
   @override
-  String get max => 'æœ€å¤§';
+  String get max => '最大';
 
   @override
-  String get change => 'å¤‰åŒ–';
+  String get change => '変化';
 
   @override
-  String get rangeWeek => '1é€±é–“';
+  String get rangeWeek => '1週間';
 
   @override
-  String get rangeMonth => '1ãƒ¶æœˆ';
+  String get rangeMonth => '1ヶ月';
 
   @override
-  String get rangeThreeMonths => '3ê°œì›”';
+  String get rangeThreeMonths => '3개월';
 
   @override
-  String get rangeYear => '1å¹´';
+  String get rangeYear => '1年';
 
   @override
-  String get rangeCustom => 'ã‚«ã‚¹ã‚¿ãƒ ';
+  String get rangeCustom => 'カスタム';
 
   @override
-  String get removeAdsLink => 'åºƒå‘Šã‚’å‰Šé™¤';
+  String get removeAdsLink => '広告を削除';
 
   @override
-  String get thanksSupport => 'ã”æ”¯æ´ã‚ã‚ŠãŒã¨ã†ã”ã–ã„ã¾ã™ï¼';
+  String get thanksSupport => 'ご支援ありがとうございます！';
 
   @override
-  String get privacyPolicy => 'ãƒ—ãƒ©ã‚¤ãƒã‚·ãƒ¼ãƒãƒªã‚·ãƒ¼';
+  String get privacyPolicy => 'プライバシーポリシー';
 
   @override
   String get deactivateProTest => 'PROを無効化 (テスト)';
@@ -353,4 +342,22 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get deactivateProSuccess => 'PROが無効化されました。変更を適用するにはアプリを再起動してください。';
+
+  @override
+  String get pdfCurrency => '通貨';
+
+  @override
+  String get pdfRange => '範囲';
+
+  @override
+  String get pdfDailyDetails => '日次詳細';
+
+  @override
+  String get pdfDate => '日付';
+
+  @override
+  String get pdfRate => 'レート (Bs)';
+
+  @override
+  String get pdfChangePercent => '変動 %';
 }

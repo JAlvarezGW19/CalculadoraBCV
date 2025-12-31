@@ -8,7 +8,7 @@ import '../providers/bcv_provider.dart';
 import '../theme/app_theme.dart';
 import '../widgets/currency_toggles.dart';
 import '../widgets/add_rate_dialog.dart';
-import '../widgets/native_ad_widget.dart';
+
 import '../services/calculator_engine.dart';
 import '../widgets/calculator/calculator_display.dart';
 import '../widgets/calculator/calculator_keypad.dart';
@@ -554,11 +554,6 @@ class _ArithmeticCalculatorScreenState
             ),
 
             const SizedBox(height: 10),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: const NativeAdWidget(assignedTabIndex: 1),
-            ),
           ],
         ),
       ),
