@@ -1,0 +1,40 @@
+﻿Running Gradle task 'bundleRelease'...                          
+Font asset "MaterialIcons-Regular.otf" was tree-shaken, reducing it from 1645184 to 7964 bytes (99.5% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.
+flutter : 
+En línea: 1 Carácter: 1
++ flutter build appbundle 2>&1 | 
+Out-File -Encoding utf8 build_log.txt
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecifi 
+   ed: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeComm 
+   andError
+ 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task 
+':app:lintVitalAnalyzeRelease'.
+> java.nio.file.FileSystemException: C:\U
+sers\Juan\Documents\Proyectos\Apps\Calcul
+adoraBCV\calculadora_bcv\build\app\interm
+ediates\lint-cache\lintVitalAnalyzeReleas
+e\migrated-jars\androidx.compose.runtime.
+lint.RuntimeIssueRegistry-398cfe4c3e0a311
+f..jar: El proceso no tiene acceso al 
+archivo porque est├í siendo utilizado 
+por otro proceso
+
+* Try:
+> Run with --stacktrace option to get 
+the stack trace.
+> Run with --info or --debug option to 
+get more log output.
+> Run with --scan to get full insights.
+> Get more help at 
+https://help.gradle.org.
+
+BUILD FAILED in 13s
+Running Gradle task 'bundleRelease'...                             13,8s
+Gradle task bundleRelease failed with 
+exit code 1
