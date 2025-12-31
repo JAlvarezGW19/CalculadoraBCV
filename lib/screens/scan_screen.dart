@@ -743,7 +743,7 @@ class _ScanScreenState extends ConsumerState<ScanScreen> {
           // Always show this, even if camera is loading!
           if (!isStatic)
             Positioned(
-              bottom: 40,
+              bottom: 40 + MediaQuery.of(context).padding.bottom,
               left: 40,
               child: GestureDetector(
                 onTap: _pickImage,
@@ -775,7 +775,7 @@ class _ScanScreenState extends ConsumerState<ScanScreen> {
           // Shutter Button visual
           if (!isStatic)
             Positioned(
-              bottom: 30,
+              bottom: 30 + MediaQuery.of(context).padding.bottom,
               left: 0,
               right: 0,
               child: GestureDetector(

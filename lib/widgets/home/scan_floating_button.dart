@@ -37,82 +37,84 @@ class ScanFloatingButton extends ConsumerWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       builder: (sheetContext) {
-        return Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                l10n.whatToScan,
-                style: AppTheme.subtitleStyle.copyWith(
-                  fontSize: 18,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  l10n.whatToScan,
+                  style: AppTheme.subtitleStyle.copyWith(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ScanOptionButton(
-                    label: l10n.amountUsd,
-                    symbol: "\$",
-                    color: AppTheme.textAccent,
-                    onTap: () {
-                      Navigator.pop(sheetContext);
-                      _checkPermissionsAndNavigate(context, () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const ScanScreen(
-                              source: CurrencyType.usd,
-                              target: CurrencyType.custom,
+                const SizedBox(height: 24),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ScanOptionButton(
+                      label: l10n.amountUsd,
+                      symbol: "\$",
+                      color: AppTheme.textAccent,
+                      onTap: () {
+                        Navigator.pop(sheetContext);
+                        _checkPermissionsAndNavigate(context, () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const ScanScreen(
+                                source: CurrencyType.usd,
+                                target: CurrencyType.custom,
+                              ),
                             ),
-                          ),
-                        );
-                      });
-                    },
-                  ),
-                  ScanOptionButton(
-                    label: l10n.amountEur,
-                    symbol: "€",
-                    color: AppTheme.textAccent,
-                    onTap: () {
-                      Navigator.pop(sheetContext);
-                      _checkPermissionsAndNavigate(context, () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const ScanScreen(
-                              source: CurrencyType.eur,
-                              target: CurrencyType.custom,
+                          );
+                        });
+                      },
+                    ),
+                    ScanOptionButton(
+                      label: l10n.amountEur,
+                      symbol: "€",
+                      color: AppTheme.textAccent,
+                      onTap: () {
+                        Navigator.pop(sheetContext);
+                        _checkPermissionsAndNavigate(context, () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const ScanScreen(
+                                source: CurrencyType.eur,
+                                target: CurrencyType.custom,
+                              ),
                             ),
-                          ),
-                        );
-                      });
-                    },
-                  ),
-                  ScanOptionButton(
-                    label: l10n.ratePers,
-                    symbol: "P",
-                    color: Colors.orangeAccent,
-                    onTap: () {
-                      Navigator.pop(sheetContext);
-                      _handleCustomScan(context, ref);
-                    },
-                  ),
-                  ScanOptionButton(
-                    label: l10n.amountVes,
-                    symbol: "Bs",
-                    color: Colors.blueAccent,
-                    onTap: () {
-                      Navigator.pop(sheetContext);
-                      _showTargetOptionsForVES(context, ref);
-                    },
-                  ),
-                ],
-              ),
-            ],
+                          );
+                        });
+                      },
+                    ),
+                    ScanOptionButton(
+                      label: l10n.ratePers,
+                      symbol: "P",
+                      color: Colors.orangeAccent,
+                      onTap: () {
+                        Navigator.pop(sheetContext);
+                        _handleCustomScan(context, ref);
+                      },
+                    ),
+                    ScanOptionButton(
+                      label: l10n.amountVes,
+                      symbol: "Bs",
+                      color: Colors.blueAccent,
+                      onTap: () {
+                        Navigator.pop(sheetContext);
+                        _showTargetOptionsForVES(context, ref);
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         );
       },
