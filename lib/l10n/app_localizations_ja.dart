@@ -360,4 +360,13 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get pdfChangePercent => '変動 %';
+
+  @override
+  String get noInternetConnection => 'インターネット接続がありません。データが古い可能性があります。';
+
+  @override
+  String get internetRestored => '接続が復元されました。';
+
+  @override
+  String get ratesUpdatedSuccess => 'レートが正常に更新されました。';
 }

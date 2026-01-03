@@ -116,5 +116,8 @@
   "pdfDailyDetails": "दैनिक विवरण",
   "pdfDate": "दिनांक",
   "pdfRate": "दर (Bs)",
-  "pdfChangePercent": "परिवर्तन %"
+  "pdfChangePercent": "परिवर्तन %",
+  "noInternetConnection": "कोई इंटरनेट कनेक्शन नहीं। डेटा पुराना हो सकता है।",
+  "internetRestored": "कनेक्शन बहाल।",
+  "ratesUpdatedSuccess": "दरें सफलतापूर्वक अपडेट की गईं।"
 }

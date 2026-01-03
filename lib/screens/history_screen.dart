@@ -208,6 +208,23 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     final conversionState = ref.watch(conversionProvider);
     final l10n = AppLocalizations.of(context)!;
 
+    // Listen for History Errors
+    ref.listen<HistoryState>(historyProvider, (previous, next) {
+      if (!next.isLoading &&
+          next.error != null &&
+          next.error != previous?.error) {
+        // Show generic error or specific if no internet
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              l10n.noInternetConnection,
+            ), // Assuming mostly network errors
+            backgroundColor: Colors.redAccent,
+          ),
+        );
+      }
+    });
+
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: SafeArea(
@@ -354,6 +371,40 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     }
 
     if (state.data.isEmpty) {
+      if (state.error != null) {
+        return Container(
+          height: 300,
+          margin: const EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            color: AppTheme.cardBackground,
+            borderRadius: BorderRadius.circular(24),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.cloud_off, size: 48, color: AppTheme.textSubtle),
+              const SizedBox(height: 16),
+              Text(
+                l10n.noInternetConnection,
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: AppTheme.textSubtle),
+              ),
+              const SizedBox(height: 16),
+              TextButton.icon(
+                onPressed: () {
+                  ref.read(historyProvider.notifier).loadHistory();
+                },
+                icon: const Icon(Icons.refresh, color: AppTheme.textAccent),
+                label: Text(
+                  l10n.forceUpdate, // Reuse "Force Update" or similar key
+                  style: const TextStyle(color: AppTheme.textAccent),
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+
       return Container(
         height: 300,
         decoration: BoxDecoration(

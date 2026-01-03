@@ -445,8 +445,11 @@ class ConversionNotifier extends Notifier<ConversionState> {
   // Formatting helper logic removed from static field to instance method
 
   double? _parseInput(String input) {
-    // Sanitize: Remove thousands separator (.), replace decimal separator (,) with (.)
-    String clean = input.replaceAll('.', '').replaceAll(',', '.');
+    // Robust Sanitize: Remove everything except digits and commas.
+    // This ensures thousands separators (dots) or other symbols are ignored.
+    String clean = input.replaceAll(RegExp(r'[^0-9,]'), '');
+    // Replace comma with dot for standard double parsing
+    clean = clean.replaceAll(',', '.');
     return double.tryParse(clean);
   }
 

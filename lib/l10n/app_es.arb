@@ -116,5 +116,8 @@
   "pdfDailyDetails": "Detalles Diarios (Crono. Inverso)",
   "pdfDate": "Fecha",
   "pdfRate": "Tasa (Bs)",
-  "pdfChangePercent": "Cambio %"
+  "pdfChangePercent": "Cambio %",
+  "noInternetConnection": "Sin conexión a internet. Los datos pueden estar desactualizados.",
+  "internetRestored": "Conexión restaurada.",
+  "ratesUpdatedSuccess": "Tasas actualizadas correctamente."
 }

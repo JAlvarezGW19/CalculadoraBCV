@@ -825,6 +825,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Cambio %'**
   String get pdfChangePercent;
+
+  /// No description provided for @noInternetConnection.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin conexión a internet. Los datos pueden estar desactualizados.'**
+  String get noInternetConnection;
+
+  /// No description provided for @internetRestored.
+  ///
+  /// In es, this message translates to:
+  /// **'Conexión restaurada.'**
+  String get internetRestored;
+
+  /// No description provided for @ratesUpdatedSuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'Tasas actualizadas correctamente.'**
+  String get ratesUpdatedSuccess;
 }
 
 class _AppLocalizationsDelegate

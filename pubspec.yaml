@@ -33,6 +33,7 @@ dependencies:
   in_app_purchase: ^3.2.3
   url_launcher: ^6.3.2
   home_widget: ^0.8.1
+  connectivity_plus: ^7.0.0
 
 dev_dependencies:
   flutter_test:

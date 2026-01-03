@@ -116,5 +116,8 @@
   "pdfDailyDetails": "日次詳細",
   "pdfDate": "日付",
   "pdfRate": "レート (Bs)",
-  "pdfChangePercent": "変動 %"
+  "pdfChangePercent": "変動 %",
+  "noInternetConnection": "インターネット接続がありません。データが古い可能性があります。",
+  "internetRestored": "接続が復元されました。",
+  "ratesUpdatedSuccess": "レートが正常に更新されました。"
 }

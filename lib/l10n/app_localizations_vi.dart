@@ -369,4 +369,14 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get pdfChangePercent => 'Thay đổi %';
+
+  @override
+  String get noInternetConnection =>
+      'Không có kết nối internet. Dữ liệu có thể bị lỗi thời.';
+
+  @override
+  String get internetRestored => 'Đã khôi phục kết nối.';
+
+  @override
+  String get ratesUpdatedSuccess => 'Cập nhật tỷ giá thành công.';
 }

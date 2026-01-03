@@ -116,5 +116,8 @@
   "pdfDailyDetails": "Tägliche Details",
   "pdfDate": "Datum",
   "pdfRate": "Kurs (Bs)",
-  "pdfChangePercent": "Änd. %"
+  "pdfChangePercent": "Änd. %",
+  "noInternetConnection": "Keine Internetverbindung. Daten könnten veraltet sein.",
+  "internetRestored": "Verbindung wiederhergestellt.",
+  "ratesUpdatedSuccess": "Kurse erfolgreich aktualisiert."
 }

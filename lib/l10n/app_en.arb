@@ -116,5 +116,8 @@
   "pdfDailyDetails": "Daily Details (Reverse Chronological)",
   "pdfDate": "Date",
   "pdfRate": "Rate (Bs)",
-  "pdfChangePercent": "Change %"
+  "pdfChangePercent": "Change %",
+  "noInternetConnection": "No internet connection. Data may be outdated.",
+  "internetRestored": "Connection restored.",
+  "ratesUpdatedSuccess": "Rates updated successfully."
 }

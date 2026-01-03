@@ -361,4 +361,13 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get pdfChangePercent => '변동 %';
+
+  @override
+  String get noInternetConnection => '인터넷 연결이 없습니다. 데이터가 오래되었을 수 있습니다.';
+
+  @override
+  String get internetRestored => '연결이 복원되었습니다.';
+
+  @override
+  String get ratesUpdatedSuccess => '환율이 성공적으로 업데이트되었습니다.';
 }

@@ -83,8 +83,8 @@ class ApiService {
     // Or if we already have today's final rate (implied if we fetched after 4pm and no tomorrow yet).
     if (now.isAfter(fourPM)) {
       final diff = now.difference(lastFetch);
-      if (diff.inMinutes < 30) {
-        return true; // Wait 30 mins before trying again
+      if (diff.inMinutes < 5) {
+        return true; // Wait 5 mins before trying again
       }
     }
 

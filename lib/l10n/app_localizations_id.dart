@@ -367,4 +367,14 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get pdfChangePercent => 'Perubahan %';
+
+  @override
+  String get noInternetConnection =>
+      'Tidak ada koneksi internet. Data mungkin usang.';
+
+  @override
+  String get internetRestored => 'Koneksi dipulihkan.';
+
+  @override
+  String get ratesUpdatedSuccess => 'Kurs berhasil diperbarui.';
 }

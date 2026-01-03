@@ -116,5 +116,8 @@
   "pdfDailyDetails": "Dettagli Giornalieri",
   "pdfDate": "Data",
   "pdfRate": "Tasso (Bs)",
-  "pdfChangePercent": "Var. %"
+  "pdfChangePercent": "Var. %",
+  "noInternetConnection": "Nessuna connessione internet. I dati potrebbero essere obsoleti.",
+  "internetRestored": "Connessione ripristinata.",
+  "ratesUpdatedSuccess": "Tassi aggiornati con successo."
 }

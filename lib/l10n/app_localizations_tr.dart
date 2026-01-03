@@ -370,4 +370,14 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get pdfChangePercent => 'Değişim %';
+
+  @override
+  String get noInternetConnection =>
+      'İnternet bağlantısı yok. Veriler güncel olmayabilir.';
+
+  @override
+  String get internetRestored => 'Bağlantı sağlandı.';
+
+  @override
+  String get ratesUpdatedSuccess => 'Kurlar başarıyla güncellendi.';
 }

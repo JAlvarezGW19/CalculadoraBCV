@@ -11,6 +11,7 @@ import '../services/notification_service.dart';
 import '../services/background_service.dart';
 
 import '../widgets/home/scan_floating_button.dart'; // Extracted FAB
+import '../providers/connectivity_provider.dart';
 
 import 'arithmetic_calculator_screen.dart';
 import 'calculator_screen.dart';
@@ -157,6 +158,32 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ),
       );
     }
+    // Listen for connectivity changes
+    ref.listen<ConnectionStatus>(connectivityProvider, (previous, next) {
+      if (previous != next) {
+        if (next == ConnectionStatus.disconnected) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(l10n.noInternetConnection),
+              backgroundColor: Colors.redAccent,
+              duration: const Duration(seconds: 4),
+            ),
+          );
+        } else if (next == ConnectionStatus.connected &&
+            previous == ConnectionStatus.disconnected) {
+          // Force refresh logic when connection is restored
+          ref.read(ratesProvider.notifier).refresh();
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(l10n.internetRestored),
+              backgroundColor: Colors.green,
+              duration: const Duration(seconds: 3),
+            ),
+          );
+        }
+      }
+    });
 
     return Scaffold(
       backgroundColor: AppTheme.background,

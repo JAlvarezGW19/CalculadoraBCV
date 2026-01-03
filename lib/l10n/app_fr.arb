@@ -116,5 +116,8 @@
   "pdfDailyDetails": "Détails Quotidiens",
   "pdfDate": "Date",
   "pdfRate": "Taux (Bs)",
-  "pdfChangePercent": "Chang. %"
+  "pdfChangePercent": "Chang. %",
+  "noInternetConnection": "Pas de connexion internet. Les données peuvent être obsolètes.",
+  "internetRestored": "Connexion rétablie.",
+  "ratesUpdatedSuccess": "Taux mis à jour avec succès."
 }

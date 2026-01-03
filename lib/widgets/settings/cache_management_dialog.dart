@@ -32,13 +32,30 @@ class CacheManagementDialog extends ConsumerWidget {
               style: const TextStyle(color: AppTheme.textSubtle),
             ),
             onTap: () async {
+              // Capture the notifier BEFORE popping to avoid "Bad state: Using 'ref'..."
+              final ratesNotifier = ref.read(ratesProvider.notifier);
+              final scaffoldMessenger = ScaffoldMessenger.of(context);
+
               Navigator.pop(context);
-              await ref.read(apiServiceProvider).fetchRates(forceRefresh: true);
-              ref.invalidate(ratesProvider);
-              if (!context.mounted) return;
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(l10n.updatingRates)));
+
+              try {
+                // Use the captured notifier instance instead of ref
+                await ratesNotifier.refresh();
+
+                scaffoldMessenger.showSnackBar(
+                  SnackBar(
+                    content: Text(l10n.ratesUpdatedSuccess),
+                    backgroundColor: Colors.green,
+                  ),
+                );
+              } catch (e) {
+                scaffoldMessenger.showSnackBar(
+                  SnackBar(
+                    content: Text("Error: $e"),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+              }
             },
           ),
           const Divider(color: Colors.white10),

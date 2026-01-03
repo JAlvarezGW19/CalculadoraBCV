@@ -116,5 +116,8 @@
   "pdfDailyDetails": "Günlük Detaylar",
   "pdfDate": "Tarih",
   "pdfRate": "Kur (Bs)",
-  "pdfChangePercent": "Değişim %"
+  "pdfChangePercent": "Değişim %",
+  "noInternetConnection": "İnternet bağlantısı yok. Veriler güncel olmayabilir.",
+  "internetRestored": "Bağlantı sağlandı.",
+  "ratesUpdatedSuccess": "Kurlar başarıyla güncellendi."
 }

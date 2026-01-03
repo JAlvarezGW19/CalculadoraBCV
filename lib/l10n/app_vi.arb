@@ -116,5 +116,8 @@
   "pdfDailyDetails": "Chi tiết hàng ngày",
   "pdfDate": "Ngày",
   "pdfRate": "Tỷ giá (Bs)",
-  "pdfChangePercent": "Thay đổi %"
+  "pdfChangePercent": "Thay đổi %",
+  "noInternetConnection": "Không có kết nối internet. Dữ liệu có thể bị lỗi thời.",
+  "internetRestored": "Đã khôi phục kết nối.",
+  "ratesUpdatedSuccess": "Cập nhật tỷ giá thành công."
 }

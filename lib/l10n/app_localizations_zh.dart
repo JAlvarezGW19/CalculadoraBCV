@@ -359,4 +359,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get pdfChangePercent => '涨跌 %';
+
+  @override
+  String get noInternetConnection => '无互联网连接。数据可能已过时。';
+
+  @override
+  String get internetRestored => '连接已恢复。';
+
+  @override
+  String get ratesUpdatedSuccess => '汇率更新成功。';
 }

@@ -116,5 +116,8 @@
   "pdfDailyDetails": "Rincian Harian",
   "pdfDate": "Tanggal",
   "pdfRate": "Kurs (Bs)",
-  "pdfChangePercent": "Perubahan %"
+  "pdfChangePercent": "Perubahan %",
+  "noInternetConnection": "Tidak ada koneksi internet. Data mungkin usang.",
+  "internetRestored": "Koneksi dipulihkan.",
+  "ratesUpdatedSuccess": "Kurs berhasil diperbarui."
 }

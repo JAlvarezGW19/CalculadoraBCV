@@ -116,5 +116,8 @@
   "pdfDailyDetails": "Ежедневные детали",
   "pdfDate": "Дата",
   "pdfRate": "Курс (Bs)",
-  "pdfChangePercent": "Изм. %"
+  "pdfChangePercent": "Изм. %",
+  "noInternetConnection": "Нет подключения к интернету. Данные могут быть устаревшими.",
+  "internetRestored": "Соединение восстановлено.",
+  "ratesUpdatedSuccess": "Курсы успешно обновлены."
 }

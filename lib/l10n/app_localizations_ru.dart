@@ -366,4 +366,14 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get pdfChangePercent => 'Изм. %';
+
+  @override
+  String get noInternetConnection =>
+      'Нет подключения к интернету. Данные могут быть устаревшими.';
+
+  @override
+  String get internetRestored => 'Соединение восстановлено.';
+
+  @override
+  String get ratesUpdatedSuccess => 'Курсы успешно обновлены.';
 }

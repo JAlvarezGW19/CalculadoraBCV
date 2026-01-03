@@ -124,7 +124,10 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
     String? resultsHelper;
 
     if (customRate != null && bcvCompRate != null && bcvCompRate > 0) {
-      double val = double.tryParse(_foreignController.text) ?? 0.0;
+      String clean = _foreignController.text
+          .replaceAll(RegExp(r'[^0-9,]'), '')
+          .replaceAll(',', '.');
+      double val = double.tryParse(clean) ?? 0.0;
       if (val > 0) {
         // Foreign Helper
         double totalVes = val * customRate.rate;
@@ -144,7 +147,9 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
       placeholder: foreignPlaceholder,
       prefixText: foreignPrefix,
       onChanged: (value) {
-        final sanitized = value.replaceAll('.', '').replaceAll(',', '.');
+        final sanitized = value
+            .replaceAll(RegExp(r'[^0-9,]'), '')
+            .replaceAll(',', '.');
         if (double.tryParse(sanitized) != null || value.isEmpty) {
           ref.read(conversionProvider.notifier).updateForeign(value, rate);
         }
@@ -162,7 +167,9 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
       placeholder: l10n.amountBolivars,
       prefixText: vesPrefix,
       onChanged: (value) {
-        final sanitized = value.replaceAll('.', '').replaceAll(',', '.');
+        final sanitized = value
+            .replaceAll(RegExp(r'[^0-9,]'), '')
+            .replaceAll(',', '.');
         if (double.tryParse(sanitized) != null || value.isEmpty) {
           ref.read(conversionProvider.notifier).updateVES(value, rate);
         }

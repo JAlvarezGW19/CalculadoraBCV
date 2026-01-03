@@ -371,4 +371,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get pdfChangePercent => 'Cambio %';
+
+  @override
+  String get noInternetConnection =>
+      'Sin conexión a internet. Los datos pueden estar desactualizados.';
+
+  @override
+  String get internetRestored => 'Conexión restaurada.';
+
+  @override
+  String get ratesUpdatedSuccess => 'Tasas actualizadas correctamente.';
 }

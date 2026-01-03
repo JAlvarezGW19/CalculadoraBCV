@@ -368,4 +368,14 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get pdfChangePercent => 'परिवर्तन %';
+
+  @override
+  String get noInternetConnection =>
+      'कोई इंटरनेट कनेक्शन नहीं। डेटा पुराना हो सकता है।';
+
+  @override
+  String get internetRestored => 'कनेक्शन बहाल।';
+
+  @override
+  String get ratesUpdatedSuccess => 'दरें सफलतापूर्वक अपडेट की गईं।';
 }
