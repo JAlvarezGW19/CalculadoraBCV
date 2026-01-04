@@ -31,12 +31,18 @@ class CalculatorScreen extends ConsumerWidget {
       final eurRate = isToday ? rates.eurToday : rates.eurTomorrow;
 
       final useTomIfAvailable = rates.hasTomorrow;
+
+      // For Custom mode, always compare against TODAY's rate as requested
+      final effectiveUseTom = (conversionState.currency == CurrencyType.custom)
+          ? false
+          : useTomIfAvailable;
+
       if (conversionState.comparisonBase == CurrencyType.usd) {
-        bcvComparisonRate = useTomIfAvailable
+        bcvComparisonRate = effectiveUseTom
             ? rates.usdTomorrow
             : rates.usdToday;
       } else {
-        bcvComparisonRate = useTomIfAvailable
+        bcvComparisonRate = effectiveUseTom
             ? rates.eurTomorrow
             : rates.eurToday;
       }

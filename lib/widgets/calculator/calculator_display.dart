@@ -8,7 +8,7 @@ import 'package:calculadora_bcv/l10n/app_localizations.dart';
 class CalculatorDisplay extends StatelessWidget {
   final String expression;
   final String result;
-  final String? bcvEquivalent;
+  final Widget? bcvEquivalent;
   final String inputPrefix;
   final String inputSuffix;
   final VoidCallback onSwap;
@@ -209,15 +209,10 @@ class CalculatorDisplay extends StatelessWidget {
 
           if (bcvEquivalent != null) ...[
             const SizedBox(height: 4),
-            Text(
-              bcvEquivalent!,
-              textAlign: TextAlign.right,
-              style: GoogleFonts.montserrat(
-                color: AppTheme.textSubtle,
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+            // Use an Align to respect the original right alignment if the passed widget doesn't enforce it,
+            // but the Row constructed in the parent handles its own layout.
+            // We just render the widget here.
+            Align(alignment: Alignment.centerRight, child: bcvEquivalent!),
           ],
         ],
       ),

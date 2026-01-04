@@ -486,18 +486,62 @@ class _ArithmeticCalculatorScreenState
     }
 
     // BCV Equivalent Logic
-    String? bcvLabel;
+    // BCV Equivalent Logic
+    Widget? bcvLabel;
     if (state.currency == CurrencyType.custom && ratesAsync.hasValue) {
       final rates = ratesAsync.value!;
-      final isToday = state.dateMode == RateDateMode.today;
-      double bcvRate = isToday ? rates.usdToday : rates.usdTomorrow;
+
+      // Force Today for Custom mode (as per ID 0)
+      const bool useTom = false;
+
+      double bcvRate;
+      String symbol;
+
+      if (state.comparisonBase == CurrencyType.usd) {
+        bcvRate = useTom ? rates.usdTomorrow : rates.usdToday;
+        symbol = "\$";
+      } else {
+        bcvRate = useTom ? rates.eurTomorrow : rates.eurToday;
+        symbol = "€";
+      }
 
       if (bcvRate > 0) {
         double totalBs = _isDivisaToBs
             ? (rawMathValue * activeRate)
             : rawMathValue;
         double bcvEquivalentValue = totalBs / bcvRate;
-        bcvLabel = "BCV: \$${formatter.format(bcvEquivalentValue)}";
+
+        bcvLabel = Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              "BCV: $symbol${formatter.format(bcvEquivalentValue)}",
+              textAlign: TextAlign.right,
+              style: GoogleFonts.montserrat(
+                color: AppTheme.textSubtle,
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(width: 8),
+            GestureDetector(
+              onTap: () {
+                final newBase = state.comparisonBase == CurrencyType.usd
+                    ? CurrencyType.eur
+                    : CurrencyType.usd;
+                ref
+                    .read(conversionProvider.notifier)
+                    .setComparisonBase(newBase);
+              },
+              child: const Icon(
+                Icons.swap_horiz,
+                color: AppTheme.textSubtle,
+                size: 18,
+              ),
+            ),
+          ],
+        );
       }
     }
 

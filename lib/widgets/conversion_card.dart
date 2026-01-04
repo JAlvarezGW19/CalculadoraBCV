@@ -120,7 +120,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
     const String vesPrefix = "Bs. ";
 
     // BCV Equivalence Logic (for Custom Rate mode)
-    String? inputsHelper;
+    Widget? inputsHelper;
     String? resultsHelper;
 
     if (customRate != null && bcvCompRate != null && bcvCompRate > 0) {
@@ -134,8 +134,36 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
         double bcvPurchasingPower = totalVes / bcvCompRate;
 
         String symbol = state.comparisonBase == CurrencyType.usd ? "\$" : "€";
-        inputsHelper =
-            "$symbol ${NumberFormat("#,##0.00", "es_VE").format(bcvPurchasingPower)} (BCV)";
+
+        inputsHelper = Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              "$symbol ${NumberFormat("#,##0.00", "es_VE").format(bcvPurchasingPower)} (BCV)",
+              style: TextStyle(
+                color: AppTheme.textSubtle.withValues(alpha: 0.6),
+                fontSize: 12,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+            const SizedBox(width: 6),
+            GestureDetector(
+              onTap: () {
+                final newBase = state.comparisonBase == CurrencyType.usd
+                    ? CurrencyType.eur
+                    : CurrencyType.usd;
+                ref
+                    .read(conversionProvider.notifier)
+                    .setComparisonBase(newBase);
+              },
+              child: const Icon(
+                Icons.swap_horiz,
+                color: AppTheme.textSubtle,
+                size: 18,
+              ),
+            ),
+          ],
+        );
       }
     }
 
@@ -155,7 +183,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
         }
       },
       canCopy: true,
-      helperText: inputsHelper,
+      helperWidget: inputsHelper,
       maxIntegerDigits: 10,
       maxDecimalDigits: 3,
     );
@@ -373,6 +401,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
     FocusNode? focusNode,
     bool canCopy = false,
     String? helperText,
+    Widget? helperWidget,
     String? prefixText,
     int maxIntegerDigits = 15,
     int maxDecimalDigits = 2,
@@ -472,7 +501,16 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
                   ),
                 ),
               ),
-              if (helperText != null)
+              if (helperWidget != null)
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                    right: 20,
+                    bottom: 8,
+                  ),
+                  child: helperWidget,
+                )
+              else if (helperText != null)
                 Padding(
                   padding: const EdgeInsets.only(
                     left: 20,
