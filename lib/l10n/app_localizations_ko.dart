@@ -370,4 +370,25 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get ratesUpdatedSuccess => '환율이 성공적으로 업데이트되었습니다.';
+
+  @override
+  String get rateNameExists => '이 이름의 환율이 이미 존재합니다';
+
+  @override
+  String get rateNameLabel => '이름 (최대 10자)';
+
+  @override
+  String get rateValueLabel => '환율 (볼리바르)';
+
+  @override
+  String get save => '저장';
+
+  @override
+  String get delete => '삭제';
+
+  @override
+  String get editRate => '환율 편집';
+
+  @override
+  String get selectRate => '환율 선택';
 }

@@ -1,5 +1,6 @@
 {
   "@@locale": "zh",
+  "selectRate": "选择汇率",
   "appTitle": "BCV 计算器",
   "settings": "设置",
   "general": "常规",
@@ -119,5 +120,11 @@
   "pdfChangePercent": "涨跌 %",
   "noInternetConnection": "无互联网连接。数据可能已过时。",
   "internetRestored": "连接已恢复。",
-  "ratesUpdatedSuccess": "汇率更新成功。"
+  "ratesUpdatedSuccess": "汇率更新成功。",
+  "rateNameExists": "该名称的汇率已存在",
+  "rateNameLabel": "名称 (最多10个字符)",
+  "rateValueLabel": "汇率 (玻利瓦尔)",
+  "save": "保存",
+  "delete": "删除",
+  "editRate": "编辑汇率"
 }

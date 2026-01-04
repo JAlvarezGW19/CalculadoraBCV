@@ -1,5 +1,6 @@
 {
   "@@locale": "ja",
+  "selectRate": "レートを選択",
   "appTitle": "BCV電卓",
   "settings": "設定",
   "general": "一般",
@@ -119,5 +120,11 @@
   "pdfChangePercent": "変動 %",
   "noInternetConnection": "インターネット接続がありません。データが古い可能性があります。",
   "internetRestored": "接続が復元されました。",
-  "ratesUpdatedSuccess": "レートが正常に更新されました。"
+  "ratesUpdatedSuccess": "レートが正常に更新されました。",
+  "rateNameExists": "この名前のレートは既に存在します",
+  "rateNameLabel": "名前 (最大10文字)",
+  "rateValueLabel": "レート (ボリバル)",
+  "save": "保存",
+  "delete": "削除",
+  "editRate": "レートを編集"
 }

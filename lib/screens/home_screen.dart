@@ -186,6 +186,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     });
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppTheme.background,
       body: SafeArea(
         child: IndexedStack(

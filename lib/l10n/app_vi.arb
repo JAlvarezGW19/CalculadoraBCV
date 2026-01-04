@@ -1,5 +1,6 @@
 {
   "@@locale": "vi",
+  "selectRate": "Chọn tỷ giá",
   "appTitle": "Máy tính BCV",
   "settings": "Cài đặt",
   "general": "Chung",
@@ -119,5 +120,11 @@
   "pdfChangePercent": "Thay đổi %",
   "noInternetConnection": "Không có kết nối internet. Dữ liệu có thể bị lỗi thời.",
   "internetRestored": "Đã khôi phục kết nối.",
-  "ratesUpdatedSuccess": "Cập nhật tỷ giá thành công."
+  "ratesUpdatedSuccess": "Cập nhật tỷ giá thành công.",
+  "rateNameExists": "Tỷ giá với tên này đã tồn tại",
+  "rateNameLabel": "Tên (Tối đa 10)",
+  "rateValueLabel": "Tỷ giá (Bolivar)",
+  "save": "Lưu",
+  "delete": "Xóa",
+  "editRate": "Sửa tỷ giá"
 }

@@ -1,5 +1,6 @@
 {
   "@@locale": "ru",
+  "selectRate": "Выбрать курс",
   "appTitle": "Калькулятор BCV",
   "settings": "Настройки",
   "general": "Общие",
@@ -119,5 +120,11 @@
   "pdfChangePercent": "Изм. %",
   "noInternetConnection": "Нет подключения к интернету. Данные могут быть устаревшими.",
   "internetRestored": "Соединение восстановлено.",
-  "ratesUpdatedSuccess": "Курсы успешно обновлены."
+  "ratesUpdatedSuccess": "Курсы успешно обновлены.",
+  "rateNameExists": "Курс с таким именем уже существует",
+  "rateNameLabel": "Имя (Макс. 10)",
+  "rateValueLabel": "Курс (Боливары)",
+  "save": "Сохранить",
+  "delete": "Удалить",
+  "editRate": "Редактировать курс"
 }

@@ -382,4 +382,25 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get ratesUpdatedSuccess => 'Taux mis à jour avec succès.';
+
+  @override
+  String get rateNameExists => 'Un taux avec ce nom existe déjà';
+
+  @override
+  String get rateNameLabel => 'Nom (Max 10)';
+
+  @override
+  String get rateValueLabel => 'Taux (Bolivars)';
+
+  @override
+  String get save => 'Enregistrer';
+
+  @override
+  String get delete => 'Supprimer';
+
+  @override
+  String get editRate => 'Modifier le taux';
+
+  @override
+  String get selectRate => 'Sélectionner le taux';
 }

@@ -1,5 +1,6 @@
 {
   "@@locale": "tr",
+  "selectRate": "Kur Seçin",
   "appTitle": "BCV Hesap Makinesi",
   "settings": "Ayarlar",
   "general": "Genel",
@@ -119,5 +120,11 @@
   "pdfChangePercent": "Değişim %",
   "noInternetConnection": "İnternet bağlantısı yok. Veriler güncel olmayabilir.",
   "internetRestored": "Bağlantı sağlandı.",
-  "ratesUpdatedSuccess": "Kurlar başarıyla güncellendi."
+  "ratesUpdatedSuccess": "Kurlar başarıyla güncellendi.",
+  "rateNameExists": "Bu isimde bir kur zaten var",
+  "rateNameLabel": "İsim (Maks 10)",
+  "rateValueLabel": "Kur (Bolivar)",
+  "save": "Kaydet",
+  "delete": "Sil",
+  "editRate": "Kuru Düzenle"
 }

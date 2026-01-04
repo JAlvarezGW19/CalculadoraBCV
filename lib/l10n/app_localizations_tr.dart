@@ -380,4 +380,25 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get ratesUpdatedSuccess => 'Kurlar başarıyla güncellendi.';
+
+  @override
+  String get rateNameExists => 'Bu isimde bir kur zaten var';
+
+  @override
+  String get rateNameLabel => 'İsim (Maks 10)';
+
+  @override
+  String get rateValueLabel => 'Kur (Bolivar)';
+
+  @override
+  String get save => 'Kaydet';
+
+  @override
+  String get delete => 'Sil';
+
+  @override
+  String get editRate => 'Kuru Düzenle';
+
+  @override
+  String get selectRate => 'Kur Seçin';
 }

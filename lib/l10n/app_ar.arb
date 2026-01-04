@@ -1,5 +1,6 @@
 {
   "@@locale": "ar",
+  "selectRate": "اختيار السعر",
   "appTitle": "حاسبة BCV",
   "settings": "الإعدادات",
   "general": "عام",
@@ -119,5 +120,11 @@
   "pdfChangePercent": "التغيير %",
   "noInternetConnection": "لا يوجد اتصال بالإنترنت. قد تكون البيانات قديمة.",
   "internetRestored": "تمت استعادة الاتصال.",
-  "ratesUpdatedSuccess": "تم تحديث الأسعار بنجاح."
+  "ratesUpdatedSuccess": "تم تحديث الأسعار بنجاح.",
+  "rateNameExists": "السعر بهذا الاسم موجود بالفعل",
+  "rateNameLabel": "الاسم (الحد الأقصى 10)",
+  "rateValueLabel": "السعر (بوليفار)",
+  "save": "حفظ",
+  "delete": "حذف",
+  "editRate": "تعديل السعر"
 }

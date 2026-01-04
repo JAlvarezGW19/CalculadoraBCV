@@ -379,4 +379,25 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get ratesUpdatedSuccess => 'Kurse erfolgreich aktualisiert.';
+
+  @override
+  String get rateNameExists => 'Ein Kurs mit diesem Namen existiert bereits';
+
+  @override
+  String get rateNameLabel => 'Name (Max. 10)';
+
+  @override
+  String get rateValueLabel => 'Kurs (Bolivar)';
+
+  @override
+  String get save => 'Speichern';
+
+  @override
+  String get delete => 'Löschen';
+
+  @override
+  String get editRate => 'Kurs bearbeiten';
+
+  @override
+  String get selectRate => 'Kurs auswählen';
 }

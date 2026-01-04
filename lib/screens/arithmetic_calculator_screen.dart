@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 import '../providers/bcv_provider.dart';
 import '../theme/app_theme.dart';
 import '../widgets/currency_toggles.dart';
@@ -188,109 +189,138 @@ class _ArithmeticCalculatorScreenState
   }
 
   void _showRateSelectionDialog(WidgetRef ref) {
-    final customRates = ref.read(customRatesProvider);
-    final state = ref.read(conversionProvider);
-
     showModalBottomSheet(
       context: context,
       backgroundColor: AppTheme.cardBackground,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
-      builder: (context) {
-        return SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Seleccionar Tasa", style: AppTheme.rateLabelStyle),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.add_circle,
-                        color: AppTheme.textAccent,
-                      ),
-                      onPressed: () async {
-                        Navigator.pop(context); // Close sheet
-                        final newRate = await showAddEditRateDialog(
-                          context,
-                          ref,
-                        );
-                        if (newRate != null && mounted) {
-                          ref
-                              .read(conversionProvider.notifier)
-                              .setSelectedCustomRate(newRate.id);
-                        }
-                      },
+      builder: (sheetContext) {
+        return Consumer(
+          builder: (consumerContext, sheetRef, child) {
+            final customRates = sheetRef.watch(customRatesProvider);
+            final state = sheetRef.watch(conversionProvider);
+
+            return SafeArea(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          AppLocalizations.of(consumerContext)!.selectRate,
+                          style: AppTheme.rateLabelStyle,
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.add_circle,
+                            color: AppTheme.textAccent,
+                          ),
+                          onPressed: () async {
+                            Navigator.pop(sheetContext); // Close sheet
+
+                            if (!mounted) return;
+
+                            final newRate = await showAddEditRateDialog(
+                              context,
+                              ref, // Use the outer ref (from method argument), which is stable
+                            );
+                            if (newRate != null && mounted) {
+                              ref
+                                  .read(conversionProvider.notifier)
+                                  .setSelectedCustomRate(newRate.id);
+                            }
+                          },
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              const Divider(color: AppTheme.textSubtle),
-              if (customRates.isEmpty)
-                const Padding(
-                  padding: EdgeInsets.all(24.0),
-                  child: Text(
-                    "No hay tasas personalizadas.\nAgrega una nueva.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: AppTheme.textSubtle),
                   ),
-                )
-              else
-                Flexible(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: customRates.length,
-                    itemBuilder: (context, index) {
-                      final rate = customRates[index];
-                      final isSelected = rate.id == state.selectedCustomRateId;
-                      return ListTile(
-                        leading: Icon(
-                          Icons.monetization_on_outlined,
-                          color: isSelected
-                              ? AppTheme.textAccent
-                              : AppTheme.textSubtle,
-                        ),
-                        title: Text(
-                          rate.name,
-                          style: TextStyle(
-                            color: isSelected
-                                ? Colors.white
-                                : AppTheme.textPrimary,
-                            fontWeight: isSelected
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
-                        ),
-                        subtitle: Text(
-                          "${NumberFormat("#,##0.00", "es_VE").format(rate.rate)} VES",
-                          style: const TextStyle(
-                            color: AppTheme.textSubtle,
-                            fontSize: 12,
-                          ),
-                        ),
-                        trailing: isSelected
-                            ? const Icon(
-                                Icons.check,
-                                color: AppTheme.textAccent,
-                              )
-                            : null,
-                        onTap: () {
-                          ref
-                              .read(conversionProvider.notifier)
-                              .setSelectedCustomRate(rate.id);
-                          Navigator.pop(context);
+                  const Divider(color: AppTheme.textSubtle),
+                  if (customRates.isEmpty)
+                    const Padding(
+                      padding: EdgeInsets.all(24.0),
+                      child: Text(
+                        "No hay tasas personalizadas.\nAgrega una nueva.",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: AppTheme.textSubtle),
+                      ),
+                    )
+                  else
+                    Flexible(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: customRates.length,
+                        itemBuilder: (context, index) {
+                          final rate = customRates[index];
+                          final isSelected =
+                              rate.id == state.selectedCustomRateId;
+                          return ListTile(
+                            leading: Icon(
+                              Icons.monetization_on_outlined,
+                              color: isSelected
+                                  ? AppTheme.textAccent
+                                  : AppTheme.textSubtle,
+                            ),
+                            title: Text(
+                              rate.name,
+                              style: TextStyle(
+                                color: isSelected
+                                    ? Colors.white
+                                    : AppTheme.textPrimary,
+                                fontWeight: isSelected
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                              ),
+                            ),
+                            subtitle: Text(
+                              "${NumberFormat("#,##0.00", "es_VE").format(rate.rate)} Bs.",
+                              style: const TextStyle(
+                                color: AppTheme.textSubtle,
+                                fontSize: 12,
+                              ),
+                            ),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.edit_outlined,
+                                    size: 20,
+                                    color: AppTheme.textSubtle,
+                                  ),
+                                  onPressed: () {
+                                    showAddEditRateDialog(
+                                      context,
+                                      ref,
+                                      rate: rate,
+                                    );
+                                  },
+                                ),
+                                if (isSelected)
+                                  const Icon(
+                                    Icons.check,
+                                    color: AppTheme.textAccent,
+                                  ),
+                              ],
+                            ),
+                            onTap: () {
+                              ref
+                                  .read(conversionProvider.notifier)
+                                  .setSelectedCustomRate(rate.id);
+                              Navigator.pop(context);
+                            },
+                          );
                         },
-                      );
-                    },
-                  ),
-                ),
-              const SizedBox(height: 10),
-            ],
-          ),
+                      ),
+                    ),
+                  const SizedBox(height: 10),
+                ],
+              ),
+            );
+          },
         );
       },
     );

@@ -377,4 +377,25 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get ratesUpdatedSuccess => 'Kurs berhasil diperbarui.';
+
+  @override
+  String get rateNameExists => 'Kurs dengan nama ini sudah ada';
+
+  @override
+  String get rateNameLabel => 'Nama (Maks 10)';
+
+  @override
+  String get rateValueLabel => 'Kurs (Bolivar)';
+
+  @override
+  String get save => 'Simpan';
+
+  @override
+  String get delete => 'Hapus';
+
+  @override
+  String get editRate => 'Edit Kurs';
+
+  @override
+  String get selectRate => 'Pilih kurs';
 }

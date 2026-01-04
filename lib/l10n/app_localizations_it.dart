@@ -382,4 +382,25 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get ratesUpdatedSuccess => 'Tassi aggiornati con successo.';
+
+  @override
+  String get rateNameExists => 'Esiste già un tasso con questo nome';
+
+  @override
+  String get rateNameLabel => 'Nome (Max 10)';
+
+  @override
+  String get rateValueLabel => 'Tasso (Bolivar)';
+
+  @override
+  String get save => 'Salva';
+
+  @override
+  String get delete => 'Elimina';
+
+  @override
+  String get editRate => 'Modifica Tasso';
+
+  @override
+  String get selectRate => 'Seleziona tasso';
 }

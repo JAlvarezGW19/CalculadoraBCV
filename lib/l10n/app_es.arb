@@ -119,5 +119,12 @@
   "pdfChangePercent": "Cambio %",
   "noInternetConnection": "Sin conexión a internet. Los datos pueden estar desactualizados.",
   "internetRestored": "Conexión restaurada.",
-  "ratesUpdatedSuccess": "Tasas actualizadas correctamente."
+  "ratesUpdatedSuccess": "Tasas actualizadas correctamente.",
+  "rateNameExists": "Ya existe una tasa con ese nombre",
+  "rateNameLabel": "Nombre (Máx. 10)",
+  "rateValueLabel": "Tasa (Bolívares)",
+  "save": "Guardar",
+  "delete": "Eliminar",
+  "editRate": "Editar Tasa",
+  "selectRate": "Seleccionar tasa"
 }

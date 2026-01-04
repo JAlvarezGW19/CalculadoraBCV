@@ -369,4 +369,25 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get ratesUpdatedSuccess => 'レートが正常に更新されました。';
+
+  @override
+  String get rateNameExists => 'この名前のレートは既に存在します';
+
+  @override
+  String get rateNameLabel => '名前 (最大10文字)';
+
+  @override
+  String get rateValueLabel => 'レート (ボリバル)';
+
+  @override
+  String get save => '保存';
+
+  @override
+  String get delete => '削除';
+
+  @override
+  String get editRate => 'レートを編集';
+
+  @override
+  String get selectRate => 'レートを選択';
 }

@@ -381,4 +381,25 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get ratesUpdatedSuccess => 'Taxas atualizadas com sucesso.';
+
+  @override
+  String get rateNameExists => 'Já existe uma taxa com esse nome';
+
+  @override
+  String get rateNameLabel => 'Nome (Máx. 10)';
+
+  @override
+  String get rateValueLabel => 'Taxa (Bolívares)';
+
+  @override
+  String get save => 'Salvar';
+
+  @override
+  String get delete => 'Excluir';
+
+  @override
+  String get editRate => 'Editar Taxa';
+
+  @override
+  String get selectRate => 'Selecionar taxa';
 }

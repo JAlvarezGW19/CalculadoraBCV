@@ -1,5 +1,6 @@
 {
   "@@locale": "pt",
+  "selectRate": "Selecionar taxa",
   "appTitle": "Calculadora BCV",
   "settings": "Configurações",
   "general": "Geral",
@@ -119,5 +120,11 @@
   "pdfChangePercent": "Variação %",
   "noInternetConnection": "Sem conexão com a internet. Os dados podem estar desatualizados.",
   "internetRestored": "Conexão restaurada.",
-  "ratesUpdatedSuccess": "Taxas atualizadas com sucesso."
+  "ratesUpdatedSuccess": "Taxas atualizadas com sucesso.",
+  "rateNameExists": "Já existe uma taxa com esse nome",
+  "rateNameLabel": "Nome (Máx. 10)",
+  "rateValueLabel": "Taxa (Bolívares)",
+  "save": "Salvar",
+  "delete": "Excluir",
+  "editRate": "Editar Taxa"
 }

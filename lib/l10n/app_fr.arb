@@ -1,5 +1,6 @@
 {
   "@@locale": "fr",
+  "selectRate": "Sélectionner le taux",
   "appTitle": "Calculatrice BCV",
   "settings": "Paramètres",
   "general": "Général",
@@ -119,5 +120,11 @@
   "pdfChangePercent": "Chang. %",
   "noInternetConnection": "Pas de connexion internet. Les données peuvent être obsolètes.",
   "internetRestored": "Connexion rétablie.",
-  "ratesUpdatedSuccess": "Taux mis à jour avec succès."
+  "ratesUpdatedSuccess": "Taux mis à jour avec succès.",
+  "rateNameExists": "Un taux avec ce nom existe déjà",
+  "rateNameLabel": "Nom (Max 10)",
+  "rateValueLabel": "Taux (Bolivars)",
+  "save": "Enregistrer",
+  "delete": "Supprimer",
+  "editRate": "Modifier le taux"
 }

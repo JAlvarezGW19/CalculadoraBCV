@@ -1,5 +1,6 @@
 {
   "@@locale": "de",
+  "selectRate": "Kurs auswählen",
   "appTitle": "BCV Rechner",
   "settings": "Einstellungen",
   "general": "Allgemein",
@@ -119,5 +120,11 @@
   "pdfChangePercent": "Änd. %",
   "noInternetConnection": "Keine Internetverbindung. Daten könnten veraltet sein.",
   "internetRestored": "Verbindung wiederhergestellt.",
-  "ratesUpdatedSuccess": "Kurse erfolgreich aktualisiert."
+  "ratesUpdatedSuccess": "Kurse erfolgreich aktualisiert.",
+  "rateNameExists": "Ein Kurs mit diesem Namen existiert bereits",
+  "rateNameLabel": "Name (Max. 10)",
+  "rateValueLabel": "Kurs (Bolivar)",
+  "save": "Speichern",
+  "delete": "Löschen",
+  "editRate": "Kurs bearbeiten"
 }

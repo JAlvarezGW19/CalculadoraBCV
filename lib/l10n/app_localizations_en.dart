@@ -379,4 +379,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ratesUpdatedSuccess => 'Rates updated successfully.';
+
+  @override
+  String get rateNameExists => 'A rate with this name already exists';
+
+  @override
+  String get rateNameLabel => 'Name (Max 10)';
+
+  @override
+  String get rateValueLabel => 'Rate (Bolivars)';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get editRate => 'Edit Rate';
+
+  @override
+  String get selectRate => 'Select rate';
 }

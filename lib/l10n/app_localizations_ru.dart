@@ -376,4 +376,25 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get ratesUpdatedSuccess => 'Курсы успешно обновлены.';
+
+  @override
+  String get rateNameExists => 'Курс с таким именем уже существует';
+
+  @override
+  String get rateNameLabel => 'Имя (Макс. 10)';
+
+  @override
+  String get rateValueLabel => 'Курс (Боливары)';
+
+  @override
+  String get save => 'Сохранить';
+
+  @override
+  String get delete => 'Удалить';
+
+  @override
+  String get editRate => 'Редактировать курс';
+
+  @override
+  String get selectRate => 'Выбрать курс';
 }

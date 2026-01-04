@@ -379,4 +379,25 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get ratesUpdatedSuccess => 'Cập nhật tỷ giá thành công.';
+
+  @override
+  String get rateNameExists => 'Tỷ giá với tên này đã tồn tại';
+
+  @override
+  String get rateNameLabel => 'Tên (Tối đa 10)';
+
+  @override
+  String get rateValueLabel => 'Tỷ giá (Bolivar)';
+
+  @override
+  String get save => 'Lưu';
+
+  @override
+  String get delete => 'Xóa';
+
+  @override
+  String get editRate => 'Sửa tỷ giá';
+
+  @override
+  String get selectRate => 'Chọn tỷ giá';
 }

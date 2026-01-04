@@ -41,16 +41,22 @@ void callbackDispatcher() {
             final notificationService = NotificationService();
             await notificationService.init(); // Init in this isolate
 
+            // Localization Logic
+            String langCode = prefs.getString('selected_locale') ?? 'es';
+
+            // Initialize formatting for the selected language
+            await initializeDateFormatting(langCode, null);
+
             final double usd = rates['usd_tomorrow'];
             final double eur = rates['eur_tomorrow'];
             final formatter = NumberFormat("#,##0.00", "es_VE");
 
             final dateObj = DateTime.parse(rateDate);
-            final dayName = DateFormat(
-              'EEEE',
-              'es',
-            ).format(dateObj).toLowerCase();
-            final dateStr = DateFormat("dd/MM/yyyy").format(dateObj);
+            final dayName = DateFormat('EEEE', langCode).format(dateObj);
+            // Capitalize first letter of day name
+            final cDayName = dayName[0].toUpperCase() + dayName.substring(1);
+
+            final dateStr = DateFormat.yMd(langCode).format(dateObj);
 
             // Determine if it is strictly tomorrow
             final now = DateTime.now();
@@ -61,15 +67,49 @@ void callbackDispatcher() {
                 dateObj.month == strictTomorrow.month &&
                 dateObj.day == strictTomorrow.day;
 
-            final String title = isStrictTomorrow
-                ? "Tasa BCV de mañana disponible"
-                : "Tasa BCV del $dayName disponible";
+            // Simple Translation Map
+            String title = "";
+            String dateLabel = "Fecha";
+
+            switch (langCode) {
+              case 'en':
+                title = isStrictTomorrow
+                    ? "Tomorrow's BCV Rate available"
+                    : "BCV Rate for $cDayName available";
+                dateLabel = "Date";
+                break;
+              case 'pt':
+                title = isStrictTomorrow
+                    ? "Taxa BCV de amanhã disponível"
+                    : "Taxa BCV de $cDayName disponível";
+                dateLabel = "Data";
+                break;
+              case 'it':
+                title = isStrictTomorrow
+                    ? "Tasso BCV di domani disponibile"
+                    : "Tasso BCV di $cDayName disponibile";
+                dateLabel = "Data";
+                break;
+              case 'fr':
+                title = isStrictTomorrow
+                    ? "Taux BCV de demain disponible"
+                    : "Taux BCV du $cDayName disponible";
+                dateLabel = "Date";
+                break;
+              // Add more as needed, default to ES
+              default:
+                title = isStrictTomorrow
+                    ? "Tasa BCV de mañana disponible"
+                    : "Tasa BCV del $cDayName disponible";
+                dateLabel = "Fecha";
+                break;
+            }
 
             await notificationService.showNotification(
               id: 1,
               title: title,
               body:
-                  "USD = ${formatter.format(usd)} Bs. | EUR = ${formatter.format(eur)} Bs.\nFecha: $dateStr",
+                  "USD = ${formatter.format(usd)} Bs. | EUR = ${formatter.format(eur)} Bs.\n$dateLabel: $dateStr",
             );
 
             await prefs.setString(lastNotifiedKey, rateDate);

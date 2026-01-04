@@ -1,5 +1,6 @@
 {
   "@@locale": "ko",
+  "selectRate": "환율 선택",
   "appTitle": "BCV 계산기",
   "settings": "설정",
   "general": "일반",
@@ -119,5 +120,11 @@
   "pdfChangePercent": "변동 %",
   "noInternetConnection": "인터넷 연결이 없습니다. 데이터가 오래되었을 수 있습니다.",
   "internetRestored": "연결이 복원되었습니다.",
-  "ratesUpdatedSuccess": "환율이 성공적으로 업데이트되었습니다."
+  "ratesUpdatedSuccess": "환율이 성공적으로 업데이트되었습니다.",
+  "rateNameExists": "이 이름의 환율이 이미 존재합니다",
+  "rateNameLabel": "이름 (최대 10자)",
+  "rateValueLabel": "환율 (볼리바르)",
+  "save": "저장",
+  "delete": "삭제",
+  "editRate": "환율 편집"
 }

@@ -368,4 +368,25 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get ratesUpdatedSuccess => '汇率更新成功。';
+
+  @override
+  String get rateNameExists => '该名称的汇率已存在';
+
+  @override
+  String get rateNameLabel => '名称 (最多10个字符)';
+
+  @override
+  String get rateValueLabel => '汇率 (玻利瓦尔)';
+
+  @override
+  String get save => '保存';
+
+  @override
+  String get delete => '删除';
+
+  @override
+  String get editRate => '编辑汇率';
+
+  @override
+  String get selectRate => '选择汇率';
 }

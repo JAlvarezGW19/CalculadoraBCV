@@ -1,5 +1,6 @@
 {
   "@@locale": "en",
+  "selectRate": "Select rate",
   "appTitle": "BCV Calculator",
   "settings": "Settings",
   "general": "General",
@@ -119,5 +120,11 @@
   "pdfChangePercent": "Change %",
   "noInternetConnection": "No internet connection. Data may be outdated.",
   "internetRestored": "Connection restored.",
-  "ratesUpdatedSuccess": "Rates updated successfully."
+  "ratesUpdatedSuccess": "Rates updated successfully.",
+  "rateNameExists": "A rate with this name already exists",
+  "rateNameLabel": "Name (Max 10)",
+  "rateValueLabel": "Rate (Bolivars)",
+  "save": "Save",
+  "delete": "Delete",
+  "editRate": "Edit Rate"
 }

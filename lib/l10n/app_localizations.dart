@@ -843,6 +843,48 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Tasas actualizadas correctamente.'**
   String get ratesUpdatedSuccess;
+
+  /// No description provided for @rateNameExists.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya existe una tasa con ese nombre'**
+  String get rateNameExists;
+
+  /// No description provided for @rateNameLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre (Máx. 10)'**
+  String get rateNameLabel;
+
+  /// No description provided for @rateValueLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Tasa (Bolívares)'**
+  String get rateValueLabel;
+
+  /// No description provided for @save.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar'**
+  String get save;
+
+  /// No description provided for @delete.
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar'**
+  String get delete;
+
+  /// No description provided for @editRate.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar Tasa'**
+  String get editRate;
+
+  /// No description provided for @selectRate.
+  ///
+  /// In es, this message translates to:
+  /// **'Seleccionar tasa'**
+  String get selectRate;
 }
 
 class _AppLocalizationsDelegate

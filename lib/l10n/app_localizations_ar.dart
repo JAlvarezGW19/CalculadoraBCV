@@ -376,4 +376,25 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ratesUpdatedSuccess => 'تم تحديث الأسعار بنجاح.';
+
+  @override
+  String get rateNameExists => 'السعر بهذا الاسم موجود بالفعل';
+
+  @override
+  String get rateNameLabel => 'الاسم (الحد الأقصى 10)';
+
+  @override
+  String get rateValueLabel => 'السعر (بوليفار)';
+
+  @override
+  String get save => 'حفظ';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get editRate => 'تعديل السعر';
+
+  @override
+  String get selectRate => 'اختيار السعر';
 }

@@ -1,5 +1,6 @@
 {
   "@@locale": "id",
+  "selectRate": "Pilih kurs",
   "appTitle": "Kalkulator BCV",
   "settings": "Pengaturan",
   "general": "Umum",
@@ -119,5 +120,11 @@
   "pdfChangePercent": "Perubahan %",
   "noInternetConnection": "Tidak ada koneksi internet. Data mungkin usang.",
   "internetRestored": "Koneksi dipulihkan.",
-  "ratesUpdatedSuccess": "Kurs berhasil diperbarui."
+  "ratesUpdatedSuccess": "Kurs berhasil diperbarui.",
+  "rateNameExists": "Kurs dengan nama ini sudah ada",
+  "rateNameLabel": "Nama (Maks 10)",
+  "rateValueLabel": "Kurs (Bolivar)",
+  "save": "Simpan",
+  "delete": "Hapus",
+  "editRate": "Edit Kurs"
 }

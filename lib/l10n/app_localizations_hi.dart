@@ -378,4 +378,25 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get ratesUpdatedSuccess => 'दरें सफलतापूर्वक अपडेट की गईं।';
+
+  @override
+  String get rateNameExists => 'Ya existe una tasa con ese nombre';
+
+  @override
+  String get rateNameLabel => 'Nombre (Máx. 10)';
+
+  @override
+  String get rateValueLabel => 'Tasa (Bolívares)';
+
+  @override
+  String get save => 'Guardar';
+
+  @override
+  String get delete => 'Eliminar';
+
+  @override
+  String get editRate => 'Editar Tasa';
+
+  @override
+  String get selectRate => 'दर चुनें';
 }
