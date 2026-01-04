@@ -491,8 +491,9 @@ class _ArithmeticCalculatorScreenState
     if (state.currency == CurrencyType.custom && ratesAsync.hasValue) {
       final rates = ratesAsync.value!;
 
-      // Force Today for Custom mode (as per ID 0)
-      const bool useTom = false;
+      // Determine effective use of Tomorrow based on User Selection (State)
+      final isToday = state.dateMode == RateDateMode.today;
+      final useTom = !isToday && rates.hasTomorrow;
 
       double bcvRate;
       String symbol;

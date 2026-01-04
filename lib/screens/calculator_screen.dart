@@ -32,9 +32,9 @@ class CalculatorScreen extends ConsumerWidget {
 
       final useTomIfAvailable = rates.hasTomorrow;
 
-      // For Custom mode, always compare against TODAY's rate as requested
+      // For Custom mode, allow user to toggle Date Mode (Today/Tomorrow) for the comparison
       final effectiveUseTom = (conversionState.currency == CurrencyType.custom)
-          ? false
+          ? (!isToday && useTomIfAvailable)
           : useTomIfAvailable;
 
       if (conversionState.comparisonBase == CurrencyType.usd) {

@@ -84,36 +84,35 @@ class CurrencyToggles extends ConsumerWidget {
           ),
         ),
 
-        // Date Mode Toggle (Hoy / Mañana) - Only if NOT custom
-        if (state.currency != CurrencyType.custom)
-          Container(
-            decoration: BoxDecoration(
-              color: AppTheme.cardBackground,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Row(
-              children: [
-                _buildToggleButton(
-                  l10n.today,
-                  state.dateMode == RateDateMode.today,
-                  () => ref
-                      .read(conversionProvider.notifier)
-                      .setDateMode(RateDateMode.today),
-                ),
-                _buildToggleButton(
-                  tomorrowLabel,
-                  state.dateMode == RateDateMode.tomorrow,
-                  hasTomorrow
-                      ? () => ref
-                            .read(conversionProvider.notifier)
-                            .setDateMode(RateDateMode.tomorrow)
-                      : null,
-                  showBadge: hasTomorrow,
-                  isDisabled: !hasTomorrow,
-                ),
-              ],
-            ),
+        // Date Mode Toggle (Today / Tomorrow)
+        Container(
+          decoration: BoxDecoration(
+            color: AppTheme.cardBackground,
+            borderRadius: BorderRadius.circular(12),
           ),
+          child: Row(
+            children: [
+              _buildToggleButton(
+                l10n.today,
+                state.dateMode == RateDateMode.today,
+                () => ref
+                    .read(conversionProvider.notifier)
+                    .setDateMode(RateDateMode.today),
+              ),
+              _buildToggleButton(
+                tomorrowLabel,
+                state.dateMode == RateDateMode.tomorrow,
+                hasTomorrow
+                    ? () => ref
+                          .read(conversionProvider.notifier)
+                          .setDateMode(RateDateMode.tomorrow)
+                    : null,
+                showBadge: hasTomorrow,
+                isDisabled: !hasTomorrow,
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
