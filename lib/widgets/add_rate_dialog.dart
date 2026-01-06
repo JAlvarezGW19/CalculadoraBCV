@@ -27,6 +27,7 @@ Future<CustomRate?> showAddEditRateDialog(
       return StatefulBuilder(
         builder: (context, setState) {
           return AlertDialog(
+            scrollable: true,
             backgroundColor: AppTheme.cardBackground,
             title: Text(
               rate == null ? l10n.newRate : l10n.editRate,

@@ -167,6 +167,23 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
       }
     }
 
+    // Calculate dynamic scroll padding based on keyboard height
+    final keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
+    const double approxBottomFieldHeight =
+        170.0; // Height of input + swap button
+    final double standardPadding = keyboardHeight + 20;
+    final double topFieldPadding = standardPadding + approxBottomFieldHeight;
+
+    // Determine padding based on position
+    // If inverted: VES is Top, Foreign is Bottom
+    // If normal: Foreign is Top, VES is Bottom
+    final double foreignPadding = state.isInvertedOrder
+        ? standardPadding
+        : topFieldPadding;
+    final double vesPadding = state.isInvertedOrder
+        ? topFieldPadding
+        : standardPadding;
+
     // Build Input Fields to facilitate swapping order
     final Widget foreignInput = _buildInputField(
       controller: _foreignController,
@@ -186,7 +203,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
       helperWidget: inputsHelper,
       maxIntegerDigits: 10,
       maxDecimalDigits: 3,
-      scrollPaddingBottom: state.isInvertedOrder ? 120 : 280,
+      scrollPaddingBottom: foreignPadding,
     );
 
     final Widget vesInput = _buildInputField(
@@ -207,7 +224,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
       helperText: resultsHelper,
       maxIntegerDigits: 12,
       maxDecimalDigits: 4,
-      scrollPaddingBottom: state.isInvertedOrder ? 280 : 120,
+      scrollPaddingBottom: vesPadding,
     );
 
     final Widget swapButton = Padding(
