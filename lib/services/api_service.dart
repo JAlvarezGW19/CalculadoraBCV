@@ -53,43 +53,28 @@ class ApiService {
 
     final lastFetch = DateTime.parse(cache['last_fetch']);
     final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    final fourPM = DateTime(now.year, now.month, now.day, 16, 0);
-
-    DateTime? todayDateInCache;
-    if (cache['today_date'] != null) {
-      todayDateInCache = DateTime.parse(cache['today_date']);
-    }
-
-    // Check if cache date matches today
-    final isCacheToday =
-        todayDateInCache != null &&
-        todayDateInCache.year == today.year &&
-        todayDateInCache.month == today.month &&
-        todayDateInCache.day == today.day;
 
     final hasTomorrow = cache['has_tomorrow'] == true;
 
     // RULE 1: If we have tomorrow's rate, we are good.
     if (hasTomorrow) return true;
 
-    // RULE 2: If cache is from today and it's before 4 PM.
-    // Assuming rates don't change until after 4 PM.
-    if (isCacheToday && now.isBefore(fourPM)) {
-      return true;
-    }
+    // RULE 2: Dynamic Cache Duration based on time of day
+    // BCV usually publishes late afternoon, but sometimes earlier.
+    // 00:00 - 13:00 (1 PM) -> 60 minutes cache
+    // 13:00 - 15:00 (3 PM) -> 15 minutes cache
+    // 15:00 - 23:59 (3 PM+) -> 2 minutes cache (Aggressive polling)
 
-    // RULE 3: If it's after 4 PM, check debounce (30 mins).
-    // Or if we already have today's final rate (implied if we fetched after 4pm and no tomorrow yet).
-    if (now.isAfter(fourPM)) {
-      final diff = now.difference(lastFetch);
-      if (diff.inMinutes < 5) {
-        return true; // Wait 5 mins before trying again
-      }
-    }
+    final diffInMinutes = now.difference(lastFetch).inMinutes;
 
-    // If cache is from yesterday or older, return false (force update)
-    if (!isCacheToday && !hasTomorrow) return false;
+    if (now.hour < 13) {
+      if (diffInMinutes < 60) return true;
+    } else if (now.hour < 15) {
+      if (diffInMinutes < 15) return true;
+    } else {
+      // Critical processing time (3 PM onwards)
+      if (diffInMinutes < 2) return true;
+    }
 
     return false; // Default to fetch
   }

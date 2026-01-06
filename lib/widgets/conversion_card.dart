@@ -186,6 +186,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
       helperWidget: inputsHelper,
       maxIntegerDigits: 10,
       maxDecimalDigits: 3,
+      scrollPaddingBottom: state.isInvertedOrder ? 120 : 280,
     );
 
     final Widget vesInput = _buildInputField(
@@ -206,6 +207,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
       helperText: resultsHelper,
       maxIntegerDigits: 12,
       maxDecimalDigits: 4,
+      scrollPaddingBottom: state.isInvertedOrder ? 280 : 120,
     );
 
     final Widget swapButton = Padding(
@@ -405,6 +407,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
     String? prefixText,
     int maxIntegerDigits = 15,
     int maxDecimalDigits = 2,
+    double scrollPaddingBottom = 120,
   }) {
     final l10n = AppLocalizations.of(context)!;
     return Column(
@@ -469,7 +472,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
                   ),
                 ],
                 onChanged: onChanged,
-                scrollPadding: const EdgeInsets.only(bottom: 200),
+                scrollPadding: EdgeInsets.only(bottom: scrollPaddingBottom),
                 decoration: InputDecoration(
                   hintText: placeholder,
                   hintStyle: TextStyle(

@@ -195,6 +195,23 @@ class RatesNotifier extends AsyncNotifier<RatesData> {
     );
   }
 
+  // Check for updates respecting cache validity
+  Future<void> checkForUpdates() async {
+    try {
+      final apiService = ref.read(apiServiceProvider);
+      // forceRefresh: false means it will only fetch if the cache is expired
+      // according to our new tighter rules (every 2 mins after 3pm).
+      final fresh = await apiService.fetchRates(forceRefresh: false);
+
+      // We update the state. Since Riverpod handles equality, this won't trigger
+      // rebuilds if the data is identical.
+      state = AsyncData(_parseData(fresh));
+    } catch (e) {
+      // Silent failure is intended here as this is a background poll
+      debugPrint("Poll failed: $e");
+    }
+  }
+
   // Method to manually force refresh if user wants
   Future<void> refresh() async {
     state = const AsyncLoading();

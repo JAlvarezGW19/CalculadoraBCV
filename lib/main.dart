@@ -14,23 +14,17 @@ void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
 
-    // Lock orientation to portrait
-    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    // Lock orientation to portrait (fire and forget to not block UI)
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
     // ... existing code ...
 
-    // Initialize Date Formatting with timeout and error handling
-    try {
-      await initializeDateFormatting('es', null).timeout(
-        const Duration(seconds: 2),
-        onTimeout: () {
-          debugPrint("DateFormatting timed out, proceeding anyway.");
-          return null;
-        },
-      );
-    } catch (e) {
+    // Initialize Date Formatting (Fire and forget)
+    // We start this ASAP but don't wait for it to render the first frame
+    initializeDateFormatting('es', null).catchError((e) {
       debugPrint("DateFormatting Error: $e");
-    }
+      return null;
+    });
 
     // Initialize Google Mobile Ads (Wrapped to prevent hangs)
     // Fire and forget, don't await to avoid blocking startup

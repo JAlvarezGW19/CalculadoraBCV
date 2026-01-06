@@ -38,9 +38,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     _currentIndex = 0;
     _initServices();
 
-    // Check for date rollover every minute while app is open
-    _dateCheckTimer = Timer.periodic(const Duration(minutes: 1), (_) {
-      _checkForDateChange();
+    // Check for rate updates every minute while app is open
+    // This will respect the cache rules defined in api_service.dart
+    // (e.g. check every 5 mins after 3 PM)
+    _dateCheckTimer = Timer.periodic(const Duration(seconds: 60), (_) {
+      _checkUpdates();
     });
   }
 
@@ -75,7 +77,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.dispose();
   }
 
-  void _checkForDateChange() {
+  void _checkUpdates() {
+    // 1. Check for standard updates (Silent poller)
+    ref.read(ratesProvider.notifier).checkForUpdates();
+
+    // 2. Check for Date Change (Midnight Rollover)
     final ratesState = ref.read(ratesProvider);
     if (ratesState.hasValue) {
       final rates = ratesState.value!;
@@ -88,9 +94,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           rates.todayDate!.day,
         );
 
-        // If cached "Today" is older than real "Today", refresh!
-        // Example: Cache says "Today is Friday". Real is "Monday".
-        // The provider rollover logic will see the "Tomorrow" (Monday) and promote it to Today.
         if (today.isAfter(cachedToday)) {
           debugPrint("Date change detected, refreshing rates...");
           ref.read(ratesProvider.notifier).refresh();
@@ -117,7 +120,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(apiServiceProvider).refreshWidgetFromCache();
       // Added initial check on startup too in case it was opened exactly after midnight
-      _checkForDateChange();
+      _checkUpdates();
     });
   }
 
