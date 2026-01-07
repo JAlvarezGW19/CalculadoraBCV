@@ -167,6 +167,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         if (next == ConnectionStatus.disconnected) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
+              behavior: SnackBarBehavior.floating,
               content: Text(l10n.noInternetConnection),
               backgroundColor: Colors.redAccent,
               duration: const Duration(seconds: 4),
@@ -179,6 +180,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
+              behavior: SnackBarBehavior.floating,
               content: Text(l10n.internetRestored),
               backgroundColor: Colors.green,
               duration: const Duration(seconds: 3),
@@ -203,7 +205,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ),
       ),
       floatingActionButton: const ScanFloatingButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: const _FixedCenterDockedFabLocation(),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 8.0,
@@ -251,5 +253,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ),
       ),
     );
+  }
+}
+
+class _FixedCenterDockedFabLocation extends FloatingActionButtonLocation {
+  const _FixedCenterDockedFabLocation();
+
+  @override
+  Offset getOffset(ScaffoldPrelayoutGeometry scaffoldGeometry) {
+    final double fabX =
+        (scaffoldGeometry.scaffoldSize.width -
+            scaffoldGeometry.floatingActionButtonSize.width) /
+        2.0;
+    final double fabY =
+        scaffoldGeometry.contentBottom -
+        scaffoldGeometry.floatingActionButtonSize.height / 2.0;
+    return Offset(fabX, fabY);
   }
 }
