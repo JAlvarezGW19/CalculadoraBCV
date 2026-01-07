@@ -44,6 +44,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     _dateCheckTimer = Timer.periodic(const Duration(seconds: 60), (_) {
       _checkUpdates();
     });
+
+    // Safety check: 30 seconds after launch, verify rates again.
+    // This ensures that if the initial check was skipped or failed,
+    // we catch it shortly after the user enters.
+    Timer(const Duration(seconds: 30), () {
+      if (mounted) {
+        _checkUpdates();
+      }
+    });
   }
 
   @override
@@ -119,8 +128,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     // Refresh widget with cached data immediately (so it's not empty)
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(apiServiceProvider).refreshWidgetFromCache();
-      // Added initial check on startup too in case it was opened exactly after midnight
-      _checkUpdates();
     });
   }
 

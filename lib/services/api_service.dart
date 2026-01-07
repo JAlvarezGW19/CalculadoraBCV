@@ -56,27 +56,50 @@ class ApiService {
 
     final hasTomorrow = cache['has_tomorrow'] == true;
 
-    // RULE 1: If we have tomorrow's rate, we are good.
-    if (hasTomorrow) return true;
+    // RULE 1: If we ALREADY have tomorrow's rate, we can relax the cache significantly.
+    // The rate typically doesn't change again until the next publication.
+    // We keep cache valid for 18 hours to practically stop checking for the rest of the day.
+    // The HomeScreen handles the date rollover (midnight) separately.
+    if (hasTomorrow) {
+      // Sanity Check: If the stored "tomorrow" date is already in the past,
+      // the cache is definitely stale (user opened app after a few days).
+      if (cache['tomorrow_date'] != null) {
+        final tDate = DateTime.parse(cache['tomorrow_date']);
+        final tomorrow = DateTime(tDate.year, tDate.month, tDate.day);
+        final today = DateTime(now.year, now.month, now.day);
 
-    // RULE 2: Dynamic Cache Duration based on time of day
-    // BCV usually publishes late afternoon, but sometimes earlier.
-    // 00:00 - 13:00 (1 PM) -> 60 minutes cache
-    // 13:00 - 15:00 (3 PM) -> 15 minutes cache
-    // 15:00 - 23:59 (3 PM+) -> 2 minutes cache (Aggressive polling)
+        if (tomorrow.isBefore(today)) {
+          return false;
+        }
+      }
 
-    final diffInMinutes = now.difference(lastFetch).inMinutes;
-
-    if (now.hour < 13) {
-      if (diffInMinutes < 60) return true;
-    } else if (now.hour < 15) {
-      if (diffInMinutes < 15) return true;
-    } else {
-      // Critical processing time (3 PM onwards)
-      if (diffInMinutes < 2) return true;
+      final diffInMinutes = now.difference(lastFetch).inMinutes;
+      return diffInMinutes < 1080; // 18 hours
     }
 
-    return false; // Default to fetch
+    // RULE 2: If we DO NOT have tomorrow's rate, we are hunting for it.
+    final diffInMinutes = now.difference(lastFetch).inMinutes;
+
+    // Weekend Check: BCV rarely updates on weekends
+    if (now.weekday == DateTime.saturday || now.weekday == DateTime.sunday) {
+      return diffInMinutes < 60;
+    }
+
+    // Weekday Logic
+    if (now.hour < 8) {
+      // Early morning: Very unlikely to update
+      return diffInMinutes < 120; // 2 hours
+    } else if (now.hour < 16) {
+      // Regular Work Day: Check every 30 mins until 4 PM
+      return diffInMinutes < 30;
+    } else {
+      // CRITICAL ZONE: 4:00 PM onwards (Weekdays)
+      // BCV rates can be published anytime afternoon.
+      // User wants "immediate" update.
+      // We set cache validity to just 2 minutes.
+      // This means if the app is open, it will check practically every 2 mins.
+      return diffInMinutes < 2;
+    }
   }
 
   Future<Map<String, dynamic>> _processApiResponse(String body) async {

@@ -14,7 +14,7 @@ void callbackDispatcher() {
     // Initialize date formatting for background isolate
     await initializeDateFormatting('es', null);
 
-    if (task == fetchRatesTask) {
+    if (task == fetchRatesTask || task == "highFreqFetch") {
       try {
         final apiService = ApiService();
         final rates = await apiService.fetchRates();
@@ -31,7 +31,8 @@ void callbackDispatcher() {
           final bool notificationsEnabled =
               prefs.getBool('notifications_enabled') ?? true;
           if (!notificationsEnabled) {
-            return Future.value(true); // Task done, no notification
+            // Even if notifications are disabled, we might want to stop high freq polling since we have data
+            return Future.value(true);
           }
 
           final String? lastNotified = prefs.getString(lastNotifiedKey);
@@ -114,6 +115,27 @@ void callbackDispatcher() {
 
             await prefs.setString(lastNotifiedKey, rateDate);
           }
+        } else {
+          // If we DO NOT have tomorrow's rate yet, check if we are in CRITICAL WINDOW
+          // and schedule a High Frequency Retrial (OneOff)
+          final now = DateTime.now();
+          // Weekdays only
+          if (now.weekday >= DateTime.monday &&
+              now.weekday <= DateTime.friday) {
+            // Critical Window: 16:00 (4 PM) to 19:00 (7 PM)
+            if (now.hour >= 16 && now.hour < 19) {
+              // Schedule a One-Off task in 5 minutes
+              // This creates a "loop" of checks every ~5 mins during this window
+              Workmanager().registerOneOffTask(
+                "highFreqFetch_id", // Constant ID to replace existing
+                "highFreqFetch",
+                initialDelay: const Duration(minutes: 5),
+                inputData: inputData,
+                existingWorkPolicy: ExistingWorkPolicy.replace,
+                constraints: Constraints(networkType: NetworkType.connected),
+              );
+            }
+          }
         }
       } catch (e) {
         // print("Error in background task: $e");
@@ -130,12 +152,14 @@ class BackgroundService {
   }
 
   static Future<void> registerPeriodicTask() async {
+    // Standard 15-minute Periodic Task
+    // This serves as the heartbeat.
     await Workmanager().registerPeriodicTask(
-      "1",
+      "periodic_bcv_check", // Changed ID to force update if needed
       fetchRatesTask,
-      frequency: const Duration(minutes: 15), // Minimum is 15 mins on Android
+      frequency: const Duration(minutes: 15),
       constraints: Constraints(networkType: NetworkType.connected),
-      existingWorkPolicy: ExistingPeriodicWorkPolicy.keep,
+      existingWorkPolicy: ExistingPeriodicWorkPolicy.update, // Update policy
     );
   }
 }
