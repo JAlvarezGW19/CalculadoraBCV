@@ -118,7 +118,7 @@ class CalculatorScreen extends ConsumerWidget {
             )
           else if (ratesAsyncValue.hasError)
             const SizedBox.shrink(),
-          const SizedBox(height: 24),
+          const SizedBox(height: 0),
           const NativeAdWidget(assignedTabIndex: 0),
           const SizedBox(height: 80),
         ],
