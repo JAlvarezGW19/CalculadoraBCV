@@ -127,4 +127,23 @@
   "save": "Сохранить",
   "delete": "Удалить",
   "editRate": "Редактировать курс"
+,
+  "tutorialOneTitle": "Currencies and Dates",
+  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
+  "tutorialTwoTitle": "Conversion Order",
+  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
+  "tutorialThreeTitle": "Smart Scan",
+  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
+  "tutorialSkip": "Skip"
+
+,
+  "tutorialOneTitle": "Currencies and Dates",
+  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
+  "tutorialTwoTitle": "Conversion Order",
+  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
+  "tutorialThreeTitle": "Smart Scan",
+  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
+  "tutorialSkip": "Skip",
+  "customRatePlaceholder": "Здесь вы можете добавить пользовательские курсы, такие как Zelle, Binance или денежные переводы. Мы автоматически рассчитаем разницу с BCV."
+
 }

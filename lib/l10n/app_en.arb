@@ -126,5 +126,13 @@
   "rateValueLabel": "Rate (Bolivars)",
   "save": "Save",
   "delete": "Delete",
-  "editRate": "Edit Rate"
+  "editRate": "Edit Rate",
+  "tutorialOneTitle": "Currencies and Dates",
+  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
+  "tutorialTwoTitle": "Conversion Order",
+  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
+  "tutorialThreeTitle": "Smart Scan",
+  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
+  "tutorialSkip": "Skip",
+  "customRatePlaceholder": "Here you can add custom rates like Zelle, Binance or Remittances. We will automatically calculate the difference with the BCV."
 }

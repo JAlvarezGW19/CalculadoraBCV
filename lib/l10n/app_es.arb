@@ -126,5 +126,13 @@
   "save": "Guardar",
   "delete": "Eliminar",
   "editRate": "Editar Tasa",
-  "selectRate": "Seleccionar tasa"
+  "selectRate": "Seleccionar tasa",
+  "tutorialOneTitle": "Monedas y Fechas",
+  "tutorialOneDesc": "Alterna entre Dólar, Euro y tasas Personalizadas. También puedes consultar la tasa de Hoy y Mañana.",
+  "tutorialTwoTitle": "Orden de Conversión",
+  "tutorialTwoDesc": "Toca aquí para cambiar el orden. Escribe en Dólares para ver Bolívares, o viceversa.",
+  "tutorialThreeTitle": "Escaneo Inteligente",
+  "tutorialThreeDesc": "Usa la cámara para detectar precios y convertirlos automáticamente en tiempo real.",
+  "tutorialSkip": "Omitir",
+  "customRatePlaceholder": "Aquí puedes agregar tasas personalizadas como Zelle, Binance o Remesas. Nosotros calcularemos la diferencia con el BCV automáticamente."
 }

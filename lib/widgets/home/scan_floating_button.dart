@@ -9,12 +9,21 @@ import '../scan_option_button.dart';
 import '../add_rate_dialog.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
+import 'package:showcaseview/showcaseview.dart';
+import '../../utils/tutorial_keys.dart';
+
 class ScanFloatingButton extends ConsumerWidget {
   const ScanFloatingButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return FloatingActionButton(
+    final l10n = AppLocalizations.of(context);
+
+    // Safety check for l10n, though usually available.
+    // If not, we just return the FAB (Showcase handles null strings? No).
+    // But l10n shouldn't be null here.
+
+    final fab = FloatingActionButton(
       onPressed: () => _showScanOptions(context, ref),
       backgroundColor: AppTheme.textAccent,
       elevation: 4.0,
@@ -24,6 +33,15 @@ class ScanFloatingButton extends ConsumerWidget {
         color: AppTheme.background,
         size: 28,
       ),
+    );
+
+    if (l10n == null) return fab;
+
+    return Showcase(
+      key: TutorialKeys.ocrButton,
+      title: l10n.tutorialThreeTitle,
+      description: l10n.tutorialThreeDesc,
+      child: fab,
     );
   }
 

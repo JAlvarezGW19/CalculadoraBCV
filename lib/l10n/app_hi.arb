@@ -121,4 +121,23 @@
   "noInternetConnection": "कोई इंटरनेट कनेक्शन नहीं। डेटा पुराना हो सकता है।",
   "internetRestored": "कनेक्शन बहाल।",
   "ratesUpdatedSuccess": "दरें सफलतापूर्वक अपडेट की गईं।"
+,
+  "tutorialOneTitle": "Currencies and Dates",
+  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
+  "tutorialTwoTitle": "Conversion Order",
+  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
+  "tutorialThreeTitle": "Smart Scan",
+  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
+  "tutorialSkip": "Skip"
+
+,
+  "tutorialOneTitle": "Currencies and Dates",
+  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
+  "tutorialTwoTitle": "Conversion Order",
+  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
+  "tutorialThreeTitle": "Smart Scan",
+  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
+  "tutorialSkip": "Skip",
+  "customRatePlaceholder": "यहाँ आप Zelle, Binance या प्रेषण जैसी कस्टम दरें जोड़ सकते हैं। हम स्वचालित रूप से BCV के साथ अंतर की गणना करेंगे।"
+
 }

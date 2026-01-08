@@ -7,6 +7,9 @@ import '../widgets/currency_toggles.dart';
 import '../widgets/rate_card.dart';
 import '../widgets/conversion_card.dart';
 import '../widgets/native_ad_widget.dart';
+import 'package:showcaseview/showcaseview.dart';
+import '../utils/tutorial_keys.dart';
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
 class CalculatorScreen extends ConsumerWidget {
   const CalculatorScreen({super.key});
@@ -87,10 +90,21 @@ class CalculatorScreen extends ConsumerWidget {
         children: [
           const SizedBox(height: 10),
           // Toggles Row
-          CurrencyToggles(
-            hasTomorrow: ratesAsyncValue.value?.hasTomorrow ?? false,
-            tomorrowDate: ratesAsyncValue.value?.tomorrowDate,
-          ),
+          if (AppLocalizations.of(context) != null)
+            Showcase(
+              key: TutorialKeys.currencyToggle,
+              title: AppLocalizations.of(context)!.tutorialOneTitle,
+              description: AppLocalizations.of(context)!.tutorialOneDesc,
+              child: CurrencyToggles(
+                hasTomorrow: ratesAsyncValue.value?.hasTomorrow ?? false,
+                tomorrowDate: ratesAsyncValue.value?.tomorrowDate,
+              ),
+            )
+          else
+            CurrencyToggles(
+              hasTomorrow: ratesAsyncValue.value?.hasTomorrow ?? false,
+              tomorrowDate: ratesAsyncValue.value?.tomorrowDate,
+            ),
           const SizedBox(height: 10),
 
           // 1. Exchange Rate Display Card

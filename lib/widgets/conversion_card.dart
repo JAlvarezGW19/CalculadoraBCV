@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
+import 'package:showcaseview/showcaseview.dart';
+import '../utils/tutorial_keys.dart';
 
 import '../providers/bcv_provider.dart';
 import '../theme/app_theme.dart';
@@ -46,6 +48,8 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
   Widget build(BuildContext context) {
     final state = ref.watch(conversionProvider);
 
+    final l10n = AppLocalizations.of(context)!;
+
     // Listener for State Updates to Controllers
     ref.listen<ConversionState>(conversionProvider, (previous, next) {
       if (_foreignController.text != next.foreignValue) {
@@ -86,7 +90,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
             ),
             const SizedBox(height: 16),
             Text(
-              "Aquí puedes agregar tasas personalizadas como Zelle, Binance o Remesas.\n\nNosotros calcularemos la diferencia con el BCV automáticamente.",
+              l10n.customRatePlaceholder,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: AppTheme.textSubtle.withValues(alpha: 0.8),
@@ -264,16 +268,21 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
       scrollPaddingBottom: vesPadding,
     );
 
-    final Widget swapButton = Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0),
-      child: GestureDetector(
-        onTap: () {
-          ref.read(conversionProvider.notifier).toggleOrder();
-        },
-        child: const Icon(
-          Icons.swap_vert_rounded,
-          color: AppTheme.textSubtle,
-          size: 24,
+    final Widget swapButton = Showcase(
+      key: TutorialKeys.swapButton,
+      title: l10n.tutorialTwoTitle,
+      description: l10n.tutorialTwoDesc,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        child: GestureDetector(
+          onTap: () {
+            ref.read(conversionProvider.notifier).toggleOrder();
+          },
+          child: const Icon(
+            Icons.swap_vert_rounded,
+            color: AppTheme.textSubtle,
+            size: 24,
+          ),
         ),
       ),
     );

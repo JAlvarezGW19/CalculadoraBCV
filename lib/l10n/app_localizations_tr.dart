@@ -401,4 +401,32 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get selectRate => 'Kur Seçin';
+
+  @override
+  String get tutorialOneTitle => 'Currencies and Dates';
+
+  @override
+  String get tutorialOneDesc =>
+      'Switch between Dollar, Euro and Custom rates. You can also check Today\'s and Tomorrow\'s rates.';
+
+  @override
+  String get tutorialTwoTitle => 'Conversion Order';
+
+  @override
+  String get tutorialTwoDesc =>
+      'Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.';
+
+  @override
+  String get tutorialThreeTitle => 'Smart Scan';
+
+  @override
+  String get tutorialThreeDesc =>
+      'Use the camera to detect prices and convert them automatically in real-time.';
+
+  @override
+  String get tutorialSkip => 'Skip';
+
+  @override
+  String get customRatePlaceholder =>
+      'Buraya Zelle, Binance veya Havaleler gibi özel oranlar ekleyebilirsiniz. BCV ile aradaki farkı otomatik olarak hesaplayacağız.';
 }

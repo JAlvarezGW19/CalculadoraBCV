@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../providers/bcv_provider.dart';
 import '../theme/app_theme.dart';
 
-class CurrencyToggles extends ConsumerWidget {
+class CurrencyToggles extends ConsumerStatefulWidget {
   final bool hasTomorrow;
   final DateTime? tomorrowDate;
 
@@ -16,33 +17,87 @@ class CurrencyToggles extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<CurrencyToggles> createState() => _CurrencyTogglesState();
+}
+
+class _CurrencyTogglesState extends ConsumerState<CurrencyToggles> {
+  bool _isNewRateSeen = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkIfRateSeen();
+  }
+
+  @override
+  void didUpdateWidget(CurrencyToggles oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.tomorrowDate != oldWidget.tomorrowDate) {
+      _checkIfRateSeen();
+    }
+  }
+
+  Future<void> _checkIfRateSeen() async {
+    if (!widget.hasTomorrow || widget.tomorrowDate == null) return;
+    final prefs = await SharedPreferences.getInstance();
+    final lastSeenDate = prefs.getString(
+      'last_seen_tomorrow_rate_date',
+    ); // e.g. "2023-10-27"
+
+    final currentDateStr = DateFormat(
+      'yyyy-MM-dd',
+    ).format(widget.tomorrowDate!);
+    if (mounted) {
+      setState(() {
+        _isNewRateSeen = lastSeenDate == currentDateStr;
+      });
+    }
+  }
+
+  Future<void> _markRateAsSeen() async {
+    if (widget.tomorrowDate == null) return;
+    setState(() {
+      _isNewRateSeen = true;
+    });
+    final prefs = await SharedPreferences.getInstance();
+    final currentDateStr = DateFormat(
+      'yyyy-MM-dd',
+    ).format(widget.tomorrowDate!);
+    await prefs.setString('last_seen_tomorrow_rate_date', currentDateStr);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final state = ref.watch(conversionProvider);
     final l10n = AppLocalizations.of(context)!;
 
-    String tomorrowLabel = l10n.tomorrow; // Use localized string
-    if (hasTomorrow && tomorrowDate != null) {
-      final now = DateTime.now();
-      final today = DateTime(now.year, now.month, now.day);
+    String tomorrowLabel = l10n.tomorrow;
+    if (widget.hasTomorrow && widget.tomorrowDate != null) {
+      // Use Venezuela Time (UTC-4)
+      final nowVenezuela = DateTime.now().toUtc().subtract(
+        const Duration(hours: 4),
+      );
+      final today = DateTime(
+        nowVenezuela.year,
+        nowVenezuela.month,
+        nowVenezuela.day,
+      );
       final strictTomorrow = today.add(const Duration(days: 1));
 
       final isStrictTomorrow =
-          tomorrowDate!.year == strictTomorrow.year &&
-          tomorrowDate!.month == strictTomorrow.month &&
-          tomorrowDate!.day == strictTomorrow.day;
+          widget.tomorrowDate!.year == strictTomorrow.year &&
+          widget.tomorrowDate!.month == strictTomorrow.month &&
+          widget.tomorrowDate!.day == strictTomorrow.day;
 
       if (!isStrictTomorrow) {
-        // If "tomorrow" data is actually Monday when today is Friday, show "Monday"
-        // But we need to make sure this is localized properly.
-        // DateFormat('EEEE', 'es') was hardcoded.
-        // We should use the current locale for DateFormat.
         final localeCode = Localizations.localeOf(context).languageCode;
-        String dayName = DateFormat('EEE', localeCode).format(tomorrowDate!);
-        // Remove trailing dot if present to avoid double dot, then re-add
+        String dayName = DateFormat(
+          'EEE',
+          localeCode,
+        ).format(widget.tomorrowDate!);
         if (dayName.endsWith('.')) {
           dayName = dayName.substring(0, dayName.length - 1);
         }
-
         tomorrowLabel =
             "${dayName[0].toUpperCase()}${dayName.substring(1).toLowerCase()}.";
       }
@@ -102,13 +157,16 @@ class CurrencyToggles extends ConsumerWidget {
               _buildToggleButton(
                 tomorrowLabel,
                 state.dateMode == RateDateMode.tomorrow,
-                hasTomorrow
-                    ? () => ref
-                          .read(conversionProvider.notifier)
-                          .setDateMode(RateDateMode.tomorrow)
+                widget.hasTomorrow
+                    ? () {
+                        ref
+                            .read(conversionProvider.notifier)
+                            .setDateMode(RateDateMode.tomorrow);
+                        _markRateAsSeen();
+                      }
                     : null,
-                showBadge: hasTomorrow,
-                isDisabled: !hasTomorrow,
+                showBadge: widget.hasTomorrow && !_isNewRateSeen,
+                isDisabled: !widget.hasTomorrow,
               ),
             ],
           ),
@@ -147,7 +205,7 @@ class CurrencyToggles extends ConsumerWidget {
             if (showBadge) ...[
               const SizedBox(width: 6),
               Transform.translate(
-                offset: const Offset(0, -3),
+                offset: const Offset(0, -6),
                 child: Container(
                   width: 6,
                   height: 6,

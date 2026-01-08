@@ -402,4 +402,32 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get selectRate => 'Seleccionar tasa';
+
+  @override
+  String get tutorialOneTitle => 'Monedas y Fechas';
+
+  @override
+  String get tutorialOneDesc =>
+      'Alterna entre Dólar, Euro y tasas Personalizadas. También puedes consultar la tasa de Hoy y Mañana.';
+
+  @override
+  String get tutorialTwoTitle => 'Orden de Conversión';
+
+  @override
+  String get tutorialTwoDesc =>
+      'Toca aquí para cambiar el orden. Escribe en Dólares para ver Bolívares, o viceversa.';
+
+  @override
+  String get tutorialThreeTitle => 'Escaneo Inteligente';
+
+  @override
+  String get tutorialThreeDesc =>
+      'Usa la cámara para detectar precios y convertirlos automáticamente en tiempo real.';
+
+  @override
+  String get tutorialSkip => 'Omitir';
+
+  @override
+  String get customRatePlaceholder =>
+      'Aquí puedes agregar tasas personalizadas como Zelle, Binance o Remesas. Nosotros calcularemos la diferencia con el BCV automáticamente.';
 }

@@ -885,6 +885,54 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Seleccionar tasa'**
   String get selectRate;
+
+  /// No description provided for @tutorialOneTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Monedas y Fechas'**
+  String get tutorialOneTitle;
+
+  /// No description provided for @tutorialOneDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Alterna entre Dólar, Euro y tasas Personalizadas. También puedes consultar la tasa de Hoy y Mañana.'**
+  String get tutorialOneDesc;
+
+  /// No description provided for @tutorialTwoTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Orden de Conversión'**
+  String get tutorialTwoTitle;
+
+  /// No description provided for @tutorialTwoDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca aquí para cambiar el orden. Escribe en Dólares para ver Bolívares, o viceversa.'**
+  String get tutorialTwoDesc;
+
+  /// No description provided for @tutorialThreeTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Escaneo Inteligente'**
+  String get tutorialThreeTitle;
+
+  /// No description provided for @tutorialThreeDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Usa la cámara para detectar precios y convertirlos automáticamente en tiempo real.'**
+  String get tutorialThreeDesc;
+
+  /// No description provided for @tutorialSkip.
+  ///
+  /// In es, this message translates to:
+  /// **'Omitir'**
+  String get tutorialSkip;
+
+  /// No description provided for @customRatePlaceholder.
+  ///
+  /// In es, this message translates to:
+  /// **'Aquí puedes agregar tasas personalizadas como Zelle, Binance o Remesas. Nosotros calcularemos la diferencia con el BCV automáticamente.'**
+  String get customRatePlaceholder;
 }
 
 class _AppLocalizationsDelegate

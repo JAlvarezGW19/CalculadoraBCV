@@ -3,12 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
+import 'package:showcaseview/showcaseview.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../theme/app_theme.dart';
 import '../providers/bcv_provider.dart';
 import '../widgets/bottom_nav_item.dart';
 import '../services/notification_service.dart';
 import '../services/background_service.dart';
+import '../utils/tutorial_keys.dart';
 
 import '../widgets/home/scan_floating_button.dart'; // Extracted FAB
 import '../providers/connectivity_provider.dart';
@@ -27,10 +30,9 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   int _currentIndex = 0;
-
   final Set<int> _visitedTabs = {0}; // Track visited tabs
-
   Timer? _dateCheckTimer;
+  bool _tutorialChecked = false;
 
   @override
   void initState() {
@@ -39,20 +41,36 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     _initServices();
 
     // Check for rate updates every minute while app is open
-    // This will respect the cache rules defined in api_service.dart
-    // (e.g. check every 5 mins after 3 PM)
     _dateCheckTimer = Timer.periodic(const Duration(seconds: 60), (_) {
       _checkUpdates();
     });
 
     // Safety check: 30 seconds after launch, verify rates again.
-    // This ensures that if the initial check was skipped or failed,
-    // we catch it shortly after the user enters.
     Timer(const Duration(seconds: 30), () {
       if (mounted) {
         _checkUpdates();
       }
     });
+  }
+
+  Future<void> _checkTutorial(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    final bool seen = prefs.getBool('tutorial_v3_seen') ?? false;
+    if (!seen) {
+      // Trigger tutorial slightly delayed to ensure UI is ready
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Future.delayed(const Duration(milliseconds: 500), () {
+          if (context.mounted) {
+            ShowCaseWidget.of(context).startShowCase([
+              TutorialKeys.currencyToggle,
+              TutorialKeys.swapButton,
+              TutorialKeys.ocrButton,
+            ]);
+            prefs.setBool('tutorial_v3_seen', true);
+          }
+        });
+      });
+    }
   }
 
   @override
@@ -95,8 +113,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     if (ratesState.hasValue) {
       final rates = ratesState.value!;
       if (rates.todayDate != null) {
-        final now = DateTime.now();
-        final today = DateTime(now.year, now.month, now.day);
+        // Use Venezuela Time (UTC-4)
+        final nowVenezuela = DateTime.now().toUtc().subtract(
+          const Duration(hours: 4),
+        );
+        final today = DateTime(
+          nowVenezuela.year,
+          nowVenezuela.month,
+          nowVenezuela.day,
+        );
         final cachedToday = DateTime(
           rates.todayDate!.year,
           rates.todayDate!.month,
@@ -197,68 +222,76 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       }
     });
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: AppTheme.background,
-      body: SafeArea(
-        child: IndexedStack(
-          index: _currentIndex,
-          children: [
-            const CalculatorScreen(), // Always present (Index 0)
-            _buildLazyScreen(1, const ArithmeticCalculatorScreen()),
-            _buildLazyScreen(2, const HistoryScreen()),
-            _buildLazyScreen(3, const SettingsScreen()),
-          ],
-        ),
-      ),
-      floatingActionButton: const ScanFloatingButton(),
-      floatingActionButtonLocation: const _FixedCenterDockedFabLocation(),
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 8.0,
-        color: AppTheme.cardBackground,
-        child: SizedBox(
-          height: 60,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              BottomNavItem(
-                index: 0,
-                currentIndex: _currentIndex,
-                iconOutlined: Icons.dashboard_outlined,
-                iconFilled: Icons.dashboard,
-                label: l10n.homeScreen,
-                onTap: _onTabSelected,
-              ),
-              BottomNavItem(
-                index: 1,
-                currentIndex: _currentIndex,
-                iconOutlined: Icons.calculate_outlined,
-                iconFilled: Icons.calculate,
-                label: l10n.calculatorScreen,
-                onTap: _onTabSelected,
-              ),
-              const SizedBox(width: 48), // Space for FAB
-              BottomNavItem(
-                index: 2,
-                currentIndex: _currentIndex,
-                iconOutlined: Icons.history_outlined,
-                iconFilled: Icons.history,
-                label: l10n.history,
-                onTap: _onTabSelected,
-              ),
-              BottomNavItem(
-                index: 3,
-                currentIndex: _currentIndex,
-                iconOutlined: Icons.settings_outlined,
-                iconFilled: Icons.settings,
-                label: l10n.settings,
-                onTap: _onTabSelected,
-              ),
-            ],
+    return ShowCaseWidget(
+      builder: (context) {
+        if (!_tutorialChecked) {
+          _tutorialChecked = true;
+          _checkTutorial(context);
+        }
+        return Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: AppTheme.background,
+          body: SafeArea(
+            child: IndexedStack(
+              index: _currentIndex,
+              children: [
+                const CalculatorScreen(), // Always present (Index 0)
+                _buildLazyScreen(1, const ArithmeticCalculatorScreen()),
+                _buildLazyScreen(2, const HistoryScreen()),
+                _buildLazyScreen(3, const SettingsScreen()),
+              ],
+            ),
           ),
-        ),
-      ),
+          floatingActionButton: const ScanFloatingButton(),
+          floatingActionButtonLocation: const _FixedCenterDockedFabLocation(),
+          bottomNavigationBar: BottomAppBar(
+            shape: const CircularNotchedRectangle(),
+            notchMargin: 8.0,
+            color: AppTheme.cardBackground,
+            child: SizedBox(
+              height: 60,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  BottomNavItem(
+                    index: 0,
+                    currentIndex: _currentIndex,
+                    iconOutlined: Icons.dashboard_outlined,
+                    iconFilled: Icons.dashboard,
+                    label: l10n.homeScreen,
+                    onTap: _onTabSelected,
+                  ),
+                  BottomNavItem(
+                    index: 1,
+                    currentIndex: _currentIndex,
+                    iconOutlined: Icons.calculate_outlined,
+                    iconFilled: Icons.calculate,
+                    label: l10n.calculatorScreen,
+                    onTap: _onTabSelected,
+                  ),
+                  const SizedBox(width: 48), // Space for FAB
+                  BottomNavItem(
+                    index: 2,
+                    currentIndex: _currentIndex,
+                    iconOutlined: Icons.history_outlined,
+                    iconFilled: Icons.history,
+                    label: l10n.history,
+                    onTap: _onTabSelected,
+                  ),
+                  BottomNavItem(
+                    index: 3,
+                    currentIndex: _currentIndex,
+                    iconOutlined: Icons.settings_outlined,
+                    iconFilled: Icons.settings,
+                    label: l10n.settings,
+                    onTap: _onTabSelected,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

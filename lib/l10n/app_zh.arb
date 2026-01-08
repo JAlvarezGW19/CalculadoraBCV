@@ -127,4 +127,23 @@
   "save": "保存",
   "delete": "删除",
   "editRate": "编辑汇率"
+,
+  "tutorialOneTitle": "Currencies and Dates",
+  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
+  "tutorialTwoTitle": "Conversion Order",
+  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
+  "tutorialThreeTitle": "Smart Scan",
+  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
+  "tutorialSkip": "Skip"
+
+,
+  "tutorialOneTitle": "Currencies and Dates",
+  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
+  "tutorialTwoTitle": "Conversion Order",
+  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
+  "tutorialThreeTitle": "Smart Scan",
+  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
+  "tutorialSkip": "Skip",
+  "customRatePlaceholder": "在这里，您可以添加自定义汇率，如 Zelle、Binance 或汇款。我们将自动计算与 BCV 的差额。"
+
 }
