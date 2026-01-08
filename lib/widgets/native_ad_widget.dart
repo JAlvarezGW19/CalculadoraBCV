@@ -27,9 +27,17 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
   RateDateMode? _prevDateMode;
   String? _prevCustomRateId;
 
+  bool _adFailed = false;
+
   @override
   void initState() {
     super.initState();
+    // Load immediately (using microtask to ensuring context/ref availability if needed,
+    // though for ad request usually context is for UI params which we handle)
+    // We move the load trigger here to be as fast as possible.
+    if (widget.assignedTabIndex == 0) {
+      Future.microtask(() => _loadAd());
+    }
   }
 
   @override
@@ -43,7 +51,10 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
     _nativeAd?.dispose();
     _nativeAd = null;
     if (mounted) {
-      setState(() => _isAdLoaded = false);
+      setState(() {
+        _isAdLoaded = false;
+        _adFailed = false;
+      });
     }
 
     if (!_shouldShowAd()) return;
@@ -96,12 +107,21 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
       listener: NativeAdListener(
         onAdLoaded: (ad) {
           if (mounted) {
-            setState(() => _isAdLoaded = true);
+            setState(() {
+              _isAdLoaded = true;
+              _adFailed = false;
+            });
           }
         },
         onAdFailedToLoad: (ad, error) {
           ad.dispose();
           debugPrint('Ad failed to load: $error');
+          if (mounted) {
+            setState(() {
+              _isAdLoaded = false;
+              _adFailed = true;
+            });
+          }
         },
       ),
     )..load();
@@ -161,14 +181,9 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
       }
     });
 
-    // Total height estimate based on:
-    // Top Spacer (16) + Text (~14) + Text Padding (4) + Bottom Spacer (12) = ~46
-    // We reserve this full space prevents layout jumps when ad loads.
-    final double fullContainerHeight = adHeight + 46;
-
     // Check visibility logic again for render
     if (!_shouldShowAd()) {
-      return SizedBox(height: fullContainerHeight);
+      return const SizedBox.shrink(); // Collapsed if logic says hide
     }
 
     // Check Premium State
@@ -184,22 +199,22 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
       _nativeAd?.dispose();
       _nativeAd = null;
       _isAdLoaded = false;
-      return SizedBox(height: fullContainerHeight);
+      return const SizedBox.shrink();
     } else {
       // Active tab, load if not loaded
-      if (_nativeAd == null) {
+      if (_nativeAd == null && !_adFailed) {
         Future.microtask(() => _loadAd());
       }
     }
 
     final l10n = AppLocalizations.of(context);
 
-    // If Ad is NOT loaded (e.g. offline, loading, error), return spacer
+    // If Ad is NOT loaded yet, or failed, return nothing
     if (!_isAdLoaded || _nativeAd == null) {
-      return SizedBox(height: fullContainerHeight);
+      return const SizedBox.shrink();
     }
 
-    // Ad Loaded: Show Native Ad (height responsive) + Remove Ads link
+    // Ad Loaded: Show Native Ad
 
     // Ad Loaded: Show Native Ad (height responsive) + Remove Ads link
     return Column(
@@ -207,7 +222,7 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         // Spacer to push ad down if needed
-        const SizedBox(height: 16),
+        const SizedBox(height: 8),
         Padding(
           padding: const EdgeInsets.only(bottom: 4, right: 8),
           child: GestureDetector(
@@ -233,7 +248,7 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
           child: AdWidget(ad: _nativeAd!),
         ),
         // Bottom margin
-        const SizedBox(height: 12),
+        const SizedBox(height: 0),
       ],
     );
   }

@@ -62,6 +62,43 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
       }
     });
 
+    if (state.currency == CurrencyType.custom && widget.customRate == null) {
+      return Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: AppTheme.cardBackground,
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 10,
+              offset: Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            const Icon(
+              Icons.info_outline,
+              color: AppTheme.textSubtle,
+              size: 40,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              "Aquí puedes agregar tasas personalizadas como Zelle, Binance o Remesas.\n\nNosotros calcularemos la diferencia con el BCV automáticamente.",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: AppTheme.textSubtle.withValues(alpha: 0.8),
+                fontSize: 16,
+                height: 1.5,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     return _buildCardContent(
       widget.activeRate,
       state,
@@ -274,7 +311,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(),
               ),
-              const SizedBox(width: 16),
+              const SizedBox(width: 0),
               IconButton(
                 icon: const Icon(Icons.refresh, color: AppTheme.textSubtle),
                 onPressed: () {

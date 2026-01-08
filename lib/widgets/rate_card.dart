@@ -195,15 +195,7 @@ class RateDisplayCard extends ConsumerWidget {
               style: AppTheme.subtitleStyle.copyWith(color: Colors.white),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 8),
-            Text(
-              l10n.addCustomRatesDescription,
-              style: TextStyle(
-                color: AppTheme.textSubtle.withValues(alpha: 0.7),
-                fontSize: 14,
-              ),
-              textAlign: TextAlign.center,
-            ),
+
             const SizedBox(height: 20),
             ElevatedButton.icon(
               icon: const Icon(Icons.add, color: Colors.black),

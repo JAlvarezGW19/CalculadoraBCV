@@ -42,15 +42,10 @@ android {
 
     signingConfigs {
         create("release") {
-            val keystoreProperties = Properties()
-            val keystorePropertiesFile = rootProject.file("key.properties")
-            if (keystorePropertiesFile.exists()) {
-                keystoreProperties.load(FileInputStream(keystorePropertiesFile))
-            }
-            keyAlias = keystoreProperties.getProperty("keyAlias")
-            keyPassword = keystoreProperties.getProperty("keyPassword")
-            storeFile = keystoreProperties.getProperty("storeFile")?.let { file(it) }
-            storePassword = keystoreProperties.getProperty("storePassword")
+            keyAlias = "upload"
+            keyPassword = "password123"
+            storeFile = file("upload-keystore.jks")
+            storePassword = "password123"
         }
     }
 

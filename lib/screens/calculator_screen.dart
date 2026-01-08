@@ -101,6 +101,10 @@ class CalculatorScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
 
+          // Native Ad between cards
+          const NativeAdWidget(assignedTabIndex: 0),
+          const SizedBox(height: 0),
+
           // 2. Main Conversion Area
           // 2. Main Conversion Area
           if (ratesAsyncValue.hasValue)
@@ -119,7 +123,7 @@ class CalculatorScreen extends ConsumerWidget {
           else if (ratesAsyncValue.hasError)
             const SizedBox.shrink(),
           const SizedBox(height: 0),
-          const NativeAdWidget(assignedTabIndex: 0),
+
           const SizedBox(height: 80),
         ],
       ),
