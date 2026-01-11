@@ -380,22 +380,22 @@ class AppLocalizationsHi extends AppLocalizations {
   String get ratesUpdatedSuccess => 'दरें सफलतापूर्वक अपडेट की गईं।';
 
   @override
-  String get rateNameExists => 'Ya existe una tasa con ese nombre';
+  String get rateNameExists => 'उस नाम वाली दर पहले से मौजूद है';
 
   @override
-  String get rateNameLabel => 'Nombre (Máx. 10)';
+  String get rateNameLabel => 'नाम (अधिकतम 10)';
 
   @override
-  String get rateValueLabel => 'Tasa (Bolívares)';
+  String get rateValueLabel => 'दर (बोलिवर)';
 
   @override
-  String get save => 'Guardar';
+  String get save => 'सहेजें';
 
   @override
-  String get delete => 'Eliminar';
+  String get delete => 'हटाएं';
 
   @override
-  String get editRate => 'Editar Tasa';
+  String get editRate => 'दर संपादित करें';
 
   @override
   String get selectRate => 'दर चुनें';

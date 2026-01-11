@@ -42,6 +42,7 @@ class ScanFloatingButton extends ConsumerWidget {
       key: TutorialKeys.ocrButton,
       height: 200,
       width: 280,
+      movingAnimationDuration: const Duration(days: 1),
       container: TutorialTooltip(
         title: l10n.tutorialThreeTitle,
         description: l10n.tutorialThreeDesc,

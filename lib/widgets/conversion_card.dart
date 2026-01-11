@@ -273,6 +273,7 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
       key: TutorialKeys.swapButton,
       height: 200,
       width: 280,
+      movingAnimationDuration: const Duration(days: 1),
       container: TutorialTooltip(
         title: l10n.tutorialTwoTitle,
         description: l10n.tutorialTwoDesc,

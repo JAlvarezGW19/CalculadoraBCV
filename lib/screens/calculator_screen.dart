@@ -96,6 +96,7 @@ class CalculatorScreen extends ConsumerWidget {
               key: TutorialKeys.currencyToggle,
               height: 200,
               width: 280,
+              movingAnimationDuration: const Duration(days: 1), // Static
               container: TutorialTooltip(
                 title: AppLocalizations.of(context)!.tutorialOneTitle,
                 description: AppLocalizations.of(context)!.tutorialOneDesc,
