@@ -167,6 +167,17 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget>
 
   @override
   Widget build(BuildContext context) {
+    // Watch providers for immediate reactivity to avoid "flash" of ad
+    final conversionState = ref.watch(conversionProvider);
+    final customRates = ref.watch(customRatesProvider);
+
+    // Immediate visibility check: Hide if Custom Currency AND No Custom Rates
+    if (widget.assignedTabIndex == 0 &&
+        conversionState.currency == CurrencyType.custom &&
+        customRates.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     // Responsive Height calculation for the Container
     final isTablet = MediaQuery.of(context).size.shortestSide >= 600;
     final double adHeight = isTablet ? 200.0 : 118.0;
