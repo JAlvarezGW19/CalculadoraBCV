@@ -74,7 +74,7 @@ class AboutAppDialog extends StatelessWidget {
                 showLicensePage(
                   context: context,
                   applicationName: l10n.appTitle,
-                  applicationVersion: "1.0.11",
+                  applicationVersion: "1.0.12",
                   applicationLegalese: "Developed by Juan Álvarez",
                 );
               },
@@ -95,7 +95,7 @@ class AboutAppDialog extends StatelessWidget {
           const SizedBox(height: 4),
           Center(
             child: Text(
-              "${l10n.version} 1.0.11",
+              "${l10n.version} 1.0.12",
               style: const TextStyle(color: AppTheme.textSubtle, fontSize: 10),
             ),
           ),
