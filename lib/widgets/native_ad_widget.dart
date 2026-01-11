@@ -17,7 +17,8 @@ class NativeAdWidget extends ConsumerStatefulWidget {
   ConsumerState<NativeAdWidget> createState() => _NativeAdWidgetState();
 }
 
-class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
+class _NativeAdWidgetState extends ConsumerState<NativeAdWidget>
+    with SingleTickerProviderStateMixin {
   NativeAd? _nativeAd;
   bool _isAdLoaded = false;
   Timer? _debounceTimer;
@@ -29,9 +30,22 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
 
   bool _adFailed = false;
 
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+
   @override
   void initState() {
     super.initState();
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    )..repeat(reverse: true);
+    _animation = Tween<double>(
+      begin: 0.3,
+      end: 0.6,
+    ).animate(_animationController);
+
     // Load immediately (using microtask to ensuring context/ref availability if needed,
     // though for ad request usually context is for UI params which we handle)
     // We move the load trigger here to be as fast as possible.
@@ -44,6 +58,7 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
   void dispose() {
     _debounceTimer?.cancel();
     _nativeAd?.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -209,9 +224,14 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
 
     final l10n = AppLocalizations.of(context);
 
-    // If Ad is NOT loaded yet, or failed, return nothing
-    if (!_isAdLoaded || _nativeAd == null) {
+    // If Ad Failed, show nothing (collapsed)
+    if (_adFailed) {
       return const SizedBox.shrink();
+    }
+
+    // If Ad is NOT loaded yet, Show Skeleton (pulsing placeholder)
+    if (!_isAdLoaded || _nativeAd == null) {
+      return _buildSkeleton(context, adHeight);
     }
 
     // Ad Loaded: Show Native Ad
@@ -248,6 +268,108 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget> {
           child: AdWidget(ad: _nativeAd!),
         ),
         // Bottom margin
+        const SizedBox(height: 0),
+      ],
+    );
+  }
+
+  Widget _buildSkeleton(BuildContext context, double height) {
+    final l10n = AppLocalizations.of(context);
+    // Return structure matching the simple Column layout of the real ad
+    // Text is outside skeleton animation. Only the ad box pulses.
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        const SizedBox(height: 8),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 4, right: 8),
+          child: Text(
+            l10n?.removeAdsLink ?? "Quitar anuncios",
+            style: TextStyle(
+              color: AppTheme.textSubtle.withValues(alpha: 0.5),
+              fontSize: 10,
+              decoration: TextDecoration.underline,
+            ),
+          ),
+        ),
+        AnimatedBuilder(
+          animation: _animation,
+          builder: (context, child) {
+            return Opacity(
+              opacity: _animation.value,
+              // Outer container: Full height to keep spacing fixed
+              child: SizedBox(
+                height: height,
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  // Visual container: 20% shorter
+                  child: Container(
+                    height: height * 0.8,
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(8),
+                    decoration: const BoxDecoration(
+                      color: AppTheme.cardBackground,
+                      borderRadius: BorderRadius.zero,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.white10,
+                                borderRadius: BorderRadius.circular(0),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    height: 14,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white10,
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 6),
+                                  Container(
+                                    width: 80,
+                                    height: 10,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white10,
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        // Spacer flexes to fill available space
+                        const Spacer(),
+                        Container(
+                          width: double.infinity,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: Colors.white10,
+                            borderRadius: BorderRadius.circular(0),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
         const SizedBox(height: 0),
       ],
     );
