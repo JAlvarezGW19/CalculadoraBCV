@@ -8,6 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../theme/app_theme.dart';
 import '../providers/bcv_provider.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import '../widgets/bottom_nav_item.dart';
 import '../services/notification_service.dart';
 import '../services/background_service.dart';
@@ -137,6 +139,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Future<void> _initServices() async {
+    // Fire and forget heavy initializations AFTER UI is up
+    MobileAds.instance.initialize();
+    initializeDateFormatting('es', null);
+
     // Initialize Notifications
     final notificationService = NotificationService();
     await notificationService.init();

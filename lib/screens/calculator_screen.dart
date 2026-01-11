@@ -10,6 +10,7 @@ import '../widgets/native_ad_widget.dart';
 import 'package:showcaseview/showcaseview.dart';
 import '../utils/tutorial_keys.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
+import '../widgets/common/tutorial_tooltip.dart';
 
 class CalculatorScreen extends ConsumerWidget {
   const CalculatorScreen({super.key});
@@ -91,10 +92,22 @@ class CalculatorScreen extends ConsumerWidget {
           const SizedBox(height: 10),
           // Toggles Row
           if (AppLocalizations.of(context) != null)
-            Showcase(
+            Showcase.withWidget(
               key: TutorialKeys.currencyToggle,
-              title: AppLocalizations.of(context)!.tutorialOneTitle,
-              description: AppLocalizations.of(context)!.tutorialOneDesc,
+              height: 200,
+              width: 280,
+              container: TutorialTooltip(
+                title: AppLocalizations.of(context)!.tutorialOneTitle,
+                description: AppLocalizations.of(context)!.tutorialOneDesc,
+                step: 1,
+                totalSteps: 3,
+                onNext: () {
+                  ShowCaseWidget.of(context).next();
+                },
+                onSkip: () {
+                  ShowCaseWidget.of(context).dismiss();
+                },
+              ),
               child: CurrencyToggles(
                 hasTomorrow: ratesAsyncValue.value?.hasTomorrow ?? false,
                 tomorrowDate: ratesAsyncValue.value?.tomorrowDate,

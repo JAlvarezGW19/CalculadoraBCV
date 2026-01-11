@@ -11,6 +11,7 @@ import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
 import 'package:showcaseview/showcaseview.dart';
 import '../../utils/tutorial_keys.dart';
+import '../common/tutorial_tooltip.dart';
 
 class ScanFloatingButton extends ConsumerWidget {
   const ScanFloatingButton({super.key});
@@ -37,10 +38,19 @@ class ScanFloatingButton extends ConsumerWidget {
 
     if (l10n == null) return fab;
 
-    return Showcase(
+    return Showcase.withWidget(
       key: TutorialKeys.ocrButton,
-      title: l10n.tutorialThreeTitle,
-      description: l10n.tutorialThreeDesc,
+      height: 200,
+      width: 280,
+      container: TutorialTooltip(
+        title: l10n.tutorialThreeTitle,
+        description: l10n.tutorialThreeDesc,
+        step: 3,
+        totalSteps: 3,
+        onFinished: () {
+          ShowCaseWidget.of(context).dismiss();
+        },
+      ),
       child: fab,
     );
   }

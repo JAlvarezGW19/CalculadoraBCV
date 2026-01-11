@@ -303,7 +303,7 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget>
                 height: height,
                 child: Align(
                   alignment: Alignment.topCenter,
-                  // Visual container: 20% shorter
+                  // Visual container: 20% shorter (height * 0.8)
                   child: Container(
                     height: height * 0.8,
                     width: double.infinity,
@@ -352,7 +352,6 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget>
                             ),
                           ],
                         ),
-                        // Spacer flexes to fill available space
                         const Spacer(),
                         Container(
                           width: double.infinity,

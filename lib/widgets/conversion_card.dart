@@ -10,6 +10,7 @@ import '../utils/tutorial_keys.dart';
 import '../providers/bcv_provider.dart';
 import '../theme/app_theme.dart';
 import '../utils/currency_formatter.dart';
+import 'common/tutorial_tooltip.dart';
 
 class ConversionCard extends ConsumerStatefulWidget {
   final double activeRate;
@@ -268,10 +269,22 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
       scrollPaddingBottom: vesPadding,
     );
 
-    final Widget swapButton = Showcase(
+    final Widget swapButton = Showcase.withWidget(
       key: TutorialKeys.swapButton,
-      title: l10n.tutorialTwoTitle,
-      description: l10n.tutorialTwoDesc,
+      height: 200,
+      width: 280,
+      container: TutorialTooltip(
+        title: l10n.tutorialTwoTitle,
+        description: l10n.tutorialTwoDesc,
+        step: 2,
+        totalSteps: 3,
+        onNext: () {
+          ShowCaseWidget.of(context).next();
+        },
+        onSkip: () {
+          ShowCaseWidget.of(context).dismiss();
+        },
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12.0),
         child: GestureDetector(

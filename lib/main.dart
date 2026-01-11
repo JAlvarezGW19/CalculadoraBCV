@@ -5,43 +5,23 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
 import 'screens/home_screen.dart';
 import 'theme/app_theme.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 import 'providers/language_provider.dart';
 
-void main() async {
+void main() {
   try {
     WidgetsFlutterBinding.ensureInitialized();
 
-    // Lock orientation to portrait (fire and forget to not block UI)
+    // Lock orientation to portrait (fire and forget)
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-    // ... existing code ...
-
-    // Initialize Date Formatting (Fire and forget)
-    // We start this ASAP but don't wait for it to render the first frame
-    initializeDateFormatting('es', null).catchError((e) {
-      debugPrint("DateFormatting Error: $e");
-      return null;
-    });
-
-    // Initialize Google Mobile Ads (Wrapped to prevent hangs)
-    // Fire and forget, don't await to avoid blocking startup
-    MobileAds.instance.initialize();
-
-    // Explicitly remove splash screen to prevent hanging
-    // try {
-    //   FlutterNativeSplash.remove();
-    // } catch (e) {
-    //   debugPrint("Error removing splash: $e");
-    // }
-
-    // Run App immediately
+    // Run App immediately.
+    // Heavy initializations (Ads, DateFormat) moved to HomeScreen
+    // or post-frame callbacks to ensure start is instant.
     runApp(const ProviderScope(child: MyApp()));
-  } catch (e, stack) {
+  } catch (e) {
     debugPrint("Startup Error: $e");
-    debugPrint(stack.toString());
+    // Fallback UI in case of total failure
     runApp(
       const MaterialApp(
         home: Scaffold(
