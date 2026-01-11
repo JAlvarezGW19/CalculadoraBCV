@@ -403,28 +403,34 @@ class AppLocalizationsTr extends AppLocalizations {
   String get selectRate => 'Kur Seçin';
 
   @override
-  String get tutorialOneTitle => 'Currencies and Dates';
+  String get tutorialOneTitle => 'Dövizler ve Tarihler';
 
   @override
   String get tutorialOneDesc =>
-      'Switch between Dollar, Euro and Custom rates. You can also check Today\'s and Tomorrow\'s rates.';
+      'Dolar, Euro ve Özel kurlar arasında geçiş yapın. Bugünün ve Yarının kurlarını da kontrol edebilirsiniz.';
 
   @override
-  String get tutorialTwoTitle => 'Conversion Order';
+  String get tutorialTwoTitle => 'Dönüşüm Sırası';
 
   @override
   String get tutorialTwoDesc =>
-      'Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.';
+      'Sırayı değiştirmek için buraya dokunun. Bolivar\'ı görmek için Dolar cinsinden yazın veya tam tersini yapın.';
 
   @override
-  String get tutorialThreeTitle => 'Smart Scan';
+  String get tutorialThreeTitle => 'Akıllı Tarama';
 
   @override
   String get tutorialThreeDesc =>
-      'Use the camera to detect prices and convert them automatically in real-time.';
+      'Fiyatları tespit etmek ve gerçek zamanlı olarak otomatik dönüştürmek için kamerayı kullanın.';
 
   @override
-  String get tutorialSkip => 'Skip';
+  String get tutorialSkip => 'Atla';
+
+  @override
+  String get tutorialNext => 'İleri';
+
+  @override
+  String get tutorialFinish => 'Bitir';
 
   @override
   String get customRatePlaceholder =>

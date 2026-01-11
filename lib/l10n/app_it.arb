@@ -128,22 +128,15 @@
   "delete": "Elimina",
   "editRate": "Modifica Tasso"
 ,
-  "tutorialOneTitle": "Currencies and Dates",
-  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
-  "tutorialTwoTitle": "Conversion Order",
-  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
-  "tutorialThreeTitle": "Smart Scan",
-  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
-  "tutorialSkip": "Skip"
-
-,
-  "tutorialOneTitle": "Currencies and Dates",
-  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
-  "tutorialTwoTitle": "Conversion Order",
-  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
-  "tutorialThreeTitle": "Smart Scan",
-  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
-  "tutorialSkip": "Skip",
+  "tutorialOneTitle": "Valute e Date",
+  "tutorialOneDesc": "Passa tra Dollaro, Euro e tassi personalizzati. Puoi anche controllare i tassi di Oggi e Domani.",
+  "tutorialTwoTitle": "Ordine di Conversione",
+  "tutorialTwoDesc": "Tocca qui per cambiare l'ordine. Digita in Dollari per vedere i Bolivar, o viceversa.",
+  "tutorialThreeTitle": "Scanner Intelligente",
+  "tutorialThreeDesc": "Usa la fotocamera per rilevare i prezzi e convertirli automaticamente in tempo reale.",
+  "tutorialSkip": "Salta",
+  "tutorialNext": "Avanti",
+  "tutorialFinish": "Fine",
   "customRatePlaceholder": "Qui puoi aggiungere tassi personalizzati come Zelle, Binance o rimesse. Calcoleremo automaticamente la differenza con il BCV."
 
 }

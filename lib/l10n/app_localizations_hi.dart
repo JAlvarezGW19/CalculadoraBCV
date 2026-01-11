@@ -401,28 +401,34 @@ class AppLocalizationsHi extends AppLocalizations {
   String get selectRate => 'दर चुनें';
 
   @override
-  String get tutorialOneTitle => 'Currencies and Dates';
+  String get tutorialOneTitle => 'मुद्राएं और तिथियां';
 
   @override
   String get tutorialOneDesc =>
-      'Switch between Dollar, Euro and Custom rates. You can also check Today\'s and Tomorrow\'s rates.';
+      'डॉलर, यूरो और कस्टम दरों के बीच स्विच करें। आप आज और कल की दरें भी देख सकते हैं।';
 
   @override
-  String get tutorialTwoTitle => 'Conversion Order';
+  String get tutorialTwoTitle => 'रूपांतरण क्रम';
 
   @override
   String get tutorialTwoDesc =>
-      'Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.';
+      'क्रम बदलने के लिए यहाँ टैप करें। बोलिवर देखने के लिए डॉलर में टाइप करें, या इसके विपरीत।';
 
   @override
-  String get tutorialThreeTitle => 'Smart Scan';
+  String get tutorialThreeTitle => 'स्मार्ट स्कैन';
 
   @override
   String get tutorialThreeDesc =>
-      'Use the camera to detect prices and convert them automatically in real-time.';
+      'कीमतों का पता लगाने और वास्तविक समय में स्वचालित रूप से परिवर्तित करने के लिए कैमरे का उपयोग करें।';
 
   @override
-  String get tutorialSkip => 'Skip';
+  String get tutorialSkip => 'छोड़ें';
+
+  @override
+  String get tutorialNext => 'अगला';
+
+  @override
+  String get tutorialFinish => 'समाप्त';
 
   @override
   String get customRatePlaceholder =>

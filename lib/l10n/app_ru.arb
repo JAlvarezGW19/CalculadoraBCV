@@ -128,22 +128,15 @@
   "delete": "Удалить",
   "editRate": "Редактировать курс"
 ,
-  "tutorialOneTitle": "Currencies and Dates",
-  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
-  "tutorialTwoTitle": "Conversion Order",
-  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
-  "tutorialThreeTitle": "Smart Scan",
-  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
-  "tutorialSkip": "Skip"
-
-,
-  "tutorialOneTitle": "Currencies and Dates",
-  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
-  "tutorialTwoTitle": "Conversion Order",
-  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
-  "tutorialThreeTitle": "Smart Scan",
-  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
-  "tutorialSkip": "Skip",
+  "tutorialOneTitle": "Валюты и Даты",
+  "tutorialOneDesc": "Переключайтесь между долларом, евро и пользовательскими курсами. Вы также можете проверить курсы на сегодня и завтра.",
+  "tutorialTwoTitle": "Порядок конвертации",
+  "tutorialTwoDesc": "Нажмите здесь, чтобы изменить порядок. Введите в долларах, чтобы увидеть сумму в боливарах, или наоборот.",
+  "tutorialThreeTitle": "Умное сканирование",
+  "tutorialThreeDesc": "Используйте камеру для обнаружения цен и их автоматической конвертации в реальном времени.",
+  "tutorialSkip": "Пропустить",
+  "tutorialNext": "Далее",
+  "tutorialFinish": "Готово",
   "customRatePlaceholder": "Здесь вы можете добавить пользовательские курсы, такие как Zelle, Binance или денежные переводы. Мы автоматически рассчитаем разницу с BCV."
 
 }

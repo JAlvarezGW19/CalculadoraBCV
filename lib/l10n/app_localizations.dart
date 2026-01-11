@@ -928,6 +928,18 @@ abstract class AppLocalizations {
   /// **'Omitir'**
   String get tutorialSkip;
 
+  /// No description provided for @tutorialNext.
+  ///
+  /// In es, this message translates to:
+  /// **'Siguiente'**
+  String get tutorialNext;
+
+  /// No description provided for @tutorialFinish.
+  ///
+  /// In es, this message translates to:
+  /// **'Finalizar'**
+  String get tutorialFinish;
+
   /// No description provided for @customRatePlaceholder.
   ///
   /// In es, this message translates to:

@@ -393,28 +393,33 @@ class AppLocalizationsKo extends AppLocalizations {
   String get selectRate => '환율 선택';
 
   @override
-  String get tutorialOneTitle => 'Currencies and Dates';
+  String get tutorialOneTitle => '통화 및 날짜';
 
   @override
   String get tutorialOneDesc =>
-      'Switch between Dollar, Euro and Custom rates. You can also check Today\'s and Tomorrow\'s rates.';
+      '달러, 유로 및 사용주 정의 환율 간에 전환합니다. 오늘 및 내일의 환율도 확인할 수 있습니다.';
 
   @override
-  String get tutorialTwoTitle => 'Conversion Order';
+  String get tutorialTwoTitle => '변환 순서';
 
   @override
   String get tutorialTwoDesc =>
-      'Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.';
+      '순서를 변경하려면 여기를 누르세요. 볼리바르를 보려면 달러로 입력하거나 그 반대로 입력하세요.';
 
   @override
-  String get tutorialThreeTitle => 'Smart Scan';
+  String get tutorialThreeTitle => '스마트 스캔';
 
   @override
-  String get tutorialThreeDesc =>
-      'Use the camera to detect prices and convert them automatically in real-time.';
+  String get tutorialThreeDesc => '카메라를 사용하여 가격을 감지하고 실시간으로 자동 변환합니다.';
 
   @override
-  String get tutorialSkip => 'Skip';
+  String get tutorialSkip => '건너뛰기';
+
+  @override
+  String get tutorialNext => '다음';
+
+  @override
+  String get tutorialFinish => '완료';
 
   @override
   String get customRatePlaceholder =>

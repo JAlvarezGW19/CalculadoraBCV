@@ -128,22 +128,15 @@
   "delete": "删除",
   "editRate": "编辑汇率"
 ,
-  "tutorialOneTitle": "Currencies and Dates",
-  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
-  "tutorialTwoTitle": "Conversion Order",
-  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
-  "tutorialThreeTitle": "Smart Scan",
-  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
-  "tutorialSkip": "Skip"
-
-,
-  "tutorialOneTitle": "Currencies and Dates",
-  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
-  "tutorialTwoTitle": "Conversion Order",
-  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
-  "tutorialThreeTitle": "Smart Scan",
-  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
-  "tutorialSkip": "Skip",
+  "tutorialOneTitle": "货币和日期",
+  "tutorialOneDesc": "在美元、欧元和自定义汇率之间切换。您还可以查看今天和明天的汇率。",
+  "tutorialTwoTitle": "转换顺序",
+  "tutorialTwoDesc": "点击这里更改顺序。输入美元以查看玻利瓦尔，反之亦然。",
+  "tutorialThreeTitle": "智能扫描",
+  "tutorialThreeDesc": "使用相机检测价格并实时自动转换。",
+  "tutorialSkip": "跳过",
+  "tutorialNext": "下一步",
+  "tutorialFinish": "完成",
   "customRatePlaceholder": "在这里，您可以添加自定义汇率，如 Zelle、Binance 或汇款。我们将自动计算与 BCV 的差额。"
 
 }

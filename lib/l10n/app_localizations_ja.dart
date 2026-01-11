@@ -392,28 +392,31 @@ class AppLocalizationsJa extends AppLocalizations {
   String get selectRate => 'レートを選択';
 
   @override
-  String get tutorialOneTitle => 'Currencies and Dates';
+  String get tutorialOneTitle => '通貨と日付';
 
   @override
-  String get tutorialOneDesc =>
-      'Switch between Dollar, Euro and Custom rates. You can also check Today\'s and Tomorrow\'s rates.';
+  String get tutorialOneDesc => 'ドル、ユーロ、カスタムレートを切り替えます。今日と明日のレートも確認できます。';
 
   @override
-  String get tutorialTwoTitle => 'Conversion Order';
+  String get tutorialTwoTitle => '変換順序';
 
   @override
-  String get tutorialTwoDesc =>
-      'Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.';
+  String get tutorialTwoDesc => 'ここをタップして順序を変更します。ドルで入力するとボリバルが表示され、その逆も可能です。';
 
   @override
-  String get tutorialThreeTitle => 'Smart Scan';
+  String get tutorialThreeTitle => 'スマートスキャン';
 
   @override
-  String get tutorialThreeDesc =>
-      'Use the camera to detect prices and convert them automatically in real-time.';
+  String get tutorialThreeDesc => 'カメラを使用して価格を検出し、リアルタイムで自動的に変換します。';
 
   @override
-  String get tutorialSkip => 'Skip';
+  String get tutorialSkip => 'スキップ';
+
+  @override
+  String get tutorialNext => '次へ';
+
+  @override
+  String get tutorialFinish => '完了';
 
   @override
   String get customRatePlaceholder =>

@@ -134,5 +134,7 @@
   "tutorialThreeTitle": "Escaneo Inteligente",
   "tutorialThreeDesc": "Usa la cámara para detectar precios y convertirlos automáticamente en tiempo real.",
   "tutorialSkip": "Omitir",
+  "tutorialNext": "Siguiente",
+  "tutorialFinish": "Finalizar",
   "customRatePlaceholder": "Aquí puedes agregar tasas personalizadas como Zelle, Binance o Remesas. Nosotros calcularemos la diferencia con el BCV automáticamente."
 }

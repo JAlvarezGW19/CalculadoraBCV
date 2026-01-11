@@ -391,28 +391,31 @@ class AppLocalizationsZh extends AppLocalizations {
   String get selectRate => '选择汇率';
 
   @override
-  String get tutorialOneTitle => 'Currencies and Dates';
+  String get tutorialOneTitle => '货币和日期';
 
   @override
-  String get tutorialOneDesc =>
-      'Switch between Dollar, Euro and Custom rates. You can also check Today\'s and Tomorrow\'s rates.';
+  String get tutorialOneDesc => '在美元、欧元和自定义汇率之间切换。您还可以查看今天和明天的汇率。';
 
   @override
-  String get tutorialTwoTitle => 'Conversion Order';
+  String get tutorialTwoTitle => '转换顺序';
 
   @override
-  String get tutorialTwoDesc =>
-      'Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.';
+  String get tutorialTwoDesc => '点击这里更改顺序。输入美元以查看玻利瓦尔，反之亦然。';
 
   @override
-  String get tutorialThreeTitle => 'Smart Scan';
+  String get tutorialThreeTitle => '智能扫描';
 
   @override
-  String get tutorialThreeDesc =>
-      'Use the camera to detect prices and convert them automatically in real-time.';
+  String get tutorialThreeDesc => '使用相机检测价格并实时自动转换。';
 
   @override
-  String get tutorialSkip => 'Skip';
+  String get tutorialSkip => '跳过';
+
+  @override
+  String get tutorialNext => '下一步';
+
+  @override
+  String get tutorialFinish => '完成';
 
   @override
   String get customRatePlaceholder =>

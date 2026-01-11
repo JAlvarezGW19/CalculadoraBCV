@@ -128,22 +128,15 @@
   "delete": "Sil",
   "editRate": "Kuru Düzenle"
 ,
-  "tutorialOneTitle": "Currencies and Dates",
-  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
-  "tutorialTwoTitle": "Conversion Order",
-  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
-  "tutorialThreeTitle": "Smart Scan",
-  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
-  "tutorialSkip": "Skip"
-
-,
-  "tutorialOneTitle": "Currencies and Dates",
-  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
-  "tutorialTwoTitle": "Conversion Order",
-  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
-  "tutorialThreeTitle": "Smart Scan",
-  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
-  "tutorialSkip": "Skip",
+  "tutorialOneTitle": "Dövizler ve Tarihler",
+  "tutorialOneDesc": "Dolar, Euro ve Özel kurlar arasında geçiş yapın. Bugünün ve Yarının kurlarını da kontrol edebilirsiniz.",
+  "tutorialTwoTitle": "Dönüşüm Sırası",
+  "tutorialTwoDesc": "Sırayı değiştirmek için buraya dokunun. Bolivar'ı görmek için Dolar cinsinden yazın veya tam tersini yapın.",
+  "tutorialThreeTitle": "Akıllı Tarama",
+  "tutorialThreeDesc": "Fiyatları tespit etmek ve gerçek zamanlı olarak otomatik dönüştürmek için kamerayı kullanın.",
+  "tutorialSkip": "Atla",
+  "tutorialNext": "İleri",
+  "tutorialFinish": "Bitir",
   "customRatePlaceholder": "Buraya Zelle, Binance veya Havaleler gibi özel oranlar ekleyebilirsiniz. BCV ile aradaki farkı otomatik olarak hesaplayacağız."
 
 }

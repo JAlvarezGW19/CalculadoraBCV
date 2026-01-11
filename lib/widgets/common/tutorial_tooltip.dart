@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:calculadora_bcv/l10n/app_localizations.dart';
 import '../../theme/app_theme.dart';
 
 class TutorialTooltip extends StatelessWidget {
@@ -23,6 +24,11 @@ class TutorialTooltip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final skipText = l10n?.tutorialSkip ?? "Omitir";
+    final nextText = l10n?.tutorialNext ?? "Siguiente";
+    final finishText = l10n?.tutorialFinish ?? "Finalizar";
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -93,9 +99,12 @@ class TutorialTooltip extends StatelessWidget {
                   // SKIP Button
                   TextButton(
                     onPressed: onSkip,
-                    child: const Text(
-                      "Omitir",
-                      style: TextStyle(color: Colors.white54, fontSize: 13),
+                    child: Text(
+                      skipText,
+                      style: const TextStyle(
+                        color: Colors.white54,
+                        fontSize: 13,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -114,10 +123,7 @@ class TutorialTooltip extends StatelessWidget {
                       ),
                     ),
                     onPressed: onNext,
-                    child: const Text(
-                      "Siguiente",
-                      style: TextStyle(fontSize: 13),
-                    ),
+                    child: Text(nextText, style: const TextStyle(fontSize: 13)),
                   ),
                 ] else ...[
                   // FINISH Button (Last Step)
@@ -135,9 +141,9 @@ class TutorialTooltip extends StatelessWidget {
                       ),
                     ),
                     onPressed: onFinished,
-                    child: const Text(
-                      "Finalizar",
-                      style: TextStyle(fontSize: 13),
+                    child: Text(
+                      finishText,
+                      style: const TextStyle(fontSize: 13),
                     ),
                   ),
                 ],

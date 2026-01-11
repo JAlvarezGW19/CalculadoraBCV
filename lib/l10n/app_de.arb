@@ -128,22 +128,15 @@
   "delete": "Löschen",
   "editRate": "Kurs bearbeiten"
 ,
-  "tutorialOneTitle": "Currencies and Dates",
-  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
-  "tutorialTwoTitle": "Conversion Order",
-  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
-  "tutorialThreeTitle": "Smart Scan",
-  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
-  "tutorialSkip": "Skip"
-
-,
-  "tutorialOneTitle": "Currencies and Dates",
-  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
-  "tutorialTwoTitle": "Conversion Order",
-  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
-  "tutorialThreeTitle": "Smart Scan",
-  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
-  "tutorialSkip": "Skip",
+  "tutorialOneTitle": "Währungen und Daten",
+  "tutorialOneDesc": "Wechseln Sie zwischen Dollar, Euro und benutzerdefinierten Kursen. Sie können auch die Kurse von Heute und Morgen überprüfen.",
+  "tutorialTwoTitle": "Umrechnungsreihenfolge",
+  "tutorialTwoDesc": "Tippen Sie hier, um die Reihenfolge zu ändern. Geben Sie in Dollar ein, um Bolivar zu sehen, oder umgekehrt.",
+  "tutorialThreeTitle": "Intelligenter Scan",
+  "tutorialThreeDesc": "Verwenden Sie die Kamera, um Preise zu erkennen und automatisch in Echtzeit umzurechnen.",
+  "tutorialSkip": "Überspringen",
+  "tutorialNext": "Weiter",
+  "tutorialFinish": "Beenden",
   "customRatePlaceholder": "Hier können Sie benutzerdefinierte Kurse wie Zelle, Binance oder Überweisungen hinzufügen. Wir berechnen automatisch die Differenz zum BCV."
 
 }

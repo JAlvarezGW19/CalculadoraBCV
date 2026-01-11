@@ -399,28 +399,34 @@ class AppLocalizationsRu extends AppLocalizations {
   String get selectRate => 'Выбрать курс';
 
   @override
-  String get tutorialOneTitle => 'Currencies and Dates';
+  String get tutorialOneTitle => 'Валюты и Даты';
 
   @override
   String get tutorialOneDesc =>
-      'Switch between Dollar, Euro and Custom rates. You can also check Today\'s and Tomorrow\'s rates.';
+      'Переключайтесь между долларом, евро и пользовательскими курсами. Вы также можете проверить курсы на сегодня и завтра.';
 
   @override
-  String get tutorialTwoTitle => 'Conversion Order';
+  String get tutorialTwoTitle => 'Порядок конвертации';
 
   @override
   String get tutorialTwoDesc =>
-      'Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.';
+      'Нажмите здесь, чтобы изменить порядок. Введите в долларах, чтобы увидеть сумму в боливарах, или наоборот.';
 
   @override
-  String get tutorialThreeTitle => 'Smart Scan';
+  String get tutorialThreeTitle => 'Умное сканирование';
 
   @override
   String get tutorialThreeDesc =>
-      'Use the camera to detect prices and convert them automatically in real-time.';
+      'Используйте камеру для обнаружения цен и их автоматической конвертации в реальном времени.';
 
   @override
-  String get tutorialSkip => 'Skip';
+  String get tutorialSkip => 'Пропустить';
+
+  @override
+  String get tutorialNext => 'Далее';
+
+  @override
+  String get tutorialFinish => 'Готово';
 
   @override
   String get customRatePlaceholder =>

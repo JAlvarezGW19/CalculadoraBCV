@@ -404,28 +404,34 @@ class AppLocalizationsPt extends AppLocalizations {
   String get selectRate => 'Selecionar taxa';
 
   @override
-  String get tutorialOneTitle => 'Currencies and Dates';
+  String get tutorialOneTitle => 'Moedas e Datas';
 
   @override
   String get tutorialOneDesc =>
-      'Switch between Dollar, Euro and Custom rates. You can also check Today\'s and Tomorrow\'s rates.';
+      'Alterne entre Dólar, Euro e taxas personalizadas. Consulte também as taxas de Hoje e Amanhã.';
 
   @override
-  String get tutorialTwoTitle => 'Conversion Order';
+  String get tutorialTwoTitle => 'Ordem de Conversão';
 
   @override
   String get tutorialTwoDesc =>
-      'Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.';
+      'Toque aqui para mudar a ordem. Digite em Dólares para ver Bolívares ou vice-versa.';
 
   @override
-  String get tutorialThreeTitle => 'Smart Scan';
+  String get tutorialThreeTitle => 'Scanner Inteligente';
 
   @override
   String get tutorialThreeDesc =>
-      'Use the camera to detect prices and convert them automatically in real-time.';
+      'Use a câmera para detectar preços e convertê-los automaticamente em tempo real.';
 
   @override
-  String get tutorialSkip => 'Skip';
+  String get tutorialSkip => 'Pular';
+
+  @override
+  String get tutorialNext => 'Próximo';
+
+  @override
+  String get tutorialFinish => 'Concluir';
 
   @override
   String get customRatePlaceholder =>

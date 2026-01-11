@@ -426,6 +426,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tutorialSkip => 'Skip';
 
   @override
+  String get tutorialNext => 'Next';
+
+  @override
+  String get tutorialFinish => 'Finish';
+
+  @override
   String get customRatePlaceholder =>
       'Here you can add custom rates like Zelle, Binance or Remittances. We will automatically calculate the difference with the BCV.';
 }

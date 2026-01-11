@@ -402,28 +402,34 @@ class AppLocalizationsVi extends AppLocalizations {
   String get selectRate => 'Chọn tỷ giá';
 
   @override
-  String get tutorialOneTitle => 'Currencies and Dates';
+  String get tutorialOneTitle => 'Tiền tệ và Ngày';
 
   @override
   String get tutorialOneDesc =>
-      'Switch between Dollar, Euro and Custom rates. You can also check Today\'s and Tomorrow\'s rates.';
+      'Chuyển đổi giữa Đô la, Euro và tỷ giá tùy chỉnh. Bạn cũng có thể kiểm tra tỷ giá Hôm nay và Ngày mai.';
 
   @override
-  String get tutorialTwoTitle => 'Conversion Order';
+  String get tutorialTwoTitle => 'Thứ tự Chuyển đổi';
 
   @override
   String get tutorialTwoDesc =>
-      'Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.';
+      'Nhấn vào đây để thay đổi thứ tự. Nhập bằng Đô la để xem Bolivar, hoặc ngược lại.';
 
   @override
-  String get tutorialThreeTitle => 'Smart Scan';
+  String get tutorialThreeTitle => 'Quét Thông minh';
 
   @override
   String get tutorialThreeDesc =>
-      'Use the camera to detect prices and convert them automatically in real-time.';
+      'Sử dụng máy ảnh để phát hiện giá và chuyển đổi chúng tự động trong thời gian thực.';
 
   @override
-  String get tutorialSkip => 'Skip';
+  String get tutorialSkip => 'Bỏ qua';
+
+  @override
+  String get tutorialNext => 'Tiếp';
+
+  @override
+  String get tutorialFinish => 'Hoàn tất';
 
   @override
   String get customRatePlaceholder =>

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -90,17 +91,7 @@ class ScanFloatingButton extends ConsumerWidget {
                       color: AppTheme.textAccent,
                       onTap: () {
                         Navigator.pop(sheetContext);
-                        _checkPermissionsAndNavigate(context, () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const ScanScreen(
-                                source: CurrencyType.usd,
-                                target: CurrencyType.custom,
-                              ),
-                            ),
-                          );
-                        });
+                        _navigateWithDateCheck(context, ref, CurrencyType.usd);
                       },
                     ),
                     ScanOptionButton(
@@ -109,17 +100,7 @@ class ScanFloatingButton extends ConsumerWidget {
                       color: AppTheme.textAccent,
                       onTap: () {
                         Navigator.pop(sheetContext);
-                        _checkPermissionsAndNavigate(context, () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const ScanScreen(
-                                source: CurrencyType.eur,
-                                target: CurrencyType.custom,
-                              ),
-                            ),
-                          );
-                        });
+                        _navigateWithDateCheck(context, ref, CurrencyType.eur);
                       },
                     ),
                     ScanOptionButton(
@@ -355,18 +336,12 @@ class ScanFloatingButton extends ConsumerWidget {
                     color: AppTheme.textAccent,
                     onTap: () {
                       Navigator.pop(sheetContext);
-                      _checkPermissionsAndNavigate(context, () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const ScanScreen(
-                              source: CurrencyType.usd,
-                              target: CurrencyType.custom,
-                              isInverse: true,
-                            ),
-                          ),
-                        );
-                      });
+                      _navigateWithDateCheck(
+                        context,
+                        ref,
+                        CurrencyType.usd,
+                        isInverse: true,
+                      );
                     },
                   ),
                   ScanOptionButton(
@@ -375,18 +350,12 @@ class ScanFloatingButton extends ConsumerWidget {
                     color: AppTheme.textAccent,
                     onTap: () {
                       Navigator.pop(sheetContext);
-                      _checkPermissionsAndNavigate(context, () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const ScanScreen(
-                              source: CurrencyType.eur,
-                              target: CurrencyType.custom,
-                              isInverse: true,
-                            ),
-                          ),
-                        );
-                      });
+                      _navigateWithDateCheck(
+                        context,
+                        ref,
+                        CurrencyType.eur,
+                        isInverse: true,
+                      );
                     },
                   ),
                   ScanOptionButton(
@@ -404,6 +373,104 @@ class ScanFloatingButton extends ConsumerWidget {
           ),
         );
       },
+    );
+  }
+
+  void _navigateWithDateCheck(
+    BuildContext context,
+    WidgetRef ref,
+    CurrencyType source, {
+    bool isInverse = false,
+  }) {
+    final rates = ref.read(ratesProvider).value;
+    final l10n = AppLocalizations.of(context)!;
+
+    // If no tomorrow rate, proceed directly with Today (default)
+    if (rates == null || !rates.hasTomorrow) {
+      _checkPermissionsAndNavigate(context, () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => ScanScreen(
+              source: source,
+              target: CurrencyType.custom,
+              isInverse: isInverse,
+              dateMode: RateDateMode.today,
+            ),
+          ),
+        );
+      });
+      return;
+    }
+
+    // Dynamic Label for "Tomorrow"
+    String tomorrowLabel = l10n.tomorrow;
+    if (rates.tomorrowDate != null) {
+      final now = DateTime.now();
+      final tomorrow = DateTime(now.year, now.month, now.day + 1);
+      final rateDate = DateTime(
+        rates.tomorrowDate!.year,
+        rates.tomorrowDate!.month,
+        rates.tomorrowDate!.day,
+      );
+
+      // If it is NOT exactly tomorrow (e.g. today is Friday, rate is Monday)
+      if (rateDate.isAfter(tomorrow)) {
+        // Get day name like "Lunes" (in current language)
+        final locale = Localizations.localeOf(context).toString();
+        final dayName = DateFormat('EEEE', locale).format(rateDate);
+        // Capitalize first letter
+        tomorrowLabel =
+            "${dayName[0].toUpperCase()}${dayName.substring(1).toLowerCase()}";
+      }
+    }
+
+    // Ask user
+    showDialog(
+      context: context,
+      builder: (ctx) => SimpleDialog(
+        title: Text(l10n.rateDate),
+        children: [
+          SimpleDialogOption(
+            onPressed: () {
+              Navigator.pop(ctx);
+              _checkPermissionsAndNavigate(context, () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ScanScreen(
+                      source: source,
+                      target: CurrencyType.custom,
+                      isInverse: isInverse,
+                      dateMode: RateDateMode.today,
+                    ),
+                  ),
+                );
+              });
+            },
+            child: Text(l10n.today),
+          ),
+          SimpleDialogOption(
+            onPressed: () {
+              Navigator.pop(ctx);
+              _checkPermissionsAndNavigate(context, () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ScanScreen(
+                      source: source,
+                      target: CurrencyType.custom,
+                      isInverse: isInverse,
+                      dateMode: RateDateMode.tomorrow,
+                    ),
+                  ),
+                );
+              });
+            },
+            child: Text(tomorrowLabel),
+          ),
+        ],
+      ),
     );
   }
 }

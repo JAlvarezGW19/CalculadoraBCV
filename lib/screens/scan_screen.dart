@@ -30,6 +30,7 @@ class ScanScreen extends ConsumerStatefulWidget {
   final CurrencyType target;
   final bool isInverse;
   final CustomRate? customRate;
+  final RateDateMode dateMode;
 
   const ScanScreen({
     super.key,
@@ -37,6 +38,7 @@ class ScanScreen extends ConsumerStatefulWidget {
     required this.target,
     this.isInverse = false,
     this.customRate,
+    this.dateMode = RateDateMode.today,
   });
 
   @override
@@ -492,16 +494,20 @@ class _ScanScreenState extends ConsumerState<ScanScreen> {
     final rates = ref.read(ratesProvider).value;
     if (rates == null) return (rate: 0.0, symbol: 'Bs.', usdRate: 0.0);
 
+    bool useTomorrow =
+        (widget.dateMode == RateDateMode.tomorrow) && rates.hasTomorrow;
+
     double rate = 0.0;
-    double usdRate = rates.usdToday; // Default to today
+    // Basic Ref Rate (USD) for context display
+    double usdRate = useTomorrow ? rates.usdTomorrow : rates.usdToday;
     String symbol = "Bs.";
 
     if (widget.target == CurrencyType.custom) {
       // Base logic
       if (widget.source == CurrencyType.usd) {
-        rate = rates.usdToday;
+        rate = useTomorrow ? rates.usdTomorrow : rates.usdToday;
       } else if (widget.source == CurrencyType.eur) {
-        rate = rates.eurToday;
+        rate = useTomorrow ? rates.eurTomorrow : rates.eurToday;
       } else if (widget.source == CurrencyType.custom &&
           widget.customRate != null) {
         rate = widget.customRate!.rate;

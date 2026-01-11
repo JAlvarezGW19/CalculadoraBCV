@@ -399,28 +399,34 @@ class AppLocalizationsAr extends AppLocalizations {
   String get selectRate => 'اختيار السعر';
 
   @override
-  String get tutorialOneTitle => 'Currencies and Dates';
+  String get tutorialOneTitle => 'العملات والتواريخ';
 
   @override
   String get tutorialOneDesc =>
-      'Switch between Dollar, Euro and Custom rates. You can also check Today\'s and Tomorrow\'s rates.';
+      'التبديل بين الدولار واليورو والأسعار المخصصة. يمكنك أيضًا التحقق من أسعار اليوم وغدًا.';
 
   @override
-  String get tutorialTwoTitle => 'Conversion Order';
+  String get tutorialTwoTitle => 'ترتيب التحويل';
 
   @override
   String get tutorialTwoDesc =>
-      'Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.';
+      'اضغط هنا لتغيير الترتيب. اكتب بالدولار لرؤية البوليفارات، أو العكس.';
 
   @override
-  String get tutorialThreeTitle => 'Smart Scan';
+  String get tutorialThreeTitle => 'المسح الذكي';
 
   @override
   String get tutorialThreeDesc =>
-      'Use the camera to detect prices and convert them automatically in real-time.';
+      'استخدم الكاميرا لاكتشاف الأسعار وتحويلها تلقائيًا في الوقت الفعلي.';
 
   @override
-  String get tutorialSkip => 'Skip';
+  String get tutorialSkip => 'تخطي';
+
+  @override
+  String get tutorialNext => 'التالي';
+
+  @override
+  String get tutorialFinish => 'إنهاء';
 
   @override
   String get customRatePlaceholder =>

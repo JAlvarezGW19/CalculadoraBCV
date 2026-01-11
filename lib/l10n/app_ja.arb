@@ -128,22 +128,15 @@
   "delete": "削除",
   "editRate": "レートを編集"
 ,
-  "tutorialOneTitle": "Currencies and Dates",
-  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
-  "tutorialTwoTitle": "Conversion Order",
-  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
-  "tutorialThreeTitle": "Smart Scan",
-  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
-  "tutorialSkip": "Skip"
-
-,
-  "tutorialOneTitle": "Currencies and Dates",
-  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
-  "tutorialTwoTitle": "Conversion Order",
-  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
-  "tutorialThreeTitle": "Smart Scan",
-  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
-  "tutorialSkip": "Skip",
+  "tutorialOneTitle": "通貨と日付",
+  "tutorialOneDesc": "ドル、ユーロ、カスタムレートを切り替えます。今日と明日のレートも確認できます。",
+  "tutorialTwoTitle": "変換順序",
+  "tutorialTwoDesc": "ここをタップして順序を変更します。ドルで入力するとボリバルが表示され、その逆も可能です。",
+  "tutorialThreeTitle": "スマートスキャン",
+  "tutorialThreeDesc": "カメラを使用して価格を検出し、リアルタイムで自動的に変換します。",
+  "tutorialSkip": "スキップ",
+  "tutorialNext": "次へ",
+  "tutorialFinish": "完了",
   "customRatePlaceholder": "Zelle、Binance、送金などのカスタムレートをここで追加できます。BCVとの差額は自動的に計算されます。"
 
 }

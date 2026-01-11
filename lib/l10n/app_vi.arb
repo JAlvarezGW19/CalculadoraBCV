@@ -128,22 +128,15 @@
   "delete": "Xóa",
   "editRate": "Sửa tỷ giá"
 ,
-  "tutorialOneTitle": "Currencies and Dates",
-  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
-  "tutorialTwoTitle": "Conversion Order",
-  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
-  "tutorialThreeTitle": "Smart Scan",
-  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
-  "tutorialSkip": "Skip"
-
-,
-  "tutorialOneTitle": "Currencies and Dates",
-  "tutorialOneDesc": "Switch between Dollar, Euro and Custom rates. You can also check Today's and Tomorrow's rates.",
-  "tutorialTwoTitle": "Conversion Order",
-  "tutorialTwoDesc": "Tap here to change the order. Type in Dollars to see Bolivars, or vice versa.",
-  "tutorialThreeTitle": "Smart Scan",
-  "tutorialThreeDesc": "Use the camera to detect prices and convert them automatically in real-time.",
-  "tutorialSkip": "Skip",
+  "tutorialOneTitle": "Tiền tệ và Ngày",
+  "tutorialOneDesc": "Chuyển đổi giữa Đô la, Euro và tỷ giá tùy chỉnh. Bạn cũng có thể kiểm tra tỷ giá Hôm nay và Ngày mai.",
+  "tutorialTwoTitle": "Thứ tự Chuyển đổi",
+  "tutorialTwoDesc": "Nhấn vào đây để thay đổi thứ tự. Nhập bằng Đô la để xem Bolivar, hoặc ngược lại.",
+  "tutorialThreeTitle": "Quét Thông minh",
+  "tutorialThreeDesc": "Sử dụng máy ảnh để phát hiện giá và chuyển đổi chúng tự động trong thời gian thực.",
+  "tutorialSkip": "Bỏ qua",
+  "tutorialNext": "Tiếp",
+  "tutorialFinish": "Hoàn tất",
   "customRatePlaceholder": "Tại đây, bạn có thể thêm tỷ giá tùy chỉnh như Zelle, Binance hoặc Chuyển tiền. Chúng tôi sẽ tự động tính toán chênh lệch với BCV."
 
 }
