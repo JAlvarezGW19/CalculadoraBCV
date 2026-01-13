@@ -94,7 +94,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get proUser => 'You are a PRO User!';
 
   @override
-  String get getPro => 'Activate PRO Features (Beta)';
+  String get getPro => 'Get PRO';
 
   @override
   String get oneTimePayment => '';

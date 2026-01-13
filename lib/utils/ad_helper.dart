@@ -12,7 +12,10 @@ class AdHelper {
 
   static String get nativeAdUnitId {
     if (Platform.isAndroid) {
-      return 'ca-app-pub-3940256099942544/2247696110'; // Test ID for Native Advanced
+      if (const bool.fromEnvironment('dart.vm.product')) {
+        return 'ca-app-pub-9599202807094843/5954429940'; // Production ID for Native
+      }
+      return 'ca-app-pub-3940256099942544/2247696110'; // Test ID for Native
     } else if (Platform.isIOS) {
       return 'ca-app-pub-3940256099942544/3986624511'; // Test ID for iOS
     }
@@ -21,6 +24,9 @@ class AdHelper {
 
   static String get rewardedAdUnitId {
     if (Platform.isAndroid) {
+      if (const bool.fromEnvironment('dart.vm.product')) {
+        return 'ca-app-pub-9599202807094843/8759544928'; // Production ID for Rewarded
+      }
       return 'ca-app-pub-3940256099942544/5224354917'; // Test ID for Rewarded
     } else if (Platform.isIOS) {
       return 'ca-app-pub-3940256099942544/1712485313'; // Test ID for iOS Rewarded

@@ -94,7 +94,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get proUser => 'PRO Kullanıcısısınız!';
 
   @override
-  String get getPro => 'PRO Özelliklerini Etkinleştir (Beta)';
+  String get getPro => 'PRO Alın';
 
   @override
   String get oneTimePayment => '';

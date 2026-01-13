@@ -94,7 +94,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get proUser => 'Bạn là người dùng PRO!';
 
   @override
-  String get getPro => 'Kích hoạt tính năng PRO (Beta)';
+  String get getPro => 'Nhận PRO';
 
   @override
   String get oneTimePayment => '';

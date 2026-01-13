@@ -94,7 +94,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get proUser => 'Anda Pengguna PRO!';
 
   @override
-  String get getPro => 'Aktifkan Fitur PRO (Beta)';
+  String get getPro => 'Dapatkan PRO';
 
   @override
   String get oneTimePayment => '';

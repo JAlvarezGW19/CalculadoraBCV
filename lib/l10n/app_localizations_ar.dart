@@ -94,7 +94,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get proUser => 'أنت مستخدم PRO!';
 
   @override
-  String get getPro => 'تفعيل ميزات PRO (تجريبي)';
+  String get getPro => 'احصل على PRO';
 
   @override
   String get oneTimePayment => '';

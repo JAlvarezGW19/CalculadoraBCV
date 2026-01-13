@@ -295,7 +295,7 @@ abstract class AppLocalizations {
   /// No description provided for @getPro.
   ///
   /// In es, this message translates to:
-  /// **'Activar Funciones PRO (Beta)'**
+  /// **'Obtener PRO'**
   String get getPro;
 
   /// No description provided for @oneTimePayment.

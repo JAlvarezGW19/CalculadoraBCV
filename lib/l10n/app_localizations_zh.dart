@@ -94,7 +94,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get proUser => '您是 PRO 用户！';
 
   @override
-  String get getPro => '激活 PRO 功能 (测试版)';
+  String get getPro => '获取 PRO';
 
   @override
   String get oneTimePayment => '';

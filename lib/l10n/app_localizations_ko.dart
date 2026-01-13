@@ -94,7 +94,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get proUser => '당신은 PRO 사용자입니다!';
 
   @override
-  String get getPro => 'PRO 기능 활성화 (베타)';
+  String get getPro => 'PRO 받기';
 
   @override
   String get oneTimePayment => '';

@@ -94,7 +94,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get proUser => 'आप एक PRO उपयोगकर्ता हैं!';
 
   @override
-  String get getPro => 'PRO सुविधाएँ सक्रिय करें (बीटा)';
+  String get getPro => 'PRO प्राप्त करें';
 
   @override
   String get oneTimePayment => '';

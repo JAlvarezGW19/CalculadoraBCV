@@ -94,7 +94,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get proUser => 'あなたはPROユーザーです！';
 
   @override
-  String get getPro => 'PRO機能を有効化（ベータ）';
+  String get getPro => 'PROを入手';
 
   @override
   String get oneTimePayment => '';

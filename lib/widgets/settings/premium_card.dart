@@ -118,7 +118,9 @@ class PremiumCard extends StatelessWidget {
                       ),
                     )
                   : Text(
-                      l10n.getPro, // Removed price display
+                      products.isNotEmpty
+                          ? "${l10n.getPro} - ${products.first.price}"
+                          : l10n.getPro,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

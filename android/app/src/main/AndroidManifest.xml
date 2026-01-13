@@ -34,7 +34,7 @@
             android:value="ocr"/>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:value="ca-app-pub-9599202807094843~3439947242"/>
         <!-- Home Widget Provider (Standard 2x2) -->
         <receiver
             android:name=".HomeWidgetProvider"
