@@ -1,7 +1,7 @@
 name: calculadora_bcv
 description: "Calculadora de tasas del BCV, conversiones, historial y escáner de precios."
 publish_to: 'none'
-version: 1.0.15+15
+version: 1.0.16+16
 
 environment:
   sdk: ^3.10.4
@@ -46,21 +46,21 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icon/Icono.png"
-  adaptive_icon_background: "#0A192F"
-  adaptive_icon_foreground: "assets/icon/Icono.png"
+  image_path: "assets/icon/iconoBCV5.png"
+  adaptive_icon_background: "#c9cac7"
+  adaptive_icon_foreground: "assets/icon/iconoBCV5.png"
   min_sdk_android: 21
   web:
     generate: true
-    image_path: "assets/icon/Icono.png"
-    background_color: "#0A192F"
-    theme_color: "#0A192F"
+    image_path: "assets/icon/iconoBCV5.png"
+    background_color: "#c9cac7"
+    theme_color: "#c9cac7"
 
 flutter_native_splash:
   color: "#0A192F"
-  image: "assets/icon/icono-rbg.png"
+  image: "assets/splash/iconoBCV5.png"
   android_12:
-    image: "assets/icon/icono-rbg.png"
+    image: "assets/splash/iconoBCV5.png"
     icon_background_color: "#0A192F"
 
 flutter:
