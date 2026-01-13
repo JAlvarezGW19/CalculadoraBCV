@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
 import '../providers/iap_provider.dart';
@@ -60,62 +61,69 @@ class SettingsScreen extends ConsumerWidget {
               if (iapState.isPremium) ...[
                 const PremiumActiveCard(),
                 const SizedBox(height: 8),
-                Center(
-                  child: TextButton(
-                    onPressed: () async {
-                      // Show confirmation dialog
-                      final confirm = await showDialog<bool>(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          backgroundColor: AppTheme.cardBackground,
-                          title: Text(
-                            l10n.deactivateProTitle,
-                            style: const TextStyle(color: AppTheme.textPrimary),
-                          ),
-                          content: Text(
-                            l10n.deactivateProMessage,
-                            style: const TextStyle(color: AppTheme.textSubtle),
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, false),
-                              child: Text(l10n.cancel),
-                            ),
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, true),
-                              child: Text(
-                                l10n.deactivateProTitle,
-                                style: const TextStyle(color: Colors.redAccent),
+                if (kDebugMode)
+                  Center(
+                    child: TextButton(
+                      onPressed: () async {
+                        // Show confirmation dialog
+                        final confirm = await showDialog<bool>(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            backgroundColor: AppTheme.cardBackground,
+                            title: Text(
+                              l10n.deactivateProTitle,
+                              style: const TextStyle(
+                                color: AppTheme.textPrimary,
                               ),
                             ),
-                          ],
-                        ),
-                      );
-
-                      if (confirm == true) {
-                        final prefs = await SharedPreferences.getInstance();
-                        await prefs.setBool('is_premium', false);
-                        // Show message
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(l10n.deactivateProSuccess),
-                              duration: const Duration(seconds: 3),
+                            content: Text(
+                              l10n.deactivateProMessage,
+                              style: const TextStyle(
+                                color: AppTheme.textSubtle,
+                              ),
                             ),
-                          );
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, false),
+                                child: Text(l10n.cancel),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, true),
+                                child: Text(
+                                  l10n.deactivateProTitle,
+                                  style: const TextStyle(
+                                    color: Colors.redAccent,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+
+                        if (confirm == true) {
+                          final prefs = await SharedPreferences.getInstance();
+                          await prefs.setBool('is_premium', false);
+                          // Show message
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(l10n.deactivateProSuccess),
+                                duration: const Duration(seconds: 3),
+                              ),
+                            );
+                          }
                         }
-                      }
-                    },
-                    child: Text(
-                      l10n.deactivateProTest,
-                      style: const TextStyle(
-                        color: AppTheme.textSubtle,
-                        decoration: TextDecoration.underline,
-                        fontSize: 12,
+                      },
+                      child: Text(
+                        l10n.deactivateProTest,
+                        style: const TextStyle(
+                          color: AppTheme.textSubtle,
+                          decoration: TextDecoration.underline,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                   ),
-                ),
               ],
 
               const SizedBox(height: 32),

@@ -13,6 +13,13 @@ class PremiumBenefitsDialog extends ConsumerWidget {
     final iapState = ref.watch(iapProvider);
     final iapNotifier = ref.read(iapProvider.notifier);
 
+    // Automatically close the dialog if the user becomes Premium
+    ref.listen(iapProvider, (previous, next) {
+      if ((previous?.isPremium == false) && next.isPremium) {
+        Navigator.of(context).pop();
+      }
+    });
+
     // Find the product
     final product = iapState.products.isNotEmpty
         ? iapState.products.first

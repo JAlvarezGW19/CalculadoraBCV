@@ -132,10 +132,14 @@ class IapNotifier extends Notifier<IapState> {
     state = state.copyWith(isLoading: true, error: null);
 
     try {
-      final ProductDetails productDetails = state.products.firstWhere(
-        (product) => product.id == _premiumId,
-        orElse: () => state.products.first,
-      );
+      ProductDetails productDetails;
+      try {
+        productDetails = state.products.firstWhere(
+          (product) => product.id == _premiumId,
+        );
+      } catch (_) {
+        productDetails = state.products.first;
+      }
 
       final PurchaseParam purchaseParam = PurchaseParam(
         productDetails: productDetails,
