@@ -1,5 +1,5 @@
 name: calculadora_bcv
-description: "A new Flutter project."
+description: "Calculadora de tasas del BCV, conversiones, historial y escáner de precios."
 publish_to: 'none'
 version: 1.0.14+14
 
