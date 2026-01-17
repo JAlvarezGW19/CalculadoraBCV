@@ -14,7 +14,7 @@ class NotificationService {
 
   Future<void> init() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/launcher_icon');
+        AndroidInitializationSettings('@drawable/ic_stat_dollar');
 
     const DarwinInitializationSettings initializationSettingsDarwin =
         DarwinInitializationSettings(
@@ -63,7 +63,7 @@ class NotificationService {
           channelDescription: 'Notificaciones sobre nuevas tasas del BCV',
           importance: Importance.max,
           priority: Priority.high,
-          icon: '@mipmap/launcher_icon',
+          icon: '@drawable/ic_stat_dollar',
         );
 
     const NotificationDetails notificationDetails = NotificationDetails(

@@ -355,7 +355,7 @@ abstract class AppLocalizations {
   /// No description provided for @benefitSpeedDesc.
   ///
   /// In es, this message translates to:
-  /// **'Navegación más fluida y menor consumo de batería.'**
+  /// **'Navegación más fluida.'**
   String get benefitSpeedDesc;
 
   /// No description provided for @benefitSupport.

@@ -124,7 +124,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get benefitSpeed => '极速体验';
 
   @override
-  String get benefitSpeedDesc => '更流畅的导航和更低的电池消耗。';
+  String get benefitSpeedDesc => '更流畅的导航。';
 
   @override
   String get benefitSupport => '支持项目';

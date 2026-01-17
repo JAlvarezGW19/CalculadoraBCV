@@ -126,7 +126,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get benefitSpeed => 'سرعة قصوى';
 
   @override
-  String get benefitSpeedDesc => 'تصفح أكثر سلاسة واستهلاك أقل للبطارية.';
+  String get benefitSpeedDesc => 'تصفح أكثر سلاسة.';
 
   @override
   String get benefitSupport => 'ادعم المشروع';

@@ -126,8 +126,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get benefitSpeed => 'Maximale Geschwindigkeit';
 
   @override
-  String get benefitSpeedDesc =>
-      'Flüssigere Navigation und weniger Batterieverbrauch.';
+  String get benefitSpeedDesc => 'Flüssigere Navigation.';
 
   @override
   String get benefitSupport => 'Projekt unterstützen';

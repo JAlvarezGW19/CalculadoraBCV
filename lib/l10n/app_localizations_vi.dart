@@ -127,8 +127,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get benefitSpeed => 'Tốc độ tối đa';
 
   @override
-  String get benefitSpeedDesc =>
-      'Điều hướng mượt mà hơn và tiêu thụ ít pin hơn.';
+  String get benefitSpeedDesc => 'Điều hướng mượt mà hơn.';
 
   @override
   String get benefitSupport => 'Hỗ trợ dự án';

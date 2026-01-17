@@ -124,7 +124,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get benefitSpeed => '最高速度';
 
   @override
-  String get benefitSpeedDesc => 'よりスムーズな操作とバッテリー消費の削減。';
+  String get benefitSpeedDesc => 'よりスムーズな操作。';
 
   @override
   String get benefitSupport => 'プロジェクトを支援';

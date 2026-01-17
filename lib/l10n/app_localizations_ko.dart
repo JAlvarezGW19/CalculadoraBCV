@@ -124,7 +124,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get benefitSpeed => '최고 속도';
 
   @override
-  String get benefitSpeedDesc => '더 부드러운 탐색과 배터리 소모 감소.';
+  String get benefitSpeedDesc => '더 부드러운 탐색.';
 
   @override
   String get benefitSupport => '프로젝트 후원';

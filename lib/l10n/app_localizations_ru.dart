@@ -125,7 +125,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get benefitSpeed => 'Макс. скорость';
 
   @override
-  String get benefitSpeedDesc => 'Плавная навигация и экономия заряда.';
+  String get benefitSpeedDesc => 'Плавная навигация.';
 
   @override
   String get benefitSupport => 'Поддержать проект';

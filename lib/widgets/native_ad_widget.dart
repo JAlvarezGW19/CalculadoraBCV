@@ -19,15 +19,10 @@ class NativeAdWidget extends ConsumerStatefulWidget {
 
 class _NativeAdWidgetState extends ConsumerState<NativeAdWidget>
     with SingleTickerProviderStateMixin {
+  Timer? _refreshTimer;
   NativeAd? _nativeAd;
+  NativeAd? _pendingAd; // For preloading the next ad
   bool _isAdLoaded = false;
-  Timer? _debounceTimer;
-
-  // Track previous state to detect specific changes
-  CurrencyType? _prevCurrency;
-  RateDateMode? _prevDateMode;
-  String? _prevCustomRateId;
-
   bool _adFailed = false;
 
   late AnimationController _animationController;
@@ -46,49 +41,69 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget>
       end: 0.6,
     ).animate(_animationController);
 
-    // Load immediately (using microtask to ensuring context/ref availability if needed,
-    // though for ad request usually context is for UI params which we handle)
-    // We move the load trigger here to be as fast as possible.
+    // Initial load
     if (widget.assignedTabIndex == 0) {
-      Future.microtask(() => _loadAd());
+      Future.microtask(() => _loadInitialAd());
     }
+
+    // Setup periodic refresh (60s)
+    _startRefreshTimer();
   }
 
   @override
   void dispose() {
-    _debounceTimer?.cancel();
+    _refreshTimer?.cancel();
     _nativeAd?.dispose();
+    _pendingAd?.dispose(); // Important: Dispose any loading ad
     _animationController.dispose();
     super.dispose();
   }
 
-  void _loadAd() {
-    _nativeAd?.dispose();
-    _nativeAd = null;
-    if (mounted) {
-      setState(() {
-        _isAdLoaded = false;
-        _adFailed = false;
-      });
-    }
+  void _startRefreshTimer() {
+    _refreshTimer?.cancel();
+    // User requested rotation every 60s.
+    _refreshTimer = Timer.periodic(const Duration(seconds: 60), (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
+      // Only refresh if this tab is actually visible to the user
+      final activeTab = ref.read(activeTabProvider);
+      if (activeTab == widget.assignedTabIndex) {
+        _preloadAndSwapAd();
+      }
+    });
+  }
 
+  void _loadInitialAd() {
     if (!_shouldShowAd()) return;
+    _preloadAndSwapAd(isInitial: true);
+  }
 
-    // Responsive logic (Calculate inside loadAd to apply correct template style)
-    // Tablets usually have a shortest side >= 600
-    // If context is somehow invalid (rare here due to microtask), default to phone.
+  /// Loads a new ad in the background and swaps it only when ready.
+  void _preloadAndSwapAd({bool isInitial = false}) {
+    // If we are already loading one, don't start another
+    if (_pendingAd != null) return;
+
+    // Helper to get styled ad
+    final newAd = _createNativeAd();
+
+    _pendingAd = newAd;
+
+    newAd.load();
+  }
+
+  NativeAd _createNativeAd() {
+    // Responsive sizing logic
     bool isTablet = false;
     try {
       isTablet = MediaQuery.of(context).size.shortestSide >= 600;
     } catch (_) {}
 
-    // On phones: ~118 is safe and compact.
-    // On tablets: 200 ensures no clipping errors.
     final double cornerRadius = isTablet ? 12.0 : 20.0;
 
-    _nativeAd = NativeAd(
+    return NativeAd(
       adUnitId: AdHelper.nativeAdUnitId,
-      // No factoryId -> Uses standard Native Template
       nativeTemplateStyle: NativeTemplateStyle(
         templateType: TemplateType.small,
         mainBackgroundColor: AppTheme.cardBackground,
@@ -121,25 +136,43 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget>
       request: const AdRequest(),
       listener: NativeAdListener(
         onAdLoaded: (ad) {
-          if (mounted) {
-            setState(() {
-              _isAdLoaded = true;
-              _adFailed = false;
-            });
+          if (!mounted) {
+            ad.dispose();
+            return;
           }
+          setState(() {
+            // SWAP LOGIC
+            // 1. Dispose old ad if exists
+            _nativeAd?.dispose();
+
+            // 2. Assign new ad
+            _nativeAd = ad as NativeAd;
+            _pendingAd = null; // Clear pending flag
+
+            _isAdLoaded = true;
+            _adFailed = false;
+          });
         },
         onAdFailedToLoad: (ad, error) {
-          ad.dispose();
           debugPrint('Ad failed to load: $error');
+          ad.dispose(); // Always dispose failed ads
           if (mounted) {
-            setState(() {
-              _isAdLoaded = false;
-              _adFailed = true;
-            });
+            // Only update UI state if we don't have ANY ad to show
+            // If we have an existing ad, we keep showing it (Graceful fallback)
+            if (_nativeAd == null) {
+              setState(() {
+                _pendingAd = null;
+                _adFailed = true;
+                _isAdLoaded = false;
+              });
+            } else {
+              // Silent failure on refresh - just clear pending
+              _pendingAd = null;
+            }
           }
         },
       ),
-    )..load();
+    );
   }
 
   bool _shouldShowAd() {
@@ -148,8 +181,6 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget>
 
     if (state.currency == CurrencyType.custom) {
       if (customRates.isEmpty) {
-        // Only hide on Home Screen (index 0) where the "Create Rate" UI takes space.
-        // On Calculator (index 1), layout is static, so keep Ad visible.
         if (widget.assignedTabIndex == 0) {
           return false;
         }
@@ -158,101 +189,63 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget>
     return true;
   }
 
-  void _triggerRefresh() {
-    _debounceTimer?.cancel();
-    _debounceTimer = Timer(const Duration(milliseconds: 500), () {
-      if (mounted) _loadAd();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    // Watch providers for immediate reactivity to avoid "flash" of ad
+    // Watch providers for immediate reactivity
     final conversionState = ref.watch(conversionProvider);
     final customRates = ref.watch(customRatesProvider);
 
-    // Immediate visibility check: Hide if Custom Currency AND No Custom Rates
+    // Immediate visibility check
     if (widget.assignedTabIndex == 0 &&
         conversionState.currency == CurrencyType.custom &&
         customRates.isEmpty) {
+      // Dispose if hidden by logic
+      if (_nativeAd != null) {
+        _nativeAd?.dispose();
+        _nativeAd = null;
+        _isAdLoaded = false;
+      }
       return const SizedBox.shrink();
-    }
-
-    // Responsive Height calculation for the Container
-    final isTablet = MediaQuery.of(context).size.shortestSide >= 600;
-    final double adHeight = isTablet ? 200.0 : 118.0;
-
-    // Listen to provider changes for triggers
-    ref.listen(conversionProvider, (prev, next) {
-      bool shouldRefresh = false;
-
-      // 1. Currency Toggle
-      if (next.currency != _prevCurrency) {
-        shouldRefresh = true;
-        _prevCurrency = next.currency;
-      }
-      // 2. Date Toggle
-      if (next.dateMode != _prevDateMode) {
-        shouldRefresh = true;
-        _prevDateMode = next.dateMode;
-      }
-      // Custom Rate Change
-      if (next.selectedCustomRateId != _prevCustomRateId) {
-        shouldRefresh = true;
-        _prevCustomRateId = next.selectedCustomRateId;
-      }
-
-      if (shouldRefresh) {
-        _triggerRefresh();
-      }
-    });
-
-    // Check visibility logic again for render
-    if (!_shouldShowAd()) {
-      return const SizedBox.shrink(); // Collapsed if logic says hide
     }
 
     // Check Premium State
     final iapState = ref.watch(iapProvider);
     if (iapState.isPremium) {
-      return const SizedBox.shrink();
-    }
-
-    // Check if this tab is active
-    final activeTab = ref.watch(activeTabProvider);
-    if (activeTab != widget.assignedTabIndex) {
-      // If not active tab, dispose ad to save resources and run only one instance
-      _nativeAd?.dispose();
-      _nativeAd = null;
-      _isAdLoaded = false;
-      return const SizedBox.shrink();
-    } else {
-      // Active tab, load if not loaded
-      if (_nativeAd == null && !_adFailed) {
-        Future.microtask(() => _loadAd());
+      if (_nativeAd != null) {
+        _nativeAd?.dispose();
+        _nativeAd = null;
+        _isAdLoaded = false;
       }
+      return const SizedBox.shrink();
     }
 
     final l10n = AppLocalizations.of(context);
 
-    // If Ad Failed, show nothing (collapsed)
-    if (_adFailed) {
+    // Responsive Height
+    final isTablet = MediaQuery.of(context).size.shortestSide >= 600;
+    final double adHeight = isTablet ? 200.0 : 118.0;
+
+    // If Ad Failed AND we have no fallback, collapse (or show empty container?)
+    // Decision: Collapse to avoid ugly space.
+    if (_adFailed && _nativeAd == null) {
       return const SizedBox.shrink();
     }
 
-    // If Ad is NOT loaded yet, Show Skeleton (pulsing placeholder)
+    // If not loaded and no ad, show Skeleton
     if (!_isAdLoaded || _nativeAd == null) {
+      // If we are waiting for timer or initial load
+      // Ensure we trigger load if safe
+      if (_nativeAd == null && _pendingAd == null && !_adFailed) {
+        Future.microtask(() => _loadInitialAd());
+      }
       return _buildSkeleton(context, adHeight);
     }
 
-    // Ad Loaded: Show Native Ad
-
-    // Ad Loaded: Show Native Ad (height responsive) + Remove Ads link
+    // Ad Loaded
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        // Spacer to push ad down if needed
         const SizedBox(height: 8),
         Padding(
           padding: const EdgeInsets.only(bottom: 4, right: 8),
@@ -273,12 +266,12 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget>
             ),
           ),
         ),
+        // Ad Container with fixed height for stability
         SizedBox(
           height: adHeight,
           width: double.infinity,
           child: AdWidget(ad: _nativeAd!),
         ),
-        // Bottom margin
         const SizedBox(height: 0),
       ],
     );

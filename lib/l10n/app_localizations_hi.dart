@@ -126,7 +126,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get benefitSpeed => 'अधिकतम गति';
 
   @override
-  String get benefitSpeedDesc => 'बेहतर नेविगेशन और कम बैटरी खपत।';
+  String get benefitSpeedDesc => 'बेहतर नेविगेशन।';
 
   @override
   String get benefitSupport => 'परियोजना का समर्थन करें';

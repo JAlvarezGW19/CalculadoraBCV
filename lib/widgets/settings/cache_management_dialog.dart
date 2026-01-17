@@ -46,6 +46,12 @@ class CacheManagementDialog extends ConsumerWidget {
                   SnackBar(
                     content: Text(l10n.ratesUpdatedSuccess),
                     backgroundColor: Colors.green,
+                    behavior: SnackBarBehavior.floating,
+                    margin: const EdgeInsets.only(
+                      bottom: 10,
+                      left: 20,
+                      right: 20,
+                    ),
                   ),
                 );
               } catch (e) {
@@ -53,6 +59,12 @@ class CacheManagementDialog extends ConsumerWidget {
                   SnackBar(
                     content: Text("Error: $e"),
                     backgroundColor: Colors.red,
+                    behavior: SnackBarBehavior.floating,
+                    margin: const EdgeInsets.only(
+                      bottom: 10,
+                      left: 20,
+                      right: 20,
+                    ),
                   ),
                 );
               }
@@ -74,9 +86,17 @@ class CacheManagementDialog extends ConsumerWidget {
               await ref.read(apiServiceProvider).clearCache();
               ref.invalidate(ratesProvider); // Force UI update
               if (!context.mounted) return;
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(l10n.cacheCleared)));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(l10n.cacheCleared),
+                  behavior: SnackBarBehavior.floating,
+                  margin: const EdgeInsets.only(
+                    bottom: 10,
+                    left: 20,
+                    right: 20,
+                  ),
+                ),
+              );
             },
           ),
         ],

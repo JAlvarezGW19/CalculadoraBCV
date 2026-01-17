@@ -5,6 +5,8 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:in_app_update/in_app_update.dart';
+import 'dart:io' show Platform;
 
 import '../theme/app_theme.dart';
 import '../providers/bcv_provider.dart';
@@ -15,7 +17,7 @@ import '../services/notification_service.dart';
 import '../services/background_service.dart';
 import '../utils/tutorial_keys.dart';
 
-import '../widgets/home/scan_floating_button.dart'; // Extracted FAB
+import '../widgets/home/scan_floating_button.dart';
 import '../providers/connectivity_provider.dart';
 
 import 'arithmetic_calculator_screen.dart';
@@ -40,6 +42,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   void initState() {
     super.initState();
     _currentIndex = 0;
+
+    // Check for Immediate Updates (Mission Critical)
+    _checkForUpdate();
+
     _initServices();
 
     // Check for rate updates every minute while app is open
@@ -53,6 +59,22 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         _checkUpdates();
       }
     });
+  }
+
+  Future<void> _checkForUpdate() async {
+    // Only check on Android as in_app_update is Android only
+    // If you plan to support iOS later, this guard is safe.
+    if (!Platform.isAndroid) return;
+
+    try {
+      final updateInfo = await InAppUpdate.checkForUpdate();
+      if (updateInfo.updateAvailability == UpdateAvailability.updateAvailable) {
+        // Force Immediate Update
+        await InAppUpdate.performImmediateUpdate();
+      }
+    } catch (e) {
+      debugPrint("Failed to check for update: $e");
+    }
   }
 
   Future<void> _checkTutorial(BuildContext context) async {
@@ -206,6 +228,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               behavior: SnackBarBehavior.floating,
+              margin: const EdgeInsets.only(bottom: 70, left: 20, right: 20),
               content: Text(l10n.noInternetConnection),
               backgroundColor: Colors.redAccent,
               duration: const Duration(seconds: 4),
@@ -219,6 +242,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               behavior: SnackBarBehavior.floating,
+              margin: const EdgeInsets.only(bottom: 70, left: 20, right: 20),
               content: Text(l10n.internetRestored),
               backgroundColor: Colors.green,
               duration: const Duration(seconds: 3),
