@@ -19,7 +19,6 @@ class NativeAdWidget extends ConsumerStatefulWidget {
 
 class _NativeAdWidgetState extends ConsumerState<NativeAdWidget>
     with SingleTickerProviderStateMixin {
-  Timer? _refreshTimer;
   NativeAd? _nativeAd;
   NativeAd? _pendingAd; // For preloading the next ad
   bool _isAdLoaded = false;
@@ -45,34 +44,14 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget>
     if (widget.assignedTabIndex == 0) {
       Future.microtask(() => _loadInitialAd());
     }
-
-    // Setup periodic refresh (60s)
-    _startRefreshTimer();
   }
 
   @override
   void dispose() {
-    _refreshTimer?.cancel();
     _nativeAd?.dispose();
     _pendingAd?.dispose(); // Important: Dispose any loading ad
     _animationController.dispose();
     super.dispose();
-  }
-
-  void _startRefreshTimer() {
-    _refreshTimer?.cancel();
-    // User requested rotation every 60s.
-    _refreshTimer = Timer.periodic(const Duration(seconds: 60), (timer) {
-      if (!mounted) {
-        timer.cancel();
-        return;
-      }
-      // Only refresh if this tab is actually visible to the user
-      final activeTab = ref.read(activeTabProvider);
-      if (activeTab == widget.assignedTabIndex) {
-        _preloadAndSwapAd();
-      }
-    });
   }
 
   void _loadInitialAd() {
@@ -199,12 +178,9 @@ class _NativeAdWidgetState extends ConsumerState<NativeAdWidget>
     if (widget.assignedTabIndex == 0 &&
         conversionState.currency == CurrencyType.custom &&
         customRates.isEmpty) {
-      // Dispose if hidden by logic
-      if (_nativeAd != null) {
-        _nativeAd?.dispose();
-        _nativeAd = null;
-        _isAdLoaded = false;
-      }
+      // Hide the ad but DO NOT dispose it.
+      // We want to keep the ad instance alive so it shows immediately
+      // when the user switches back to other tabs.
       return const SizedBox.shrink();
     }
 
