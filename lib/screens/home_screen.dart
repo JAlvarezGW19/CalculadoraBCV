@@ -10,7 +10,6 @@ import 'dart:io' show Platform;
 
 import '../theme/app_theme.dart';
 import '../providers/bcv_provider.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import '../widgets/bottom_nav_item.dart';
 import '../services/notification_service.dart';
@@ -62,19 +61,39 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Future<void> _checkForUpdate() async {
-    // Only check on Android as in_app_update is Android only
-    // If you plan to support iOS later, this guard is safe.
     if (!Platform.isAndroid) return;
 
     try {
       final updateInfo = await InAppUpdate.checkForUpdate();
       if (updateInfo.updateAvailability == UpdateAvailability.updateAvailable) {
-        // Force Immediate Update
-        await InAppUpdate.performImmediateUpdate();
+        // Use Flexible Update (Background download)
+        await InAppUpdate.startFlexibleUpdate();
+      }
+      // Check if already downloaded (from previous session or just finished)
+      if (updateInfo.installStatus == InstallStatus.downloaded) {
+        _showInstallUpdateSnackbar();
       }
     } catch (e) {
       debugPrint("Failed to check for update: $e");
     }
+  }
+
+  void _showInstallUpdateSnackbar() {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text("Actualización lista para instalar."),
+        backgroundColor: AppTheme.cardBackground,
+        duration: const Duration(days: 1), // Keep visible until interaction
+        action: SnackBarAction(
+          label: "REINICIAR",
+          textColor: AppTheme.textAccent,
+          onPressed: () {
+            InAppUpdate.completeFlexibleUpdate();
+          },
+        ),
+      ),
+    );
   }
 
   Future<void> _checkTutorial(BuildContext context) async {
@@ -132,7 +151,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     // 1. Check for standard updates (Silent poller)
     ref.read(ratesProvider.notifier).checkForUpdates();
 
-    // 2. Check for Date Change (Midnight Rollover)
+    // 2. Check for App Update Status (Flexible)
+    _checkForUpdateStatus();
+
+    // 3. Check for Date Change (Midnight Rollover)
     final ratesState = ref.read(ratesProvider);
     if (ratesState.hasValue) {
       final rates = ratesState.value!;
@@ -160,9 +182,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     }
   }
 
+  Future<void> _checkForUpdateStatus() async {
+    if (!Platform.isAndroid) return;
+    try {
+      final info = await InAppUpdate.checkForUpdate();
+      if (info.installStatus == InstallStatus.downloaded) {
+        _showInstallUpdateSnackbar();
+      }
+    } catch (_) {}
+  }
+
   Future<void> _initServices() async {
     // Fire and forget heavy initializations AFTER UI is up
-    MobileAds.instance.initialize();
     initializeDateFormatting('es', null);
 
     // Initialize Notifications
@@ -228,7 +259,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               behavior: SnackBarBehavior.floating,
-              margin: const EdgeInsets.only(bottom: 70, left: 20, right: 20),
+              margin: const EdgeInsets.only(bottom: 10, left: 20, right: 20),
               content: Text(l10n.noInternetConnection),
               backgroundColor: Colors.redAccent,
               duration: const Duration(seconds: 4),
@@ -242,7 +273,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               behavior: SnackBarBehavior.floating,
-              margin: const EdgeInsets.only(bottom: 70, left: 20, right: 20),
+              margin: const EdgeInsets.only(bottom: 10, left: 20, right: 20),
               content: Text(l10n.internetRestored),
               backgroundColor: Colors.green,
               duration: const Duration(seconds: 3),

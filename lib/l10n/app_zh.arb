@@ -126,8 +126,7 @@
   "rateValueLabel": "汇率 (玻利瓦尔)",
   "save": "保存",
   "delete": "删除",
-  "editRate": "编辑汇率"
-,
+  "editRate": "编辑汇率",
   "tutorialOneTitle": "货币和日期",
   "tutorialOneDesc": "在美元、欧元和自定义汇率之间切换。您还可以查看今天和明天的汇率。",
   "tutorialTwoTitle": "转换顺序",
@@ -137,6 +136,12 @@
   "tutorialSkip": "跳过",
   "tutorialNext": "下一步",
   "tutorialFinish": "完成",
-  "customRatePlaceholder": "在这里，您可以添加自定义汇率，如 Zelle、Binance 或汇款。我们将自动计算与 BCV 的差额。"
-
+  "customRatePlaceholder": "在这里，您可以添加自定义汇率，如 Zelle、Binance 或汇款。我们将自动计算与 BCV 的差额。",
+  "shareApp": "分享应用",
+  "shareAppSubtitle": "推荐给你的朋友",
+  "rateApp": "评价应用",
+  "rateAppSubtitle": "用5星支持我们",
+  "moreApps": "更多应用",
+  "moreAppsSubtitle": "发现其他实用工具",
+  "shareMessage": "你好！我推荐BCV计算器。它超级快速且精准。在此下载：https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv"
 }

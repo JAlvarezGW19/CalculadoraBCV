@@ -70,13 +70,7 @@ class PremiumBenefitsDialog extends ConsumerWidget {
                     l10n.benefitAdsDesc,
                   ),
                   const SizedBox(height: 16),
-                  _buildBenefitRow(
-                    context,
-                    Icons.picture_as_pdf,
-                    l10n.benefitPdf,
-                    l10n.benefitPdfDesc,
-                  ),
-                  const SizedBox(height: 16),
+
                   _buildBenefitRow(
                     context,
                     Icons.bolt,

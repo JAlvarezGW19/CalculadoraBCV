@@ -136,5 +136,12 @@
   "tutorialSkip": "Omitir",
   "tutorialNext": "Siguiente",
   "tutorialFinish": "Finalizar",
-  "customRatePlaceholder": "Aquí puedes agregar tasas personalizadas como Zelle, Binance o Remesas. Nosotros calcularemos la diferencia con el BCV automáticamente."
+  "customRatePlaceholder": "Aquí puedes agregar tasas personalizadas como Zelle, Binance o Remesas. Nosotros calcularemos la diferencia con el BCV automáticamente.",
+  "shareApp": "Compartir App",
+  "shareAppSubtitle": "Recomiéndanos a tus amigos",
+  "rateApp": "Calificar App",
+  "rateAppSubtitle": "Apóyanos con 5 estrellas",
+  "moreApps": "Más de mis Apps",
+  "moreAppsSubtitle": "Conoce otras herramientas útiles",
+  "shareMessage": "¡Hola! Te recomiendo la Calculadora BCV. Es súper rápida y precisa. Descárgala aquí: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv"
 }

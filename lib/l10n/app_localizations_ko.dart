@@ -424,4 +424,26 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get customRatePlaceholder =>
       '여기에서 Zelle, Binance 또는 송금과 같은 사용자 정의 환율을 추가할 수 있습니다. BCV와의 차액을 자동으로 계산합니다.';
+
+  @override
+  String get shareApp => '앱 공유';
+
+  @override
+  String get shareAppSubtitle => '친구에게 추천하기';
+
+  @override
+  String get rateApp => '앱 평가';
+
+  @override
+  String get rateAppSubtitle => '별 5개로 응원해주세요';
+
+  @override
+  String get moreApps => '더 많은 앱';
+
+  @override
+  String get moreAppsSubtitle => '다른 유용한 도구 발견하기';
+
+  @override
+  String get shareMessage =>
+      '안녕하세요! BCV 계산기를 추천합니다. 정말 빠르고 정확합니다. 여기서 다운로드하세요: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
 }

@@ -126,8 +126,7 @@
   "rateValueLabel": "Tỷ giá (Bolivar)",
   "save": "Lưu",
   "delete": "Xóa",
-  "editRate": "Sửa tỷ giá"
-,
+  "editRate": "Sửa tỷ giá",
   "tutorialOneTitle": "Tiền tệ và Ngày",
   "tutorialOneDesc": "Chuyển đổi giữa Đô la, Euro và tỷ giá tùy chỉnh. Bạn cũng có thể kiểm tra tỷ giá Hôm nay và Ngày mai.",
   "tutorialTwoTitle": "Thứ tự Chuyển đổi",
@@ -137,6 +136,12 @@
   "tutorialSkip": "Bỏ qua",
   "tutorialNext": "Tiếp",
   "tutorialFinish": "Hoàn tất",
-  "customRatePlaceholder": "Tại đây, bạn có thể thêm tỷ giá tùy chỉnh như Zelle, Binance hoặc Chuyển tiền. Chúng tôi sẽ tự động tính toán chênh lệch với BCV."
-
+  "customRatePlaceholder": "Tại đây, bạn có thể thêm tỷ giá tùy chỉnh như Zelle, Binance hoặc Chuyển tiền. Chúng tôi sẽ tự động tính toán chênh lệch với BCV.",
+  "shareApp": "Chia sẻ ứng dụng",
+  "shareAppSubtitle": "Giới thiệu cho bạn bè",
+  "rateApp": "Đánh giá ứng dụng",
+  "rateAppSubtitle": "Ủng hộ chúng tôi 5 sao",
+  "moreApps": "Ứng dụng khác",
+  "moreAppsSubtitle": "Khám phá các công cụ hữu ích khác",
+  "shareMessage": "Xin chào! Tôi khuyên dùng Máy tính BCV. Nó siêu nhanh và chính xác. Tải xuống tại đây: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv"
 }

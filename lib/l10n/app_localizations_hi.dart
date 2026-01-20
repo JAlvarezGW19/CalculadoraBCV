@@ -433,4 +433,26 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get customRatePlaceholder =>
       'यहाँ आप Zelle, Binance या प्रेषण जैसी कस्टम दरें जोड़ सकते हैं। हम स्वचालित रूप से BCV के साथ अंतर की गणना करेंगे।';
+
+  @override
+  String get shareApp => 'ऐप शेयर करें';
+
+  @override
+  String get shareAppSubtitle => 'अपने दोस्तों को सुझाव दें';
+
+  @override
+  String get rateApp => 'ऐप को रेट करें';
+
+  @override
+  String get rateAppSubtitle => '5 स्टार्स देकर हमारा समर्थन करें';
+
+  @override
+  String get moreApps => 'मेरे अन्य ऐप्स';
+
+  @override
+  String get moreAppsSubtitle => 'अन्य उपयोगी उपकरण खोजें';
+
+  @override
+  String get shareMessage =>
+      'नमस्ते! मैं BCV कैलकुलेटर की सिफारिश करता हूँ। यह बहुत तेज़ और सटीक है। इसे यहाँ डाउनलोड करें: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
 }

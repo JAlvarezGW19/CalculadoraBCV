@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
 
 import '../providers/history_provider.dart';
-import '../providers/iap_provider.dart';
 import '../providers/bcv_provider.dart'; // For CurrencyType
 import '../services/pdf_export_service.dart';
 import '../theme/app_theme.dart';
-import '../utils/ad_helper.dart';
 
 // Widgets
 import '../widgets/history/chart_card.dart';
@@ -17,7 +13,6 @@ import '../widgets/history/custom_date_range_picker.dart';
 import '../widgets/history/filter_bar.dart';
 import '../widgets/history/history_currency_toggle.dart';
 import '../widgets/history/history_list_view.dart';
-import '../widgets/history/pdf_unlock_dialog.dart';
 import '../widgets/history/stats_card.dart';
 
 class HistoryScreen extends ConsumerStatefulWidget {
@@ -28,8 +23,6 @@ class HistoryScreen extends ConsumerStatefulWidget {
 }
 
 class _HistoryScreenState extends ConsumerState<HistoryScreen> {
-  RewardedAd? _rewardedAd;
-  bool _isPdfUnlocked = false;
   bool _isExportingPdf = false;
 
   @override
@@ -38,96 +31,6 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     Future.microtask(() {
       ref.read(historyProvider.notifier).loadHistory();
     });
-    _checkPdfUnlockStatus();
-    _loadRewardedAd();
-  }
-
-  @override
-  void dispose() {
-    _rewardedAd?.dispose();
-    super.dispose();
-  }
-
-  Future<void> _checkPdfUnlockStatus() async {
-    final prefs = await SharedPreferences.getInstance();
-    final unlockTimeStr = prefs.getString('pdf_export_unlock_time');
-
-    if (unlockTimeStr != null) {
-      final unlockTime = DateTime.parse(unlockTimeStr);
-      final now = DateTime.now();
-
-      // Check if within 24 hours
-      if (now.difference(unlockTime).inHours < 24) {
-        setState(() {
-          _isPdfUnlocked = true;
-        });
-      }
-    }
-  }
-
-  void _loadRewardedAd() {
-    RewardedAd.load(
-      adUnitId: AdHelper.rewardedAdUnitId,
-      request: const AdRequest(),
-      rewardedAdLoadCallback: RewardedAdLoadCallback(
-        onAdLoaded: (ad) {
-          debugPrint('$ad loaded.');
-          _rewardedAd = ad;
-        },
-        onAdFailedToLoad: (LoadAdError error) {
-          debugPrint('RewardedAd failed to load: $error');
-          _rewardedAd = null;
-          // Retry after a short delay
-          Future.delayed(const Duration(seconds: 5), _loadRewardedAd);
-        },
-      ),
-    );
-  }
-
-  void _showRewardedAd() {
-    final l10n = AppLocalizations.of(context)!;
-    if (_rewardedAd == null) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(l10n.adNotReady)));
-      _loadRewardedAd();
-      return;
-    }
-
-    _rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
-      onAdShowedFullScreenContent: (ad) {},
-      onAdDismissedFullScreenContent: (ad) {
-        ad.dispose();
-        _loadRewardedAd();
-      },
-      onAdFailedToShowFullScreenContent: (ad, error) {
-        ad.dispose();
-        _loadRewardedAd();
-      },
-    );
-
-    _rewardedAd!.show(
-      onUserEarnedReward: (AdWithoutView ad, RewardItem reward) async {
-        // Unlock Feature
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString(
-          'pdf_export_unlock_time',
-          DateTime.now().toIso8601String(),
-        );
-
-        setState(() {
-          _isPdfUnlocked = true;
-        });
-
-        if (mounted) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(l10n.featureUnlocked)));
-          // Proceed with export
-          _exportPdf();
-        }
-      },
-    );
   }
 
   Future<void> _selectDateRange() async {
@@ -171,16 +74,6 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     final state = ref.read(historyProvider);
     final l10n = AppLocalizations.of(context)!;
     if (state.data.isEmpty) return;
-
-    final iapState = ref.read(iapProvider);
-
-    if (!iapState.isPremium && !_isPdfUnlocked) {
-      showDialog(
-        context: context,
-        builder: (_) => PdfUnlockDialog(onWatchAd: _showRewardedAd),
-      );
-      return;
-    }
 
     setState(() {
       _isExportingPdf = true;

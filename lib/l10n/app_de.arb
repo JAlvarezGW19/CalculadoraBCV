@@ -126,8 +126,7 @@
   "rateValueLabel": "Kurs (Bolivar)",
   "save": "Speichern",
   "delete": "Löschen",
-  "editRate": "Kurs bearbeiten"
-,
+  "editRate": "Kurs bearbeiten",
   "tutorialOneTitle": "Währungen und Daten",
   "tutorialOneDesc": "Wechseln Sie zwischen Dollar, Euro und benutzerdefinierten Kursen. Sie können auch die Kurse von Heute und Morgen überprüfen.",
   "tutorialTwoTitle": "Umrechnungsreihenfolge",
@@ -137,6 +136,12 @@
   "tutorialSkip": "Überspringen",
   "tutorialNext": "Weiter",
   "tutorialFinish": "Beenden",
-  "customRatePlaceholder": "Hier können Sie benutzerdefinierte Kurse wie Zelle, Binance oder Überweisungen hinzufügen. Wir berechnen automatisch die Differenz zum BCV."
-
+  "customRatePlaceholder": "Hier können Sie benutzerdefinierte Kurse wie Zelle, Binance oder Überweisungen hinzufügen. Wir berechnen automatisch die Differenz zum BCV.",
+  "shareApp": "App teilen",
+  "shareAppSubtitle": "Empfehlen Sie uns weiter",
+  "rateApp": "App bewerten",
+  "rateAppSubtitle": "Unterstützen Sie uns mit 5 Sternen",
+  "moreApps": "Mehr Apps",
+  "moreAppsSubtitle": "Entdecken Sie weitere nützliche Tools",
+  "shareMessage": "Hallo! Ich empfehle den BCV-Rechner. Er ist super schnell und genau. Hier herunterladen: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv"
 }

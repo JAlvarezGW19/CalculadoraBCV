@@ -126,8 +126,7 @@
   "rateValueLabel": "レート (ボリバル)",
   "save": "保存",
   "delete": "削除",
-  "editRate": "レートを編集"
-,
+  "editRate": "レートを編集",
   "tutorialOneTitle": "通貨と日付",
   "tutorialOneDesc": "ドル、ユーロ、カスタムレートを切り替えます。今日と明日のレートも確認できます。",
   "tutorialTwoTitle": "変換順序",
@@ -137,6 +136,12 @@
   "tutorialSkip": "スキップ",
   "tutorialNext": "次へ",
   "tutorialFinish": "完了",
-  "customRatePlaceholder": "Zelle、Binance、送金などのカスタムレートをここで追加できます。BCVとの差額は自動的に計算されます。"
-
+  "customRatePlaceholder": "Zelle、Binance、送金などのカスタムレートをここで追加できます。BCVとの差額は自動的に計算されます。",
+  "shareApp": "アプリを共有",
+  "shareAppSubtitle": "友達に勧める",
+  "rateApp": "アプリを評価",
+  "rateAppSubtitle": "5つ星で応援してください",
+  "moreApps": "他のアプリ",
+  "moreAppsSubtitle": "他の便利なツールを見る",
+  "shareMessage": "こんにちは！BCV計算機をお勧めします。とても速くて正確です。ここからダウンロード：https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv"
 }

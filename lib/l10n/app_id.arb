@@ -126,8 +126,7 @@
   "rateValueLabel": "Kurs (Bolivar)",
   "save": "Simpan",
   "delete": "Hapus",
-  "editRate": "Edit Kurs"
-,
+  "editRate": "Edit Kurs",
   "tutorialOneTitle": "Mata Uang dan Tanggal",
   "tutorialOneDesc": "Beralih antara Dolar, Euro, dan kurs khusus. Anda juga dapat memeriksa kurs Hari Ini dan Besok.",
   "tutorialTwoTitle": "Urutan Konversi",
@@ -137,6 +136,12 @@
   "tutorialSkip": "Lewati",
   "tutorialNext": "Lanjut",
   "tutorialFinish": "Selesai",
-  "customRatePlaceholder": "Di sini Anda dapat menambahkan kurs khusus seperti Zelle, Binance, atau Kiriman Uang. Kami akan secara otomatis menghitung selisihnya dengan BCV."
-
+  "customRatePlaceholder": "Di sini Anda dapat menambahkan kurs khusus seperti Zelle, Binance, atau Kiriman Uang. Kami akan secara otomatis menghitung selisihnya dengan BCV.",
+  "shareApp": "Bagikan Aplikasi",
+  "shareAppSubtitle": "Rekomendasikan ke teman",
+  "rateApp": "Beri Nilai",
+  "rateAppSubtitle": "Dukung kami dengan 5 bintang",
+  "moreApps": "Aplikasi Lainnya",
+  "moreAppsSubtitle": "Temukan alat berguna lainnya",
+  "shareMessage": "Halo! Saya merekomendasikan Kalkulator BCV. Sangat cepat dan akurat. Unduh di sini: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv"
 }

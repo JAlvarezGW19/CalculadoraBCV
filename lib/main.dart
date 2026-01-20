@@ -7,6 +7,9 @@ import 'screens/home_screen.dart';
 import 'theme/app_theme.dart';
 
 import 'providers/language_provider.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'providers/ad_provider.dart';
+import 'providers/iap_provider.dart';
 
 void main() {
   try {
@@ -16,7 +19,10 @@ void main() {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
     // Run App immediately.
-    // Heavy initializations (Ads, DateFormat) moved to HomeScreen
+    // Initialize Ads SDK early (fire and forget)
+    MobileAds.instance.initialize();
+
+    // Heavy initializations (DateFormat) moved to HomeScreen
     // or post-frame callbacks to ensure start is instant.
     runApp(const ProviderScope(child: MyApp()));
   } catch (e) {
@@ -45,6 +51,15 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(languageProvider);
     AppTheme.currentLocale = locale; // Update theme locale
+
+    // Preload Native Ad Early (if not premium)
+    // We do this here to start fetching while the app is still bootstrapping
+    final isPremium = ref.read(iapProvider).isPremium;
+    if (!isPremium) {
+      Future.microtask(
+        () => ref.read(nativeAdProvider.notifier).loadInitialAd(),
+      );
+    }
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,

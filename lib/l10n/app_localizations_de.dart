@@ -433,4 +433,26 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get customRatePlaceholder =>
       'Hier können Sie benutzerdefinierte Kurse wie Zelle, Binance oder Überweisungen hinzufügen. Wir berechnen automatisch die Differenz zum BCV.';
+
+  @override
+  String get shareApp => 'App teilen';
+
+  @override
+  String get shareAppSubtitle => 'Empfehlen Sie uns weiter';
+
+  @override
+  String get rateApp => 'App bewerten';
+
+  @override
+  String get rateAppSubtitle => 'Unterstützen Sie uns mit 5 Sternen';
+
+  @override
+  String get moreApps => 'Mehr Apps';
+
+  @override
+  String get moreAppsSubtitle => 'Entdecken Sie weitere nützliche Tools';
+
+  @override
+  String get shareMessage =>
+      'Hallo! Ich empfehle den BCV-Rechner. Er ist super schnell und genau. Hier herunterladen: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
 }

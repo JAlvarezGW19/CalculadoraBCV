@@ -435,4 +435,26 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get customRatePlaceholder =>
       'Buraya Zelle, Binance veya Havaleler gibi özel oranlar ekleyebilirsiniz. BCV ile aradaki farkı otomatik olarak hesaplayacağız.';
+
+  @override
+  String get shareApp => 'Uygulamayı Paylaş';
+
+  @override
+  String get shareAppSubtitle => 'Arkadaşlarına öner';
+
+  @override
+  String get rateApp => 'Uygulamayı Puanla';
+
+  @override
+  String get rateAppSubtitle => '5 yıldızla bizi destekle';
+
+  @override
+  String get moreApps => 'Diğer Uygulamalarım';
+
+  @override
+  String get moreAppsSubtitle => 'Diğer yararlı araçları keşfet';
+
+  @override
+  String get shareMessage =>
+      'Merhaba! BCV Hesap Makinesini tavsiye ederim. Süper hızlı ve doğru. Buradan indir: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
 }

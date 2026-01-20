@@ -70,10 +70,7 @@ class PremiumCard extends StatelessWidget {
                       Icons.block,
                       "${l10n.benefitAds}: ${l10n.benefitAdsDesc}",
                     ),
-                    _buildBenefitRow(
-                      Icons.picture_as_pdf,
-                      "${l10n.benefitPdf}: ${l10n.benefitPdfDesc}",
-                    ),
+
                     _buildBenefitRow(
                       Icons.speed,
                       "${l10n.benefitSpeed}: ${l10n.benefitSpeedDesc}",

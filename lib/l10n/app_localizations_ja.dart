@@ -421,4 +421,26 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get customRatePlaceholder =>
       'Zelle、Binance、送金などのカスタムレートをここで追加できます。BCVとの差額は自動的に計算されます。';
+
+  @override
+  String get shareApp => 'アプリを共有';
+
+  @override
+  String get shareAppSubtitle => '友達に勧める';
+
+  @override
+  String get rateApp => 'アプリを評価';
+
+  @override
+  String get rateAppSubtitle => '5つ星で応援してください';
+
+  @override
+  String get moreApps => '他のアプリ';
+
+  @override
+  String get moreAppsSubtitle => '他の便利なツールを見る';
+
+  @override
+  String get shareMessage =>
+      'こんにちは！BCV計算機をお勧めします。とても速くて正確です。ここからダウンロード：https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
 }

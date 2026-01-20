@@ -126,8 +126,7 @@
   "rateValueLabel": "Taxa (Bolívares)",
   "save": "Salvar",
   "delete": "Excluir",
-  "editRate": "Editar Taxa"
-,
+  "editRate": "Editar Taxa",
   "tutorialOneTitle": "Moedas e Datas",
   "tutorialOneDesc": "Alterne entre Dólar, Euro e taxas personalizadas. Consulte também as taxas de Hoje e Amanhã.",
   "tutorialTwoTitle": "Ordem de Conversão",
@@ -137,6 +136,12 @@
   "tutorialSkip": "Pular",
   "tutorialNext": "Próximo",
   "tutorialFinish": "Concluir",
-  "customRatePlaceholder": "Aqui você pode adicionar taxas personalizadas como Zelle, Binance ou Remessas. Calcularemos automaticamente a diferença com o BCV."
-
+  "customRatePlaceholder": "Aqui você pode adicionar taxas personalizadas como Zelle, Binance ou Remessas. Calcularemos automaticamente a diferença com o BCV.",
+  "shareApp": "Compartilhar App",
+  "shareAppSubtitle": "Recomende aos seus amigos",
+  "rateApp": "Avaliar App",
+  "rateAppSubtitle": "Apoie-nos com 5 estrelas",
+  "moreApps": "Mais Apps",
+  "moreAppsSubtitle": "Descubra outras ferramentas úteis",
+  "shareMessage": "Olá! Recomendo a Calculadora BCV. É super rápida e precisa. Baixe aqui: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv"
 }

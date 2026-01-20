@@ -126,8 +126,7 @@
   "rateValueLabel": "Kur (Bolivar)",
   "save": "Kaydet",
   "delete": "Sil",
-  "editRate": "Kuru Düzenle"
-,
+  "editRate": "Kuru Düzenle",
   "tutorialOneTitle": "Dövizler ve Tarihler",
   "tutorialOneDesc": "Dolar, Euro ve Özel kurlar arasında geçiş yapın. Bugünün ve Yarının kurlarını da kontrol edebilirsiniz.",
   "tutorialTwoTitle": "Dönüşüm Sırası",
@@ -137,6 +136,12 @@
   "tutorialSkip": "Atla",
   "tutorialNext": "İleri",
   "tutorialFinish": "Bitir",
-  "customRatePlaceholder": "Buraya Zelle, Binance veya Havaleler gibi özel oranlar ekleyebilirsiniz. BCV ile aradaki farkı otomatik olarak hesaplayacağız."
-
+  "customRatePlaceholder": "Buraya Zelle, Binance veya Havaleler gibi özel oranlar ekleyebilirsiniz. BCV ile aradaki farkı otomatik olarak hesaplayacağız.",
+  "shareApp": "Uygulamayı Paylaş",
+  "shareAppSubtitle": "Arkadaşlarına öner",
+  "rateApp": "Uygulamayı Puanla",
+  "rateAppSubtitle": "5 yıldızla bizi destekle",
+  "moreApps": "Diğer Uygulamalarım",
+  "moreAppsSubtitle": "Diğer yararlı araçları keşfet",
+  "shareMessage": "Merhaba! BCV Hesap Makinesini tavsiye ederim. Süper hızlı ve doğru. Buradan indir: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv"
 }

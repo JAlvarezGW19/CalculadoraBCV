@@ -431,4 +431,26 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get customRatePlaceholder =>
       'Di sini Anda dapat menambahkan kurs khusus seperti Zelle, Binance, atau Kiriman Uang. Kami akan secara otomatis menghitung selisihnya dengan BCV.';
+
+  @override
+  String get shareApp => 'Bagikan Aplikasi';
+
+  @override
+  String get shareAppSubtitle => 'Rekomendasikan ke teman';
+
+  @override
+  String get rateApp => 'Beri Nilai';
+
+  @override
+  String get rateAppSubtitle => 'Dukung kami dengan 5 bintang';
+
+  @override
+  String get moreApps => 'Aplikasi Lainnya';
+
+  @override
+  String get moreAppsSubtitle => 'Temukan alat berguna lainnya';
+
+  @override
+  String get shareMessage =>
+      'Halo! Saya merekomendasikan Kalkulator BCV. Sangat cepat dan akurat. Unduh di sini: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
 }

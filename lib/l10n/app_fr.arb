@@ -126,8 +126,7 @@
   "rateValueLabel": "Taux (Bolivars)",
   "save": "Enregistrer",
   "delete": "Supprimer",
-  "editRate": "Modifier le taux"
-,
+  "editRate": "Modifier le taux",
   "tutorialOneTitle": "Devises et Dates",
   "tutorialOneDesc": "Alternez entre Dollar, Euro et taux personnalisés. Consultez aussi les taux d'Aujourd'hui et de Demain.",
   "tutorialTwoTitle": "Ordre de Conversion",
@@ -137,6 +136,12 @@
   "tutorialSkip": "Passer",
   "tutorialNext": "Suivant",
   "tutorialFinish": "Terminer",
-  "customRatePlaceholder": "Ici, vous pouvez ajouter des taux personnalisés comme Zelle, Binance ou les transferts de fonds. Nous calculerons automatiquement la différence avec la BCV."
-
+  "customRatePlaceholder": "Ici, vous pouvez ajouter des taux personnalisés comme Zelle, Binance ou les transferts de fonds. Nous calculerons automatiquement la différence avec la BCV.",
+  "shareApp": "Partager l'App",
+  "shareAppSubtitle": "Recommandez à vos amis",
+  "rateApp": "Noter l'App",
+  "rateAppSubtitle": "Soutenez-nous avec 5 étoiles",
+  "moreApps": "Plus d'Apps",
+  "moreAppsSubtitle": "Découvrez d'autres outils utiles",
+  "shareMessage": "Bonjour! Je recommande la Calculatrice BCV. Elle est super rapide et précise. Téléchargez-la ici: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv"
 }

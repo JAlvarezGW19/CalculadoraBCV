@@ -420,4 +420,26 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get customRatePlaceholder =>
       '在这里，您可以添加自定义汇率，如 Zelle、Binance 或汇款。我们将自动计算与 BCV 的差额。';
+
+  @override
+  String get shareApp => '分享应用';
+
+  @override
+  String get shareAppSubtitle => '推荐给你的朋友';
+
+  @override
+  String get rateApp => '评价应用';
+
+  @override
+  String get rateAppSubtitle => '用5星支持我们';
+
+  @override
+  String get moreApps => '更多应用';
+
+  @override
+  String get moreAppsSubtitle => '发现其他实用工具';
+
+  @override
+  String get shareMessage =>
+      '你好！我推荐BCV计算器。它超级快速且精准。在此下载：https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
 }

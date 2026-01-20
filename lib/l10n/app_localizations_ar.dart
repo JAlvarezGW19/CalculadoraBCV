@@ -214,7 +214,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get noCustomRates => 'لا توجد أسعار مخصصة';
 
   @override
-  String get noCustomRatesDesc => 'تحتاج لإضافة سعر مخصص لاستخدام هذه الميزة.';
+  String get noCustomRatesDesc => 'لا توجد أسعار مخصصة';
 
   @override
   String get createRate => 'إنشاء سعر';
@@ -431,4 +431,26 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get customRatePlaceholder =>
       'هنا يمكنك إضافة أسعار مخصصة مثل Zelle أو Binance أو التحويلات المالية. سنقوم بحساب الفرق مع البنك المركزي الفنزويلي تلقائيًا.';
+
+  @override
+  String get shareApp => 'مشاركة التطبيق';
+
+  @override
+  String get shareAppSubtitle => 'أوصي به لأصدقائك';
+
+  @override
+  String get rateApp => 'قيم التطبيق';
+
+  @override
+  String get rateAppSubtitle => 'ادعمنا بـ 5 نجوم';
+
+  @override
+  String get moreApps => 'المزيد من التطبيقات';
+
+  @override
+  String get moreAppsSubtitle => 'اكتشف أدوات أخرى مفيدة';
+
+  @override
+  String get shareMessage =>
+      'مرحباً! أوصي بحاسبة BCV. إنها سريعة جداً ودقيقة. حملها من هنا: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
 }

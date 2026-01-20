@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
 import '../providers/iap_provider.dart';
@@ -10,6 +9,8 @@ import '../theme/app_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 import '../services/notification_service.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // Extracted Widgets
 import '../widgets/settings/about_app_dialog.dart';
@@ -61,69 +62,6 @@ class SettingsScreen extends ConsumerWidget {
               if (iapState.isPremium) ...[
                 const PremiumActiveCard(),
                 const SizedBox(height: 8),
-                if (kDebugMode)
-                  Center(
-                    child: TextButton(
-                      onPressed: () async {
-                        // Show confirmation dialog
-                        final confirm = await showDialog<bool>(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            backgroundColor: AppTheme.cardBackground,
-                            title: Text(
-                              l10n.deactivateProTitle,
-                              style: const TextStyle(
-                                color: AppTheme.textPrimary,
-                              ),
-                            ),
-                            content: Text(
-                              l10n.deactivateProMessage,
-                              style: const TextStyle(
-                                color: AppTheme.textSubtle,
-                              ),
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.pop(context, false),
-                                child: Text(l10n.cancel),
-                              ),
-                              TextButton(
-                                onPressed: () => Navigator.pop(context, true),
-                                child: Text(
-                                  l10n.deactivateProTitle,
-                                  style: const TextStyle(
-                                    color: Colors.redAccent,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-
-                        if (confirm == true) {
-                          final prefs = await SharedPreferences.getInstance();
-                          await prefs.setBool('is_premium', false);
-                          // Show message
-                          if (context.mounted) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(l10n.deactivateProSuccess),
-                                duration: const Duration(seconds: 3),
-                              ),
-                            );
-                          }
-                        }
-                      },
-                      child: Text(
-                        l10n.deactivateProTest,
-                        style: const TextStyle(
-                          color: AppTheme.textSubtle,
-                          decoration: TextDecoration.underline,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ),
               ],
 
               const SizedBox(height: 32),
@@ -186,6 +124,48 @@ class SettingsScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 16),
+
+              SettingsListItem(
+                icon: Icons.share_rounded,
+                title: l10n.shareApp,
+                subtitle: l10n.shareAppSubtitle,
+                onTap: () async {
+                  // ignore: deprecated_member_use
+                  await Share.share(l10n.shareMessage);
+                },
+              ),
+              SettingsListItem(
+                icon: Icons.star_rate_rounded,
+                title: l10n.rateApp,
+                subtitle: l10n.rateAppSubtitle,
+                onTap: () async {
+                  final Uri url = Uri.parse(
+                    "https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv",
+                  );
+                  if (!await launchUrl(
+                    url,
+                    mode: LaunchMode.externalApplication,
+                  )) {
+                    debugPrint('Could not launch \$url');
+                  }
+                },
+              ),
+              SettingsListItem(
+                icon: Icons.apps_rounded,
+                title: l10n.moreApps,
+                subtitle: l10n.moreAppsSubtitle,
+                onTap: () async {
+                  final Uri url = Uri.parse(
+                    "https://play.google.com/store/apps/dev?id=5787072723946991693",
+                  );
+                  if (!await launchUrl(
+                    url,
+                    mode: LaunchMode.externalApplication,
+                  )) {
+                    debugPrint('Could not launch \$url');
+                  }
+                },
+              ),
 
               SettingsListItem(
                 icon: Icons.info_outline_rounded,

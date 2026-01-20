@@ -433,4 +433,26 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get customRatePlaceholder =>
       'Tại đây, bạn có thể thêm tỷ giá tùy chỉnh như Zelle, Binance hoặc Chuyển tiền. Chúng tôi sẽ tự động tính toán chênh lệch với BCV.';
+
+  @override
+  String get shareApp => 'Chia sẻ ứng dụng';
+
+  @override
+  String get shareAppSubtitle => 'Giới thiệu cho bạn bè';
+
+  @override
+  String get rateApp => 'Đánh giá ứng dụng';
+
+  @override
+  String get rateAppSubtitle => 'Ủng hộ chúng tôi 5 sao';
+
+  @override
+  String get moreApps => 'Ứng dụng khác';
+
+  @override
+  String get moreAppsSubtitle => 'Khám phá các công cụ hữu ích khác';
+
+  @override
+  String get shareMessage =>
+      'Xin chào! Tôi khuyên dùng Máy tính BCV. Nó siêu nhanh và chính xác. Tải xuống tại đây: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
 }

@@ -435,4 +435,26 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get customRatePlaceholder =>
       'Aqui você pode adicionar taxas personalizadas como Zelle, Binance ou Remessas. Calcularemos automaticamente a diferença com o BCV.';
+
+  @override
+  String get shareApp => 'Compartilhar App';
+
+  @override
+  String get shareAppSubtitle => 'Recomende aos seus amigos';
+
+  @override
+  String get rateApp => 'Avaliar App';
+
+  @override
+  String get rateAppSubtitle => 'Apoie-nos com 5 estrelas';
+
+  @override
+  String get moreApps => 'Mais Apps';
+
+  @override
+  String get moreAppsSubtitle => 'Descubra outras ferramentas úteis';
+
+  @override
+  String get shareMessage =>
+      'Olá! Recomendo a Calculadora BCV. É super rápida e precisa. Baixe aqui: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
 }

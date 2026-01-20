@@ -68,7 +68,7 @@
   "amountVes": "Bs.",
   "ratePers": "مخصص",
   "noCustomRates": "لا توجد أسعار مخصصة",
-  "noCustomRatesDesc": "تحتاج لإضافة سعر مخصص لاستخدام هذه الميزة.",
+  "noCustomRatesDesc": "لا توجد أسعار مخصصة",
   "createRate": "إنشاء سعر",
   "chooseRate": "اختر سعرًا",
   "newRate": "سعر جديد...",
@@ -126,8 +126,7 @@
   "rateValueLabel": "السعر (بوليفار)",
   "save": "حفظ",
   "delete": "حذف",
-  "editRate": "تعديل السعر"
-,
+  "editRate": "تعديل السعر",
   "tutorialOneTitle": "العملات والتواريخ",
   "tutorialOneDesc": "التبديل بين الدولار واليورو والأسعار المخصصة. يمكنك أيضًا التحقق من أسعار اليوم وغدًا.",
   "tutorialTwoTitle": "ترتيب التحويل",
@@ -137,6 +136,12 @@
   "tutorialSkip": "تخطي",
   "tutorialNext": "التالي",
   "tutorialFinish": "إنهاء",
-  "customRatePlaceholder": "هنا يمكنك إضافة أسعار مخصصة مثل Zelle أو Binance أو التحويلات المالية. سنقوم بحساب الفرق مع البنك المركزي الفنزويلي تلقائيًا."
-
+  "customRatePlaceholder": "هنا يمكنك إضافة أسعار مخصصة مثل Zelle أو Binance أو التحويلات المالية. سنقوم بحساب الفرق مع البنك المركزي الفنزويلي تلقائيًا.",
+  "shareApp": "مشاركة التطبيق",
+  "shareAppSubtitle": "أوصي به لأصدقائك",
+  "rateApp": "قيم التطبيق",
+  "rateAppSubtitle": "ادعمنا بـ 5 نجوم",
+  "moreApps": "المزيد من التطبيقات",
+  "moreAppsSubtitle": "اكتشف أدوات أخرى مفيدة",
+  "shareMessage": "مرحباً! أوصي بحاسبة BCV. إنها سريعة جداً ودقيقة. حملها من هنا: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv"
 }

@@ -120,8 +120,7 @@
   "pdfChangePercent": "परिवर्तन %",
   "noInternetConnection": "कोई इंटरनेट कनेक्शन नहीं। डेटा पुराना हो सकता है।",
   "internetRestored": "कनेक्शन बहाल।",
-  "ratesUpdatedSuccess": "दरें सफलतापूर्वक अपडेट की गईं।"
-,
+  "ratesUpdatedSuccess": "दरें सफलतापूर्वक अपडेट की गईं।",
   "tutorialOneTitle": "मुद्राएं और तिथियां",
   "tutorialOneDesc": "डॉलर, यूरो और कस्टम दरों के बीच स्विच करें। आप आज और कल की दरें भी देख सकते हैं।",
   "tutorialTwoTitle": "रूपांतरण क्रम",
@@ -137,5 +136,12 @@
   "editRate": "दर संपादित करें",
   "rateNameExists": "उस नाम वाली दर पहले से मौजूद है",
   "rateNameLabel": "नाम (अधिकतम 10)",
-  "rateValueLabel": "दर (बोलिवर)"
+  "rateValueLabel": "दर (बोलिवर)",
+  "shareApp": "ऐप शेयर करें",
+  "shareAppSubtitle": "अपने दोस्तों को सुझाव दें",
+  "rateApp": "ऐप को रेट करें",
+  "rateAppSubtitle": "5 स्टार्स देकर हमारा समर्थन करें",
+  "moreApps": "मेरे अन्य ऐप्स",
+  "moreAppsSubtitle": "अन्य उपयोगी उपकरण खोजें",
+  "shareMessage": "नमस्ते! मैं BCV कैलकुलेटर की सिफारिश करता हूँ। यह बहुत तेज़ और सटीक है। इसे यहाँ डाउनलोड करें: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv"
 }

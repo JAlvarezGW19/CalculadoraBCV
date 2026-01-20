@@ -431,4 +431,26 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get customRatePlaceholder =>
       'Здесь вы можете добавить пользовательские курсы, такие как Zelle, Binance или денежные переводы. Мы автоматически рассчитаем разницу с BCV.';
+
+  @override
+  String get shareApp => 'Поделиться';
+
+  @override
+  String get shareAppSubtitle => 'Рекомендуйте друзьям';
+
+  @override
+  String get rateApp => 'Оценить';
+
+  @override
+  String get rateAppSubtitle => 'Поддержите нас 5 звездами';
+
+  @override
+  String get moreApps => 'Больше приложений';
+
+  @override
+  String get moreAppsSubtitle => 'Откройте для себя другие инструменты';
+
+  @override
+  String get shareMessage =>
+      'Привет! Рекомендую Калькулятор BCV. Он супер быстрый и точный. Скачать здесь: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
 }
