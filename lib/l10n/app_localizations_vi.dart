@@ -455,4 +455,97 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get shareMessage =>
       'Xin chào! Tôi khuyên dùng Máy tính BCV. Nó siêu nhanh và chính xác. Tải xuống tại đây: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
+
+  @override
+  String get paymentSettings => 'Quản lý thanh toán';
+
+  @override
+  String get noAccounts => 'Không có tài khoản đã lưu';
+
+  @override
+  String get addAccount => 'Thêm tài khoản';
+
+  @override
+  String get deleteAccountTitle => 'Xóa tài khoản';
+
+  @override
+  String deleteAccountContent(Object alias) {
+    return 'Bạn có muốn xóa \"$alias\" không?';
+  }
+
+  @override
+  String get deleteAction => 'Xóa';
+
+  @override
+  String get newAccount => 'Tài khoản mới';
+
+  @override
+  String get editAccount => 'Chỉnh sửa tài khoản';
+
+  @override
+  String get aliasLabel => 'Biệt danh (Tên định danh)';
+
+  @override
+  String get bankLabel => 'Ngân hàng';
+
+  @override
+  String get ciLabel => 'ID / RIF';
+
+  @override
+  String get phoneLabel => 'Điện thoại';
+
+  @override
+  String get accountNumberLabel => 'Số tài khoản (20 chữ số)';
+
+  @override
+  String get pagoMovil => 'Thanh toán di động';
+
+  @override
+  String get bankTransfer => 'Chuyển khoản';
+
+  @override
+  String get requiredField => 'Trường bắt buộc';
+
+  @override
+  String get selectBank => 'Chọn ngân hàng';
+
+  @override
+  String get onlyAmount => 'Chỉ văn bản / Số tiền';
+
+  @override
+  String get configureAccounts => 'Cấu hình tài khoản';
+
+  @override
+  String get configureAccountsDesc => 'Thêm dữ liệu để chia sẻ nhanh';
+
+  @override
+  String get yourAccounts => 'TÀI KHOẢN CỦA BẠN';
+
+  @override
+  String get manageAccounts => 'Quản lý tài khoản';
+
+  @override
+  String get transferData => 'Dữ liệu chuyển khoản';
+
+  @override
+  String get nameLabel => 'Tên';
+
+  @override
+  String get accountLabel => 'Tài khoản';
+
+  @override
+  String get actionCopy => 'Sao chép';
+
+  @override
+  String get actionShare => 'Chia sẻ';
+
+  @override
+  String get amountLabel => 'Số tiền';
+
+  @override
+  String get paymentAccountsTitle => 'Tài khoản Thanh toán';
+
+  @override
+  String get paymentAccountsSubtitle =>
+      'Quản lý dữ liệu cho thanh toán di động và chuyển khoản';
 }

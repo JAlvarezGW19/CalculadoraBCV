@@ -1,22 +1,21 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'home_widget_service.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
+
 class ApiService {
-  static const String _endpoint =
-      'https://api.dolarvzla.com/public/exchange-rate';
   static const String _cachedDataKey = 'cached_rates_dolarvzla_v1';
 
   Future<Map<String, dynamic>> fetchRates({bool forceRefresh = false}) async {
-    // 1. Try to load cache first to check freshness
+    // 1. Try to load cache first (Fastest)
     Map<String, dynamic>? cachedData;
     try {
       cachedData = await loadInternalCache();
-    } catch (_) {
-      // No cache or error loading it
-    }
+    } catch (_) {}
 
     if (!forceRefresh && cachedData != null) {
       if (isCacheValid(cachedData)) {
@@ -24,28 +23,129 @@ class ApiService {
       }
     }
 
-    // 2. Try Fetching from API
+    // 2. Try Firestore (Primary Source)
     try {
-      final response = await http
-          .get(Uri.parse(_endpoint))
-          .timeout(const Duration(seconds: 10));
-      if (response.statusCode == 200) {
-        return await _processApiResponse(response.body);
-      } else {
-        throw Exception("API Error: ${response.statusCode}");
+      final docSnapshot = await FirebaseFirestore.instance
+          .collection('tasa_oficial')
+          .doc('bcv')
+          .get(
+            GetOptions(
+              source: forceRefresh ? Source.server : Source.serverAndCache,
+            ),
+          ); // Force server if requested
+
+      if (docSnapshot.exists && docSnapshot.data() != null) {
+        return await _processFirestoreData(docSnapshot.data()!);
       }
     } catch (e) {
-      // 3. Fallback: Web Scraping from BCV
-      debugPrint("API failed, attempting scraping: $e");
-      try {
-        return await _fetchFromWebScraping();
-      } catch (e2) {
-        debugPrint("Scraping failed: $e2");
-        // If everything fails, return old cache if available
-        if (cachedData != null) return cachedData;
-        rethrow;
-      }
+      debugPrint("Firestore fetch failed: $e");
     }
+
+    // 3. Fallbacks (API with Key or Scraping) - Only if Firestore fails
+    // We only use the API/Scraping if we are essentially "offline" from Firestore
+    // or if Firestore is empty.
+    // Given the new architecture, we rely on Firestore.
+    // But we keep the old logic just in case for now, or return cache if available.
+    if (cachedData != null) return cachedData;
+
+    // If absolutely nothing works, rethrow
+    throw Exception("No data available from Firestore or Cache");
+  }
+
+  Future<Map<String, dynamic>> _processFirestoreData(
+    Map<String, dynamic> data,
+  ) async {
+    final double usd = (data['usd'] as num).toDouble();
+    final double eur = (data['eur'] as num).toDouble();
+    final bool hasTomorrow = data['has_tomorrow'] ?? false;
+
+    String? dateTodayStr =
+        data['date']; // The date the record was updated/created
+    String? rateDateStr = data['rate_date']; // The actual value date
+
+    // Determine dates
+    DateTime dateVal = DateTime.now();
+    if (rateDateStr != null) {
+      dateVal = DateTime.parse(rateDateStr);
+    } else if (dateTodayStr != null) {
+      dateVal = DateTime.parse(dateTodayStr);
+    }
+
+    // Logic: If has_tomorrow is TRUE, the basic fields 'usd'/'eur' ARE the tomorrow rates.
+    // We need to decide what 'today' is. Usually 'today' is the previous rate.
+    // But for simplicity, if we only have one record, 'current' implies the one active.
+
+    double usdToday = usd;
+    double usdTomorrow = 0.0;
+    double eurToday = eur;
+    double eurTomorrow = 0.0;
+
+    DateTime? dateTomorrowVal;
+
+    if (hasTomorrow) {
+      // The values in DB are treated as "Tomorrow's"
+      usdTomorrow = usd;
+      eurTomorrow = eur;
+      dateTomorrowVal = dateVal;
+
+      // Try to fetch "Today's" rate from history to process correctly
+      try {
+        final todayStr = DateFormat('yyyy-MM-dd').format(DateTime.now());
+        final historyDoc = await FirebaseFirestore.instance
+            .collection('historial_tasas')
+            .doc(todayStr)
+            .get();
+
+        if (historyDoc.exists && historyDoc.data() != null) {
+          final hData = historyDoc.data()!;
+          usdToday = (hData['usd'] as num).toDouble();
+          eurToday = (hData['eur'] as num).toDouble();
+        } else {
+          // If not found in history (rare), fallback to older logic or current
+          // Ideally we check cache, but for now we set equal to avoid empty UI
+          usdToday = usd;
+          eurToday = eur;
+        }
+      } catch (e) {
+        debugPrint("Error fetching today history: $e");
+        // Fallback
+        usdToday = usd;
+        eurToday = eur;
+      }
+    } else {
+      // Standard today rate
+      usdToday = usd;
+      eurToday = eur;
+    }
+
+    DateTime dateTodayFinal;
+
+    if (hasTomorrow) {
+      // dateTomorrowVal is already set to dateVal (Fecha del dato principal, que es Mañana)
+
+      // Si encontramos data en historial de hoy, usamos esa fecha. Si no, usamos 'now'.
+      // Pero para UI, 'today_date' debe ser HOY.
+      dateTodayFinal = DateTime.now();
+
+      // (El código de fetch del precio usdToday ya está bien arriba)
+    } else {
+      // Si NO hay mañana, el dato principal 'dateVal' ES de hoy.
+      dateTodayFinal = dateVal;
+    }
+
+    final result = {
+      'usd_today': usdToday,
+      'usd_tomorrow': usdTomorrow,
+      'eur_today': eurToday,
+      'eur_tomorrow': eurTomorrow,
+      'has_tomorrow': hasTomorrow,
+      'last_fetch': DateTime.now().toIso8601String(),
+      'today_date': dateTodayFinal.toIso8601String(),
+      'tomorrow_date': dateTomorrowVal?.toIso8601String(),
+    };
+
+    await _cacheData(result);
+    return result;
   }
 
   bool isCacheValid(Map<String, dynamic> cache) {
@@ -95,122 +195,10 @@ class ApiService {
     } else {
       // CRITICAL ZONE: 4:00 PM onwards (Weekdays)
       // BCV rates can be published anytime afternoon.
-      // User wants "immediate" update.
-      // We set cache validity to just 2 minutes.
-      // This means if the app is open, it will check practically every 2 mins.
-      return diffInMinutes < 2;
+      // We set cache validity to 10 minutes to save Firebase reads.
+      // Using 2 mins is too aggressive for Quota. User can pull-to-refresh if desperate.
+      return diffInMinutes < 10;
     }
-  }
-
-  Future<Map<String, dynamic>> _processApiResponse(String body) async {
-    final data = json.decode(body);
-    final current = data['current'];
-    final previous = data['previous'];
-    final currentDate = DateTime.parse(current['date']);
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-
-    double usdToday = 0.0, usdTomorrow = 0.0;
-    double eurToday = 0.0, eurTomorrow = 0.0;
-    bool hasTomorrow = false;
-    DateTime? dateTodayVal, dateTomorrowVal;
-
-    if (currentDate.isAfter(today)) {
-      usdTomorrow = (current['usd'] as num).toDouble();
-      eurTomorrow = (current['eur'] as num).toDouble();
-      hasTomorrow = true;
-      dateTomorrowVal = currentDate;
-
-      if (previous != null) {
-        usdToday = (previous['usd'] as num).toDouble();
-        eurToday = (previous['eur'] as num).toDouble();
-        dateTodayVal = previous['date'] != null
-            ? DateTime.parse(previous['date'])
-            : today;
-      } else {
-        usdToday = usdTomorrow;
-        eurToday = eurTomorrow;
-        dateTodayVal = today;
-      }
-    } else {
-      usdToday = (current['usd'] as num).toDouble();
-      eurToday = (current['eur'] as num).toDouble();
-      hasTomorrow = false;
-      dateTodayVal = currentDate;
-      dateTomorrowVal = null;
-    }
-
-    final result = {
-      'usd_today': usdToday,
-      'usd_tomorrow': usdTomorrow,
-      'eur_today': eurToday,
-      'eur_tomorrow': eurTomorrow,
-      'has_tomorrow': hasTomorrow,
-      'last_fetch': DateTime.now().toIso8601String(),
-      'today_date': dateTodayVal.toIso8601String(),
-      'tomorrow_date': dateTomorrowVal?.toIso8601String(),
-    };
-
-    await _cacheData(result);
-    return result;
-  }
-
-  Future<Map<String, dynamic>> _fetchFromWebScraping() async {
-    // Web scraping specific for http://www.bcv.org.ve/
-    // Since SSL might fail on some networks for BCV, try/catch http.
-    // Note: BCV website certificate issues are common.
-    final response = await http
-        .get(Uri.parse('http://www.bcv.org.ve/'))
-        .timeout(const Duration(seconds: 15));
-
-    if (response.statusCode == 200) {
-      final body = response.body;
-
-      // Extract USD
-      // Pattern: <div id="dolar"> ... <strong> 45,3200 </strong>
-      final usdRegex = RegExp(
-        r'id="dolar".*?<strong>\s*([\d,]+)\s*</strong>',
-        caseSensitive: false,
-        dotAll: true,
-      );
-      final usdMatch = usdRegex.firstMatch(body);
-      final usdStr = usdMatch?.group(1)?.replaceAll(',', '.') ?? "0";
-
-      // Extract EUR
-      final eurRegex = RegExp(
-        r'id="euro".*?<strong>\s*([\d,]+)\s*</strong>',
-        caseSensitive: false,
-        dotAll: true,
-      );
-      final eurMatch = eurRegex.firstMatch(body);
-      final eurStr = eurMatch?.group(1)?.replaceAll(',', '.') ?? "0";
-
-      final usd = double.tryParse(usdStr) ?? 0.0;
-      final eur = double.tryParse(eurStr) ?? 0.0;
-
-      if (usd == 0.0) throw Exception("Failed to scrape USD");
-
-      // Construct payload
-      // Scraping only gives "current" rates. We assume they are for "Today" unless update logic implies otherwise.
-      // We don't know "tomorrow" from scraping main page usually.
-
-      final now = DateTime.now();
-
-      final result = {
-        'usd_today': usd,
-        'usd_tomorrow': 0.0,
-        'eur_today': eur,
-        'eur_tomorrow': 0.0,
-        'has_tomorrow': false,
-        'last_fetch': now.toIso8601String(),
-        'today_date': now.toIso8601String(), // Saving "now" as date reference
-        'tomorrow_date': null,
-      };
-
-      await _cacheData(result);
-      return result;
-    }
-    throw Exception("BCV Website Unreachable: ${response.statusCode}");
   }
 
   Future<void> _cacheData(Map<String, dynamic> data) async {

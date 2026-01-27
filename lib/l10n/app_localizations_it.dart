@@ -458,4 +458,98 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get shareMessage =>
       'Ciao! Ti consiglio la Calcolatrice BCV. È super veloce e precisa. Scaricala qui: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
+
+  @override
+  String get paymentSettings => 'Gestione Pagamenti';
+
+  @override
+  String get noAccounts => 'Nessun conto salvato';
+
+  @override
+  String get addAccount => 'Aggiungi Conto';
+
+  @override
+  String get deleteAccountTitle => 'Elimina Conto';
+
+  @override
+  String deleteAccountContent(Object alias) {
+    return 'Vuoi eliminare \"$alias\"?';
+  }
+
+  @override
+  String get deleteAction => 'Elimina';
+
+  @override
+  String get newAccount => 'Nuovo Conto';
+
+  @override
+  String get editAccount => 'Modifica Conto';
+
+  @override
+  String get aliasLabel => 'Alias (Nome Identificativo)';
+
+  @override
+  String get bankLabel => 'Banca';
+
+  @override
+  String get ciLabel => 'ID / RIF';
+
+  @override
+  String get phoneLabel => 'Telefono';
+
+  @override
+  String get accountNumberLabel => 'Numero di Conto (20 cifre)';
+
+  @override
+  String get pagoMovil => 'Pagamento Mobile';
+
+  @override
+  String get bankTransfer => 'Bonifico';
+
+  @override
+  String get requiredField => 'Campo obbligatorio';
+
+  @override
+  String get selectBank => 'Seleziona una banca';
+
+  @override
+  String get onlyAmount => 'Solo Testo / Importo';
+
+  @override
+  String get configureAccounts => 'Configura Conti';
+
+  @override
+  String get configureAccountsDesc =>
+      'Aggiungi i tuoi dati per condividere velocemente';
+
+  @override
+  String get yourAccounts => 'I TUOI CONTI';
+
+  @override
+  String get manageAccounts => 'Gestisci Conti';
+
+  @override
+  String get transferData => 'Dati Bonifico';
+
+  @override
+  String get nameLabel => 'Nome';
+
+  @override
+  String get accountLabel => 'Conto';
+
+  @override
+  String get actionCopy => 'Copia';
+
+  @override
+  String get actionShare => 'Condividi';
+
+  @override
+  String get amountLabel => 'Importo';
+
+  @override
+  String get paymentAccountsTitle => 'Conti di Pagamento';
+
+  @override
+  String get paymentAccountsSubtitle =>
+      'Gestisci i tuoi dati per pagamento mobile e bonifico';
 }

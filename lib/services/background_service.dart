@@ -2,6 +2,7 @@ import 'package:workmanager/workmanager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'api_service.dart';
 import 'notification_service.dart';
 
@@ -13,6 +14,13 @@ void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
     // Initialize date formatting for background isolate
     await initializeDateFormatting('es', null);
+
+    // Initialize Firebase for background isolate
+    try {
+      await Firebase.initializeApp();
+    } catch (e) {
+      // Firebase might be already initialized
+    }
 
     if (task == fetchRatesTask || task == "highFreqFetch") {
       try {

@@ -1,7 +1,7 @@
 name: calculadora_bcv
 description: "Calculadora de tasas del BCV, conversiones, historial y escáner de precios."
 publish_to: 'none'
-version: 1.0.20+20
+version: 1.0.21+21
 
 environment:
   sdk: ^3.10.4
@@ -36,6 +36,8 @@ dependencies:
   connectivity_plus: ^7.0.0
   showcaseview: ^3.0.0
   in_app_update: ^4.2.5
+  firebase_core: ^4.4.0
+  cloud_firestore: ^6.1.2
 
 dev_dependencies:
   flutter_test:

@@ -443,4 +443,96 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get shareMessage =>
       'こんにちは！BCV計算機をお勧めします。とても速くて正確です。ここからダウンロード：https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
+
+  @override
+  String get paymentSettings => '支払い管理';
+
+  @override
+  String get noAccounts => '保存されたアカウントはありません';
+
+  @override
+  String get addAccount => 'アカウントを追加';
+
+  @override
+  String get deleteAccountTitle => 'アカウントを削除';
+
+  @override
+  String deleteAccountContent(Object alias) {
+    return '\"$alias\" を削除しますか？';
+  }
+
+  @override
+  String get deleteAction => '削除';
+
+  @override
+  String get newAccount => '新しいアカウント';
+
+  @override
+  String get editAccount => 'アカウントを編集';
+
+  @override
+  String get aliasLabel => 'エイリアス（識別名）';
+
+  @override
+  String get bankLabel => '銀行';
+
+  @override
+  String get ciLabel => 'ID / RIF';
+
+  @override
+  String get phoneLabel => '電話番号';
+
+  @override
+  String get accountNumberLabel => '口座番号（20桁）';
+
+  @override
+  String get pagoMovil => 'モバイル決済';
+
+  @override
+  String get bankTransfer => '振込';
+
+  @override
+  String get requiredField => '必須項目';
+
+  @override
+  String get selectBank => '銀行を選択';
+
+  @override
+  String get onlyAmount => 'テキストのみ / 金額';
+
+  @override
+  String get configureAccounts => 'アカウント設定';
+
+  @override
+  String get configureAccountsDesc => 'データを追加して素早く共有';
+
+  @override
+  String get yourAccounts => 'あなたのアカウント';
+
+  @override
+  String get manageAccounts => 'アカウント管理';
+
+  @override
+  String get transferData => '振込データ';
+
+  @override
+  String get nameLabel => '名前';
+
+  @override
+  String get accountLabel => '口座';
+
+  @override
+  String get actionCopy => 'コピー';
+
+  @override
+  String get actionShare => '共有';
+
+  @override
+  String get amountLabel => '金額';
+
+  @override
+  String get paymentAccountsTitle => '支払いアカウント';
+
+  @override
+  String get paymentAccountsSubtitle => 'モバイル決済と振込のデータを管理';
 }

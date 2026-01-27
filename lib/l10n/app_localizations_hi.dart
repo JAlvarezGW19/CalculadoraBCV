@@ -455,4 +455,98 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get shareMessage =>
       'नमस्ते! मैं BCV कैलकुलेटर की सिफारिश करता हूँ। यह बहुत तेज़ और सटीक है। इसे यहाँ डाउनलोड करें: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
+
+  @override
+  String get paymentSettings => 'भुगतान प्रबंधन';
+
+  @override
+  String get noAccounts => 'कोई खाता सहेजा नहीं गया';
+
+  @override
+  String get addAccount => 'खाता जोड़ें';
+
+  @override
+  String get deleteAccountTitle => 'खाता हटाएं';
+
+  @override
+  String deleteAccountContent(Object alias) {
+    return 'क्या आप \"$alias\" को हटाना चाहते हैं?';
+  }
+
+  @override
+  String get deleteAction => 'हटाएं';
+
+  @override
+  String get newAccount => 'नया खाता';
+
+  @override
+  String get editAccount => 'खाता संपादित करें';
+
+  @override
+  String get aliasLabel => 'उपनाम (पहचान नाम)';
+
+  @override
+  String get bankLabel => 'बैंक';
+
+  @override
+  String get ciLabel => 'आईडी / RIF';
+
+  @override
+  String get phoneLabel => 'फ़ोन';
+
+  @override
+  String get accountNumberLabel => 'खाता संख्या (20 अंक)';
+
+  @override
+  String get pagoMovil => 'मोबाइल भुगतान';
+
+  @override
+  String get bankTransfer => 'बैंक हस्तांतरण';
+
+  @override
+  String get requiredField => 'आवश्यक फ़ील्ड';
+
+  @override
+  String get selectBank => 'बैंक चुनें';
+
+  @override
+  String get onlyAmount => 'केवल पाठ / राशि';
+
+  @override
+  String get configureAccounts => 'खाते कॉन्फ़िगर करें';
+
+  @override
+  String get configureAccountsDesc =>
+      'तेज़ी से साझा करने के लिए अपना डेटा जोड़ें';
+
+  @override
+  String get yourAccounts => 'आपके खाते';
+
+  @override
+  String get manageAccounts => 'खाते प्रबंधित करें';
+
+  @override
+  String get transferData => 'हस्तांतरण डेटा';
+
+  @override
+  String get nameLabel => 'नाम';
+
+  @override
+  String get accountLabel => 'खाता';
+
+  @override
+  String get actionCopy => 'कॉपी करें';
+
+  @override
+  String get actionShare => 'साझा करें';
+
+  @override
+  String get amountLabel => 'राशि';
+
+  @override
+  String get paymentAccountsTitle => 'भुगतान खाते';
+
+  @override
+  String get paymentAccountsSubtitle =>
+      'मोबाइल भुगतान और हस्तांतरण के लिए अपना डेटा प्रबंधित करें';
 }

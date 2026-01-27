@@ -455,4 +455,98 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get shareMessage =>
       'Hallo! Ich empfehle den BCV-Rechner. Er ist super schnell und genau. Hier herunterladen: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
+
+  @override
+  String get paymentSettings => 'Zahlungsverwaltung';
+
+  @override
+  String get noAccounts => 'Keine gespeicherten Konten';
+
+  @override
+  String get addAccount => 'Konto hinzufügen';
+
+  @override
+  String get deleteAccountTitle => 'Konto löschen';
+
+  @override
+  String deleteAccountContent(Object alias) {
+    return 'Möchten Sie \"$alias\" löschen?';
+  }
+
+  @override
+  String get deleteAction => 'Löschen';
+
+  @override
+  String get newAccount => 'Neues Konto';
+
+  @override
+  String get editAccount => 'Konto bearbeiten';
+
+  @override
+  String get aliasLabel => 'Alias (Identifikationsname)';
+
+  @override
+  String get bankLabel => 'Bank';
+
+  @override
+  String get ciLabel => 'ID / RIF';
+
+  @override
+  String get phoneLabel => 'Telefon';
+
+  @override
+  String get accountNumberLabel => 'Kontonummer (20 Ziffern)';
+
+  @override
+  String get pagoMovil => 'Mobiles Bezahlen';
+
+  @override
+  String get bankTransfer => 'Überweisung';
+
+  @override
+  String get requiredField => 'Pflichtfeld';
+
+  @override
+  String get selectBank => 'Bank auswählen';
+
+  @override
+  String get onlyAmount => 'Nur Text / Betrag';
+
+  @override
+  String get configureAccounts => 'Konten konfigurieren';
+
+  @override
+  String get configureAccountsDesc =>
+      'Fügen Sie Ihre Daten hinzu, um schnell zu teilen';
+
+  @override
+  String get yourAccounts => 'IHRE KONTEN';
+
+  @override
+  String get manageAccounts => 'Konten verwalten';
+
+  @override
+  String get transferData => 'Überweisungsdaten';
+
+  @override
+  String get nameLabel => 'Name';
+
+  @override
+  String get accountLabel => 'Konto';
+
+  @override
+  String get actionCopy => 'Kopieren';
+
+  @override
+  String get actionShare => 'Teilen';
+
+  @override
+  String get amountLabel => 'Betrag';
+
+  @override
+  String get paymentAccountsTitle => 'Zahlungskonten';
+
+  @override
+  String get paymentAccountsSubtitle =>
+      'Verwalten Sie Ihre Daten für mobile Zahlung und Überweisung';
 }

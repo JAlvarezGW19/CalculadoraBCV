@@ -19,6 +19,7 @@ import '../widgets/settings/language_selection_dialog.dart';
 import '../widgets/settings/premium_active_card.dart';
 import '../widgets/settings/premium_card.dart';
 import '../widgets/settings/settings_items.dart';
+import 'payment_settings_screen.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -75,6 +76,18 @@ class SettingsScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 16),
+
+              SettingsListItem(
+                icon: Icons.account_balance_wallet,
+                title: l10n.paymentAccountsTitle,
+                subtitle: l10n.paymentAccountsSubtitle,
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PaymentSettingsScreen(),
+                  ),
+                ),
+              ),
 
               SettingsListItem(
                 icon: Icons.storage_rounded,

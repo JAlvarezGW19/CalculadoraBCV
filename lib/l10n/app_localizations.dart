@@ -987,6 +987,186 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'¡Hola! Te recomiendo la Calculadora BCV. Es súper rápida y precisa. Descárgala aquí: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv'**
   String get shareMessage;
+
+  /// No description provided for @paymentSettings.
+  ///
+  /// In es, this message translates to:
+  /// **'Gestión de Pagos'**
+  String get paymentSettings;
+
+  /// No description provided for @noAccounts.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay cuentas guardadas'**
+  String get noAccounts;
+
+  /// No description provided for @addAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar Cuenta'**
+  String get addAccount;
+
+  /// No description provided for @deleteAccountTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar Cuenta'**
+  String get deleteAccountTitle;
+
+  /// No description provided for @deleteAccountContent.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Deseas eliminar \"{alias}\"?'**
+  String deleteAccountContent(Object alias);
+
+  /// No description provided for @deleteAction.
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar'**
+  String get deleteAction;
+
+  /// No description provided for @newAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'Nueva Cuenta'**
+  String get newAccount;
+
+  /// No description provided for @editAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar Cuenta'**
+  String get editAccount;
+
+  /// No description provided for @aliasLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Alias (Nombre Identificador)'**
+  String get aliasLabel;
+
+  /// No description provided for @bankLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Banco'**
+  String get bankLabel;
+
+  /// No description provided for @ciLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Cédula / RIF'**
+  String get ciLabel;
+
+  /// No description provided for @phoneLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Teléfono'**
+  String get phoneLabel;
+
+  /// No description provided for @accountNumberLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Número de Cuenta (20 dígitos)'**
+  String get accountNumberLabel;
+
+  /// No description provided for @pagoMovil.
+  ///
+  /// In es, this message translates to:
+  /// **'Pago Móvil'**
+  String get pagoMovil;
+
+  /// No description provided for @bankTransfer.
+  ///
+  /// In es, this message translates to:
+  /// **'Transferencia'**
+  String get bankTransfer;
+
+  /// No description provided for @requiredField.
+  ///
+  /// In es, this message translates to:
+  /// **'Campo requerido'**
+  String get requiredField;
+
+  /// No description provided for @selectBank.
+  ///
+  /// In es, this message translates to:
+  /// **'Selecciona un banco'**
+  String get selectBank;
+
+  /// No description provided for @onlyAmount.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo Texto / Monto'**
+  String get onlyAmount;
+
+  /// No description provided for @configureAccounts.
+  ///
+  /// In es, this message translates to:
+  /// **'Configurar Cuentas'**
+  String get configureAccounts;
+
+  /// No description provided for @configureAccountsDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Agrega tus datos para compartir rápido'**
+  String get configureAccountsDesc;
+
+  /// No description provided for @yourAccounts.
+  ///
+  /// In es, this message translates to:
+  /// **'TUS CUENTAS'**
+  String get yourAccounts;
+
+  /// No description provided for @manageAccounts.
+  ///
+  /// In es, this message translates to:
+  /// **'Gestionar Cuentas'**
+  String get manageAccounts;
+
+  /// No description provided for @transferData.
+  ///
+  /// In es, this message translates to:
+  /// **'Datos Transferencia'**
+  String get transferData;
+
+  /// No description provided for @nameLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get nameLabel;
+
+  /// No description provided for @accountLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuenta'**
+  String get accountLabel;
+
+  /// No description provided for @actionCopy.
+  ///
+  /// In es, this message translates to:
+  /// **'Copiar'**
+  String get actionCopy;
+
+  /// No description provided for @actionShare.
+  ///
+  /// In es, this message translates to:
+  /// **'Compartir'**
+  String get actionShare;
+
+  /// No description provided for @amountLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Monto'**
+  String get amountLabel;
+
+  /// No description provided for @paymentAccountsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuentas de Pago'**
+  String get paymentAccountsTitle;
+
+  /// No description provided for @paymentAccountsSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Gestiona tus datos para pago móvil y transferencia'**
+  String get paymentAccountsSubtitle;
 }
 
 class _AppLocalizationsDelegate

@@ -442,4 +442,96 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get shareMessage =>
       '你好！我推荐BCV计算器。它超级快速且精准。在此下载：https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
+
+  @override
+  String get paymentSettings => '支付管理';
+
+  @override
+  String get noAccounts => '没有保存的账户';
+
+  @override
+  String get addAccount => '添加账户';
+
+  @override
+  String get deleteAccountTitle => '删除账户';
+
+  @override
+  String deleteAccountContent(Object alias) {
+    return '您确定要删除\"$alias\"吗？';
+  }
+
+  @override
+  String get deleteAction => '删除';
+
+  @override
+  String get newAccount => '新账户';
+
+  @override
+  String get editAccount => '编辑账户';
+
+  @override
+  String get aliasLabel => '别名（识别名称）';
+
+  @override
+  String get bankLabel => '银行';
+
+  @override
+  String get ciLabel => '身份证 / RIF';
+
+  @override
+  String get phoneLabel => '电话';
+
+  @override
+  String get accountNumberLabel => '银行账号（20位）';
+
+  @override
+  String get pagoMovil => '移动支付';
+
+  @override
+  String get bankTransfer => '转账';
+
+  @override
+  String get requiredField => '必填项';
+
+  @override
+  String get selectBank => '选择银行';
+
+  @override
+  String get onlyAmount => '仅文本/金额';
+
+  @override
+  String get configureAccounts => '配置账户';
+
+  @override
+  String get configureAccountsDesc => '添加您的资料以便快速分享';
+
+  @override
+  String get yourAccounts => '您的账户';
+
+  @override
+  String get manageAccounts => '管理账户';
+
+  @override
+  String get transferData => '转账资料';
+
+  @override
+  String get nameLabel => '姓名';
+
+  @override
+  String get accountLabel => '账号';
+
+  @override
+  String get actionCopy => '复制';
+
+  @override
+  String get actionShare => '分享';
+
+  @override
+  String get amountLabel => '金额';
+
+  @override
+  String get paymentAccountsTitle => '支付账户';
+
+  @override
+  String get paymentAccountsSubtitle => '管理您的移动支付和转账数据';
 }

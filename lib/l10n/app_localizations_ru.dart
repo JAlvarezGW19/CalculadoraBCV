@@ -453,4 +453,98 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get shareMessage =>
       'Привет! Рекомендую Калькулятор BCV. Он супер быстрый и точный. Скачать здесь: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
+
+  @override
+  String get paymentSettings => 'Управление платежами';
+
+  @override
+  String get noAccounts => 'Нет сохраненных счетов';
+
+  @override
+  String get addAccount => 'Добавить счет';
+
+  @override
+  String get deleteAccountTitle => 'Удалить счет';
+
+  @override
+  String deleteAccountContent(Object alias) {
+    return 'Вы хотите удалить \"$alias\"?';
+  }
+
+  @override
+  String get deleteAction => 'Удалить';
+
+  @override
+  String get newAccount => 'Новый счет';
+
+  @override
+  String get editAccount => 'Редактировать счет';
+
+  @override
+  String get aliasLabel => 'Псевдоним (Имя для идентификации)';
+
+  @override
+  String get bankLabel => 'Банк';
+
+  @override
+  String get ciLabel => 'ID / RIF';
+
+  @override
+  String get phoneLabel => 'Телефон';
+
+  @override
+  String get accountNumberLabel => 'Номер счета (20 цифр)';
+
+  @override
+  String get pagoMovil => 'Мобильный платеж';
+
+  @override
+  String get bankTransfer => 'Перевод';
+
+  @override
+  String get requiredField => 'Обязательное поле';
+
+  @override
+  String get selectBank => 'Выберите банк';
+
+  @override
+  String get onlyAmount => 'Только текст / Сумма';
+
+  @override
+  String get configureAccounts => 'Настроить счета';
+
+  @override
+  String get configureAccountsDesc =>
+      'Добавьте свои данные для быстрой отправки';
+
+  @override
+  String get yourAccounts => 'ВАШИ СЧЕТА';
+
+  @override
+  String get manageAccounts => 'Управление счетами';
+
+  @override
+  String get transferData => 'Данные перевода';
+
+  @override
+  String get nameLabel => 'Имя';
+
+  @override
+  String get accountLabel => 'Счет';
+
+  @override
+  String get actionCopy => 'Копировать';
+
+  @override
+  String get actionShare => 'Поделиться';
+
+  @override
+  String get amountLabel => 'Сумма';
+
+  @override
+  String get paymentAccountsTitle => 'Платежные счета';
+
+  @override
+  String get paymentAccountsSubtitle =>
+      'Управляйте данными для мобильного платежа и перевода';
 }

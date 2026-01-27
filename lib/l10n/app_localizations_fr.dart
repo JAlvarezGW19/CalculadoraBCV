@@ -458,4 +458,98 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get shareMessage =>
       'Bonjour! Je recommande la Calculatrice BCV. Elle est super rapide et précise. Téléchargez-la ici: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
+
+  @override
+  String get paymentSettings => 'Gestion des Paiements';
+
+  @override
+  String get noAccounts => 'Aucun compte enregistré';
+
+  @override
+  String get addAccount => 'Ajouter un compte';
+
+  @override
+  String get deleteAccountTitle => 'Supprimer le compte';
+
+  @override
+  String deleteAccountContent(Object alias) {
+    return 'Voulez-vous supprimer \"$alias\" ?';
+  }
+
+  @override
+  String get deleteAction => 'Supprimer';
+
+  @override
+  String get newAccount => 'Nouveau compte';
+
+  @override
+  String get editAccount => 'Modifier le compte';
+
+  @override
+  String get aliasLabel => 'Alias (Nom d\'identification)';
+
+  @override
+  String get bankLabel => 'Banque';
+
+  @override
+  String get ciLabel => 'ID / RIF';
+
+  @override
+  String get phoneLabel => 'Téléphone';
+
+  @override
+  String get accountNumberLabel => 'Numéro de compte (20 chiffres)';
+
+  @override
+  String get pagoMovil => 'Paiement Mobile';
+
+  @override
+  String get bankTransfer => 'Virement';
+
+  @override
+  String get requiredField => 'Champ obligatoire';
+
+  @override
+  String get selectBank => 'Sélectionnez une banque';
+
+  @override
+  String get onlyAmount => 'Texte uniquement / Montant';
+
+  @override
+  String get configureAccounts => 'Configurer les comptes';
+
+  @override
+  String get configureAccountsDesc =>
+      'Ajoutez vos données pour partager rapidement';
+
+  @override
+  String get yourAccounts => 'VOS COMPTES';
+
+  @override
+  String get manageAccounts => 'Gérer les comptes';
+
+  @override
+  String get transferData => 'Données de virement';
+
+  @override
+  String get nameLabel => 'Nom';
+
+  @override
+  String get accountLabel => 'Compte';
+
+  @override
+  String get actionCopy => 'Copier';
+
+  @override
+  String get actionShare => 'Partager';
+
+  @override
+  String get amountLabel => 'Montant';
+
+  @override
+  String get paymentAccountsTitle => 'Comptes de Paiement';
+
+  @override
+  String get paymentAccountsSubtitle =>
+      'Gérez vos données pour le paiement mobile et le virement';
 }

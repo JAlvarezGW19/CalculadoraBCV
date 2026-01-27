@@ -43,3 +43,29 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase & Google Services - IMPORTANTE: Proteger credenciales
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+.firebaserc
+firebase.json
+
+# Migration scripts - Service Account Keys
+migration/serviceAccountKey.json
+migration/node_modules/
+migration/*.log
+
+# Cloud Functions
+functions/node_modules/
+functions/lib/
+functions/.env
+functions/serviceAccountKey.json
+
+# Scripts de Python temporales
+*.py
+!setup.py
+!build.py
+
+# APKs compilados (muy pesados para Git)
+*.apk
+*.aab

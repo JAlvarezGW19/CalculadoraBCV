@@ -1,0 +1,12 @@
+{
+    "name": "migration-script",
+    "version": "1.0.0",
+    "description": "Script para migrar historial a documento consolidado",
+    "main": "migrate.js",
+    "scripts": {
+        "migrate": "node migrate.js"
+    },
+    "dependencies": {
+        "firebase-admin": "^12.0.0"
+    }
+}

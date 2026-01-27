@@ -453,4 +453,97 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get shareMessage =>
       'Halo! Saya merekomendasikan Kalkulator BCV. Sangat cepat dan akurat. Unduh di sini: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
+
+  @override
+  String get paymentSettings => 'Manajemen Pembayaran';
+
+  @override
+  String get noAccounts => 'Tidak ada akun tersimpan';
+
+  @override
+  String get addAccount => 'Tambah Akun';
+
+  @override
+  String get deleteAccountTitle => 'Hapus Akun';
+
+  @override
+  String deleteAccountContent(Object alias) {
+    return 'Apakah Anda ingin menghapus \"$alias\"?';
+  }
+
+  @override
+  String get deleteAction => 'Hapus';
+
+  @override
+  String get newAccount => 'Akun Baru';
+
+  @override
+  String get editAccount => 'Edit Akun';
+
+  @override
+  String get aliasLabel => 'Alias (Nama Identifikasi)';
+
+  @override
+  String get bankLabel => 'Bank';
+
+  @override
+  String get ciLabel => 'ID / RIF';
+
+  @override
+  String get phoneLabel => 'Telepon';
+
+  @override
+  String get accountNumberLabel => 'Nomor Rekening (20 digit)';
+
+  @override
+  String get pagoMovil => 'Pembayaran Seluler';
+
+  @override
+  String get bankTransfer => 'Transfer';
+
+  @override
+  String get requiredField => 'Wajib diisi';
+
+  @override
+  String get selectBank => 'Pilih bank';
+
+  @override
+  String get onlyAmount => 'Hanya Teks / Jumlah';
+
+  @override
+  String get configureAccounts => 'Konfigurasi Akun';
+
+  @override
+  String get configureAccountsDesc => 'Tambahkan data untuk berbagi cepat';
+
+  @override
+  String get yourAccounts => 'AKUN ANDA';
+
+  @override
+  String get manageAccounts => 'Kelola Akun';
+
+  @override
+  String get transferData => 'Data Transfer';
+
+  @override
+  String get nameLabel => 'Nama';
+
+  @override
+  String get accountLabel => 'Rekening';
+
+  @override
+  String get actionCopy => 'Salin';
+
+  @override
+  String get actionShare => 'Bagikan';
+
+  @override
+  String get amountLabel => 'Jumlah';
+
+  @override
+  String get paymentAccountsTitle => 'Akun Pembayaran';
+
+  @override
+  String get paymentAccountsSubtitle =>
+      'Kelola data Anda untuk pembayaran seluler dan transfer';
 }

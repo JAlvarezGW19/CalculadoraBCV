@@ -453,4 +453,97 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get shareMessage =>
       'مرحباً! أوصي بحاسبة BCV. إنها سريعة جداً ودقيقة. حملها من هنا: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
+
+  @override
+  String get paymentSettings => 'إدارة المدفوعات';
+
+  @override
+  String get noAccounts => 'لا توجد حسابات محفوظة';
+
+  @override
+  String get addAccount => 'إضافة حساب';
+
+  @override
+  String get deleteAccountTitle => 'حذف الحساب';
+
+  @override
+  String deleteAccountContent(Object alias) {
+    return 'هل تريد حذف \"$alias\"؟';
+  }
+
+  @override
+  String get deleteAction => 'حذف';
+
+  @override
+  String get newAccount => 'حساب جديد';
+
+  @override
+  String get editAccount => 'تعديل الحساب';
+
+  @override
+  String get aliasLabel => 'الاسم المستعار (اسم التعريف)';
+
+  @override
+  String get bankLabel => 'البنك';
+
+  @override
+  String get ciLabel => 'الهوية / RIF';
+
+  @override
+  String get phoneLabel => 'الهاتف';
+
+  @override
+  String get accountNumberLabel => 'رقم الحساب (20 رقماً)';
+
+  @override
+  String get pagoMovil => 'الدفع عبر الهاتف';
+
+  @override
+  String get bankTransfer => 'تحويل بنكي';
+
+  @override
+  String get requiredField => 'حقل مطلوب';
+
+  @override
+  String get selectBank => 'اختر بنكاً';
+
+  @override
+  String get onlyAmount => 'نص فقط / المبلغ';
+
+  @override
+  String get configureAccounts => 'إعداد الحسابات';
+
+  @override
+  String get configureAccountsDesc => 'أضف بياناتك للمشاركة بسرعة';
+
+  @override
+  String get yourAccounts => 'حساباتك';
+
+  @override
+  String get manageAccounts => 'إدارة الحسابات';
+
+  @override
+  String get transferData => 'بيانات التحويل';
+
+  @override
+  String get nameLabel => 'الاسم';
+
+  @override
+  String get accountLabel => 'الحساب';
+
+  @override
+  String get actionCopy => 'نسخ';
+
+  @override
+  String get actionShare => 'مشاركة';
+
+  @override
+  String get amountLabel => 'المبلغ';
+
+  @override
+  String get paymentAccountsTitle => 'حسابات الدفع';
+
+  @override
+  String get paymentAccountsSubtitle =>
+      'إدارة بياناتك للدفع عبر الهاتف والتحويل';
 }

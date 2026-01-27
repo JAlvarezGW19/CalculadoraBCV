@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:calculadora_bcv/l10n/app_localizations.dart';
 import 'package:showcaseview/showcaseview.dart';
 import '../utils/tutorial_keys.dart';
@@ -11,6 +10,7 @@ import '../providers/bcv_provider.dart';
 import '../theme/app_theme.dart';
 import '../utils/currency_formatter.dart';
 import 'common/tutorial_tooltip.dart';
+import 'share_payment_sheet.dart';
 
 class ConversionCard extends ConsumerStatefulWidget {
   final double activeRate;
@@ -48,7 +48,6 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(conversionProvider);
-
     final l10n = AppLocalizations.of(context)!;
 
     // Listener for State Updates to Controllers
@@ -376,7 +375,6 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
     DateTime? date,
     CustomRate? customRate,
   ) async {
-    final l10n = AppLocalizations.of(context)!;
     final foreignAmount = _foreignController.text;
     final vesAmount = _vesController.text;
 
@@ -450,26 +448,42 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
     final msg =
         "$intro $prefix$foreignAmount$suffix ($vesAmount Bs.) | $rateName = $formattedRate Bs.";
 
-    try {
-      final box = context.findRenderObject() as RenderBox?;
-      // ignore: deprecated_member_use
-      await Share.share(
-        msg,
-        sharePositionOrigin: box != null
-            ? box.localToGlobal(Offset.zero) & box.size
-            : null,
-      );
-    } catch (e) {
-      debugPrint("Error sharing: $e");
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("${l10n.shareError}: $e"),
-            backgroundColor: Colors.redAccent,
+    // Clean Amount for Payment (VES Amount)
+    final cleanAmount = vesAmount;
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.6,
+        maxChildSize: 0.9,
+        minChildSize: 0.4,
+        builder: (_, controller) => _buildSheetContainer(
+          SingleChildScrollView(
+            controller: controller,
+            child: SharePaymentSheet(
+              amount: cleanAmount,
+              rawShareText: msg,
+              action: ShareAction.share,
+            ),
           ),
-        );
-      }
-    }
+          context,
+        ),
+      ),
+    );
+  }
+
+  // Helper just to style the sheet background if needed, though Sheet itself has style
+  Widget _buildSheetContainer(Widget child, BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      child: child,
+    );
   }
 
   Widget _buildInputField({
@@ -498,13 +512,37 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
               GestureDetector(
                 onTap: () {
                   if (controller.text.isNotEmpty) {
-                    Clipboard.setData(ClipboardData(text: controller.text));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(l10n.copiedClipboard),
-                        duration: const Duration(milliseconds: 1000),
-                      ),
-                    );
+                    bool isVes = label == l10n.ves;
+                    if (isVes) {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => DraggableScrollableSheet(
+                          expand: false,
+                          initialChildSize: 0.6,
+                          builder: (_, ctrl) => _buildSheetContainer(
+                            SingleChildScrollView(
+                              controller: ctrl,
+                              child: SharePaymentSheet(
+                                amount: controller.text,
+                                rawShareText: controller.text,
+                                action: ShareAction.copy,
+                              ),
+                            ),
+                            context,
+                          ),
+                        ),
+                      );
+                    } else {
+                      Clipboard.setData(ClipboardData(text: controller.text));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(l10n.copiedClipboard),
+                          duration: const Duration(milliseconds: 1000),
+                        ),
+                      );
+                    }
                   }
                 },
                 child: Container(

@@ -11,9 +11,14 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'providers/ad_provider.dart';
 import 'providers/iap_provider.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+
+Future<void> main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
+
+    // Initialize Firebase (uses google-services.json on Android)
+    await Firebase.initializeApp();
 
     // Lock orientation to portrait (fire and forget)
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

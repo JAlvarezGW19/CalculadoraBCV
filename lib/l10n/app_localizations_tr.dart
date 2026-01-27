@@ -457,4 +457,98 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get shareMessage =>
       'Merhaba! BCV Hesap Makinesini tavsiye ederim. Süper hızlı ve doğru. Buradan indir: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
+
+  @override
+  String get paymentSettings => 'Ödeme Yönetimi';
+
+  @override
+  String get noAccounts => 'Kayıtlı hesap yok';
+
+  @override
+  String get addAccount => 'Hesap Ekle';
+
+  @override
+  String get deleteAccountTitle => 'Hesabı Sil';
+
+  @override
+  String deleteAccountContent(Object alias) {
+    return '\"$alias\" hesabını silmek istiyor musunuz?';
+  }
+
+  @override
+  String get deleteAction => 'Sil';
+
+  @override
+  String get newAccount => 'Yeni Hesap';
+
+  @override
+  String get editAccount => 'Hesabı Düzenle';
+
+  @override
+  String get aliasLabel => 'Takma Ad (Tanımlama Adı)';
+
+  @override
+  String get bankLabel => 'Banka';
+
+  @override
+  String get ciLabel => 'Kimlik / RIF';
+
+  @override
+  String get phoneLabel => 'Telefon';
+
+  @override
+  String get accountNumberLabel => 'Hesap Numarası (20 hane)';
+
+  @override
+  String get pagoMovil => 'Mobil Ödeme';
+
+  @override
+  String get bankTransfer => 'Transfer';
+
+  @override
+  String get requiredField => 'Zorunlu alan';
+
+  @override
+  String get selectBank => 'Bir banka seçin';
+
+  @override
+  String get onlyAmount => 'Sadece Metin / Tutar';
+
+  @override
+  String get configureAccounts => 'Hesapları Yapılandır';
+
+  @override
+  String get configureAccountsDesc =>
+      'Hızlı paylaşım için verilerinizi ekleyin';
+
+  @override
+  String get yourAccounts => 'HESAPLARINIZ';
+
+  @override
+  String get manageAccounts => 'Hesapları Yönet';
+
+  @override
+  String get transferData => 'Transfer Verileri';
+
+  @override
+  String get nameLabel => 'İsim';
+
+  @override
+  String get accountLabel => 'Hesap';
+
+  @override
+  String get actionCopy => 'Kopyala';
+
+  @override
+  String get actionShare => 'Paylaş';
+
+  @override
+  String get amountLabel => 'Tutar';
+
+  @override
+  String get paymentAccountsTitle => 'Ödeme Hesapları';
+
+  @override
+  String get paymentAccountsSubtitle =>
+      'Mobil ödeme ve transfer için verilerinizi yönetin';
 }

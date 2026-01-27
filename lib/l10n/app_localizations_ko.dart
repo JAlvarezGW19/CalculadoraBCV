@@ -446,4 +446,96 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get shareMessage =>
       '안녕하세요! BCV 계산기를 추천합니다. 정말 빠르고 정확합니다. 여기서 다운로드하세요: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
+
+  @override
+  String get paymentSettings => '결제 관리';
+
+  @override
+  String get noAccounts => '저장된 계정 없음';
+
+  @override
+  String get addAccount => '계정 추가';
+
+  @override
+  String get deleteAccountTitle => '계정 삭제';
+
+  @override
+  String deleteAccountContent(Object alias) {
+    return '\"$alias\" 계정을 삭제하시겠습니까?';
+  }
+
+  @override
+  String get deleteAction => '삭제';
+
+  @override
+  String get newAccount => '새 계정';
+
+  @override
+  String get editAccount => '계정 수정';
+
+  @override
+  String get aliasLabel => '별칭 (식별 이름)';
+
+  @override
+  String get bankLabel => '은행';
+
+  @override
+  String get ciLabel => '신분증 / RIF';
+
+  @override
+  String get phoneLabel => '전화번호';
+
+  @override
+  String get accountNumberLabel => '계좌 번호 (20자리)';
+
+  @override
+  String get pagoMovil => '모바일 결제';
+
+  @override
+  String get bankTransfer => '이체';
+
+  @override
+  String get requiredField => '필수 항목';
+
+  @override
+  String get selectBank => '은행 선택';
+
+  @override
+  String get onlyAmount => '텍스트만 / 금액';
+
+  @override
+  String get configureAccounts => '계정 설정';
+
+  @override
+  String get configureAccountsDesc => '빠른 공유를 위해 데이터 추가';
+
+  @override
+  String get yourAccounts => '내 계정';
+
+  @override
+  String get manageAccounts => '계정 관리';
+
+  @override
+  String get transferData => '이체 정보';
+
+  @override
+  String get nameLabel => '이름';
+
+  @override
+  String get accountLabel => '계좌';
+
+  @override
+  String get actionCopy => '복사';
+
+  @override
+  String get actionShare => '공유';
+
+  @override
+  String get amountLabel => '금액';
+
+  @override
+  String get paymentAccountsTitle => '결제 계정';
+
+  @override
+  String get paymentAccountsSubtitle => '모바일 결제 및 이체를 위한 데이터 관리';
 }

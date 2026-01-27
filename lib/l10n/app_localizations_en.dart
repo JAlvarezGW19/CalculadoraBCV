@@ -455,4 +455,97 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get shareMessage =>
       'Hello! I recommend the BCV Calculator. It is super fast and accurate. Download it here: https://play.google.com/store/apps/details?id=com.juanalvarez.calculadorabcv';
+
+  @override
+  String get paymentSettings => 'Payment Management';
+
+  @override
+  String get noAccounts => 'No saved accounts';
+
+  @override
+  String get addAccount => 'Add Account';
+
+  @override
+  String get deleteAccountTitle => 'Delete Account';
+
+  @override
+  String deleteAccountContent(Object alias) {
+    return 'Do you want to delete \"$alias\"?';
+  }
+
+  @override
+  String get deleteAction => 'Delete';
+
+  @override
+  String get newAccount => 'New Account';
+
+  @override
+  String get editAccount => 'Edit Account';
+
+  @override
+  String get aliasLabel => 'Alias (Identity Name)';
+
+  @override
+  String get bankLabel => 'Bank';
+
+  @override
+  String get ciLabel => 'ID / RIF';
+
+  @override
+  String get phoneLabel => 'Phone';
+
+  @override
+  String get accountNumberLabel => 'Account Number (20 digits)';
+
+  @override
+  String get pagoMovil => 'Mobile Payment';
+
+  @override
+  String get bankTransfer => 'Transfer';
+
+  @override
+  String get requiredField => 'Required field';
+
+  @override
+  String get selectBank => 'Select a bank';
+
+  @override
+  String get onlyAmount => 'Text Only / Amount';
+
+  @override
+  String get configureAccounts => 'Configure Accounts';
+
+  @override
+  String get configureAccountsDesc => 'Add your data to share fast';
+
+  @override
+  String get yourAccounts => 'YOUR ACCOUNTS';
+
+  @override
+  String get manageAccounts => 'Manage Accounts';
+
+  @override
+  String get transferData => 'Transfer Data';
+
+  @override
+  String get nameLabel => 'Name';
+
+  @override
+  String get accountLabel => 'Account';
+
+  @override
+  String get actionCopy => 'Copy';
+
+  @override
+  String get actionShare => 'Share';
+
+  @override
+  String get amountLabel => 'Amount';
+
+  @override
+  String get paymentAccountsTitle => 'Payment Accounts';
+
+  @override
+  String get paymentAccountsSubtitle =>
+      'Manage your data for mobile payment and transfer';
 }
