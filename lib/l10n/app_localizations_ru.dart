@@ -547,4 +547,30 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get paymentAccountsSubtitle =>
       'Управляйте данными для мобильного платежа и перевода';
+
+  @override
+  String get accountDigitsHelper => 'Должно быть 20 цифр';
+
+  @override
+  String accountDigitsCount(Object count) {
+    return '$count/20 цифр';
+  }
+
+  @override
+  String get accountDigitsExact => 'Должно быть ровно 20 цифр';
+
+  @override
+  String aliasAlreadyExists(Object alias) {
+    return 'Псевдоним «$alias» уже существует';
+  }
+
+  @override
+  String pagoMovilAlreadyExists(Object name) {
+    return 'Этот счет мобильных платежей уже существует под именем «$name»';
+  }
+
+  @override
+  String bankAccountAlreadyExists(Object name) {
+    return 'Этот банковский счет уже существует под именем «$name»';
+  }
 }

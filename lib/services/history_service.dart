@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -5,8 +6,78 @@ import 'package:flutter/foundation.dart';
 import '../models/history_point.dart';
 
 class HistoryService {
-  static const String _cacheKey = 'history_rates_cache_v2';
-  static const String _lastFetchKey = 'history_last_fetch_v2';
+  static const String _cacheKey = 'history_rates_cache_v3';
+  static const String _lastUpdateKey = 'history_last_update_v3';
+
+  // Singleton para mantener el listener activo
+  static final HistoryService _instance = HistoryService._internal();
+  factory HistoryService() => _instance;
+  HistoryService._internal();
+
+  StreamSubscription<DocumentSnapshot>? _listener;
+  List<dynamic>? _cachedRates;
+
+  /// Inicia el listener en tiempo real para detectar nuevas tasas
+  void startRealtimeListener() {
+    if (_listener != null) {
+      debugPrint('⚠️ Listener ya está activo');
+      return;
+    }
+
+    debugPrint('🔔 Iniciando listener en tiempo real para historial...');
+
+    _listener = FirebaseFirestore.instance
+        .collection('historial_tasas')
+        .doc('consolidated')
+        .snapshots()
+        .listen(
+          (snapshot) async {
+            if (snapshot.exists) {
+              final data = snapshot.data();
+              if (data != null && data['rates'] != null) {
+                final newRates = data['rates'] as List<dynamic>;
+                final lastUpdate = data['last_updated'] as Timestamp?;
+
+                // Verificar si hay cambios
+                final shouldUpdate = await _hasNewData(lastUpdate);
+
+                if (shouldUpdate) {
+                  _cachedRates = newRates;
+                  await _cacheData(newRates, lastUpdate);
+                  debugPrint(
+                    '🔔 Nueva tasa detectada! Caché actualizado: ${newRates.length} registros',
+                  );
+                }
+              }
+            }
+          },
+          onError: (error) {
+            debugPrint('❌ Error en listener de historial: $error');
+          },
+        );
+  }
+
+  /// Detiene el listener en tiempo real
+  void stopRealtimeListener() {
+    _listener?.cancel();
+    _listener = null;
+    debugPrint('🔕 Listener de historial detenido');
+  }
+
+  /// Verifica si hay nuevos datos comparando timestamps
+  Future<bool> _hasNewData(Timestamp? newTimestamp) async {
+    if (newTimestamp == null) return true;
+
+    final prefs = await SharedPreferences.getInstance();
+    final lastUpdateStr = prefs.getString(_lastUpdateKey);
+
+    if (lastUpdateStr == null) return true;
+
+    final lastUpdate = DateTime.parse(lastUpdateStr);
+    final newUpdate = newTimestamp.toDate();
+
+    return newUpdate.isAfter(lastUpdate);
+  }
 
   Future<List<HistoryPoint>> fetchHistory(
     String currency, // 'USD' or 'EUR'
@@ -16,41 +87,25 @@ class HistoryService {
   ) async {
     List<dynamic> ratesList = [];
 
-    // 1. Try to load from Firestore (Primary) or cache
-    try {
-      if (await _shouldFetch()) {
-        // ✨ NUEVA ESTRUCTURA: Leer UN SOLO documento consolidado
-        final docSnapshot = await FirebaseFirestore.instance
-            .collection('historial_tasas')
-            .doc('consolidated')
-            .get();
-
-        if (docSnapshot.exists) {
-          final data = docSnapshot.data();
-          if (data != null && data['rates'] != null) {
-            ratesList = data['rates'] as List<dynamic>;
-            await _cacheData(ratesList);
-            debugPrint(
-              '✅ Historial cargado desde Firestore: ${ratesList.length} registros (1 lectura)',
-            );
-          }
-        }
-      }
-    } catch (e) {
-      debugPrint("Firestore History fetch error: $e");
+    // 1. Intentar usar caché en memoria primero (más rápido)
+    if (_cachedRates != null && _cachedRates!.isNotEmpty) {
+      ratesList = _cachedRates!;
+      debugPrint(
+        '⚡ Historial cargado desde memoria: ${ratesList.length} registros',
+      );
     }
-
-    // 2. Load from cache if Firestore failed or wasn't needed
-    if (ratesList.isEmpty) {
+    // 2. Si no hay caché en memoria, cargar desde SharedPreferences
+    else {
       ratesList = await _loadCache();
       if (ratesList.isNotEmpty) {
+        _cachedRates = ratesList;
         debugPrint(
           '📦 Historial cargado desde caché: ${ratesList.length} registros',
         );
       }
     }
 
-    // Si sigue vacío, intentamos forzar fetch aunque no toque
+    // 3. Si no hay caché, hacer fetch inicial de Firestore
     if (ratesList.isEmpty) {
       try {
         final docSnapshot = await FirebaseFirestore.instance
@@ -62,14 +117,17 @@ class HistoryService {
           final data = docSnapshot.data();
           if (data != null && data['rates'] != null) {
             ratesList = data['rates'] as List<dynamic>;
-            await _cacheData(ratesList);
+            _cachedRates = ratesList;
+            final lastUpdate = data['last_updated'] as Timestamp?;
+            await _cacheData(ratesList, lastUpdate);
             debugPrint(
-              '✅ Historial forzado desde Firestore: ${ratesList.length} registros',
+              '✅ Historial cargado desde Firestore: ${ratesList.length} registros (1 lectura)',
             );
           }
         }
       } catch (e) {
-        debugPrint("Error en fetch forzado: $e");
+        debugPrint("❌ Error cargando historial: $e");
+        throw Exception("No se pudo cargar el historial.");
       }
     }
 
@@ -77,18 +135,17 @@ class HistoryService {
       throw Exception("No hay datos históricos disponibles.");
     }
 
-    // 3. Filter and Map
+    // 4. Filtrar y mapear datos
     List<HistoryPoint> points = [];
 
-    // Normalize range dates to start of day (00:00:00)
+    // Normalizar fechas a inicio del día (00:00:00)
     final startYMD = DateTime(start.year, start.month, start.day);
     final endYMD = DateTime(end.year, end.month, end.day);
 
     for (var item in ratesList) {
-      // En la nueva estructura, cada item tiene: { rate_date, usd, eur, source }
       String? dateStr = item['rate_date'];
 
-      // Some old cache might have partial ISO string
+      // Limpiar formato ISO si es necesario
       if (dateStr != null && dateStr.contains("T")) {
         dateStr = dateStr.split("T")[0];
       }
@@ -96,10 +153,9 @@ class HistoryService {
       final rawDate = DateTime.tryParse(dateStr ?? "");
 
       if (rawDate != null) {
-        // Normalize item date to 00:00:00
         final itemDate = DateTime(rawDate.year, rawDate.month, rawDate.day);
 
-        // Inclusive check: start <= item <= end
+        // Verificar si está en el rango (inclusivo)
         if (itemDate.compareTo(startYMD) >= 0 &&
             itemDate.compareTo(endYMD) <= 0) {
           double? rateVal;
@@ -116,28 +172,24 @@ class HistoryService {
       }
     }
 
-    // Sort by date ascending for the graph
+    // Ordenar por fecha ascendente
     points.sort((a, b) => a.date.compareTo(b.date));
 
     debugPrint('📊 Puntos filtrados para el rango: ${points.length}');
     return points;
   }
 
-  Future<bool> _shouldFetch() async {
+  Future<void> _cacheData(List<dynamic> rates, Timestamp? lastUpdate) async {
     final prefs = await SharedPreferences.getInstance();
-    final lastStr = prefs.getString(_lastFetchKey);
-    if (lastStr == null) return true;
-
-    final last = DateTime.parse(lastStr);
-    // Fetch if older than 6 hours (puedes ajustar este tiempo)
-    return DateTime.now().difference(last).inHours > 6;
-  }
-
-  Future<void> _cacheData(List<dynamic> rates) async {
-    final prefs = await SharedPreferences.getInstance();
-    // Cache as JSON list
     await prefs.setString(_cacheKey, json.encode(rates));
-    await prefs.setString(_lastFetchKey, DateTime.now().toIso8601String());
+
+    if (lastUpdate != null) {
+      await prefs.setString(
+        _lastUpdateKey,
+        lastUpdate.toDate().toIso8601String(),
+      );
+    }
+
     debugPrint('💾 Caché guardado: ${rates.length} registros');
   }
 
@@ -153,20 +205,5 @@ class HistoryService {
       }
     }
     return [];
-  }
-
-  /// Método para forzar actualización del caché
-  Future<void> forceRefresh() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_lastFetchKey);
-    debugPrint('🔄 Caché de historial invalidado');
-  }
-
-  /// Método para limpiar caché completamente
-  Future<void> clearCache() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_cacheKey);
-    await prefs.remove(_lastFetchKey);
-    debugPrint('🗑️ Caché de historial eliminado');
   }
 }

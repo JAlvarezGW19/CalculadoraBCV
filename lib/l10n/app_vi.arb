@@ -172,6 +172,13 @@
   "actionCopy": "Sao chép",
   "actionShare": "Chia sẻ",
   "amountLabel": "Số tiền",
-  "paymentAccountsTitle": "Tài khoản Thanh toán",
-  "paymentAccountsSubtitle": "Quản lý dữ liệu cho thanh toán di động và chuyển khoản"
+  "paymentAccountsTitle": "Tài khoản thanh toán",
+  "paymentAccountsSubtitle": "Quản lý dữ liệu của bạn để thanh toán di động và chuyển khoản",
+  "accountDigitsHelper": "Phải có 20 chữ số",
+  "accountDigitsCount": "{count}/20 chữ số",
+  "accountDigitsExact": "Phải có chính xác 20 chữ số",
+  "aliasAlreadyExists": "Biệt danh \"{alias}\" đã tồn tại",
+  "pagoMovilAlreadyExists": "Tài khoản Thanh toán di động này đã tồn tại với tên \"{name}\"",
+  "bankAccountAlreadyExists": "Tài khoản ngân hàng này đã tồn tại với tên \"{name}\""
+
 }

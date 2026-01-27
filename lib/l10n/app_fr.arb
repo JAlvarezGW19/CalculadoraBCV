@@ -173,5 +173,11 @@
   "actionShare": "Partager",
   "amountLabel": "Montant",
   "paymentAccountsTitle": "Comptes de Paiement",
-  "paymentAccountsSubtitle": "Gérez vos données pour le paiement mobile et le virement"
+  "paymentAccountsSubtitle": "Gérez vos données pour le paiement mobile et le virement",
+  "accountDigitsHelper": "Doit comporter 20 chiffres",
+  "accountDigitsCount": "{count}/20 chiffres",
+  "accountDigitsExact": "Doit comporter exactement 20 chiffres",
+  "aliasAlreadyExists": "L'alias « {alias} » existe déjà",
+  "pagoMovilAlreadyExists": "Ce compte de paiement mobile existe déjà sous le nom « {name} »",
+  "bankAccountAlreadyExists": "Ce compte bancaire existe déjà sous le nom « {name} »"
 }

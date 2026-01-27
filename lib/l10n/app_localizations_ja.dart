@@ -534,5 +534,31 @@ class AppLocalizationsJa extends AppLocalizations {
   String get paymentAccountsTitle => '支払いアカウント';
 
   @override
-  String get paymentAccountsSubtitle => 'モバイル決済と振込のデータを管理';
+  String get paymentAccountsSubtitle => 'モバイル決済と送金のためのデータを管理します';
+
+  @override
+  String get accountDigitsHelper => '20桁である必要があります';
+
+  @override
+  String accountDigitsCount(Object count) {
+    return '$count/20桁';
+  }
+
+  @override
+  String get accountDigitsExact => '正確に20桁である必要があります';
+
+  @override
+  String aliasAlreadyExists(Object alias) {
+    return 'エイリアス「$alias」は既に存在します';
+  }
+
+  @override
+  String pagoMovilAlreadyExists(Object name) {
+    return 'このモバイル決済アカウントは、名前「$name」で既に存在します';
+  }
+
+  @override
+  String bankAccountAlreadyExists(Object name) {
+    return 'この銀行口座は、名前「$name」で既に存在します';
+  }
 }

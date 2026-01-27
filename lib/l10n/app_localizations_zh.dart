@@ -534,4 +534,30 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get paymentAccountsSubtitle => '管理您的移动支付和转账数据';
+
+  @override
+  String get accountDigitsHelper => '必须有 20 位数字';
+
+  @override
+  String accountDigitsCount(Object count) {
+    return '$count/20 位数字';
+  }
+
+  @override
+  String get accountDigitsExact => '必须正好是 20 位数字';
+
+  @override
+  String aliasAlreadyExists(Object alias) {
+    return '别名“$alias”已存在';
+  }
+
+  @override
+  String pagoMovilAlreadyExists(Object name) {
+    return '此移动支付账户已存在，名称为“$name”';
+  }
+
+  @override
+  String bankAccountAlreadyExists(Object name) {
+    return '此银行账户已存在，名称为“$name”';
+  }
 }

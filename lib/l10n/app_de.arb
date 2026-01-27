@@ -173,5 +173,12 @@
   "actionShare": "Teilen",
   "amountLabel": "Betrag",
   "paymentAccountsTitle": "Zahlungskonten",
-  "paymentAccountsSubtitle": "Verwalten Sie Ihre Daten für mobile Zahlung und Überweisung"
+  "paymentAccountsSubtitle": "Verwalten Sie Ihre Daten für mobile Zahlung und Überweisung",
+  "accountDigitsHelper": "Muss 20 Ziffern haben",
+  "accountDigitsCount": "{count}/20 Ziffern",
+  "accountDigitsExact": "Muss genau 20 Ziffern haben",
+  "aliasAlreadyExists": "Alias „{alias}“ existiert bereits",
+  "pagoMovilAlreadyExists": "Dieses mobile Zahlungskonto existiert bereits mit dem Namen „{name}“",
+  "bankAccountAlreadyExists": "Dieses Bankkonto existiert bereits mit dem Namen „{name}“"
+
 }

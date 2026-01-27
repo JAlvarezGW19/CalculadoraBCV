@@ -1167,6 +1167,42 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Gestiona tus datos para pago móvil y transferencia'**
   String get paymentAccountsSubtitle;
+
+  /// No description provided for @accountDigitsHelper.
+  ///
+  /// In es, this message translates to:
+  /// **'Debe tener 20 dígitos'**
+  String get accountDigitsHelper;
+
+  /// No description provided for @accountDigitsCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count}/20 dígitos'**
+  String accountDigitsCount(Object count);
+
+  /// No description provided for @accountDigitsExact.
+  ///
+  /// In es, this message translates to:
+  /// **'Debe tener exactamente 20 dígitos'**
+  String get accountDigitsExact;
+
+  /// No description provided for @aliasAlreadyExists.
+  ///
+  /// In es, this message translates to:
+  /// **'Alias \"{alias}\" ya existe'**
+  String aliasAlreadyExists(Object alias);
+
+  /// No description provided for @pagoMovilAlreadyExists.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta cuenta de Pago Móvil ya existe con el nombre \"{name}\"'**
+  String pagoMovilAlreadyExists(Object name);
+
+  /// No description provided for @bankAccountAlreadyExists.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta cuenta bancaria ya existe con el nombre \"{name}\"'**
+  String bankAccountAlreadyExists(Object name);
 }
 
 class _AppLocalizationsDelegate

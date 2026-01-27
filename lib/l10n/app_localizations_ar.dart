@@ -538,12 +538,38 @@ class AppLocalizationsAr extends AppLocalizations {
   String get actionShare => 'مشاركة';
 
   @override
-  String get amountLabel => 'المبلغ';
+  String get amountLabel => 'كمية';
 
   @override
   String get paymentAccountsTitle => 'حسابات الدفع';
 
   @override
   String get paymentAccountsSubtitle =>
-      'إدارة بياناتك للدفع عبر الهاتف والتحويل';
+      'إدارة بياناتك للدفع عبر الهاتف المحمول والتحويل';
+
+  @override
+  String get accountDigitsHelper => 'يجب أن يتكون من 20 رقمًا';
+
+  @override
+  String accountDigitsCount(Object count) {
+    return '$count/20 رقمًا';
+  }
+
+  @override
+  String get accountDigitsExact => 'يجب أن يتكون من 20 رقمًا بالضبط';
+
+  @override
+  String aliasAlreadyExists(Object alias) {
+    return 'الاسم المستعار \"$alias\" موجود بالفعل';
+  }
+
+  @override
+  String pagoMovilAlreadyExists(Object name) {
+    return 'حساب الدفع عبر الهاتف المحمول هذا موجود بالفعل باسم \"$name\"';
+  }
+
+  @override
+  String bankAccountAlreadyExists(Object name) {
+    return 'هذا الحساب المصرفي موجود بالفعل باسم \"$name\"';
+  }
 }

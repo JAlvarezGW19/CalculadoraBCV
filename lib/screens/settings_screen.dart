@@ -14,7 +14,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 // Extracted Widgets
 import '../widgets/settings/about_app_dialog.dart';
-import '../widgets/settings/cache_management_dialog.dart';
 import '../widgets/settings/language_selection_dialog.dart';
 import '../widgets/settings/premium_active_card.dart';
 import '../widgets/settings/premium_card.dart';
@@ -89,15 +88,6 @@ class SettingsScreen extends ConsumerWidget {
                 ),
               ),
 
-              SettingsListItem(
-                icon: Icons.storage_rounded,
-                title: l10n.storageNetwork,
-                subtitle: l10n.storageNetworkSubtitle,
-                onTap: () => showDialog(
-                  context: context,
-                  builder: (_) => const CacheManagementDialog(),
-                ),
-              ),
               SettingsSwitchItem(
                 icon: Icons.notifications_active_rounded,
                 title: l10n.notifications,

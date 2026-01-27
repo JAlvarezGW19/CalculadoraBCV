@@ -538,4 +538,30 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get paymentAccountsSubtitle => '모바일 결제 및 이체를 위한 데이터 관리';
+
+  @override
+  String get accountDigitsHelper => '20자리여야 합니다';
+
+  @override
+  String accountDigitsCount(Object count) {
+    return '$count/20자리';
+  }
+
+  @override
+  String get accountDigitsExact => '정확히 20자리여야 합니다';
+
+  @override
+  String aliasAlreadyExists(Object alias) {
+    return '별칭 \"$alias\"이(가) 이미 존재합니다';
+  }
+
+  @override
+  String pagoMovilAlreadyExists(Object name) {
+    return '이 모바일 결제 계정은 \"$name\" 이름으로 이미 존재합니다';
+  }
+
+  @override
+  String bankAccountAlreadyExists(Object name) {
+    return '이 은행 계좌는 \"$name\" 이름으로 이미 존재합니다';
+  }
 }

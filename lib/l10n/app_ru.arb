@@ -173,5 +173,12 @@
   "actionShare": "Поделиться",
   "amountLabel": "Сумма",
   "paymentAccountsTitle": "Платежные счета",
-  "paymentAccountsSubtitle": "Управляйте данными для мобильного платежа и перевода"
+  "paymentAccountsSubtitle": "Управляйте данными для мобильного платежа и перевода",
+  "accountDigitsHelper": "Должно быть 20 цифр",
+  "accountDigitsCount": "{count}/20 цифр",
+  "accountDigitsExact": "Должно быть ровно 20 цифр",
+  "aliasAlreadyExists": "Псевдоним «{alias}» уже существует",
+  "pagoMovilAlreadyExists": "Этот счет мобильных платежей уже существует под именем «{name}»",
+  "bankAccountAlreadyExists": "Этот банковский счет уже существует под именем «{name}»"
+
 }

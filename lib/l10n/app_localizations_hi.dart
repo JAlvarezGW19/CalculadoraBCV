@@ -549,4 +549,30 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get paymentAccountsSubtitle =>
       'मोबाइल भुगतान और हस्तांतरण के लिए अपना डेटा प्रबंधित करें';
+
+  @override
+  String get accountDigitsHelper => '20 अंक होने चाहिए';
+
+  @override
+  String accountDigitsCount(Object count) {
+    return '$count/20 अंक';
+  }
+
+  @override
+  String get accountDigitsExact => 'ठीक 20 अंक होने चाहिए';
+
+  @override
+  String aliasAlreadyExists(Object alias) {
+    return 'उपनाम \"$alias\" पहले से मौजूद है';
+  }
+
+  @override
+  String pagoMovilAlreadyExists(Object name) {
+    return 'यह मोबाइल भुगतान खाता \"$name\" नाम से पहले से मौजूद है';
+  }
+
+  @override
+  String bankAccountAlreadyExists(Object name) {
+    return 'यह बैंक खाता \"$name\" नाम से पहले से मौजूद है';
+  }
 }

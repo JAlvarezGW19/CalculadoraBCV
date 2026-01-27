@@ -552,4 +552,30 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get paymentAccountsSubtitle =>
       'Gestisci i tuoi dati per pagamento mobile e bonifico';
+
+  @override
+  String get accountDigitsHelper => 'Deve avere 20 cifre';
+
+  @override
+  String accountDigitsCount(Object count) {
+    return '$count/20 cifre';
+  }
+
+  @override
+  String get accountDigitsExact => 'Deve avere esattamente 20 cifre';
+
+  @override
+  String aliasAlreadyExists(Object alias) {
+    return 'L\'alias \"$alias\" esiste già';
+  }
+
+  @override
+  String pagoMovilAlreadyExists(Object name) {
+    return 'Questo conto di pagamento mobile esiste già con il nome \"$name\"';
+  }
+
+  @override
+  String bankAccountAlreadyExists(Object name) {
+    return 'Questo conto bancario esiste già con il nome \"$name\"';
+  }
 }

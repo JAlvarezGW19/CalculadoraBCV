@@ -173,5 +173,12 @@
   "actionShare": "共有",
   "amountLabel": "金額",
   "paymentAccountsTitle": "支払いアカウント",
-  "paymentAccountsSubtitle": "モバイル決済と振込のデータを管理"
+  "paymentAccountsSubtitle": "モバイル決済と送金のためのデータを管理します",
+  "accountDigitsHelper": "20桁である必要があります",
+  "accountDigitsCount": "{count}/20桁",
+  "accountDigitsExact": "正確に20桁である必要があります",
+  "aliasAlreadyExists": "エイリアス「{alias}」は既に存在します",
+  "pagoMovilAlreadyExists": "このモバイル決済アカウントは、名前「{name}」で既に存在します",
+  "bankAccountAlreadyExists": "この銀行口座は、名前「{name}」で既に存在します"
+
 }

@@ -453,36 +453,27 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
 
     showModalBottomSheet(
       context: context,
+      backgroundColor: AppTheme.cardBackground,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => DraggableScrollableSheet(
-        expand: false,
-        initialChildSize: 0.6,
-        maxChildSize: 0.9,
-        minChildSize: 0.4,
-        builder: (_, controller) => _buildSheetContainer(
-          SingleChildScrollView(
-            controller: controller,
-            child: SharePaymentSheet(
-              amount: cleanAmount,
-              rawShareText: msg,
-              action: ShareAction.share,
+      builder: (sheetContext) {
+        return SafeArea(
+          child: Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            child: SingleChildScrollView(
+              child: SharePaymentSheet(
+                amount: cleanAmount,
+                rawShareText: msg,
+                action: ShareAction.share,
+              ),
             ),
           ),
-          context,
-        ),
-      ),
-    );
-  }
-
-  // Helper just to style the sheet background if needed, though Sheet itself has style
-  Widget _buildSheetContainer(Widget child, BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      child: child,
+        );
+      },
     );
   }
 
@@ -516,23 +507,31 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
                     if (isVes) {
                       showModalBottomSheet(
                         context: context,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        builder: (context) => DraggableScrollableSheet(
-                          expand: false,
-                          initialChildSize: 0.6,
-                          builder: (_, ctrl) => _buildSheetContainer(
-                            SingleChildScrollView(
-                              controller: ctrl,
-                              child: SharePaymentSheet(
-                                amount: controller.text,
-                                rawShareText: controller.text,
-                                action: ShareAction.copy,
-                              ),
-                            ),
-                            context,
+                        backgroundColor: AppTheme.cardBackground,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(24),
                           ),
                         ),
+                        isScrollControlled: true,
+                        builder: (sheetContext) {
+                          return SafeArea(
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                bottom: MediaQuery.of(
+                                  context,
+                                ).viewInsets.bottom,
+                              ),
+                              child: SingleChildScrollView(
+                                child: SharePaymentSheet(
+                                  amount: controller.text,
+                                  rawShareText: controller.text,
+                                  action: ShareAction.copy,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
                       );
                     } else {
                       Clipboard.setData(ClipboardData(text: controller.text));

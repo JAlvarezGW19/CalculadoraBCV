@@ -546,4 +546,30 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get paymentAccountsSubtitle =>
       'Kelola data Anda untuk pembayaran seluler dan transfer';
+
+  @override
+  String get accountDigitsHelper => 'Harus memiliki 20 digit';
+
+  @override
+  String accountDigitsCount(Object count) {
+    return '$count/20 digit';
+  }
+
+  @override
+  String get accountDigitsExact => 'Harus memiliki tepat 20 digit';
+
+  @override
+  String aliasAlreadyExists(Object alias) {
+    return 'Alias \"$alias\" sudah ada';
+  }
+
+  @override
+  String pagoMovilAlreadyExists(Object name) {
+    return 'Akun Pembayaran Seluler ini sudah ada dengan nama \"$name\"';
+  }
+
+  @override
+  String bankAccountAlreadyExists(Object name) {
+    return 'Rekening bank ini sudah ada dengan nama \"$name\"';
+  }
 }

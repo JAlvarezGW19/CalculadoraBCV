@@ -173,5 +173,11 @@
   "actionShare": "Compartilhar",
   "amountLabel": "Valor",
   "paymentAccountsTitle": "Contas de Pagamento",
-  "paymentAccountsSubtitle": "Gerencie seus dados para pagamento móvel e transferência"
+  "paymentAccountsSubtitle": "Gerencie seus dados para pagamento móvel e transferência",
+  "accountDigitsHelper": "Deve ter 20 dígitos",
+  "accountDigitsCount": "{count}/20 dígitos",
+  "accountDigitsExact": "Deve ter exatamente 20 dígitos",
+  "aliasAlreadyExists": "O alias \"{alias}\" já existe",
+  "pagoMovilAlreadyExists": "Esta conta de Pagamento Móvel já existe com o nome \"{name}\"",
+  "bankAccountAlreadyExists": "Esta conta bancária já existe com o nome \"{name}\""
 }

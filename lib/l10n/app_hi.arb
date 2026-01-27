@@ -173,5 +173,11 @@
   "actionShare": "साझा करें",
   "amountLabel": "राशि",
   "paymentAccountsTitle": "भुगतान खाते",
-  "paymentAccountsSubtitle": "मोबाइल भुगतान और हस्तांतरण के लिए अपना डेटा प्रबंधित करें"
+  "paymentAccountsSubtitle": "मोबाइल भुगतान और हस्तांतरण के लिए अपना डेटा प्रबंधित करें",
+  "accountDigitsHelper": "20 अंक होने चाहिए",
+  "accountDigitsCount": "{count}/20 अंक",
+  "accountDigitsExact": "ठीक 20 अंक होने चाहिए",
+  "aliasAlreadyExists": "उपनाम \"{alias}\" पहले से मौजूद है",
+  "pagoMovilAlreadyExists": "यह मोबाइल भुगतान खाता \"{name}\" नाम से पहले से मौजूद है",
+  "bankAccountAlreadyExists": "यह बैंक खाता \"{name}\" नाम से पहले से मौजूद है"
 }

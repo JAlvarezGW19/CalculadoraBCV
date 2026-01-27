@@ -551,4 +551,30 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get paymentAccountsSubtitle =>
       'Gerencie seus dados para pagamento móvel e transferência';
+
+  @override
+  String get accountDigitsHelper => 'Deve ter 20 dígitos';
+
+  @override
+  String accountDigitsCount(Object count) {
+    return '$count/20 dígitos';
+  }
+
+  @override
+  String get accountDigitsExact => 'Deve ter exatamente 20 dígitos';
+
+  @override
+  String aliasAlreadyExists(Object alias) {
+    return 'O alias \"$alias\" já existe';
+  }
+
+  @override
+  String pagoMovilAlreadyExists(Object name) {
+    return 'Esta conta de Pagamento Móvel já existe com o nome \"$name\"';
+  }
+
+  @override
+  String bankAccountAlreadyExists(Object name) {
+    return 'Esta conta bancária já existe com o nome \"$name\"';
+  }
 }

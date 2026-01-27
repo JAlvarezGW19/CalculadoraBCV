@@ -171,7 +171,14 @@
   "accountLabel": "الحساب",
   "actionCopy": "نسخ",
   "actionShare": "مشاركة",
-  "amountLabel": "المبلغ",
+  "amountLabel": "كمية",
   "paymentAccountsTitle": "حسابات الدفع",
-  "paymentAccountsSubtitle": "إدارة بياناتك للدفع عبر الهاتف والتحويل"
+  "paymentAccountsSubtitle": "إدارة بياناتك للدفع عبر الهاتف المحمول والتحويل",
+  "accountDigitsHelper": "يجب أن يتكون من 20 رقمًا",
+  "accountDigitsCount": "{count}/20 رقمًا",
+  "accountDigitsExact": "يجب أن يتكون من 20 رقمًا بالضبط",
+  "aliasAlreadyExists": "الاسم المستعار \"{alias}\" موجود بالفعل",
+  "pagoMovilAlreadyExists": "حساب الدفع عبر الهاتف المحمول هذا موجود بالفعل باسم \"{name}\"",
+  "bankAccountAlreadyExists": "هذا الحساب المصرفي موجود بالفعل باسم \"{name}\""
+
 }

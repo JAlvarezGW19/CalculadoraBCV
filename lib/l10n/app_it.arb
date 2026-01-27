@@ -173,5 +173,11 @@
   "actionShare": "Condividi",
   "amountLabel": "Importo",
   "paymentAccountsTitle": "Conti di Pagamento",
-  "paymentAccountsSubtitle": "Gestisci i tuoi dati per pagamento mobile e bonifico"
+  "paymentAccountsSubtitle": "Gestisci i tuoi dati per pagamento mobile e bonifico",
+  "accountDigitsHelper": "Deve avere 20 cifre",
+  "accountDigitsCount": "{count}/20 cifre",
+  "accountDigitsExact": "Deve avere esattamente 20 cifre",
+  "aliasAlreadyExists": "L'alias \"{alias}\" esiste già",
+  "pagoMovilAlreadyExists": "Questo conto di pagamento mobile esiste già con il nome \"{name}\"",
+  "bankAccountAlreadyExists": "Questo conto bancario esiste già con il nome \"{name}\""
 }

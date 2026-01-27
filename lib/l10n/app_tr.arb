@@ -173,5 +173,11 @@
   "actionShare": "Paylaş",
   "amountLabel": "Tutar",
   "paymentAccountsTitle": "Ödeme Hesapları",
-  "paymentAccountsSubtitle": "Mobil ödeme ve transfer için verilerinizi yönetin"
+  "paymentAccountsSubtitle": "Mobil ödeme ve transfer için verilerinizi yönetin",
+  "accountDigitsHelper": "20 haneli olmalıdır",
+  "accountDigitsCount": "{count}/20 hane",
+  "accountDigitsExact": "Tam olarak 20 haneli olmalıdır",
+  "aliasAlreadyExists": "\"{alias}\" takma adı zaten mevcut",
+  "pagoMovilAlreadyExists": "Bu Mobil Ödeme hesabı \"{name}\" adıyla zaten mevcut",
+  "bankAccountAlreadyExists": "Bu banka hesabı \"{name}\" adıyla zaten mevcut"
 }

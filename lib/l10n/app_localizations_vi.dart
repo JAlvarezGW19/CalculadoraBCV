@@ -543,9 +543,35 @@ class AppLocalizationsVi extends AppLocalizations {
   String get amountLabel => 'Số tiền';
 
   @override
-  String get paymentAccountsTitle => 'Tài khoản Thanh toán';
+  String get paymentAccountsTitle => 'Tài khoản thanh toán';
 
   @override
   String get paymentAccountsSubtitle =>
-      'Quản lý dữ liệu cho thanh toán di động và chuyển khoản';
+      'Quản lý dữ liệu của bạn để thanh toán di động và chuyển khoản';
+
+  @override
+  String get accountDigitsHelper => 'Phải có 20 chữ số';
+
+  @override
+  String accountDigitsCount(Object count) {
+    return '$count/20 chữ số';
+  }
+
+  @override
+  String get accountDigitsExact => 'Phải có chính xác 20 chữ số';
+
+  @override
+  String aliasAlreadyExists(Object alias) {
+    return 'Biệt danh \"$alias\" đã tồn tại';
+  }
+
+  @override
+  String pagoMovilAlreadyExists(Object name) {
+    return 'Tài khoản Thanh toán di động này đã tồn tại với tên \"$name\"';
+  }
+
+  @override
+  String bankAccountAlreadyExists(Object name) {
+    return 'Tài khoản ngân hàng này đã tồn tại với tên \"$name\"';
+  }
 }

@@ -63,14 +63,8 @@ class _SharePaymentSheetState extends State<SharePaymentSheet> {
   }
 
   String _formatTransfer(UserAccount acc) {
-    if (!mounted) return '';
-    final l10n = AppLocalizations.of(context)!;
-    return """${l10n.transferData}:
-${l10n.bankLabel}: ${acc.bankName} (${acc.bankCode})
-${l10n.nameLabel}: ${acc.alias}
-${l10n.ciLabel}: ${acc.ci}
-${l10n.accountLabel}: ${acc.accountNumber.isEmpty ? 'N/A' : acc.accountNumber}
-${l10n.amountLabel}: ${widget.amount} Bs.""";
+    // Formato simplificado: solo cuenta, cédula y monto
+    return "${acc.accountNumber} ${acc.ci} ${widget.amount}";
   }
 
   @override
@@ -101,7 +95,11 @@ ${l10n.amountLabel}: ${widget.amount} Bs.""";
 
           Text(
             '$title ${l10n.amountLabel}',
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
@@ -112,8 +110,8 @@ ${l10n.amountLabel}: ${widget.amount} Bs.""";
             title: l10n.onlyAmount,
             subtitle: widget.rawShareText,
             onTap: () => _handleOption(widget.rawShareText),
-            color: Colors.blueAccent.withValues(alpha: 0.1),
-            iconColor: Colors.blueAccent,
+            color: Colors.white.withValues(alpha: 0.1),
+            iconColor: Colors.white,
           ),
 
           const SizedBox(height: 24),
@@ -159,95 +157,119 @@ ${l10n.amountLabel}: ${widget.amount} Bs.""";
             ),
             // List of Accounts
             ListView.separated(
-              physics:
-                  const NeverScrollableScrollPhysics(), // Scroll managed by parent
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: _accounts.length,
               separatorBuilder: (context, index) => const SizedBox(height: 8),
               itemBuilder: (ctx, i) {
                 final acc = _accounts[i];
                 final isPagoMovil = acc.type == AccountType.pagoMovil;
+                final textToShare = isPagoMovil
+                    ? _formatPagoMovil(acc)
+                    : _formatTransfer(acc);
 
-                return InkWell(
-                  onTap: () {
-                    if (isPagoMovil) {
-                      _handleOption(_formatPagoMovil(acc));
-                    } else {
-                      _handleOption(_formatTransfer(acc));
-                    }
-                  },
-                  borderRadius: BorderRadius.circular(12),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
-                      border: Border.all(
-                        color: Colors.grey.withValues(alpha: 0.2),
-                      ),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    padding: const EdgeInsets.all(12),
-                    child: Row(
-                      children: [
-                        // Bank Logo / Icon
-                        CircleAvatar(
-                          radius: 20,
-                          backgroundColor: Theme.of(
-                            context,
-                          ).primaryColor.withValues(alpha: 0.1),
-                          child: Text(
-                            acc.bankCode.substring(2),
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                            ),
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).cardColor,
+                    border: Border.all(color: Colors.grey.withOpacity(0.2)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
+                  child: Row(
+                    children: [
+                      // Bank Logo / Icon
+                      CircleAvatar(
+                        radius: 20,
+                        backgroundColor: Theme.of(
+                          context,
+                        ).primaryColor.withOpacity(0.1),
+                        child: Text(
+                          acc.bankCode.substring(2),
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(width: 12),
-                        // Account Details
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                acc.alias,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
+                      ),
+                      const SizedBox(width: 12),
+                      // Account Details
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              acc.alias,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
                               ),
-                              const SizedBox(height: 2),
-                              Row(
-                                children: [
-                                  Icon(
-                                    isPagoMovil
-                                        ? Icons.smartphone
-                                        : Icons.account_balance,
-                                    size: 12,
+                            ),
+                            const SizedBox(height: 2),
+                            Row(
+                              children: [
+                                Icon(
+                                  isPagoMovil
+                                      ? Icons.smartphone
+                                      : Icons.account_balance,
+                                  size: 12,
+                                  color: Colors.grey,
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  isPagoMovil
+                                      ? l10n.pagoMovil
+                                      : l10n.bankTransfer,
+                                  style: const TextStyle(
+                                    fontSize: 12,
                                     color: Colors.grey,
                                   ),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                    isPagoMovil
-                                        ? l10n.pagoMovil
-                                        : l10n.bankTransfer,
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.grey,
-                                    ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      // Actions
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.copy),
+                            tooltip: l10n.actionCopy,
+                            onPressed: () {
+                              Clipboard.setData(
+                                ClipboardData(text: textToShare),
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(l10n.copiedClipboard),
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: const EdgeInsets.only(
+                                    bottom: 10,
+                                    left: 20,
+                                    right: 20,
                                   ),
-                                ],
-                              ),
-                            ],
+                                ),
+                              );
+                              Navigator.pop(context);
+                            },
                           ),
-                        ),
-                        // Action Icon
-                        Icon(
-                          isPagoMovil ? Icons.copy_all : Icons.share,
-                          color: Colors.grey[400],
-                        ),
-                      ],
-                    ),
+                          IconButton(
+                            icon: const Icon(Icons.share),
+                            tooltip: l10n.actionShare,
+                            onPressed: () {
+                              // ignore: deprecated_member_use
+                              Share.share(textToShare);
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 );
               },
@@ -310,10 +332,10 @@ ${l10n.amountLabel}: ${widget.amount} Bs.""";
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
-                      color: iconColor, // Match theme
+                      color: Colors.white,
                     ),
                   ),
                   Text(
@@ -321,7 +343,7 @@ ${l10n.amountLabel}: ${widget.amount} Bs.""";
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: iconColor.withValues(alpha: 0.7),
+                      color: Colors.white.withValues(alpha: 0.7),
                       fontSize: 12,
                     ),
                   ),

@@ -38,6 +38,7 @@ class _PaymentSettingsScreenState extends State<PaymentSettingsScreen> {
       backgroundColor: Colors.transparent,
       builder: (context) => _AccountForm(
         account: account,
+        existingAccounts: _accounts,
         onSave: (newAccount) async {
           await _service.saveAccount(newAccount);
           _loadAccounts();
@@ -154,9 +155,14 @@ class _PaymentSettingsScreenState extends State<PaymentSettingsScreen> {
 
 class _AccountForm extends StatefulWidget {
   final UserAccount? account;
+  final List<UserAccount> existingAccounts;
   final Function(UserAccount) onSave;
 
-  const _AccountForm({this.account, required this.onSave});
+  const _AccountForm({
+    this.account,
+    required this.existingAccounts,
+    required this.onSave,
+  });
 
   @override
   State<_AccountForm> createState() => _AccountFormState();
@@ -185,6 +191,59 @@ class _AccountFormState extends State<_AccountForm> {
       text: widget.account?.accountNumber ?? '',
     );
     _selectedBankCode = widget.account?.bankCode;
+  }
+
+  bool _isDuplicate() {
+    final l10n = AppLocalizations.of(context)!;
+
+    for (final existing in widget.existingAccounts) {
+      // Skip if we're editing the same account
+      if (widget.account != null && existing.id == widget.account!.id) {
+        continue;
+      }
+
+      // Check if alias already exists
+      if (existing.alias.toLowerCase() == _aliasCtrl.text.toLowerCase()) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.aliasAlreadyExists(_aliasCtrl.text)),
+            backgroundColor: Colors.red,
+          ),
+        );
+        return true;
+      }
+
+      // Check if all data matches (same bank, CI, phone/account)
+      final sameBank = existing.bankCode == _selectedBankCode;
+      final sameCi = existing.ci == _ciCtrl.text;
+      final sameType = existing.type == _selectedType;
+
+      if (sameBank && sameCi && sameType) {
+        if (_selectedType == AccountType.pagoMovil) {
+          if (existing.phone == _phoneCtrl.text) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(l10n.pagoMovilAlreadyExists(existing.alias)),
+                backgroundColor: Colors.red,
+              ),
+            );
+            return true;
+          }
+        } else {
+          if (existing.accountNumber == _accountNumCtrl.text) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(l10n.bankAccountAlreadyExists(existing.alias)),
+                backgroundColor: Colors.red,
+              ),
+            );
+            return true;
+          }
+        }
+      }
+    }
+
+    return false;
   }
 
   @override
@@ -269,27 +328,49 @@ class _AccountFormState extends State<_AccountForm> {
               ),
               const SizedBox(height: 12),
 
-              DropdownButtonFormField<String>(
-                // ignore: deprecated_member_use
-                value: _selectedBankCode,
-                decoration: InputDecoration(
-                  labelText: l10n.bankLabel,
-                  prefixIcon: const Icon(Icons.account_balance),
+              // Bank Selector (Only for Pago Movil or manual selection needed)
+              if (isPagoMovil)
+                DropdownButtonFormField<String>(
+                  // ignore: deprecated_member_use
+                  value: _selectedBankCode,
+                  decoration: InputDecoration(
+                    labelText: l10n.bankLabel,
+                    prefixIcon: const Icon(Icons.account_balance),
+                  ),
+                  isExpanded: true,
+                  items: bankEntries.map((e) {
+                    return DropdownMenuItem(
+                      value: e.key,
+                      child: Text(
+                        "${e.key} - ${e.value}",
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 13),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (v) => setState(() => _selectedBankCode = v),
+                  validator: (v) => v == null ? l10n.selectBank : null,
                 ),
-                isExpanded: true,
-                items: bankEntries.map((e) {
-                  return DropdownMenuItem(
-                    value: e.key,
+
+              // Detected Bank Display (Only for Transferencia)
+              if (!isPagoMovil && _selectedBankCode != null)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: InputDecorator(
+                    decoration: InputDecoration(
+                      labelText: l10n.bankLabel,
+                      prefixIcon: const Icon(Icons.account_balance),
+                      border: const OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Theme.of(context).cardColor.withOpacity(0.5),
+                    ),
                     child: Text(
-                      "${e.key} - ${e.value}",
-                      overflow: TextOverflow.ellipsis,
+                      "${_selectedBankCode} - ${BankData.banks[_selectedBankCode]}",
                       style: const TextStyle(fontSize: 13),
                     ),
-                  );
-                }).toList(),
-                onChanged: (v) => setState(() => _selectedBankCode = v),
-                validator: (v) => v == null ? l10n.selectBank : null,
-              ),
+                  ),
+                ),
+
               const SizedBox(height: 12),
 
               // CI Field (Common)
@@ -328,13 +409,57 @@ class _AccountFormState extends State<_AccountForm> {
                 TextFormField(
                   controller: _accountNumCtrl,
                   keyboardType: TextInputType.number,
+                  maxLength: 20,
+                  onChanged: (value) {
+                    // Auto-detect bank from first 4 digits
+                    if (value.length >= 4) {
+                      final code = value.substring(0, 4);
+                      if (BankData.banks.containsKey(code)) {
+                        if (_selectedBankCode != code) {
+                          setState(() {
+                            _selectedBankCode = code;
+                          });
+                        }
+                      }
+                    } else if (_selectedBankCode != null &&
+                        widget.account == null) {
+                      // Reset if editing new account and digits < 4
+                      // But keep if editing existing one unless user clears it
+                      // Actually safer to just keep last detected
+                    }
+                    setState(() {}); // Trigger rebuild for visual feedback
+                  },
                   decoration: InputDecoration(
                     labelText: l10n.accountNumberLabel,
                     prefixIcon: const Icon(Icons.numbers),
+                    suffixIcon: _accountNumCtrl.text.length == 20
+                        ? const Icon(Icons.check_circle, color: Colors.green)
+                        : _accountNumCtrl.text.isNotEmpty
+                        ? Icon(Icons.info_outline, color: Colors.orange)
+                        : null,
+                    helperText: _accountNumCtrl.text.isEmpty
+                        ? l10n.accountDigitsHelper
+                        : l10n.accountDigitsCount(
+                            '${_accountNumCtrl.text.length}',
+                          ),
+                    helperStyle: TextStyle(
+                      color: _accountNumCtrl.text.length == 20
+                          ? Colors.green
+                          : Colors.orange,
+                    ),
                   ),
                   validator: (v) {
-                    if (!isPagoMovil && (v == null || v.length < 20)) {
-                      return l10n.requiredField;
+                    if (!isPagoMovil) {
+                      if (v == null || v.length != 20) {
+                        return l10n.accountDigitsExact;
+                      }
+                      // Validate bank code exists
+                      if (v.length >= 4) {
+                        final code = v.substring(0, 4);
+                        if (!BankData.banks.containsKey(code)) {
+                          return 'Código de banco inválido ($code)';
+                        }
+                      }
                     }
                     return null;
                   },
@@ -348,6 +473,11 @@ class _AccountFormState extends State<_AccountForm> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+                    // Check for duplicates
+                    if (_isDuplicate()) {
+                      return; // Don't save if duplicate
+                    }
+
                     final newAccount = UserAccount(
                       id:
                           widget.account?.id ??

@@ -173,5 +173,11 @@
   "actionShare": "Bagikan",
   "amountLabel": "Jumlah",
   "paymentAccountsTitle": "Akun Pembayaran",
-  "paymentAccountsSubtitle": "Kelola data Anda untuk pembayaran seluler dan transfer"
+  "paymentAccountsSubtitle": "Kelola data Anda untuk pembayaran seluler dan transfer",
+  "accountDigitsHelper": "Harus memiliki 20 digit",
+  "accountDigitsCount": "{count}/20 digit",
+  "accountDigitsExact": "Harus memiliki tepat 20 digit",
+  "aliasAlreadyExists": "Alias \"{alias}\" sudah ada",
+  "pagoMovilAlreadyExists": "Akun Pembayaran Seluler ini sudah ada dengan nama \"{name}\"",
+  "bankAccountAlreadyExists": "Rekening bank ini sudah ada dengan nama \"{name}\""
 }

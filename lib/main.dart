@@ -12,6 +12,7 @@ import 'providers/ad_provider.dart';
 import 'providers/iap_provider.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'services/history_service.dart';
 
 Future<void> main() async {
   try {
@@ -19,6 +20,10 @@ Future<void> main() async {
 
     // Initialize Firebase (uses google-services.json on Android)
     await Firebase.initializeApp();
+
+    // Initialize History Service Realtime Listener
+    // Esto detectará automáticamente cuando Firebase agregue nuevas tasas
+    HistoryService().startRealtimeListener();
 
     // Lock orientation to portrait (fire and forget)
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

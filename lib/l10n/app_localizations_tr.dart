@@ -551,4 +551,30 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get paymentAccountsSubtitle =>
       'Mobil ödeme ve transfer için verilerinizi yönetin';
+
+  @override
+  String get accountDigitsHelper => '20 haneli olmalıdır';
+
+  @override
+  String accountDigitsCount(Object count) {
+    return '$count/20 hane';
+  }
+
+  @override
+  String get accountDigitsExact => 'Tam olarak 20 haneli olmalıdır';
+
+  @override
+  String aliasAlreadyExists(Object alias) {
+    return '\"$alias\" takma adı zaten mevcut';
+  }
+
+  @override
+  String pagoMovilAlreadyExists(Object name) {
+    return 'Bu Mobil Ödeme hesabı \"$name\" adıyla zaten mevcut';
+  }
+
+  @override
+  String bankAccountAlreadyExists(Object name) {
+    return 'Bu banka hesabı \"$name\" adıyla zaten mevcut';
+  }
 }

@@ -173,5 +173,11 @@
   "actionShare": "공유",
   "amountLabel": "금액",
   "paymentAccountsTitle": "결제 계정",
-  "paymentAccountsSubtitle": "모바일 결제 및 이체를 위한 데이터 관리"
+  "paymentAccountsSubtitle": "모바일 결제 및 이체를 위한 데이터 관리",
+  "accountDigitsHelper": "20자리여야 합니다",
+  "accountDigitsCount": "{count}/20자리",
+  "accountDigitsExact": "정확히 20자리여야 합니다",
+  "aliasAlreadyExists": "별칭 \"{alias}\"이(가) 이미 존재합니다",
+  "pagoMovilAlreadyExists": "이 모바일 결제 계정은 \"{name}\" 이름으로 이미 존재합니다",
+  "bankAccountAlreadyExists": "이 은행 계좌는 \"{name}\" 이름으로 이미 존재합니다"
 }

@@ -173,5 +173,11 @@
   "actionShare": "Share",
   "amountLabel": "Amount",
   "paymentAccountsTitle": "Payment Accounts",
-  "paymentAccountsSubtitle": "Manage your data for mobile payment and transfer"
+  "paymentAccountsSubtitle": "Manage your data for mobile payment and transfer",
+  "accountDigitsHelper": "Must have 20 digits",
+  "accountDigitsCount": "{count}/20 digits",
+  "accountDigitsExact": "Must have exactly 20 digits",
+  "aliasAlreadyExists": "Alias \"{alias}\" already exists",
+  "pagoMovilAlreadyExists": "This Mobile Payment account already exists with name \"{name}\"",
+  "bankAccountAlreadyExists": "This bank account already exists with name \"{name}\""
 }

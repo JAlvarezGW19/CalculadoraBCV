@@ -173,5 +173,11 @@
   "actionShare": "分享",
   "amountLabel": "金额",
   "paymentAccountsTitle": "支付账户",
-  "paymentAccountsSubtitle": "管理您的移动支付和转账数据"
+  "paymentAccountsSubtitle": "管理您的移动支付和转账数据",
+  "accountDigitsHelper": "必须有 20 位数字",
+  "accountDigitsCount": "{count}/20 位数字",
+  "accountDigitsExact": "必须正好是 20 位数字",
+  "aliasAlreadyExists": "别名“{alias}”已存在",
+  "pagoMovilAlreadyExists": "此移动支付账户已存在，名称为“{name}”",
+  "bankAccountAlreadyExists": "此银行账户已存在，名称为“{name}”"
 }
