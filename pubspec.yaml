@@ -1,7 +1,7 @@
 name: calculadora_bcv
 description: "Calculadora de tasas del BCV, conversiones, historial y escáner de precios."
 publish_to: 'none'
-version: 1.0.21+21
+version: 1.0.22+22
 
 environment:
   sdk: ^3.10.4

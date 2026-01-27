@@ -171,7 +171,9 @@ class _SharePaymentSheetState extends State<SharePaymentSheet> {
                 return Container(
                   decoration: BoxDecoration(
                     color: Theme.of(context).cardColor,
-                    border: Border.all(color: Colors.grey.withOpacity(0.2)),
+                    border: Border.all(
+                      color: Colors.grey.withValues(alpha: 0.2),
+                    ),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   padding: const EdgeInsets.symmetric(
@@ -185,7 +187,7 @@ class _SharePaymentSheetState extends State<SharePaymentSheet> {
                         radius: 20,
                         backgroundColor: Theme.of(
                           context,
-                        ).primaryColor.withOpacity(0.1),
+                        ).primaryColor.withValues(alpha: 0.1),
                         child: Text(
                           acc.bankCode.substring(2),
                           style: TextStyle(

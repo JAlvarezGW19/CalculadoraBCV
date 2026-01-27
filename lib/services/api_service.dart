@@ -35,7 +35,10 @@ class ApiService {
           ); // Force server if requested
 
       if (docSnapshot.exists && docSnapshot.data() != null) {
-        return await _processFirestoreData(docSnapshot.data()!);
+        return await _processFirestoreData(
+          docSnapshot.data()!,
+          previousCache: cachedData,
+        );
       }
     } catch (e) {
       debugPrint("Firestore fetch failed: $e");
@@ -53,8 +56,9 @@ class ApiService {
   }
 
   Future<Map<String, dynamic>> _processFirestoreData(
-    Map<String, dynamic> data,
-  ) async {
+    Map<String, dynamic> data, {
+    Map<String, dynamic>? previousCache,
+  }) async {
     final double usd = (data['usd'] as num).toDouble();
     final double eur = (data['eur'] as num).toDouble();
     final bool hasTomorrow = data['has_tomorrow'] ?? false;
@@ -93,24 +97,51 @@ class ApiService {
         final todayStr = DateFormat('yyyy-MM-dd').format(DateTime.now());
         final historyDoc = await FirebaseFirestore.instance
             .collection('historial_tasas')
-            .doc(todayStr)
+            .doc('consolidated')
             .get();
 
+        bool foundInHistory = false;
         if (historyDoc.exists && historyDoc.data() != null) {
-          final hData = historyDoc.data()!;
-          usdToday = (hData['usd'] as num).toDouble();
-          eurToday = (hData['eur'] as num).toDouble();
-        } else {
-          // If not found in history (rare), fallback to older logic or current
-          // Ideally we check cache, but for now we set equal to avoid empty UI
-          usdToday = usd;
-          eurToday = eur;
+          final data = historyDoc.data()!;
+          if (data['rates'] != null) {
+            final List<dynamic> rates = data['rates'];
+            // Find today's rate matches todayStr
+            // rates usually have 'rate_date' or 'date'
+            try {
+              final match = rates.firstWhere((element) {
+                final d = element['rate_date'] ?? element['date'];
+                if (d is String) {
+                  return d.startsWith(todayStr);
+                }
+                return false;
+              });
+
+              if (match != null) {
+                usdToday = (match['usd'] as num).toDouble();
+                eurToday = (match['eur'] as num).toDouble();
+                foundInHistory = true;
+              }
+            } catch (_) {
+              // Not found in list
+            }
+          }
+        }
+
+        if (!foundInHistory) {
+          // If not found in history, try to use previous cache if valid for today
+          _useFallbackOrCurrent(previousCache, todayStr, usd, eur, (u, e) {
+            usdToday = u;
+            eurToday = e;
+          });
         }
       } catch (e) {
         debugPrint("Error fetching today history: $e");
-        // Fallback
-        usdToday = usd;
-        eurToday = eur;
+        // Fallback to cache or current
+        final todayStr = DateFormat('yyyy-MM-dd').format(DateTime.now());
+        _useFallbackOrCurrent(previousCache, todayStr, usd, eur, (u, e) {
+          usdToday = u;
+          eurToday = e;
+        });
       }
     } else {
       // Standard today rate
@@ -146,6 +177,35 @@ class ApiService {
 
     await _cacheData(result);
     return result;
+  }
+
+  void _useFallbackOrCurrent(
+    Map<String, dynamic>? cache,
+    String requiredTodayDateStr,
+    double currentUsd,
+    double currentEur,
+    Function(double, double) onApply,
+  ) {
+    bool usedCache = false;
+    if (cache != null) {
+      final cacheDate = cache['today_date'] as String?;
+      // Note: cache['today_date'] is usually an ISO String (e.g. 2024-01-27T...)
+      // requiredTodayDateStr is yyyy-MM-dd (e.g. 2024-01-27)
+      if (cacheDate != null && cacheDate.startsWith(requiredTodayDateStr)) {
+        // Use cached today rate as it matches required date.
+        // Even if cache is "stale" in terms of refresh time, it is correct for "Today's" rate
+        // which implies the previous day's close.
+        final u = (cache['usd_today'] as num?)?.toDouble() ?? currentUsd;
+        final e = (cache['eur_today'] as num?)?.toDouble() ?? currentEur;
+        onApply(u, e);
+        usedCache = true;
+      }
+    }
+
+    if (!usedCache) {
+      // Fallback failure: use current (which is actually tomorrow's rate in this context)
+      onApply(currentUsd, currentEur);
+    }
   }
 
   bool isCacheValid(Map<String, dynamic> cache) {

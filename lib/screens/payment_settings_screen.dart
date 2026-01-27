@@ -362,10 +362,12 @@ class _AccountFormState extends State<_AccountForm> {
                       prefixIcon: const Icon(Icons.account_balance),
                       border: const OutlineInputBorder(),
                       filled: true,
-                      fillColor: Theme.of(context).cardColor.withOpacity(0.5),
+                      fillColor: Theme.of(
+                        context,
+                      ).cardColor.withValues(alpha: 0.5),
                     ),
                     child: Text(
-                      "${_selectedBankCode} - ${BankData.banks[_selectedBankCode]}",
+                      "$_selectedBankCode - ${BankData.banks[_selectedBankCode]}",
                       style: const TextStyle(fontSize: 13),
                     ),
                   ),
