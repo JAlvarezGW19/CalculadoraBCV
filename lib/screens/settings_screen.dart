@@ -133,8 +133,12 @@ class SettingsScreen extends ConsumerWidget {
                 title: l10n.shareApp,
                 subtitle: l10n.shareAppSubtitle,
                 onTap: () async {
-                  // ignore: deprecated_member_use
-                  await Share.share(l10n.shareMessage);
+                  try {
+                    // ignore: deprecated_member_use
+                    await Share.share(l10n.shareMessage);
+                  } catch (e) {
+                    debugPrint("Share error: $e");
+                  }
                 },
               ),
               SettingsListItem(

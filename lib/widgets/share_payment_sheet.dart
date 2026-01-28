@@ -45,17 +45,24 @@ class _SharePaymentSheetState extends State<SharePaymentSheet> {
     }
   }
 
-  void _handleOption(String textToProcess) {
-    if (widget.action == ShareAction.copy) {
-      Clipboard.setData(ClipboardData(text: textToProcess));
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Copiado al portapapeles')));
-    } else {
-      // ignore: deprecated_member_use
-      Share.share(textToProcess);
+  Future<void> _handleOption(String textToProcess) async {
+    try {
+      if (widget.action == ShareAction.copy) {
+        await Clipboard.setData(ClipboardData(text: textToProcess));
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Copiado al portapapeles')),
+          );
+          Navigator.pop(context);
+        }
+      } else {
+        // Standard share without subject to maximize compatibility
+        // ignore: deprecated_member_use
+        await Share.share(textToProcess);
+      }
+    } catch (e) {
+      debugPrint("Error sharing: $e");
     }
-    Navigator.pop(context);
   }
 
   String _formatPagoMovil(UserAccount acc) {

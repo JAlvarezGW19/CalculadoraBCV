@@ -380,6 +380,12 @@ class _ConversionCardState extends ConsumerState<ConversionCard> {
 
     if (foreignAmount.isEmpty || vesAmount.isEmpty) return;
 
+    // Fix: Dismiss keyboard before showing sheet/sharing to prevent layout crashes
+    FocusScope.of(context).unfocus();
+    await Future.delayed(const Duration(milliseconds: 300));
+
+    if (!mounted) return;
+
     String prefix = "";
     String suffix = "";
     String rateName = "Tasa BCV";
